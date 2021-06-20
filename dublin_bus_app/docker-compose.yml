@@ -1,12 +1,17 @@
 version: "3"
 
 services:
+  # create a service called app
   app:
     build:
+      # specific the path of docker file (. means current directory)
       context: .
+    # mapping host port 8000 to container port 8000
     ports:
       - "8000:8000"
+    # it will map local directory to container directory automatically
     volumes:
       - ./app:/app
+    # run server
     command: >
-      sh -c "python manage.py runserver 0.0.0.0:8000"
+      python manage.py runserver 0.0.0.0:8000
