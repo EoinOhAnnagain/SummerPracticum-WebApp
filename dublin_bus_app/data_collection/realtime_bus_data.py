@@ -16,14 +16,11 @@ class Bus:
         conn = connect(host="localhost", port=3306, user="root", password="mysql", database="project",
                             charset="utf8")
         cs = conn.cursor()
-        print(content)
         k = len(content["entity"]) - 1
-        print(k)
+        cs.execute("TRUNCATE current_bus_data")
         for i in range(0,k):
             try:
-                print(i)
                 l = len(content["entity"][i]["trip_update"]["stop_time_update"])-1
-                print(l)
                 value = "insert into current_bus_data values("
                 value += str(content["header"]["timestamp"])
                 value += ","
