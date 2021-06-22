@@ -1,1 +1,5 @@
 SUS.py
+
+# Don't store temporary files created when execution of python code is triggered
+/__pycache__/
+*.pyc
