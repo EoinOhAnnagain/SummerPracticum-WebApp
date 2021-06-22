@@ -14,6 +14,7 @@ class BikeStationsSpider:
         conn = connect(host="localhost", port=3306, user="root", password="mysql", database="project",
                             charset="utf8")
         cs = conn.cursor()
+        cs.execute("TRUNCATE current_weather_data")
         value = "insert into weathers values("
         value += str(content["dt"])
         value += ","
