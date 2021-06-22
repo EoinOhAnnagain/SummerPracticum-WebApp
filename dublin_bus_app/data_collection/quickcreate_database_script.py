@@ -8,16 +8,16 @@ class create_database:
         cs = conn.cursor()
         try:
             try:
-                cs.execute("drop table ")
+                cs.execute("drop table realtime_bus_data")
             except Exception as e:
                 pass
-            value_1 = "create table aaa (timestamp int,id VARCHAR(45),trip_id VARCHAR(45),start_time VARCHAR(45),start_date VARCHAR(45),route_id VARCHAR(45),stop_sequence INT,arrival_delay INT,departure_delay INT,stop_id VARCHAR(45))"
+            value_1 = "create table realtime_bus_data (timestamp int,id VARCHAR(45),trip_id VARCHAR(45),start_time VARCHAR(45),start_date VARCHAR(45),route_id VARCHAR(45),stop_sequence INT,arrival_delay INT,departure_delay INT,stop_id VARCHAR(45))"
             cs.execute(value_1)
             try:
-                cs.execute("drop table bbb")
+                cs.execute("drop table realtime_weather_data")
             except Exception as e:
                 pass
-            value_2 = "create table bbb (dt INT, temp INT,humidity INT,speed INT, description VARCHAR(45))"
+            value_2 = "create table realtime_weather_data (dt INT, temp INT,humidity INT,speed INT, description VARCHAR(45))"
             cs.execute(value_2)
             conn.commit()
         except Exception as e:
