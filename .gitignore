@@ -1,5 +1,5 @@
 SUS.py
 
 # Don't store temporary files created when execution of python code is triggered
-/__pycache__/
+/dublin_bus_app/app/app/__pycache__/
 *.pyc
