@@ -11,7 +11,7 @@ class BikeStationsSpider:
         content = json.loads(response.text)
         self.save_data(content)
     def save_data(self,content):
-        conn = connect(host="localhost", port=3306, user="root", password="mysql", database="project",
+        conn = connect(host="173.82.72.146", port=3306, user="root", password="4TheWin2021@", database="project",
                             charset="utf8")
         cs = conn.cursor()
         cs.execute("TRUNCATE current_weather_data")
