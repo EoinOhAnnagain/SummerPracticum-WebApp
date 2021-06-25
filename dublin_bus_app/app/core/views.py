@@ -7,3 +7,6 @@ def HelloWorldView(request):
 
 def MainPageView(request):
     return render(request, "index.html")
+
+def MapView(request):
+    return render(request, "map.html")

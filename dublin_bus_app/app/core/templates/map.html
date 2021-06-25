@@ -1,0 +1,136 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Map</title>
+    <meta name="description" content="map.html">
+    <meta name="author" content="4TheWin">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mapstyle.css' %}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+        function initCharts(){
+            // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(initMap);
+        }
+    </script>
+</head>
+<body>
+
+<div class="body_content">
+
+<!-- divs for page navigation -->
+  <div id="navigation">
+    
+
+    <div id="homenav">
+
+    </div>
+
+
+    <div id="routenav">
+      
+    </div>
+  </div>
+
+    <div class="wrapper">
+        <div class="weather_widget">
+        <div id="description"></div>
+        <h1 id="temp"></h1>
+
+            <div id="icon"></div>
+        </div>
+
+
+    <div class="select_instruct">
+      <h3>Bus Stops on a Map:</h3>
+      <h2>Select a stop to view information about that stop.</h2>
+    </div>
+    </div>
+
+</div>
+
+
+<div id="map"></div>
+
+
+
+<script>
+
+//MAP
+let map;
+
+function initMap() {
+
+    // MAP
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 53.349804, lng: -6.260310 },
+    zoom: 14,
+    });
+
+    //USER LOCATION
+    infoWindow = new google.maps.InfoWindow();
+  const locationButton = document.createElement("button");
+  locationButton.textContent = "Show Current Location";
+  locationButton.classList.add("custom-map-control-button");
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+  locationButton.addEventListener("click", () => {
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          infoWindow.setPosition(pos);
+          infoWindow.setContent("You are here.");
+          infoWindow.open(map);
+          map.setCenter(pos);
+        },
+        () => {
+          handleLocationError(true, infoWindow, map.getCenter());
+        }
+      );
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+  });
+
+
+    }
+    
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(
+    browserHasGeolocation
+      ? "Error: The Geolocation service failed."
+      : "Error: Your browser doesn't support geolocation."
+  );
+  infoWindow.open(map);
+}
+
+
+  </script>
+
+ <script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMShWhoPlx171FYgvYn_nOroBgsf28oCk&callback=initCharts&libraries=&v=weekly"
+      async>
+</script>
+
+
+</body>
+
+</html>
