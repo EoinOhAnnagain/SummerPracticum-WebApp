@@ -3,7 +3,7 @@ class create_database:
     def __init__(self):
         pass
     def create_table(self):
-        conn = connect(host="localhost", port=3306, user="root", password="mysql", database="project",
+        conn = connect(host="173.82.72.146", port=3306, user="root", password="4TheWin2021@", database="project",
                             charset="utf8")
         cs = conn.cursor()
         try:
