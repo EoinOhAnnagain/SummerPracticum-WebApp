@@ -14,6 +14,17 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func ProUserLoginPressed(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "ProUserLogin", sender: self)
+        
+    }
+    
+    @IBAction func toMap(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "Map", sender: self)
+        
+    }
+    
 }
 
