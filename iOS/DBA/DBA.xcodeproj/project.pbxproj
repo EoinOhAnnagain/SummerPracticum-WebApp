@@ -18,6 +18,7 @@
 		6AAC5F1D268C8FCB00451DD2 /* weatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAC5F1C268C8FCB00451DD2 /* weatherManager.swift */; };
 		6AAC5F1F268C97A900451DD2 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAC5F1E268C97A900451DD2 /* WeatherModel.swift */; };
 		6AAC5F21268C9CAB00451DD2 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAC5F20268C9CAB00451DD2 /* WeatherData.swift */; };
+		6AAC5F23268CA6C200451DD2 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAC5F22268CA6C200451DD2 /* WeatherViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		6AAC5F1C268C8FCB00451DD2 /* weatherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = weatherManager.swift; sourceTree = "<group>"; };
 		6AAC5F1E268C97A900451DD2 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		6AAC5F20268C9CAB00451DD2 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		6AAC5F22268CA6C200451DD2 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				6A78A643268A0987003BA1ED /* MapViewController.swift */,
 				6A78A641268A0819003BA1ED /* LoginViewController.swift */,
 				6A1E1BD42686765600A51DF1 /* ViewController.swift */,
+				6AAC5F22268CA6C200451DD2 /* WeatherViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A78A642268A0819003BA1ED /* LoginViewController.swift in Sources */,
+				6AAC5F23268CA6C200451DD2 /* WeatherViewController.swift in Sources */,
 				6A1E1BD52686765600A51DF1 /* ViewController.swift in Sources */,
 				6AAC5F1D268C8FCB00451DD2 /* weatherManager.swift in Sources */,
 				6AAC5F1F268C97A900451DD2 /* WeatherModel.swift in Sources */,
