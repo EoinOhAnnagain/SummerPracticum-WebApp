@@ -134,6 +134,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" systemColor="systemYellowColor"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwc-bj-jxG">
+                                <rect key="frame" x="46" y="662" width="323" height="126"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="button"/>
+                                <connections>
+                                    <action selector="weatherWidgetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SKY-5V-2IV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -146,6 +154,7 @@
                         <outlet property="weatherLoader" destination="Jhy-lA-Vkw" id="fwl-Ml-0R0"/>
                         <segue destination="QJF-4w-IrE" kind="presentation" identifier="ProUserLogin" id="S1V-4C-77T"/>
                         <segue destination="YJP-7s-BuX" kind="presentation" identifier="Map" id="RVz-4o-bjC"/>
+                        <segue destination="Dv3-3x-ApG" kind="presentation" identifier="toWeather" id="rWG-q9-Iep"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -266,14 +275,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xum-7n-xzB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="28.985507246376812" y="777.45535714285711"/>
+            <point key="canvasLocation" x="-168" y="814"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Ywc-Ux-Hnl">
             <objects>
                 <viewController id="Dv3-3x-ApG" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CPo-ad-kx2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="0zO-jA-t7l"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -281,7 +290,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dci-pb-vhV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="799" y="777"/>
+            <point key="canvasLocation" x="799" y="814"/>
         </scene>
     </scenes>
     <resources>

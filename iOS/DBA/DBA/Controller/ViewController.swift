@@ -37,6 +37,11 @@ class ViewController: UIViewController {
     
     
     
+    @IBAction func weatherWidgetButton(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "toWeather", sender: self)
+        
+    }
     
     
     
@@ -53,11 +58,16 @@ class ViewController: UIViewController {
     }
     
     func displayWeather() {
-        tempDisplay.alpha = 1
-        weatherIcon.alpha = 1
-        degreesText.alpha = 1
-        locationText.alpha = 1
-        weatherLoader.stopAnimating()
+        
+        self.weatherLoader.stopAnimating()
+        
+        UIView.animate(withDuration: 1.5) {
+            self.tempDisplay.alpha = 1
+            self.weatherIcon.alpha = 1
+            self.degreesText.alpha = 1
+            self.locationText.alpha = 1
+        }
+        
         
     }
     
