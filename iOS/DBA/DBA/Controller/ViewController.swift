@@ -10,9 +10,7 @@ import CoreLocation
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var weatherIcon: UIImageView!
-    @IBOutlet weak var currentTemp: UILabel!
-    @IBOutlet weak var degreesC: UILabel!
+    
     
     let locationManager = CLLocationManager()
     
