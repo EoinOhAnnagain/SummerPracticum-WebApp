@@ -18,7 +18,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var weatherLoader: UIActivityIndicatorView!
     
     var weatherManager = WeatherManager()
+    var weatherModel: WeatherModel?
     let locationManager = CLLocationManager()
+    
     
     
     override func viewDidLoad() {
@@ -39,6 +41,7 @@ class ViewController: UIViewController {
     
     @IBAction func weatherWidgetButton(_ sender: UIButton) {
         
+        print("Pressed")
         performSegue(withIdentifier: "toWeather", sender: self)
         
     }
@@ -56,6 +59,16 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "Map", sender: self)
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toWeather" {
+            let destinationVC = segue.destination as! WeatherViewController
+            destinationVC.temp = "Passed :)"
+            destinationVC.weather = weatherModel
+        }
+    }
+    
+    
     
     func displayWeather() {
         
@@ -108,6 +121,7 @@ extension ViewController: WeatherManagherDelegate {
             self.weatherIcon.image = UIImage(systemName: weather.conditionName)
             self.locationText.text = weather.cityName
             self.displayWeather()
+            self.weatherModel = weather
         }
     }
     

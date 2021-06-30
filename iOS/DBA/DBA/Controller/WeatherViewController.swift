@@ -7,15 +7,26 @@
 
 import UIKit
 
+
 class WeatherViewController: UIViewController {
 
+    
+    
+    var temp: String?
+    var weather: WeatherModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        weather!.printAll()
+        
+        
     }
     
     @IBAction func dismissPressed(_ sender: UIButton) {
+        print(temp!)
         dismiss(animated: true, completion: nil)
     }
     

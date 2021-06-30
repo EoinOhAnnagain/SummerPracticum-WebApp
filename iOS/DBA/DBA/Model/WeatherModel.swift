@@ -38,5 +38,12 @@ struct WeatherModel {
         }
 
     }
+    
+    func printAll() {
+        print(conditionId)
+        print(cityName)
+        print(temperature)
+    }
+    
 }
 
