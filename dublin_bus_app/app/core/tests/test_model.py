@@ -22,7 +22,7 @@ class ModelTests(TestCase):
         # This method will refer to the User model defined in AUTH_USER_MODEL  in setting.py
         user = get_user_model().objects.create_user(email, 'test123')
 
-        self.assertEqual(user.email,email.lower())
+        self.assertEqual(user.email, email.lower())
 
     def test_new_user_invalid_email(self):
         """Test creating user with no email raises error"""
