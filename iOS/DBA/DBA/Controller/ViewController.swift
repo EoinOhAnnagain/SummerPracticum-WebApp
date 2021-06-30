@@ -10,18 +10,26 @@ import CoreLocation
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var weatherIcon: UIImageView!
+    @IBOutlet weak var tempDisplay: UILabel!
+    @IBOutlet weak var degreesText: UILabel!
+    @IBOutlet weak var locationText: UILabel!
     
+    @IBOutlet weak var weatherLoader: UIActivityIndicatorView!
     
+    var weatherManager = WeatherManager()
     let locationManager = CLLocationManager()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         
+        weatherManager.delegate = self
         
     }
 
@@ -44,6 +52,17 @@ class ViewController: UIViewController {
         
     }
     
+    func displayWeather() {
+        tempDisplay.alpha = 1
+        weatherIcon.alpha = 1
+        degreesText.alpha = 1
+        locationText.alpha = 1
+        weatherLoader.stopAnimating()
+        
+    }
+    
+    
+    
 }
 
 
@@ -53,11 +72,36 @@ class ViewController: UIViewController {
 extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Got location")
+        
+        if let location = locations.last {
+            locationManager.stopUpdatingLocation()
+            let lat = location.coordinate.latitude
+            let lon = location.coordinate.longitude
+            weatherManager.getLocalWeather(lat: lat, lon: lon)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("There was an error \n\(error)")
+        print("Error")
     }
 }
 
+
+//MARK: - WeatherManagerDelegate
+
+extension ViewController: WeatherManagherDelegate {
+    
+    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
+        
+        DispatchQueue.main.async {
+            self.tempDisplay.text = weather.temperatureString
+            self.weatherIcon.image = UIImage(systemName: weather.conditionName)
+            self.locationText.text = weather.cityName
+            self.displayWeather()
+        }
+    }
+    
+    func didFailWithError(error: Error) {
+        print("Error")
+    }
+}
