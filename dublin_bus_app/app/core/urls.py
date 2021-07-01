@@ -4,4 +4,5 @@ urlpatterns = [
     path('helloworld', HelloWorldView, name='HelloWorld'),
     path('', MainPageView, name='home'),
     path('map', MapView, name='MapView'),
+
 ]
