@@ -1,34 +1,15 @@
+# accounts/admin.py
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-"""This could be use to translate english to another language"""
-from django.utils.translation import gettext as _
+from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
 
-from core import models
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import CustomUser
 
-class UserAdmin(BaseUserAdmin):
-    ordering = ['id']
-    list_display = ['email', 'name']
-    fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        (_('Personal Info'), {'fields': ('name',)}),
-        (
-            _('Permissions'),
-            {
-                'fields': (
-                    'is_active',
-                    'is_staff',
-                    'is_superuser',
-                )
-            }
-        ),
-        (_('Important dates'), {'fields': ('last_login',)}),
-    )
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = CustomUser
+    list_display = ['email', 'username',]
 
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide', ),
-            'fields': ('email', 'password1', 'password2')
-        }),
-    )
-
-admin.site.register(models.User, UserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
