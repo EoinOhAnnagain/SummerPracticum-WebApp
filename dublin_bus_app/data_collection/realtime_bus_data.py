@@ -1,6 +1,7 @@
 import requests
 import json
 from pymysql import connect
+import time
 class Bus:
     def __init__(self):
         self.headers = {
@@ -21,8 +22,9 @@ class Bus:
         for i in range(0,k):
             try:
                 l = len(content["entity"][i]["trip_update"]["stop_time_update"])-1
+                dtime = time.strptime(content["header"]["timestamp"], "%Y-%m-%d %H:%M:%S")
                 value = "insert into current_bus_data values("
-                value += str(content["header"]["timestamp"])
+                value += str(dtime)
                 value += ","
                 value += "\"" + str(content["entity"][i]["id"]) + "\""
                 value += ","
