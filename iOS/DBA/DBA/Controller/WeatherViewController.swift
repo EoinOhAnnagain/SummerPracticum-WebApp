@@ -11,7 +11,31 @@ import UIKit
 class WeatherViewController: UIViewController {
 
     
+    @IBOutlet weak var weatherIcon: UIImageView!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     @IBOutlet weak var windArrow: UIImageView!
+    @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var directionLabel: UILabel!
+    
+    @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var realFeelLabel: UILabel!
+    @IBOutlet weak var minLabel: UILabel!
+    @IBOutlet weak var maxLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    
+    @IBOutlet weak var visabilityLabel: UILabel!
+    @IBOutlet weak var PressureLabel: UILabel!
+    
+    @IBOutlet weak var sunriseLabel: UILabel!
+    @IBOutlet weak var sunsetLabel: UILabel!
+    
+    
+    
+    
     
     var temp: String?
     var weather: WeatherModel?
