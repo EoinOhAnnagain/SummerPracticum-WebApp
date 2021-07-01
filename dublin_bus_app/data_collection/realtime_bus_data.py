@@ -1,7 +1,8 @@
 import requests
 import json
 from pymysql import connect
-import time
+import pytz
+import datetime
 class Bus:
     def __init__(self):
         self.headers = {
@@ -19,10 +20,13 @@ class Bus:
         cs = conn.cursor()
         k = len(content["entity"]) - 1
         cs.execute("TRUNCATE current_bus_data")
+        # ie = pytz.country_timezones('ie')
+        tz = pytz.timezone('Eire')
+        dtime = datetime.datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")
+        dtime = "\"" + dtime + "\""
         for i in range(0,k):
             try:
                 l = len(content["entity"][i]["trip_update"]["stop_time_update"])-1
-                dtime = time.strptime(content["header"]["timestamp"], "%Y-%m-%d %H:%M:%S")
                 value = "insert into current_bus_data values("
                 value += str(dtime)
                 value += ","
