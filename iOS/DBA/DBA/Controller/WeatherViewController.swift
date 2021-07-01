@@ -11,6 +11,7 @@ import UIKit
 class WeatherViewController: UIViewController {
 
     
+    @IBOutlet weak var windArrow: UIImageView!
     
     var temp: String?
     var weather: WeatherModel?
@@ -20,8 +21,8 @@ class WeatherViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        weather!.printAll()
-        
+        // Arrow direction to update (360)
+        windArrow.transform = CGAffineTransform(rotationAngle: 360*(.pi/180))
         
     }
     

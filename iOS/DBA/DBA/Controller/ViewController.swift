@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tempDisplay: UILabel!
     @IBOutlet weak var degreesText: UILabel!
     @IBOutlet weak var locationText: UILabel!
+    @IBOutlet weak var weatherWidgetButton: UIButton!
     
     @IBOutlet weak var weatherLoader: UIActivityIndicatorView!
     
@@ -79,6 +80,7 @@ class ViewController: UIViewController {
             self.weatherIcon.alpha = 1
             self.degreesText.alpha = 1
             self.locationText.alpha = 1
+            self.weatherWidgetButton.alpha = 1
         }
         
         
