@@ -1,6 +1,8 @@
 import requests
 import json
 from pymysql import connect
+import pytz
+import datetime
 class BikeStationsSpider:
     def __init__(self):
         self.url = "http://api.openweathermap.org/data/2.5/weather?q=dublin&appid=86e6d9e6dddfc8dccd6899f2454e98c2"
@@ -11,12 +13,15 @@ class BikeStationsSpider:
         content = json.loads(response.text)
         self.save_data(content)
     def save_data(self,content):
+        tz = pytz.timezone('Eire')
+        dtime = datetime.datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")
+        dtime = "\"" + dtime + "\""
         conn = connect(host="173.82.72.146", port=3306, user="root", password="4TheWin2021@", database="project",
                             charset="utf8")
         cs = conn.cursor()
-        cs.execute("TRUNCATE current_weather_data")
-        value = "insert into weathers values("
-        value += str(content["dt"])
+        cs.execute("TRUNCATE realtime_weather_data")
+        value = "insert into realtime_weather_data values("
+        value += str(dtime)
         value += ","
         value += str(content["main"]["temp"])
         value += ","
