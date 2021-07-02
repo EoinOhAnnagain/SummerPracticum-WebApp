@@ -74,13 +74,14 @@ class ViewController: UIViewController {
     func displayWeather() {
         
         self.weatherLoader.stopAnimating()
+        self.weatherWidgetButton.alpha = 1
         
         UIView.animate(withDuration: 1.5) {
             self.tempDisplay.alpha = 1
             self.weatherIcon.alpha = 1
             self.degreesText.alpha = 1
             self.locationText.alpha = 1
-            self.weatherWidgetButton.alpha = 1
+            
         }
         
         
