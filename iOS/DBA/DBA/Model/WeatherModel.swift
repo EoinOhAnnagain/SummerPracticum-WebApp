@@ -11,11 +11,61 @@ struct WeatherModel {
     
     let conditionId: Int
     let cityName: String
-    let temperature: Double
+    let description: String
     
-    var temperatureString: String {
+    
+    let temperature: Double
+    let feelsLike: Double
+    let min: Double
+    let max: Double
+    let humidity: Int
+    
+    
+    let visibility: Int
+    let pressure: Int
+    
+    let windSpeed: Double
+    let windDeg: Int
+    let windGust: Double
+    
+    let sunrise: Double
+    let sunset: Double
+    
+    
+    
+    
+    var stringTemperature: String {
         return String(format: "%.1f", temperature)
     }
+    var stringFeelsLike: String {
+        return String(format: "%.1f", feelsLike)
+    }
+    var stringMin: String {
+        return String(format: "%.1f", min)
+    }
+    var stringMax: String {
+        return String(format: "%.1f", max)
+    }
+    
+    var stringWindSpeed: String {
+        return String(format: "%.2f", windSpeed)
+    }
+    var stringWindGust: String {
+        return String(format: "%.2f", windGust)
+    }
+    
+    var sunriseTime: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: Date(timeIntervalSince1970: sunrise-Double(TimeZone.current.secondsFromGMT())))
+    }
+    var sunsetTime: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: Date(timeIntervalSince1970: sunset-Double(TimeZone.current.secondsFromGMT())))
+    }
+    
+    
     
     var conditionName: String {
         switch conditionId {
@@ -44,6 +94,5 @@ struct WeatherModel {
         print(cityName)
         print(temperature)
     }
-    
 }
 

@@ -107,7 +107,9 @@ extension ViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error")
+        print("Error in location manager")
+        print(error)
+        print()
     }
 }
 
@@ -119,7 +121,7 @@ extension ViewController: WeatherManagherDelegate {
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
         
         DispatchQueue.main.async {
-            self.tempDisplay.text = weather.temperatureString
+            self.tempDisplay.text = weather.stringTemperature
             self.weatherIcon.image = UIImage(systemName: weather.conditionName)
             self.locationText.text = weather.cityName
             self.displayWeather()
@@ -128,6 +130,8 @@ extension ViewController: WeatherManagherDelegate {
     }
     
     func didFailWithError(error: Error) {
-        print("Error")
+        print("Error in weather manager")
+        print(error)
+        print()
     }
 }

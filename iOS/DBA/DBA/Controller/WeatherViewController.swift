@@ -9,29 +9,11 @@ import UIKit
 
 
 class WeatherViewController: UIViewController {
-
+    
+    
     
     @IBOutlet weak var weatherIcon: UIImageView!
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    
-    @IBOutlet weak var windArrow: UIImageView!
-    @IBOutlet weak var speedLabel: UILabel!
-    @IBOutlet weak var directionLabel: UILabel!
-    
-    @IBOutlet weak var tempLabel: UILabel!
-    @IBOutlet weak var realFeelLabel: UILabel!
-    @IBOutlet weak var minLabel: UILabel!
-    @IBOutlet weak var maxLabel: UILabel!
-    @IBOutlet weak var humidityLabel: UILabel!
-    
-    @IBOutlet weak var visabilityLabel: UILabel!
-    @IBOutlet weak var PressureLabel: UILabel!
-    
-    @IBOutlet weak var sunriseLabel: UILabel!
-    @IBOutlet weak var sunsetLabel: UILabel!
+    @IBOutlet weak var weatherIconLoader: UIActivityIndicatorView!
     
     
     
@@ -46,11 +28,40 @@ class WeatherViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // Arrow direction to update (360)
-        windArrow.transform = CGAffineTransform(rotationAngle: 360*(.pi/180))
+        
+        if weather != nil {
+            //weatherIcon.image = UIImage(systemName: weather!.conditionName)
+            //locationLabel.text = weather!.cityName
+            //dateLabel.text = currentDate()
+            //timeLabel.text = currentTime()
+            //descriptionLabel.text = weather!.description.capitalized
+            
+            //tempLabel.text = "\(weather!.stringTemperature)ºC"
+            //realFeelLabel.text = "\(weather!.stringFeelsLike)ºC"
+            //minLabel.text = "\(weather!.stringMin)ºC"
+            //maxLabel.text = "\(weather!.stringMax)ºC"
+            //humidityLabel.text = "\(weather!.humidity)%"
+            
+            //visibilityLabel.text = "\(weather!.visibility) m"
+            //pressureLabel.text = "\(weather!.pressure) hPa"
+            
+            //speedLabel.text = "\(weather!.stringWindSpeed) kph"
+            //windArrow.transform = CGAffineTransform(rotationAngle: CGFloat((weather!.windDeg))*(.pi/180))
+            
+            //sunriseLabel.text = "\(weather!.sunriseTime)"
+            //sunsetLabel.text = "\(weather!.sunsetTime)"
+            
+            //makeVisable()
+        }
+        
+        
+        
+        
         
     }
     
     @IBAction func dismissPressed(_ sender: UIButton) {
+        
         print(temp!)
         dismiss(animated: true, completion: nil)
     }
@@ -65,4 +76,83 @@ class WeatherViewController: UIViewController {
     }
     */
 
+    func currentTime() -> String {
+        let currentDateTime = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: currentDateTime)
+    }
+    
+    func currentDate() -> String {
+        let currentDateTime = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yy"
+        return dateFormatter.string(from: currentDateTime)
+    }
+    
+    //func makeVisable() {
+       // DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5) ) {
+       //     self.weatherIconLoader.stopAnimating()
+      //      UIView.animate(withDuration: 1.5) {
+     //           self.weatherIcon.alpha = 1
+     //       }
+     //   }
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5) ) {
+//            self.localLoader.stopAnimating()
+//            UIView.animate(withDuration: 1.5) {
+//                self.locationLabel.alpha = 1
+//                self.dateLabel.alpha = 1
+//                self.timeLabel.alpha = 1
+//                self.descriptionLabel.alpha = 1
+//            }
+//        }
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5) ) {
+//            self.windLoader.stopAnimating()
+//            UIView.animate(withDuration: 1.5) {
+//                self.windTitle.alpha = 1
+//                self.windArrow.alpha = 1
+//                self.speedLabel.alpha = 1
+//                self.directionLabel.alpha = 1
+//            }
+//        }
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5) ) {
+//            self.tempLoader.stopAnimating()
+//            UIView.animate(withDuration: 1.5) {
+//                self.tempTitle.alpha = 1
+//                self.tempLabel.alpha = 1
+//                self.realFeelLabel.alpha = 1
+//                self.minLabel.alpha = 1
+//                self.maxLabel.alpha = 1
+//                //self.humidityLabel.alpha = 1
+//            }
+//        }
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5) ) {
+//            self.miscLoader.stopAnimating()
+//            UIView.animate(withDuration: 1.5) {
+//                self.visibilityTitle.alpha = 1
+//                self.visibilityLabel.alpha = 1
+//                self.pressureTitle.alpha = 1
+//                self.pressureLabel.alpha = 1
+//            }
+//        }
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5) ) {
+//            self.sunLoader.stopAnimating()
+//            UIView.animate(withDuration: 1.5) {
+//                self.sunriseIcon.alpha = 1
+//                self.sunriseLabel.alpha = 1
+//                self.sunsetIcon.alpha = 1
+//                self.sunsetLabel.alpha = 1
+//            }
+//        }
+        
+        
+        
+        
+        
+    //}
 }

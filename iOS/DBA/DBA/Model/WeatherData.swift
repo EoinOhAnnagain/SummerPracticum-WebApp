@@ -10,14 +10,35 @@ import Foundation
 struct WeatherData: Decodable {
     let name: String
     let main: Main
+    let visibility: Int
     let weather: [Weather]
+    let wind: Wind
+    let sys: Sys
+    let timezone: Double
 }
 
 
 struct Main: Decodable {
     let temp: Double
+    let feels_like: Double
+    let temp_min: Double
+    let temp_max: Double
+    let pressure: Int
+    let humidity: Int
 }
 
 struct Weather: Decodable {
     let id: Int
+    let description: String
+}
+
+struct Wind: Decodable {
+    let speed: Double
+    let deg: Int
+    let gust: Double
+}
+
+struct Sys: Decodable {
+    let sunrise: Double
+    let sunset: Double
 }
