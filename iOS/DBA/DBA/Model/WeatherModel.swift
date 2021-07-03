@@ -89,10 +89,25 @@ struct WeatherModel {
 
     }
     
-    func printAll() {
-        print(conditionId)
-        print(cityName)
-        print(temperature)
+    var degreeName: String {
+        switch windDeg {
+        case 23...68:
+            return "NE"
+        case 69...113:
+            return "E"
+        case 114...158:
+            return "SE"
+        case 159...203:
+            return "S"
+        case 204...248:
+            return "SW"
+        case 249...293:
+            return "W"
+        case 294...338:
+            return "NW"
+        default:
+            return "N"
+        }
     }
 }
 

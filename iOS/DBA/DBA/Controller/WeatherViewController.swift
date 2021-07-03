@@ -43,6 +43,8 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var visibilityLabel: UILabel!
     @IBOutlet weak var pressureTitle: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
+    @IBOutlet weak var percipitationTitle: UILabel!
+    @IBOutlet weak var percipitationLabel: UILabel!
     @IBOutlet weak var miscLoader: UIActivityIndicatorView!
     
     @IBOutlet weak var sunriseIcon: UIImageView!
@@ -84,6 +86,7 @@ class WeatherViewController: UIViewController {
             
             speedLabel.text = "\(weather!.stringWindSpeed) kph"
             windArrow.transform = CGAffineTransform(rotationAngle: CGFloat((weather!.windDeg))*(.pi/180))
+            directionLabel.text = weather!.degreeName
             
             sunriseLabel.text = "\(weather!.sunriseTime)"
             sunsetLabel.text = "\(weather!.sunsetTime)"
@@ -128,14 +131,14 @@ class WeatherViewController: UIViewController {
     }
     
     func makeVisable() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5) ) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 0.5...1.5) ) {
             self.weatherIconLoader.stopAnimating()
             UIView.animate(withDuration: 1.5) {
                 self.weatherIcon.alpha = 1
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5) ) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...2.5) ) {
             self.localLoader.stopAnimating()
             UIView.animate(withDuration: 1.5) {
                 self.locationLabel.alpha = 1
@@ -145,7 +148,7 @@ class WeatherViewController: UIViewController {
             }
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5) ) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...2.5) ) {
             self.windLoader.stopAnimating()
             UIView.animate(withDuration: 1.5) {
                 self.windTitle.alpha = 1
@@ -155,7 +158,7 @@ class WeatherViewController: UIViewController {
             }
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5) ) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...2.5) ) {
             self.tempLoader.stopAnimating()
             UIView.animate(withDuration: 1.5) {
                 self.tempTitle.alpha = 1
@@ -166,22 +169,24 @@ class WeatherViewController: UIViewController {
                 self.minLabel.alpha = 1
                 self.maxTitle.alpha = 1
                 self.maxLabel.alpha = 1
-                self.humidityTitle.alpha = 1
-                self.humidityLabel.alpha = 1
             }
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5) ) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...2.5) ) {
             self.miscLoader.stopAnimating()
             UIView.animate(withDuration: 1.5) {
                 self.visibilityTitle.alpha = 1
                 self.visibilityLabel.alpha = 1
                 self.pressureTitle.alpha = 1
                 self.pressureLabel.alpha = 1
+                self.humidityTitle.alpha = 1
+                self.humidityLabel.alpha = 1
+                self.percipitationTitle.alpha = 1
+                self.percipitationLabel.alpha = 1
             }
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...5) ) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 1...2.5) ) {
             self.sunLoader.stopAnimating()
             UIView.animate(withDuration: 1.5) {
                 self.sunriseIcon.alpha = 1
