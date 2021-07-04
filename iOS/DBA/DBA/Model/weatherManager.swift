@@ -80,7 +80,6 @@ struct WeatherManager {
             let wind = decodedData.wind
             let speed = wind.speed
             let deg = wind.deg
-            let gust = wind.gust
             
             let sys = decodedData.sys
             let sunrise = sys.sunrise
@@ -88,7 +87,7 @@ struct WeatherManager {
             
             let name = decodedData.name
             
-            let weather = WeatherModel(conditionId: id, cityName: name, description: description, temperature: temp, feelsLike: feelsLike, min: min, max: max, humidity: humidity, visibility: visibility, pressure: pressure, windSpeed: speed, windDeg: deg, windGust: gust, sunrise: sunrise, sunset: sunset)
+            let weather = WeatherModel(conditionId: id, cityName: name, description: description, temperature: temp, feelsLike: feelsLike, min: min, max: max, humidity: humidity, visibility: visibility, pressure: pressure, windSpeed: speed, windDeg: deg, sunrise: sunrise, sunset: sunset)
     
             return weather
             

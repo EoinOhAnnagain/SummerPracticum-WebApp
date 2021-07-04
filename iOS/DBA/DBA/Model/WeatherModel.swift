@@ -26,7 +26,6 @@ struct WeatherModel {
     
     let windSpeed: Double
     let windDeg: Int
-    let windGust: Double
     
     let sunrise: Double
     let sunset: Double
@@ -49,9 +48,6 @@ struct WeatherModel {
     
     var stringWindSpeed: String {
         return String(format: "%.2f", windSpeed)
-    }
-    var stringWindGust: String {
-        return String(format: "%.2f", windGust)
     }
     
     var sunriseTime: String {
