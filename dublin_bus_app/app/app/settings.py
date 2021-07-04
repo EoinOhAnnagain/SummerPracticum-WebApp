@@ -86,9 +86,29 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'djangoLoginSys',
+        'USER': 'root',
+        'PASSWORD': '4TheWin2021@',
+        'HOST': '173.82.72.146',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
+    },
+    'user': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'djangoLoginSys',
+        'USER': 'root',
+        'PASSWORD': '4TheWin2021@',
+        'HOST': '173.82.72.146',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
+
+
 }
 
 
@@ -116,7 +136,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Dublin'
 
 USE_I18N = True
 
@@ -151,6 +171,7 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
+"""Setting for allauth.urls"""
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False

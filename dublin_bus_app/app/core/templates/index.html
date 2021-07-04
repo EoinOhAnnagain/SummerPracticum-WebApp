@@ -7,10 +7,13 @@
     {% if user.is_authenticated %}
       Hi {{ user.email }}!
       <p><a href="{% url 'account_logout' %}">Log Out</a></p>
+      <p><a href="{% url 'MapView' %}">View map</a></p>
     {% else %}
       <p>You are not logged in</p>
       <a href="{% url 'account_login' %}">Log In</a> |
-      <a href="{% url 'account_signup' %}">Sign Up</a> |
+      <a href="{% url 'account_signup' %}">Sign Up</a><br>
+      <p><a href="{% url 'MapView' %}">View map as guest</a></p>
+
     {% endif %}
 </body>
 </html>
