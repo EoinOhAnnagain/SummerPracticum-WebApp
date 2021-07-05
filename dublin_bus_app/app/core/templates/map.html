@@ -61,6 +61,19 @@
 
 </div>
 
+<div id="routeSelector">
+    
+    <form action="/selectRoute" id="selectRoute" method="GET">
+<label for="origin">Choose your Origin Stop:</label>
+
+<select name="origin" id="origin"></select> 
+    
+    <label for="destination">Choose your Destination Stop:</label>
+<select name="destination" id="destination"></select> 
+    
+<input type="submit" class="button" value="Submit">
+    </form>
+    </div>
 
 <div id="map"></div>
 
@@ -76,14 +89,61 @@ function initMap() {
    fetch("/stops").then(response => {
      return response.json();
      }).then(data => {
-     console.log("data ", data);})
+     console.log("data ", data);
 
-
+       data = JSON.parse(data);
+       console.log("jsonData1", data[1]);
+       
+       
    // MAP
  map = new google.maps.Map(document.getElementById("map"), {
    center: { lat: 53.349804, lng: -6.260310 },
    zoom: 14,
    });
+       
+    data.forEach(stop => {
+        
+        var selectString;
+        
+        selectString = stop.ShortCommonName_en + " | Stop " + stop.PlateCode;
+        
+        var optionO = document.createElement("option");
+        var optionD = document.createElement("option");
+        optionO.value = stop.AtcoCode;
+        optionD.value = stop.AtcoCode;
+        optionO.innerHTML = selectString;
+        optionD.innerHTML = selectString;
+        
+        document.getElementById("origin").appendChild(optionO);
+        document.getElementById("destination").appendChild(optionD);
+
+        
+        var contentString;
+        
+        contentString = stop.ShortCommonName_en + " | Stop " + stop.PlateCode + "<br>Serving routes: " + stop.RouteData;
+    
+    // info window for each marker
+    const infowindow = new google.maps.InfoWindow({
+      content: contentString,
+    });
+        
+    let url = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|9bcca8";
+        
+        let marker = new google.maps.Marker({
+        map: map,
+        position: { lat: parseFloat(stop.Latitude), lng: parseFloat(stop.Longitude) },
+        icon: {
+          url: url
+        }
+    });
+
+    // event handler for click
+    marker.addListener("click", () => {
+      infowindow.open(map, marker);
+
+    });
+        
+    });
 
    //USER LOCATION
    userLocation = new google.maps.InfoWindow();
@@ -115,6 +175,8 @@ function initMap() {
    }
  });
 
+    });
+        
 
    }
 
@@ -126,6 +188,7 @@ function initMap() {
      : "Error: Your browser doesn't support geolocation."
  );
  userLocation.open(map);
+       
 }
 
   </script>
