@@ -4,7 +4,13 @@
     <title>Team all 4 one</title>
 </head>
 <body>
-    <h1>Main page</h1>
-    <p>test 0623</p>
+    {% if user.is_authenticated %}
+      Hi {{ user.email }}!
+      <p><a href="{% url 'account_logout' %}">Log Out</a></p>
+    {% else %}
+      <p>You are not logged in</p>
+      <a href="{% url 'account_login' %}">Log In</a> |
+      <a href="{% url 'account_signup' %}">Sign Up</a>
+    {% endif %}
 </body>
 </html>
