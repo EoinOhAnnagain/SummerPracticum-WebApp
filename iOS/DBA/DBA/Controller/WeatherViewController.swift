@@ -58,7 +58,7 @@ class WeatherViewController: UIViewController {
     
     
     
-    var temp: String?
+
     var weather: WeatherModel?
     
     override func viewDidLoad() {
@@ -102,7 +102,6 @@ class WeatherViewController: UIViewController {
     
     @IBAction func dismissPressed(_ sender: UIButton) {
         
-        print(temp!)
         dismiss(animated: true, completion: nil)
     }
     

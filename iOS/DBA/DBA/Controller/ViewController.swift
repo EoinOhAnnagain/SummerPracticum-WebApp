@@ -47,7 +47,6 @@ class ViewController: UIViewController {
     
     @IBAction func weatherWidgetButton(_ sender: UIButton) {
         
-        print("Pressed")
         performSegue(withIdentifier: "toWeather", sender: self)
         
     }
@@ -69,7 +68,6 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toWeather" {
             let destinationVC = segue.destination as! WeatherViewController
-            destinationVC.temp = "Passed :)"
             destinationVC.weather = weatherModel
         }
     }
