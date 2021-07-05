@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import Foundation
 
 class ViewController: UIViewController {
 
@@ -22,6 +23,7 @@ class ViewController: UIViewController {
     var weatherModel: WeatherModel?
     let locationManager = CLLocationManager()
     
+    var weatherTimer: Timer?
     
     
     override func viewDidLoad() {
@@ -31,6 +33,9 @@ class ViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
+        
+        startWeatherTimer()
+        
         
         weatherManager.delegate = self
         
@@ -71,21 +76,7 @@ class ViewController: UIViewController {
     
     
     
-    func displayWeather() {
-        
-        self.weatherLoader.stopAnimating()
-        self.weatherWidgetButton.alpha = 1
-        
-        UIView.animate(withDuration: 1.5) {
-            self.tempDisplay.alpha = 1
-            self.weatherIcon.alpha = 1
-            self.degreesText.alpha = 1
-            self.locationText.alpha = 1
-            
-        }
-        
-        
-    }
+    
     
     
     
@@ -134,5 +125,27 @@ extension ViewController: WeatherManagherDelegate {
         print("Error in weather manager")
         print(error)
         print()
+    }
+    
+    func displayWeather() {
+        
+        self.weatherLoader.stopAnimating()
+        self.weatherWidgetButton.alpha = 1
+        
+        UIView.animate(withDuration: 1.5) {
+            self.tempDisplay.alpha = 1
+            self.weatherIcon.alpha = 1
+            self.degreesText.alpha = 1
+            self.locationText.alpha = 1
+            
+        }
+    }
+    
+    func startWeatherTimer() {
+        weatherTimer?.invalidate()
+        weatherTimer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true, block: { weatherTimer in
+            self.locationManager.requestLocation()
+        })
+        
     }
 }

@@ -181,8 +181,8 @@ class WeatherViewController: UIViewController {
                 self.pressureLabel.alpha = 1
                 self.humidityTitle.alpha = 1
                 self.humidityLabel.alpha = 1
-                self.percipitationTitle.alpha = 1
-                self.percipitationLabel.alpha = 1
+                //self.percipitationTitle.alpha = 1
+                //self.percipitationLabel.alpha = 1
             }
         }
 
