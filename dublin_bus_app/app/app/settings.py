@@ -96,7 +96,7 @@ DATABASES = {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
     },
-    'user': {
+    'bus': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djangoLoginSys',
         'USER': 'root',
