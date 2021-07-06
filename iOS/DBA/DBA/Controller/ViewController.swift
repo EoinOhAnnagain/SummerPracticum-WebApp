@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     
     @IBAction func weatherWidgetButton(_ sender: UIButton) {
         
-        performSegue(withIdentifier: "toWeather", sender: self)
+        performSegue(withIdentifier: K.weatherSegue, sender: self)
         
     }
     
@@ -55,18 +55,18 @@ class ViewController: UIViewController {
     
     @IBAction func ProUserLoginPressed(_ sender: UIButton) {
         
-        performSegue(withIdentifier: "ProUserLogin", sender: self)
+        performSegue(withIdentifier: K.loginSegue, sender: self)
         
     }
     
     @IBAction func toMap(_ sender: UIButton) {
         
-        performSegue(withIdentifier: "Map", sender: self)
+        performSegue(withIdentifier: K.mapSegue, sender: self)
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toWeather" {
+        if segue.identifier == K.weatherSegue {
             let destinationVC = segue.destination as! WeatherViewController
             destinationVC.weather = weatherModel
         }

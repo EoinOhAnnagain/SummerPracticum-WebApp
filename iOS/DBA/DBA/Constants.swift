@@ -5,4 +5,11 @@
 //  Created by Eoin Ó'hAnnagáin on 06/07/2021.
 //
 
-import Foundation
+struct K {
+    
+    // Main page segue identifers
+    static let weatherSegue = "toWeather"
+    static let loginSegue = "ProUserLogin"
+    static let mapSegue = "Map"
+    
+}
