@@ -38,3 +38,7 @@ class ModelTests(TestCase):
 
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
+
+test_case = ModelTests()
+
+test_case.test_create_user_with_email_successful()
