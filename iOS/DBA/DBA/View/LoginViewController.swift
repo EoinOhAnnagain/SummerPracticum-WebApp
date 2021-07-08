@@ -8,6 +8,9 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,10 +18,15 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func DismissPressed(_ sender: UIButton) {
+    @IBAction func dismissPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func signUpPressed(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "LoginToSignUp", sender: self)
+        
+    }
     
     /*
     // MARK: - Navigation
