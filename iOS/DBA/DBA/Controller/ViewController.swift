@@ -74,6 +74,9 @@ class ViewController: UIViewController {
     
     
     
+    @IBAction func right(_ sender: Any) {
+        print("button pressed")
+    }
     
     
     
