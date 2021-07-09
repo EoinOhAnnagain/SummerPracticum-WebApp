@@ -11,5 +11,6 @@ struct K {
     static let weatherSegue = "toWeather"
     static let loginSegue = "ProUserLogin"
     static let mapSegue = "Map"
+    static let chatSegue = "MainToChat"
     
 }

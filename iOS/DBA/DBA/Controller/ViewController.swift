@@ -74,6 +74,10 @@ class ViewController: UIViewController {
     
     
     
+    @IBAction func chatButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: K.chatSegue, sender: self)
+    }
+    
     @IBAction func right(_ sender: Any) {
         print("button pressed")
     }
