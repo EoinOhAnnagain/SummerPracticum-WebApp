@@ -14,6 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    let login = ManagerUsers()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,14 +35,8 @@ class LoginViewController: UIViewController {
     @IBAction func loginPressed(_ sender: UIButton) {
         
         if let email = emailTextField.text, let password = passwordTextField.text {
-            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-                if let e = error {
-                    print(e.localizedDescription)
-                } else {
-                    print("Successful Sign In")
-                    self.dismiss(animated: true, completion: nil)
-                }
-            }
+            login.userLogin(email, password)
+            dismiss(animated: true, completion: nil)
         } else {
             print("no email or password")
         }

@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import Foundation
+import Firebase
 
 class ViewController: UIViewController {
 
@@ -17,11 +18,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var locationText: UILabel!
     @IBOutlet weak var weatherWidgetButton: UIButton!
     
+    @IBOutlet weak var chatButton: UIButton!
+    @IBOutlet weak var bookButton: UIButton!
+    
     @IBOutlet weak var weatherLoader: UIActivityIndicatorView!
+    
+    var userEmailString: String?
     
     var weatherManager = WeatherManager()
     var weatherModel: WeatherModel?
     let locationManager = CLLocationManager()
+    var managerUsers = ManagerUsers()
     
     var weatherTimer: Timer?
     
@@ -36,7 +43,9 @@ class ViewController: UIViewController {
         
         startWeatherTimer()
         
+        isUserLoggedIn()
         
+        managerUsers.delegate = self
         weatherManager.delegate = self
         
     }
@@ -44,20 +53,9 @@ class ViewController: UIViewController {
     
     
     
+  
     
-    @IBAction func weatherWidgetButton(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: K.weatherSegue, sender: self)
-        
-    }
-    
-    
-    
-    @IBAction func ProUserLoginPressed(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: K.loginSegue, sender: self)
-        
-    }
+
     
     @IBAction func toMap(_ sender: UIButton) {
         
@@ -78,8 +76,20 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: K.chatSegue, sender: self)
     }
     
-    @IBAction func right(_ sender: Any) {
+    @IBAction func bookButtonPressed(_ sender: UIButton) {
+        
+        isUserLoggedIn()
+        
+    }
+    
+    @IBAction func contactAboutUs(_ sender: Any) {
         print("button pressed")
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("ERROR")
+        }
+        print(Auth.auth().currentUser?.email)
     }
     
     
@@ -89,7 +99,7 @@ class ViewController: UIViewController {
 
 
 
-//MARK: - CLLocationManagerDelegate
+//MARK: - Location Management
 
 extension ViewController: CLLocationManagerDelegate {
     
@@ -111,9 +121,9 @@ extension ViewController: CLLocationManagerDelegate {
 }
 
 
-//MARK: - WeatherManagerDelegate
+//MARK: - Weather Management
 
-extension ViewController: WeatherManagherDelegate {
+extension ViewController: WeatherManagerDelegate {
     
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
         
@@ -153,4 +163,47 @@ extension ViewController: WeatherManagherDelegate {
         })
         
     }
+    
+    
+    @IBAction func weatherWidgetButton(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: K.weatherSegue, sender: self)
+        
+    }
+    
+}
+
+
+//MARK: - User Management
+
+extension ViewController: ManagerUsersDelegate {
+    
+    func setUserLogin(_ userEmail: String) {
+        userEmailString = userEmail
+        isUserLoggedIn()
+    }
+    
+    func isUserLoggedIn() {
+        print(userEmailString)
+        userEmailString = Auth.auth().currentUser?.email
+        print(userEmailString)
+        if userEmailString != nil {
+            print("User Logged In")
+            chatButton.backgroundColor = UIColor(named: "Interface")
+            bookButton.backgroundColor = UIColor(named: "Interface")
+        } else {
+            print("User Logged Out")
+            chatButton.backgroundColor = .systemGray3
+            bookButton.backgroundColor = .systemGray3
+        }
+    }
+    
+    
+    @IBAction func ProUserLoginPressed(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: K.loginSegue, sender: self)
+        
+    }
+    
+    
 }
