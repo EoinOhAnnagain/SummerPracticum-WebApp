@@ -35,10 +35,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             if email != "" && password != "" && password2 != "" {
                 if password == password2 {
                     signUp.userRegister(email, password)
+                    self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
                 } else {
                     print("Passwords don't match")
-                    dismiss(animated: true, completion: nil)
-                    dismiss(animated: true, completion: nil)
                 }
             } else {
                 print("Use all text fields")
