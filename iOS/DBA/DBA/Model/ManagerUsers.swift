@@ -33,5 +33,17 @@ struct ManagerUsers {
         
     }
     
+    func userRegister(_ email: String,_ password: String) {
+        Auth.auth().createUser(withEmail: email, password: password) { AuthResult, error in
+            if let e = error{
+                print(e.localizedDescription)
+            } else {
+                print("success")
+                self.delegate?.setUserLogin((Auth.auth().currentUser?.email)!)
+            }
+        }
+    }
+    
     
 }
+
