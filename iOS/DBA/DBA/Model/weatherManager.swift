@@ -8,14 +8,14 @@
 import Foundation
 import CoreLocation
 
-protocol WeatherManagherDelegate {
+protocol WeatherManagerDelegate {
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel)
     func didFailWithError(error: Error)
 }
 
 struct WeatherManager {
     
-    var delegate: WeatherManagherDelegate?
+    var delegate: WeatherManagerDelegate?
     
     let incompleteURL = "https://api.openweathermap.org/data/2.5/weather?appid=81de919a7c086b64adbfd79a2a5e683f&units=metric"
     

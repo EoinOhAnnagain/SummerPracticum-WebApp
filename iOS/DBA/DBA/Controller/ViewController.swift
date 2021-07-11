@@ -8,56 +8,67 @@
 import UIKit
 import CoreLocation
 import Foundation
+import Firebase
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var tempDisplay: UILabel!
     @IBOutlet weak var degreesText: UILabel!
     @IBOutlet weak var locationText: UILabel!
     @IBOutlet weak var weatherWidgetButton: UIButton!
     
+    @IBOutlet weak var chatButton: UIButton!
+    @IBOutlet weak var bookButton: UIButton!
+    
     @IBOutlet weak var weatherLoader: UIActivityIndicatorView!
+    
+    var userEmailString: String?
     
     var weatherManager = WeatherManager()
     var weatherModel: WeatherModel?
     let locationManager = CLLocationManager()
+    var userManager = UserManager()
     
     var weatherTimer: Timer?
     
+    @IBOutlet weak var titleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+        title()
+        
+        weatherManager.delegate = self
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         
         startWeatherTimer()
         
+        isUserLoggedIn()
         
-        weatherManager.delegate = self
         
-    }
-
-    
-    
-    
-    
-    @IBAction func weatherWidgetButton(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: K.weatherSegue, sender: self)
         
     }
     
     
     
-    @IBAction func ProUserLoginPressed(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: K.loginSegue, sender: self)
-        
+    func title() {
+        titleLabel.text = ""
+        var i = 1
+        let titleText = "D B A"
+        for letter in titleText {
+            Timer.scheduledTimer(withTimeInterval: TimeInterval(i)*0.5, repeats: false) { (timer) in
+                self.titleLabel.text?.append(letter)
+            }
+            i += 1
+        }
     }
+    
+    
+    
     
     @IBAction func toMap(_ sender: UIButton) {
         
@@ -74,18 +85,31 @@ class ViewController: UIViewController {
     
     
     
-    @IBAction func right(_ sender: Any) {
-        print("button pressed")
+    @IBAction func chatButtonPressed(_ sender: UIButton) {
+        if userEmailString == nil {
+            print("You must be logged in")
+        } else {
+            performSegue(withIdentifier: K.chatSegue, sender: self)
+        }
     }
     
+    @IBAction func bookButtonPressed(_ sender: UIButton) {
+        if userEmailString == nil {
+            print("You must be logged in")
+        } else {
+            print("Book button pressed")
+            //performSegue(withIdentifier: K.chatSegue, sender: self)
+        }
+    }
     
-    
-    
+    @IBAction func contactAboutUs(_ sender: Any) {
+        print("Fuck off")
+    }
 }
 
 
 
-//MARK: - CLLocationManagerDelegate
+//MARK: - Location Management
 
 extension ViewController: CLLocationManagerDelegate {
     
@@ -107,9 +131,9 @@ extension ViewController: CLLocationManagerDelegate {
 }
 
 
-//MARK: - WeatherManagerDelegate
+//MARK: - Weather Management
 
-extension ViewController: WeatherManagherDelegate {
+extension ViewController: WeatherManagerDelegate {
     
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
         
@@ -148,5 +172,40 @@ extension ViewController: WeatherManagherDelegate {
             self.locationManager.requestLocation()
         })
         
+    }
+    
+    
+    @IBAction func weatherWidgetButton(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: K.weatherSegue, sender: self)
+        
+    }
+    
+}
+
+
+//MARK: - User Management
+
+extension ViewController {
+    
+    func isUserLoggedIn() {
+        if userEmailString != nil {
+            chatButton.backgroundColor = UIColor(named: "Interface")
+            bookButton.backgroundColor = UIColor(named: "Interface")
+        } else {
+            chatButton.backgroundColor = .systemGray3
+            bookButton.backgroundColor = .systemGray3
+        }
+    }
+    
+    
+    @IBAction func logOutPressed(_ sender: UIButton) {
+        do {
+            try Auth.auth().signOut()
+            userEmailString = nil
+            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        } catch {
+            print("ERROR")
+        }
     }
 }
