@@ -2,7 +2,7 @@ import pandas as pd
 import datetime
 data_interator = pd.read_csv("./test1.txt",sep=";",chunksize = 10)
 for data_chunk in data_interator:
-    df = pd.read_csv("./test1.txt",sep=";")
+    df = data_chunk
     df = df[["TRIPID","PROGRNUMBER","STOPPOINTID","ACTUALTIME_ARR","DAYOFSERVICE"]]
     df = df.dropna(axis=0,how='any')
     df_date = df[["TRIPID","PROGRNUMBER"]]
@@ -27,9 +27,9 @@ for data_chunk in data_interator:
         df_date["date"][i] = df_date["date"][i].weekday()
     # print(df_date)
     df_date['index'] = df_date.index
-    df_date_cross = pd.crosstab(df_date["index"],df_date["date"])
-    df_date = pd.merge(df_date,df_date_cross,left_index=True,right_index=True)
-    df_date = df_date[["feels_like","humidity","wind_speed","Rain","Snow","Clear",0,1,2,3,4,5,6]]
+    # df_date_cross = pd.crosstab(df_date["index"],df_date["date"])
+    # df_date = pd.merge(df_date,df_date_cross,left_index=True,right_index=True)
+    df_date = df_date[["feels_like","humidity","wind_speed","Rain","Snow","Clear","date"]]
     df = df.sort_values(by=["TRIPID","PROGRNUMBER"])
     df_diff = df[["PROGRNUMBER","ACTUALTIME_ARR"]].diff()
     df_diff.fillna(0,inplace=True)
@@ -42,7 +42,10 @@ for data_chunk in data_interator:
     df = pd.merge(df,df_cloumn,left_index=True,right_index=True)
     df = pd.merge(df,df_diff,left_index=True,right_index=True)
     df_merge = pd.DataFrame()
-    df_merge["route"] = df["STOPPOINTID_x"] + df["STOPPOINTID_y"]
+    df["STOPPOINTID_x"] = df["STOPPOINTID_x"].astype(str)
+    df["STOPPOINTID_y"] = df["STOPPOINTID_y"].astype(str)
+    # df("-") = "-"
+    df_merge["route"] = df["STOPPOINTID_x"] + "_" + df["STOPPOINTID_y"]
     df = df[["TRIPID","PROGRNUMBER_y","ACTUALTIME_ARR_y"]]
     df["route"] = df_merge["route"]
     df_total = pd.merge(df,df_cloumn,left_index=True,right_index=True)
@@ -51,7 +54,7 @@ for data_chunk in data_interator:
     df_total = df_total.drop(df_total[df_total.ACTUALTIME_ARR_y > 1000.0].index)
     df_total = df_total.drop(df_total[df_total.ACTUALTIME_ARR_y < -1000.0].index)
     df_total.reset_index(inplace=True,drop=True)
-    df_total = df_total[["route","feels_like","humidity","wind_speed","Rain","Snow","Clear",0,1,2,3,4,5,6,"ACTUALTIME_ARR_y"]]
-    df_total.to_csv('./clean_data.csv', sep=',', header=True, index=True)
-
+    df_total = df_total[["route","feels_like","humidity","wind_speed","Rain","Snow","Clear","date","ACTUALTIME_ARR_y"]]
+    df_total.to_csv('./clean_data.csv', mode='a', sep=',', header=False, index=False) 
     # df_total = df_total.dropna(inplace=True)
+
