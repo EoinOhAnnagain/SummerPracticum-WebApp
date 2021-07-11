@@ -86,13 +86,20 @@ class ViewController: UIViewController {
     
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: K.chatSegue, sender: self)
+        if userEmailString == nil {
+            print("You must be logged in")
+        } else {
+            performSegue(withIdentifier: K.chatSegue, sender: self)
+        }
     }
     
     @IBAction func bookButtonPressed(_ sender: UIButton) {
-        
-        isUserLoggedIn()
-        
+        if userEmailString == nil {
+            print("You must be logged in")
+        } else {
+            print("Book button pressed")
+            //performSegue(withIdentifier: K.chatSegue, sender: self)
+        }
     }
     
     @IBAction func contactAboutUs(_ sender: Any) {
