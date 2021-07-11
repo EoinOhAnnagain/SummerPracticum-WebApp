@@ -182,22 +182,10 @@ extension ViewController: WeatherManagerDelegate {
 extension ViewController {
     
     func isUserLoggedIn() {
-        print("isUserLoggedIn called")
-        print("User: \(userEmailString)")
-        //userEmailString = Auth.auth().currentUser?.email
-        
-        if userEmailString == Auth.auth().currentUser?.email {
-            print("They match")
-        } else {
-            print("\(userEmailString) does not match \(Auth.auth().currentUser?.email)")
-        }
-        
         if userEmailString != nil {
-            print("User Logged In")
             chatButton.backgroundColor = UIColor(named: "Interface")
             bookButton.backgroundColor = UIColor(named: "Interface")
         } else {
-            print("User Logged Out")
             chatButton.backgroundColor = .systemGray3
             bookButton.backgroundColor = .systemGray3
         }
@@ -205,21 +193,12 @@ extension ViewController {
     
     
     @IBAction func logOutPressed(_ sender: UIButton) {
-        
-        print("button pressed")
         do {
             try Auth.auth().signOut()
             userEmailString = nil
-            print("On logout: \(userEmailString)")
             self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
         } catch {
             print("ERROR")
         }
-        print(Auth.auth().currentUser?.email)
-        
-        
-        
     }
-    
-    
 }
