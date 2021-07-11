@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QJF-4w-IrE">
     <device id="retina6_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -32,8 +32,8 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="dismissPressed:" destination="Dv3-3x-ApG" eventType="touchUpInside" id="U12-Y7-6qb"/>
-                                    <action selector="dismissPressed:" destination="QJF-4w-IrE" eventType="touchUpInside" id="a95-jx-6Se"/>
                                     <action selector="dismissPressed:" destination="76j-rU-nC6" eventType="touchUpInside" id="fR4-u4-OKy"/>
+                                    <action selector="guestPressed:" destination="QJF-4w-IrE" eventType="touchUpInside" id="a95-jx-6Se"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -55,11 +55,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dg3-J9-gI6">
-                                <rect key="frame" x="46" y="52" width="323" height="60"/>
+                                <rect key="frame" x="269" y="52" width="100" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="Interface"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="Pro User Log In">
+                                <state key="normal">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -68,7 +68,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="ProUserLoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bzw-Eu-d80"/>
+                                    <action selector="logOutPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bzw-Eu-d80"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTH-v4-kLU">
@@ -217,7 +217,7 @@
                                     <action selector="weatherWidgetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SKY-5V-2IV"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rGs-sb-sxd">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="signature.ar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rGs-sb-sxd">
                                 <rect key="frame" x="289" y="795" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -232,10 +232,16 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ms4-G1-ERI">
+                                <rect key="frame" x="289" y="53" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="oTr-0G-0AE"/>
                     <connections>
                         <outlet property="bookButton" destination="nyT-GP-VFh" id="8CM-O5-znw"/>
                         <outlet property="chatButton" destination="y6N-f9-I6B" id="YvY-6o-r3w"/>
@@ -245,7 +251,6 @@
                         <outlet property="weatherIcon" destination="SVy-Nw-irR" id="4jV-Yk-wx3"/>
                         <outlet property="weatherLoader" destination="Jhy-lA-Vkw" id="fwl-Ml-0R0"/>
                         <outlet property="weatherWidgetButton" destination="dwc-bj-jxG" id="HIx-0P-y7f"/>
-                        <segue destination="QJF-4w-IrE" kind="presentation" identifier="ProUserLogin" id="S1V-4C-77T"/>
                         <segue destination="YJP-7s-BuX" kind="presentation" identifier="Map" id="RVz-4o-bjC"/>
                         <segue destination="Dv3-3x-ApG" kind="presentation" identifier="toWeather" id="rWG-q9-Iep"/>
                         <segue destination="76j-rU-nC6" kind="show" identifier="MainToChat" id="nlx-U9-drR"/>
@@ -253,14 +258,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-107" y="459"/>
+            <point key="canvasLocation" x="-107" y="88"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="t7U-15-v2c">
             <objects>
                 <viewController id="QJF-4w-IrE" customClass="LoginViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="66I-vr-Ndm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFk-h0-cnG">
@@ -268,7 +273,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="Interface"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="Dismiss">
+                                <state key="normal" title="Continue as Guest">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -277,7 +282,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="dismissPressed:" destination="QJF-4w-IrE" eventType="touchUpInside" id="osj-WV-b6R"/>
+                                    <action selector="guestPressed:" destination="QJF-4w-IrE" eventType="touchUpInside" id="osj-WV-b6R"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyx-nz-tql">
@@ -314,14 +319,14 @@
                                     <action selector="signUpPressed:" destination="QJF-4w-IrE" eventType="touchUpInside" id="and-Oz-f48"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qEi-6Z-2Aw">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1@2.com" borderStyle="roundedRect" placeholder="email..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qEi-6Z-2Aw">
                                 <rect key="frame" x="46" y="157" width="323" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" name="Interface"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FpX-Rb-R0b">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="password..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FpX-Rb-R0b">
                                 <rect key="frame" x="46" y="244" width="323" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" name="Interface"/>
@@ -336,11 +341,13 @@
                         <outlet property="emailTextField" destination="qEi-6Z-2Aw" id="tbz-RV-rdp"/>
                         <outlet property="passwordTextField" destination="FpX-Rb-R0b" id="ubc-6U-3mB"/>
                         <segue destination="3oa-Dk-MC7" kind="presentation" identifier="LoginToSignUp" id="VPl-PC-3iO"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="LoginToMain" modalPresentationStyle="fullScreen" id="OFs-Hh-Nq1"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="GuestToMain" modalPresentationStyle="fullScreen" id="DOJ-S0-buZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k1d-fW-1pD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="986" y="-719"/>
+            <point key="canvasLocation" x="-107" y="-719"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="OGQ-1J-GWu">
@@ -381,44 +388,51 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="dismissPressed:" destination="QJF-4w-IrE" eventType="touchUpInside" id="2zI-RP-SxE"/>
                                     <action selector="dismissPressed:" destination="3oa-Dk-MC7" eventType="touchUpInside" id="R5e-y7-Ab4"/>
+                                    <action selector="guestPressed:" destination="QJF-4w-IrE" eventType="touchUpInside" id="2zI-RP-SxE"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RlN-US-rWP">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="@2.com" borderStyle="roundedRect" placeholder="email..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RlN-US-rWP">
                                 <rect key="frame" x="46" y="171" width="323" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" name="Interface"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password..." minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="t1a-m2-k5A">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="password..." minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="t1a-m2-k5A">
                                 <rect key="frame" x="46" y="252" width="323" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" name="Interface"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="new-password"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="re-enter password..." minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ieg-RO-9NU">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="re-enter password..." minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ieg-RO-9NU">
                                 <rect key="frame" x="46" y="334" width="323" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" name="Interface"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="new-password"/>
                             </textField>
+                            <activityIndicatorView opaque="NO" alpha="0.10000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Xrv-JE-XOq">
+                                <rect key="frame" x="46" y="72" width="53" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" name="Interface"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="boW-82-RE7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="RlN-US-rWP" id="qI0-aU-PoH"/>
+                        <outlet property="loader" destination="Xrv-JE-XOq" id="MeY-vi-bwc"/>
                         <outlet property="passwordTextField" destination="t1a-m2-k5A" id="qml-IG-Ozi"/>
                         <outlet property="secondPasswordTextField" destination="Ieg-RO-9NU" id="O0N-Ec-wS0"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="SignToMain" modalPresentationStyle="fullScreen" id="PoY-Za-62m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wa9-y2-sj4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1987" y="-719"/>
+            <point key="canvasLocation" x="985.50724637681162" y="-719.19642857142856"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="u2A-ug-aMt">
@@ -510,8 +524,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="dismissPressed:" destination="QJF-4w-IrE" eventType="touchUpInside" id="nDf-CG-pBR"/>
                                     <action selector="dismissPressed:" destination="Dv3-3x-ApG" eventType="touchUpInside" id="ojz-EB-fqP"/>
+                                    <action selector="guestPressed:" destination="QJF-4w-IrE" eventType="touchUpInside" id="nDf-CG-pBR"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sun.max" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LMs-Mp-uYJ">
@@ -756,12 +770,16 @@
             <point key="canvasLocation" x="986" y="878"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="DOJ-S0-buZ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Screen-Shot-2018-03-06-at-141354" width="400" height="300"/>
         <image name="arrow.up" catalog="system" width="120" height="128"/>
         <image name="book.circle" catalog="system" width="128" height="121"/>
         <image name="message.circle" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
+        <image name="signature.ar" catalog="system" width="128" height="83"/>
         <image name="sun.max" catalog="system" width="128" height="124"/>
         <image name="sunrise" catalog="system" width="128" height="97"/>
         <image name="sunset" catalog="system" width="128" height="97"/>

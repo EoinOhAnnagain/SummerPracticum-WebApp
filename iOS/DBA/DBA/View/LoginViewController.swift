@@ -14,10 +14,11 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    let login = ManagerUsers()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        logOut()
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -27,26 +28,49 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
         self.view.addGestureRecognizer(tap)
     }
     
-    @IBAction func dismissPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+    @IBAction func guestPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: K.guest, sender: self)
     }
     
-    @IBAction func signUpPressed(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: "LoginToSignUp", sender: self)
-        
-    }
     
     @IBAction func loginPressed(_ sender: UIButton) {
         
         if let email = emailTextField.text, let password = passwordTextField.text {
             if email != "" && password != "" {
-                login.userLogin(email, password)
+                
+                Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                    if let e = error {
+                        print(e.localizedDescription)
+                    } else {
+                        print("Successful Login")
+                        self.performSegue(withIdentifier: K.loggedIn, sender: self)
+                    }
+                }
+                UserManager().userLogin(email, password)
+                
             } else {
                 print("no email or password")
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.loggedIn {
+            let destinationVC = segue.destination as! ViewController
+            destinationVC.userEmailString = emailTextField.text
+            //}
+        } else if segue.identifier == K.guest {
+            let destinationVC = segue.destination as! ViewController
+            DispatchQueue.main.async {
+                destinationVC.userEmailString = nil
+            }
+        }
+    }
+    
+    @IBAction func signUpPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "LoginToSignUp", sender: self)
+    }
+    
     
     func hideKeyboard() {
         emailTextField.resignFirstResponder()
@@ -62,6 +86,13 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
         self.view.endEditing(true)
     }
     
+    func logOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("ERROR")
+        }
+    }
     /*
      // MARK: - Navigation
      

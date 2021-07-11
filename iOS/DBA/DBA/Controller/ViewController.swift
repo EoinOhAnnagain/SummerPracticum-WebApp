@@ -11,7 +11,7 @@ import Foundation
 import Firebase
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var tempDisplay: UILabel!
     @IBOutlet weak var degreesText: UILabel!
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     var weatherManager = WeatherManager()
     var weatherModel: WeatherModel?
     let locationManager = CLLocationManager()
-    var managerUsers = ManagerUsers()
+    var userManager = UserManager()
     
     var weatherTimer: Timer?
     
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        weatherManager.delegate = self
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
@@ -45,17 +45,16 @@ class ViewController: UIViewController {
         
         isUserLoggedIn()
         
-        managerUsers.delegate = self
-        weatherManager.delegate = self
+        
         
     }
-
     
     
     
-  
     
-
+    
+    
+    
     
     @IBAction func toMap(_ sender: UIButton) {
         
@@ -83,18 +82,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func contactAboutUs(_ sender: Any) {
-        print("button pressed")
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print("ERROR")
-        }
-        print(Auth.auth().currentUser?.email)
+        print("Fuck off")
     }
-    
-    
-    
-    
 }
 
 
@@ -176,17 +165,27 @@ extension ViewController: WeatherManagerDelegate {
 
 //MARK: - User Management
 
-extension ViewController: ManagerUsersDelegate {
+extension ViewController {
     
-    func setUserLogin(_ userEmail: String) {
-        userEmailString = userEmail
+    func setUserLogin() {
+        print("T2")
+        userEmailString = Auth.auth().currentUser?.email
+        print("T3: \(userEmailString)")
         isUserLoggedIn()
+        print("T4")
     }
     
     func isUserLoggedIn() {
-        print(userEmailString)
-        userEmailString = Auth.auth().currentUser?.email
-        print(userEmailString)
+        print("isUserLoggedIn called")
+        print("User: \(userEmailString)")
+        //userEmailString = Auth.auth().currentUser?.email
+        
+        if userEmailString == Auth.auth().currentUser?.email {
+            print("They match")
+        } else {
+            print("\(userEmailString) does not match \(Auth.auth().currentUser?.email)")
+        }
+        
         if userEmailString != nil {
             print("User Logged In")
             chatButton.backgroundColor = UIColor(named: "Interface")
@@ -199,9 +198,20 @@ extension ViewController: ManagerUsersDelegate {
     }
     
     
-    @IBAction func ProUserLoginPressed(_ sender: UIButton) {
+    @IBAction func logOutPressed(_ sender: UIButton) {
         
-        performSegue(withIdentifier: K.loginSegue, sender: self)
+        print("button pressed")
+        do {
+            try Auth.auth().signOut()
+            userEmailString = nil
+            print("On logout: \(userEmailString)")
+            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        } catch {
+            print("ERROR")
+        }
+        print(Auth.auth().currentUser?.email)
+        
+        
         
     }
     

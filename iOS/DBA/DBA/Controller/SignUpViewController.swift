@@ -11,31 +11,49 @@ import Firebase
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var secondPasswordTextField: UITextField!
     
-    let signUp = ManagerUsers()
+    @IBOutlet weak var loader: UIActivityIndicatorView!
+    @IBOutlet weak var loaderText: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        logOut()
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
         secondPasswordTextField.delegate = self
         
+        
+        
         // Do any additional setup after loading the view.
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
+        
+        
     }
     
     @IBAction func signUpPressed(_ sender: UIButton) {
         
+        
         if let email = emailTextField.text, let password = passwordTextField.text, let password2 = secondPasswordTextField.text {
             if email != "" && password != "" && password2 != "" {
                 if password == password2 {
-                    signUp.userRegister(email, password)
-                    self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+                    
+                    Auth.auth().createUser(withEmail: email, password: password) { AuthResult, error in
+                        if let e = error{
+                            print(e.localizedDescription)
+                        } else {
+                            print("success")
+                            print(Auth.auth().currentUser?.email)
+                            self.performSegue(withIdentifier: K.signedUp, sender: self)
+                        }
+                    }
                 } else {
                     print("Passwords don't match")
                 }
@@ -43,11 +61,27 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 print("Use all text fields")
             }
         }
+        
+        
     }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.signedUp {
+            let destinationVC = segue.destination as! ViewController
+                destinationVC.userEmailString = self.emailTextField.text
+        }
+    }
+    
     
     @IBAction func dismissPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    
+    
     
     func hideKeyboard() {
         emailTextField.resignFirstResponder()
@@ -56,7 +90,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("Return pressed")
         hideKeyboard()
         return true
     }
@@ -65,7 +98,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-    
+    func logOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("ERROR")
+        }
+    }
+
     /*
      // MARK: - Navigation
      
