@@ -181,14 +181,6 @@ extension ViewController: WeatherManagerDelegate {
 
 extension ViewController {
     
-    func setUserLogin() {
-        print("T2")
-        userEmailString = Auth.auth().currentUser?.email
-        print("T3: \(userEmailString)")
-        isUserLoggedIn()
-        print("T4")
-    }
-    
     func isUserLoggedIn() {
         print("isUserLoggedIn called")
         print("User: \(userEmailString)")
