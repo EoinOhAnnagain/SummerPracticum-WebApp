@@ -38,6 +38,22 @@ const fetchTask = async (id) => {
   return data
 }
 
+// Fetch stop data from backend
+const fetchStops = async () => {
+  const res = await fetch(`http://localhost:8000/stops`)
+  const data = await res.json()
+  console.log("stop data", data)
+  return data
+}
+
+fetchStops()
+
+const renderMap = async () => {
+  const data = await fetchStops()
+  console.log(data, "got it")
+}
+renderMap()
+
 // add task
 
 const addTask = async (task) => {

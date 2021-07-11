@@ -5,6 +5,7 @@ defusedxml==0.7.1
 Django==3.2.4
 django-allauth==0.42.0
 djangorestframework==3.12.4
+django-cors-headers==3.7.0
 flake8==3.6.0
 idna==2.10
 mccabe==0.6.1
