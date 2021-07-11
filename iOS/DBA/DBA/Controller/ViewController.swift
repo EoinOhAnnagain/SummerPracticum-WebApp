@@ -32,9 +32,13 @@ class ViewController: UIViewController {
     
     var weatherTimer: Timer?
     
+    @IBOutlet weak var titleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        title()
         
         weatherManager.delegate = self
         locationManager.delegate = self
@@ -51,7 +55,17 @@ class ViewController: UIViewController {
     
     
     
-    
+    func title() {
+        titleLabel.text = ""
+        var i = 1
+        let titleText = "D B A"
+        for letter in titleText {
+            Timer.scheduledTimer(withTimeInterval: TimeInterval(i)*0.5, repeats: false) { (timer) in
+                self.titleLabel.text?.append(letter)
+            }
+            i += 1
+        }
+    }
     
     
     
