@@ -7,12 +7,21 @@
 
 struct K {
     
-    // Main page segue identifers
-    static let weatherSegue = "toWeather"
+    
+    // Login In and Sign Up segue identifers
+    
+    static let signedUp = "SignToMain"
     static let loggedIn = "LoginToMain"
     static let guest = "GuestToMain"
+    
+    
+    // Main page segue identifers
+    
+    static let weatherSegue = "toWeather"
     static let mapSegue = "Map"
-    static let chatSegue = "MainToChat"
-    static let signedUp = "SignToMain"
+    
+    static let toChat = "MainToChat"
+    static let toBook = "MainToBook"
+    static let toUs = "MainToUs"
     
 }

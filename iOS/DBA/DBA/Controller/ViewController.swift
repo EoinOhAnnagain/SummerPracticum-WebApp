@@ -89,7 +89,7 @@ class ViewController: UIViewController {
         if userEmailString == nil {
             print("You must be logged in")
         } else {
-            performSegue(withIdentifier: K.chatSegue, sender: self)
+            performSegue(withIdentifier: K.toChat, sender: self)
         }
     }
     
@@ -97,13 +97,12 @@ class ViewController: UIViewController {
         if userEmailString == nil {
             print("You must be logged in")
         } else {
-            print("Book button pressed")
-            //performSegue(withIdentifier: K.chatSegue, sender: self)
+            performSegue(withIdentifier: K.toBook, sender: self)
         }
     }
     
     @IBAction func contactAboutUs(_ sender: Any) {
-        print("Fuck off")
+        performSegue(withIdentifier: K.toUs, sender: self)
     }
 }
 

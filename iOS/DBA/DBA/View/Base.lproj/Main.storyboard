@@ -44,7 +44,81 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kfi-49-6PX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="986" y="1734"/>
+            <point key="canvasLocation" x="-1223" y="874"/>
+        </scene>
+        <!--Book View Controller-->
+        <scene sceneID="xV2-3J-em2">
+            <objects>
+                <viewController id="EJB-2K-zfZ" customClass="BookViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eI5-bF-Wii">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8GN-JB-mpq">
+                                <rect key="frame" x="46" y="711" width="323" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="Dismiss">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="dismissPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="YVD-9a-a7d"/>
+                                    <action selector="dismissPressed:" destination="Dv3-3x-ApG" eventType="touchUpInside" id="lI2-36-ekl"/>
+                                    <action selector="dismissPressed:" destination="76j-rU-nC6" eventType="touchUpInside" id="yZk-U7-USZ"/>
+                                    <action selector="guestPressed:" destination="QJF-4w-IrE" eventType="touchUpInside" id="CfJ-eU-ujl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pxw-5Y-lXa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WvU-Yt-Sh9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-107" y="874"/>
+        </scene>
+        <!--About Contact Us View Controller-->
+        <scene sceneID="tvs-b0-4Dm">
+            <objects>
+                <viewController id="t2D-eN-zyk" customClass="AboutContactUsViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pqu-er-Kjg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQh-zL-ihP">
+                                <rect key="frame" x="46" y="696" width="323" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="Dismiss">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="dismissPressed:" destination="Dv3-3x-ApG" eventType="touchUpInside" id="8fE-Hp-NeZ"/>
+                                    <action selector="dismissPressed:" destination="t2D-eN-zyk" eventType="touchUpInside" id="9Fa-VI-HV6"/>
+                                    <action selector="dismissPressed:" destination="76j-rU-nC6" eventType="touchUpInside" id="BPe-vt-tZa"/>
+                                    <action selector="guestPressed:" destination="QJF-4w-IrE" eventType="touchUpInside" id="xr2-0C-EaU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xgh-Lr-ktT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Idx-jf-Jma" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="986" y="874"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -269,6 +343,8 @@
                         <segue destination="YJP-7s-BuX" kind="presentation" identifier="Map" id="RVz-4o-bjC"/>
                         <segue destination="Dv3-3x-ApG" kind="presentation" identifier="toWeather" id="rWG-q9-Iep"/>
                         <segue destination="76j-rU-nC6" kind="show" identifier="MainToChat" id="nlx-U9-drR"/>
+                        <segue destination="t2D-eN-zyk" kind="presentation" identifier="MainToUs" id="Ibc-Tb-y5O"/>
+                        <segue destination="EJB-2K-zfZ" kind="presentation" identifier="MainToBook" id="CAh-uG-USQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -782,7 +858,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dci-pb-vhV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="986" y="878"/>
+            <point key="canvasLocation" x="-1223" y="88"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
