@@ -50,7 +50,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                             print(e.localizedDescription)
                         } else {
                             print("success")
-                            print(Auth.auth().currentUser?.email)
+                            print(Auth.auth().currentUser?.email!)
                             self.performSegue(withIdentifier: K.signedUp, sender: self)
                         }
                     }

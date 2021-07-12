@@ -7,12 +7,14 @@
 
 import UIKit
 import Firebase
+import IQKeyboardManagerSwift
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController, UISearchTextFieldDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
-    
+    @IBOutlet weak var infoLabel: UILabel!
+     
     let db = Firestore.firestore()
     
     var messages: [Message] = []
@@ -25,6 +27,11 @@ class ChatViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+        messageTextField.delegate = self
+        
+//        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//        self.view.addGestureRecognizer(tap)
+    
         
         tableView.register(UINib(nibName: K.chat.chatNib, bundle: nil), forCellReuseIdentifier: K.chat.chatCellID)
         // Do any additional setup after loading the view.
@@ -42,9 +49,7 @@ class ChatViewController: UIViewController {
                 if let snapshotDocuments = querySnapshot?.documents {
                     for doc in snapshotDocuments {
                         let data = doc.data()
-                        print("here")
                         if let messageSender = data[K.chat.FStore.senderField] as? String, let messageText = data[K.chat.FStore.textField] as? String, let messageDate = data[K.chat.FStore.dateField] {
-                            print("here 2")
                             let newMessage = Message(sender: messageSender, body: messageText, date: messageDate as! NSNumber)
                             self.messages.append(newMessage)
                             
@@ -115,16 +120,37 @@ extension ChatViewController: UITableViewDataSource {
 
 extension ChatViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.row) is from \(messages[indexPath.row].sender)")
 
         let messageDate = messages[indexPath.row].date
+    
         
+        let formattedDate = dateFormatter(messageDate)
+        let formattedTime = timeFormatter(messageDate)
+        infoLabel.text = "Message \(indexPath.row) sent at \(formattedTime) on \(formattedDate)"
+    }
+    
+    func dateFormatter(_ unformatted: NSNumber) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd:MM:yyyy HH:mm"
-        let readyDate = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(messageDate)))
-        
-
-        print("Message sent \(readyDate)")
-        
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: unformatted)))
+    }
+    
+    func timeFormatter(_ unformatted: NSNumber) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: unformatted)))
+    }
+    
+    func hideKeyboard() {
+        messageTextField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        hideKeyboard()
+        return true
+    }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 }
