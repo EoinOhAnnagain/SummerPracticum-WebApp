@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -99,8 +99,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djangoLoginSys',
         'USER': 'root',
-        'PASSWORD': '4TheWin2021@',
-        'HOST': '173.82.72.146',
+        'PASSWORD': '4TheWin!',
+        'HOST': '173.82.208.22',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
@@ -110,8 +110,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djangoLoginSys',
         'USER': 'root',
-        'PASSWORD': '4TheWin2021@',
-        'HOST': '173.82.72.146',
+        'PASSWORD': '4TheWin!',
+        'HOST': '173.82.208.22',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
@@ -119,7 +119,7 @@ DATABASES = {
     }
 }
 
-"""
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
