@@ -306,6 +306,19 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="D B A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bb-dp-k6e">
+                                <rect key="frame" x="46" y="52" width="198" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
+                                <color key="textColor" name="Interface"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.crop.circle.badge.minus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ms4-G1-ERI">
                                 <rect key="frame" x="289" y="53" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -337,6 +350,7 @@
                         <outlet property="locationText" destination="LM0-MG-CcF" id="6es-wk-vnh"/>
                         <outlet property="tempDisplay" destination="IhM-KX-rep" id="gYO-Hc-OIn"/>
                         <outlet property="titleLabel" destination="iFf-7a-lF5" id="Bt6-Lm-XDv"/>
+                        <outlet property="titleLabel2" destination="3bb-dp-k6e" id="vHp-hA-OBO"/>
                         <outlet property="weatherIcon" destination="SVy-Nw-irR" id="4jV-Yk-wx3"/>
                         <outlet property="weatherLoader" destination="Jhy-lA-Vkw" id="fwl-Ml-0R0"/>
                         <outlet property="weatherWidgetButton" destination="dwc-bj-jxG" id="HIx-0P-y7f"/>

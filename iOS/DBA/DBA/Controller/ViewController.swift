@@ -9,6 +9,7 @@ import UIKit
 import CoreLocation
 import Foundation
 import Firebase
+//import ShimmerSwift
 
 class ViewController: UIViewController {
     
@@ -33,13 +34,13 @@ class ViewController: UIViewController {
     var weatherTimer: Timer?
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel2: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         title()
-        
+         
         weatherManager.delegate = self
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -64,6 +65,12 @@ class ViewController: UIViewController {
                 self.titleLabel.text?.append(letter)
             }
             i += 1
+        }
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
+            UIView.animate(withDuration: 3) {
+                self.titleLabel.alpha = 0
+            }
+        
         }
     }
     
