@@ -20,6 +20,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var loaderText: UILabel!
     
+    @IBOutlet weak var infoLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,23 +41,28 @@ class SignUpViewController: UIViewController {
             if email != "" && password != "" && password2 != "" {
                 if password == password2 {
                     
+                    self.infoLabel.text = "Signing up new user"
                     Auth.auth().createUser(withEmail: email, password: password) { AuthResult, error in
                         if let e = error{
                             print(e.localizedDescription)
+                            self.infoLabel.text = e.localizedDescription
+                            
                         } else {
-                            print("success")
+                            self.infoLabel.text = "👍🏻"
                             self.performSegue(withIdentifier: K.signedUp, sender: self)
                         }
                     }
                 } else {
-                    print("Passwords don't match")
+                    self.infoLabel.text = "Passwords do not match"
+                    self.passwordTextField.text = ""
+                    self.secondPasswordTextField.text = ""
                 }
             } else {
-                print("Use all text fields")
+                self.infoLabel.text = "Incomplete fields"
+                self.passwordTextField.text = ""
+                self.secondPasswordTextField.text = ""
             }
         }
-        
-        
     }
     
     
