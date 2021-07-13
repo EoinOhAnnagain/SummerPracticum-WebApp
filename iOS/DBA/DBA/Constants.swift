@@ -7,6 +7,7 @@
 
 struct K {
     
+    static let color = "Interface"
     
     // Login In and Sign Up segue identifers
     
@@ -23,5 +24,20 @@ struct K {
     static let toChat = "MainToChat"
     static let toBook = "MainToBook"
     static let toUs = "MainToUs"
+    
+    
+    struct chat {
+        static let chatCellID = "chatCell"
+        static let chatNib = "ChatCell"
+        
+        struct FStore {
+            static let collectionName = "messages"
+            static let senderField = "sender"
+            static let textField = "body"
+            static let dateField = "date"
+        }
+        
+    }
+    
     
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import IQKeyboardManagerSwift
 
 class LoginViewController: UIViewController, UISearchTextFieldDelegate {
     
@@ -20,12 +21,9 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
         
         logOut()
         
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
+        
         // Do any additional setup after loading the view.
         
-        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        self.view.addGestureRecognizer(tap)
     }
     
     @IBAction func guestPressed(_ sender: UIButton) {
@@ -71,20 +69,6 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
         performSegue(withIdentifier: "LoginToSignUp", sender: self)
     }
     
-    
-    func hideKeyboard() {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        hideKeyboard()
-        return true
-    }
-    
-    @objc func dismissKeyboard() {
-        self.view.endEditing(true)
-    }
     
     func logOut() {
         do {
