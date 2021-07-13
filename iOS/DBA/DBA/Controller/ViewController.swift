@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         var i = 1
         let titleText = "D B A"
         for letter in titleText {
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(i)*0.5, repeats: false) { (timer) in
+            Timer.scheduledTimer(withTimeInterval: TimeInterval(i)*0.3, repeats: false) { (timer) in
                 self.titleLabel.text?.append(letter)
             }
             i += 1
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
         if userEmailString == nil {
-            print("You must be logged in")
+            showProUserOnlyAlert("Chat")
         } else {
             performSegue(withIdentifier: K.toChat, sender: self)
         }
@@ -102,7 +102,7 @@ class ViewController: UIViewController {
     
     @IBAction func bookButtonPressed(_ sender: UIButton) {
         if userEmailString == nil {
-            print("You must be logged in")
+            showProUserOnlyAlert("Books")
         } else {
             performSegue(withIdentifier: K.toBook, sender: self)
         }
@@ -218,15 +218,25 @@ extension ViewController {
 
 //MARK: - Alert
 
-func showProUserOnlyAlert() {
-    let alert = UIAlertController(title: "Password Error", message: message, preferredStyle: .alert)
-    
-    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in
-        print("tapped Dismiss")
-        self.passwordTextfield.text = ""
-        //self.passwordTextfield.placeholder = "Password"
-    }))
-    
-    present(alert,animated: true)
-    
+extension ViewController {
+
+    func showProUserOnlyAlert(_ feature: String) {
+        let actionSheet = UIAlertController(title: "\(feature) is a Pro User Feature", message: "We are sorry but some of our features are only available for pro users. To access this feature please either login or sign up to be a pro user.", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Sign Up", style: .default, handler: { action in
+            self.performSegue(withIdentifier: K.toSignUp, sender: self)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Login", style: .default, handler: { action in
+            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in
+        }))
+        
+        
+        present(actionSheet, animated: true)
+        
+    }
 }
+
