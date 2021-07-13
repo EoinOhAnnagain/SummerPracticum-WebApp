@@ -14,6 +14,7 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var infoLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -38,16 +39,14 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
                 
                 Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                     if let e = error {
-                        print(e.localizedDescription)
+                        self.infoLabel.text = e.localizedDescription
                     } else {
-                        print("Successful Login")
+                        self.infoLabel.text = "👍🏻"
                         self.performSegue(withIdentifier: K.loggedIn, sender: self)
                     }
                 }
-                UserManager().userLogin(email, password)
-                
             } else {
-                print("no email or password")
+                self.infoLabel.text = "Missing field"
             }
         }
     }

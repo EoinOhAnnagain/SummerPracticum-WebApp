@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     var weatherManager = WeatherManager()
     var weatherModel: WeatherModel?
     let locationManager = CLLocationManager()
-    var userManager = UserManager()
+    
     
     var weatherTimer: Timer?
     
