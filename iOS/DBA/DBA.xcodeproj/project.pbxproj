@@ -16,6 +16,10 @@
 		6A1E1BDD2686765C00A51DF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A1E1BDB2686765C00A51DF1 /* LaunchScreen.storyboard */; };
 		6A78A642268A0819003BA1ED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A78A641268A0819003BA1ED /* LoginViewController.swift */; };
 		6A78A644268A0987003BA1ED /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A78A643268A0987003BA1ED /* MapViewController.swift */; };
+		6A923788269DC76000160000 /* Alice1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6A923786269DC76000160000 /* Alice1.txt */; };
+		6A923789269DC76000160000 /* Dorian5.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6A923787269DC76000160000 /* Dorian5.txt */; };
+		6A923790269DC9F000160000 /* DorianPre.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6A92378E269DC9EF00160000 /* DorianPre.txt */; };
+		6A923791269DC9F000160000 /* Alice0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6A92378F269DC9F000160000 /* Alice0.txt */; };
 		6A9455762693D88200EA47B9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9455752693D88200EA47B9 /* Constants.swift */; };
 		6AAC5F1D268C8FCB00451DD2 /* weatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAC5F1C268C8FCB00451DD2 /* weatherManager.swift */; };
 		6AAC5F1F268C97A900451DD2 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAC5F1E268C97A900451DD2 /* WeatherModel.swift */; };
@@ -47,6 +51,10 @@
 		6A1E1BDE2686765C00A51DF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A78A641268A0819003BA1ED /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = DBA/View/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		6A78A643268A0987003BA1ED /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = DBA/View/MapViewController.swift; sourceTree = SOURCE_ROOT; };
+		6A923786269DC76000160000 /* Alice1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Alice1.txt; path = Books/Alice1.txt; sourceTree = "<group>"; };
+		6A923787269DC76000160000 /* Dorian5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Dorian5.txt; path = Books/Dorian5.txt; sourceTree = "<group>"; };
+		6A92378E269DC9EF00160000 /* DorianPre.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = DorianPre.txt; path = Books/DorianPre.txt; sourceTree = "<group>"; };
+		6A92378F269DC9F000160000 /* Alice0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Alice0.txt; path = Books/Alice0.txt; sourceTree = "<group>"; };
 		6A9455752693D88200EA47B9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6AAC5F1C268C8FCB00451DD2 /* weatherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = weatherManager.swift; sourceTree = "<group>"; };
 		6AAC5F1E268C97A900451DD2 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
@@ -112,6 +120,11 @@
 		6A1E1BCF2686765600A51DF1 /* DBA */ = {
 			isa = PBXGroup;
 			children = (
+				6A923786269DC76000160000 /* Alice1.txt */,
+				6A92378F269DC9F000160000 /* Alice0.txt */,
+				6A92378E269DC9EF00160000 /* DorianPre.txt */,
+				6A923787269DC76000160000 /* Dorian5.txt */,
+				6ACAD319269DC50E00DF80EF /* Books */,
 				6A1E1BD02686765600A51DF1 /* AppDelegate.swift */,
 				6A1E1BD22686765600A51DF1 /* SceneDelegate.swift */,
 				6AAC5F1B268C8FCB00451DD2 /* Model */,
@@ -160,6 +173,13 @@
 				6ABDDF92269C94380058A93D /* Messages.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6ACAD319269DC50E00DF80EF /* Books */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Books;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,9 +248,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A1E1BDD2686765C00A51DF1 /* LaunchScreen.storyboard in Resources */,
+				6A923790269DC9F000160000 /* DorianPre.txt in Resources */,
+				6A923788269DC76000160000 /* Alice1.txt in Resources */,
 				6A0F3E9C26973EDE00B1863C /* GoogleService-Info.plist in Resources */,
+				6A923791269DC9F000160000 /* Alice0.txt in Resources */,
 				6ABDDF9B269C98890058A93D /* ChatCell.xib in Resources */,
 				6A1E1BDA2686765C00A51DF1 /* Assets.xcassets in Resources */,
+				6A923789269DC76000160000 /* Dorian5.txt in Resources */,
 				6A1E1BD82686765600A51DF1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

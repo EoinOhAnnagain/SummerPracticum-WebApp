@@ -140,14 +140,38 @@
                                     <action selector="dismissPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="YVD-9a-a7d"/>
                                 </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lec-eS-P3m">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="143"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OrJ-2g-e8G">
+                                <rect key="frame" x="0.0" y="173" width="414" height="521"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpv-I5-5rN">
+                                <rect key="frame" x="20" y="129" width="374" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="Interface"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pxw-5Y-lXa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="bookPicker" destination="lec-eS-P3m" id="woi-0W-Lox"/>
+                        <outlet property="bookText" destination="OrJ-2g-e8G" id="U8b-TT-BeC"/>
+                        <outlet property="choiceLabel" destination="Jpv-I5-5rN" id="HWp-QZ-Eiv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WvU-Yt-Sh9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-107" y="874"/>
+            <point key="canvasLocation" x="-107.24637681159422" y="873.88392857142856"/>
         </scene>
         <!--About Contact Us View Controller-->
         <scene sceneID="tvs-b0-4Dm">
@@ -410,7 +434,9 @@
                         <outlet property="bookButton" destination="nyT-GP-VFh" id="8CM-O5-znw"/>
                         <outlet property="chatButton" destination="y6N-f9-I6B" id="YvY-6o-r3w"/>
                         <outlet property="degreesText" destination="Qwb-uR-3Pe" id="Njh-HL-gpl"/>
+                        <outlet property="endingPicker" destination="LVO-EV-dhw" id="ZIS-UT-9sa"/>
                         <outlet property="locationText" destination="LM0-MG-CcF" id="6es-wk-vnh"/>
+                        <outlet property="startingPicker" destination="g9O-1n-JZ2" id="6PT-gC-Nho"/>
                         <outlet property="tempDisplay" destination="IhM-KX-rep" id="gYO-Hc-OIn"/>
                         <outlet property="titleLabel" destination="iFf-7a-lF5" id="Bt6-Lm-XDv"/>
                         <outlet property="titleLabel2" destination="3bb-dp-k6e" id="vHp-hA-OBO"/>
@@ -488,14 +514,14 @@
                                     <action selector="signUpPressed:" destination="QJF-4w-IrE" eventType="touchUpInside" id="and-Oz-f48"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1@2.com" borderStyle="roundedRect" placeholder="email..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qEi-6Z-2Aw">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qEi-6Z-2Aw">
                                 <rect key="frame" x="46" y="157" width="323" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" name="Interface"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="password..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FpX-Rb-R0b">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FpX-Rb-R0b">
                                 <rect key="frame" x="46" y="244" width="323" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" name="Interface"/>
@@ -568,21 +594,21 @@
                                     <action selector="dismissPressed:" destination="3oa-Dk-MC7" eventType="touchUpInside" id="R5e-y7-Ab4"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="@2.com" borderStyle="roundedRect" placeholder="email..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RlN-US-rWP">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RlN-US-rWP">
                                 <rect key="frame" x="46" y="171" width="323" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" name="Interface"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="password..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="t1a-m2-k5A">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="t1a-m2-k5A">
                                 <rect key="frame" x="46" y="252" width="323" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" name="Interface"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="new-password"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="re-enter password..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ieg-RO-9NU">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="re-enter password..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ieg-RO-9NU">
                                 <rect key="frame" x="46" y="334" width="323" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" name="Interface"/>
@@ -949,7 +975,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="VPl-PC-3iO"/>
-        <segue reference="PoY-Za-62m"/>
+        <segue reference="OFs-Hh-Nq1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Screen-Shot-2018-03-06-at-141354" width="400" height="300"/>
