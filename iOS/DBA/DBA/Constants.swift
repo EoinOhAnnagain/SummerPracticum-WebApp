@@ -7,6 +7,7 @@
 
 struct K {
     
+    static let color = "Interface"
     
     // Login In and Sign Up segue identifers
     
