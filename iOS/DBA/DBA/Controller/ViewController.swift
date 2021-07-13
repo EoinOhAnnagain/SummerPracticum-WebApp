@@ -215,3 +215,18 @@ extension ViewController {
         }
     }
 }
+
+//MARK: - Alert
+
+func showProUserOnlyAlert() {
+    let alert = UIAlertController(title: "Password Error", message: message, preferredStyle: .alert)
+    
+    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in
+        print("tapped Dismiss")
+        self.passwordTextfield.text = ""
+        //self.passwordTextfield.placeholder = "Password"
+    }))
+    
+    present(alert,animated: true)
+    
+}

@@ -52,6 +52,8 @@ class ChatViewController: UIViewController {
                             
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
+                                let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                             }
                             
                         } else {
@@ -76,7 +78,9 @@ class ChatViewController: UIViewController {
                         print(e.localizedDescription)
                     } else {
                         print("saved data")
-                        self.messageTextField.text = ""
+                        DispatchQueue.main.async {
+                            self.messageTextField.text = ""
+                        }
                     }
                 }
             } else {
@@ -160,3 +164,4 @@ extension ChatViewController: UITableViewDelegate {
         return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: unformatted)))
     }
 }
+

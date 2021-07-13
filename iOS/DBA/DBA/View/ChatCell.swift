@@ -18,7 +18,7 @@ class ChatCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        chatBubble.layer.cornerRadius = chatBubble.frame.size.height / 5
+        chatBubble.layer.cornerRadius = chatBubble.frame.size.height / 3
         // Initialization code
     }
 
