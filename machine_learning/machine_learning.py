@@ -78,7 +78,7 @@ def machine_learning(route,x_li):
     #out = mean_absolute_error(y_test,y_predict)
     #print(out)
     y_pre = std_y.inverse_transform(sgd.predict(x_true))
-    print(y_pre)
+    #print(y_pre)
     return y_pre
 if __name__ == "__main__":
     li = get_sql_info()
