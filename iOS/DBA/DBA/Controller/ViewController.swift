@@ -24,6 +24,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var weatherLoader: UIActivityIndicatorView!
     
+    @IBOutlet weak var startingPicker: UIPickerView!
+    @IBOutlet weak var endingPicker: UIPickerView!
+    
+    
+    var stops = ["81813, National Museum, Wolfe Tone Quay", "81911, Law Society, Blackhall Place", "80195, Ophaly Court, Dundrum Road", "80297 Hospital, Dundrum Road", "82502, Columbanus Road junction, Dundrum Road", "82503, Annaville Close, Dundrum Road", "82504, Taney Road, Rundrum Road", "82538, Drankfort, Dundrum Road"]
+    
+    
     var userEmailString: String?
     
     var weatherManager = WeatherManager()
@@ -41,6 +48,11 @@ class ViewController: UIViewController {
         
         title()
          
+        startingPicker.dataSource = self
+        endingPicker.dataSource = self
+        startingPicker.delegate = self
+        endingPicker.delegate = self
+        
         weatherManager.delegate = self
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -238,5 +250,23 @@ extension ViewController {
         present(actionSheet, animated: true)
         
     }
+}
+
+//MARK: - Picker View
+
+extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return stops.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return stops[row]
+    }
+    
 }
 
