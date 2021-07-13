@@ -7,8 +7,9 @@
 
 import UIKit
 import Firebase
+import IQKeyboardManagerSwift
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+class SignUpViewController: UIViewController {
     
     
     
@@ -25,15 +26,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         logOut()
         
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        secondPasswordTextField.delegate = self
-        
         
         
         // Do any additional setup after loading the view.
-        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        self.view.addGestureRecognizer(tap)
         
         
     }
@@ -50,7 +45,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                             print(e.localizedDescription)
                         } else {
                             print("success")
-                            print(Auth.auth().currentUser?.email!)
                             self.performSegue(withIdentifier: K.signedUp, sender: self)
                         }
                     }
@@ -81,22 +75,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    
-    
-    func hideKeyboard() {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        secondPasswordTextField.resignFirstResponder()
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        hideKeyboard()
-        return true
-    }
-    
-    @objc func dismissKeyboard() {
-        self.view.endEditing(true)
-    }
     
     func logOut() {
         do {

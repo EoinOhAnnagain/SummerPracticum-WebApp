@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import IQKeyboardManagerSwift
 
-class ChatViewController: UIViewController, UISearchTextFieldDelegate {
+class ChatViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
@@ -27,10 +27,6 @@ class ChatViewController: UIViewController, UISearchTextFieldDelegate {
         
         tableView.dataSource = self
         tableView.delegate = self
-        messageTextField.delegate = self
-        
-//        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-//        self.view.addGestureRecognizer(tap)
     
         
         tableView.register(UINib(nibName: K.chat.chatNib, bundle: nil), forCellReuseIdentifier: K.chat.chatCellID)
@@ -139,18 +135,5 @@ extension ChatViewController: UITableViewDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: unformatted)))
-    }
-    
-    func hideKeyboard() {
-        messageTextField.resignFirstResponder()
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        hideKeyboard()
-        return true
-    }
-    
-    @objc func dismissKeyboard() {
-        self.view.endEditing(true)
     }
 }
