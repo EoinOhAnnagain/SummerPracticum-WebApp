@@ -6,5 +6,6 @@ target 'DBA' do
   # Pods for DBA
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'ShimmerSwift'
 
 end

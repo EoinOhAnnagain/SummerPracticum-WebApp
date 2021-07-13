@@ -9,6 +9,7 @@ import UIKit
 import CoreLocation
 import Foundation
 import Firebase
+//import ShimmerSwift
 
 class ViewController: UIViewController {
     
@@ -23,22 +24,34 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var weatherLoader: UIActivityIndicatorView!
     
+    @IBOutlet weak var startingPicker: UIPickerView!
+    @IBOutlet weak var endingPicker: UIPickerView!
+    
+    
+    var stops = ["81813, National Museum, Wolfe Tone Quay", "81911, Law Society, Blackhall Place", "80195, Ophaly Court, Dundrum Road", "80297 Hospital, Dundrum Road", "82502, Columbanus Road junction, Dundrum Road", "82503, Annaville Close, Dundrum Road", "82504, Taney Road, Rundrum Road", "82538, Drankfort, Dundrum Road"]
+    
+    
     var userEmailString: String?
     
     var weatherManager = WeatherManager()
     var weatherModel: WeatherModel?
     let locationManager = CLLocationManager()
-    var userManager = UserManager()
+    
     
     var weatherTimer: Timer?
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel2: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         title()
+         
+        startingPicker.dataSource = self
+        endingPicker.dataSource = self
+        startingPicker.delegate = self
+        endingPicker.delegate = self
         
         weatherManager.delegate = self
         locationManager.delegate = self
@@ -60,10 +73,16 @@ class ViewController: UIViewController {
         var i = 1
         let titleText = "D B A"
         for letter in titleText {
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(i)*0.5, repeats: false) { (timer) in
+            Timer.scheduledTimer(withTimeInterval: TimeInterval(i)*0.3, repeats: false) { (timer) in
                 self.titleLabel.text?.append(letter)
             }
             i += 1
+        }
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
+            UIView.animate(withDuration: 3) {
+                self.titleLabel.alpha = 0
+            }
+        
         }
     }
     
@@ -87,7 +106,7 @@ class ViewController: UIViewController {
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
         if userEmailString == nil {
-            print("You must be logged in")
+            showProUserOnlyAlert("Chat")
         } else {
             performSegue(withIdentifier: K.toChat, sender: self)
         }
@@ -95,7 +114,7 @@ class ViewController: UIViewController {
     
     @IBAction func bookButtonPressed(_ sender: UIButton) {
         if userEmailString == nil {
-            print("You must be logged in")
+            showProUserOnlyAlert("Books")
         } else {
             performSegue(withIdentifier: K.toBook, sender: self)
         }
@@ -208,3 +227,46 @@ extension ViewController {
         }
     }
 }
+
+//MARK: - Alert
+
+extension ViewController {
+
+    func showProUserOnlyAlert(_ feature: String) {
+        let actionSheet = UIAlertController(title: "\(feature) is a Pro User Feature", message: "We are sorry but some of our features are only available for pro users. To access this feature please either login or sign up to be a pro user.", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Sign Up", style: .default, handler: { action in
+            self.performSegue(withIdentifier: K.toSignUp, sender: self)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Login", style: .default, handler: { action in
+            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in
+        }))
+        
+        
+        present(actionSheet, animated: true)
+        
+    }
+}
+
+//MARK: - Picker View
+
+extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return stops.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return stops[row]
+    }
+    
+}
+

@@ -7,8 +7,9 @@
 
 import UIKit
 import Firebase
+import IQKeyboardManagerSwift
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+class SignUpViewController: UIViewController {
     
     
     
@@ -19,21 +20,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var loaderText: UILabel!
     
+    @IBOutlet weak var infoLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         logOut()
         
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        secondPasswordTextField.delegate = self
-        
         
         
         // Do any additional setup after loading the view.
-        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        self.view.addGestureRecognizer(tap)
         
         
     }
@@ -45,24 +41,28 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             if email != "" && password != "" && password2 != "" {
                 if password == password2 {
                     
+                    self.infoLabel.text = "Signing up new user"
                     Auth.auth().createUser(withEmail: email, password: password) { AuthResult, error in
                         if let e = error{
                             print(e.localizedDescription)
+                            self.infoLabel.text = e.localizedDescription
+                            
                         } else {
-                            print("success")
-                            print(Auth.auth().currentUser?.email)
+                            self.infoLabel.text = "👍🏻"
                             self.performSegue(withIdentifier: K.signedUp, sender: self)
                         }
                     }
                 } else {
-                    print("Passwords don't match")
+                    self.infoLabel.text = "Passwords do not match"
+                    self.passwordTextField.text = ""
+                    self.secondPasswordTextField.text = ""
                 }
             } else {
-                print("Use all text fields")
+                self.infoLabel.text = "Incomplete fields"
+                self.passwordTextField.text = ""
+                self.secondPasswordTextField.text = ""
             }
         }
-        
-        
     }
     
     
@@ -81,22 +81,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    
-    
-    func hideKeyboard() {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        secondPasswordTextField.resignFirstResponder()
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        hideKeyboard()
-        return true
-    }
-    
-    @objc func dismissKeyboard() {
-        self.view.endEditing(true)
-    }
     
     func logOut() {
         do {

@@ -7,12 +7,14 @@
 
 import UIKit
 import Firebase
+import IQKeyboardManagerSwift
 
 class LoginViewController: UIViewController, UISearchTextFieldDelegate {
     
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var infoLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -20,12 +22,9 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
         
         logOut()
         
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
+        
         // Do any additional setup after loading the view.
         
-        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        self.view.addGestureRecognizer(tap)
     }
     
     @IBAction func guestPressed(_ sender: UIButton) {
@@ -40,16 +39,14 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
                 
                 Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                     if let e = error {
-                        print(e.localizedDescription)
+                        self.infoLabel.text = e.localizedDescription
                     } else {
-                        print("Successful Login")
+                        self.infoLabel.text = "👍🏻"
                         self.performSegue(withIdentifier: K.loggedIn, sender: self)
                     }
                 }
-                UserManager().userLogin(email, password)
-                
             } else {
-                print("no email or password")
+                self.infoLabel.text = "Missing field"
             }
         }
     }
@@ -71,20 +68,6 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
         performSegue(withIdentifier: "LoginToSignUp", sender: self)
     }
     
-    
-    func hideKeyboard() {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        hideKeyboard()
-        return true
-    }
-    
-    @objc func dismissKeyboard() {
-        self.view.endEditing(true)
-    }
     
     func logOut() {
         do {
