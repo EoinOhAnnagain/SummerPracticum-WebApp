@@ -75,12 +75,6 @@
                                     <constraint firstItem="TVx-1F-9Gu" firstAttribute="top" secondItem="QxZ-rB-9AH" secondAttribute="top" constant="20" id="wzq-be-dOE"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O49-ej-mgq">
-                                <rect key="frame" x="420" y="660" width="14" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PcN-na-rMH">
                                 <rect key="frame" x="0.0" y="44" width="414" height="608"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -95,6 +89,12 @@
                                     <constraint firstAttribute="height" constant="120" id="NBu-mH-WA8"/>
                                 </constraints>
                             </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O49-ej-mgq">
+                                <rect key="frame" x="380" y="660" width="14" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tVg-Md-VWX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -108,8 +108,8 @@
                             <constraint firstItem="I9v-5S-ZQm" firstAttribute="leading" secondItem="tVg-Md-VWX" secondAttribute="leading" id="gzu-uN-lrD"/>
                             <constraint firstItem="PcN-na-rMH" firstAttribute="top" secondItem="tVg-Md-VWX" secondAttribute="top" id="hQT-V5-itE"/>
                             <constraint firstAttribute="bottom" secondItem="QxZ-rB-9AH" secondAttribute="bottom" id="jEE-83-xoR"/>
-                            <constraint firstItem="O49-ej-mgq" firstAttribute="trailing" secondItem="tVg-Md-VWX" secondAttribute="trailing" constant="20" id="prF-jl-Cnx"/>
                             <constraint firstItem="I9v-5S-ZQm" firstAttribute="top" secondItem="O49-ej-mgq" secondAttribute="bottom" constant="8" id="yD9-kX-VQJ"/>
+                            <constraint firstItem="tVg-Md-VWX" firstAttribute="trailing" secondItem="O49-ej-mgq" secondAttribute="trailing" constant="20" id="zPA-XN-g7Q"/>
                             <constraint firstItem="PcN-na-rMH" firstAttribute="leading" secondItem="tVg-Md-VWX" secondAttribute="leading" id="zhY-rb-Xiw"/>
                         </constraints>
                     </view>
