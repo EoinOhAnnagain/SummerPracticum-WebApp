@@ -218,7 +218,7 @@ extension ChatViewController: UIPickerViewDataSource {
 extension ChatViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        busStops.sort()
+        
         
         if component == 0 {
             if row == 0 {
@@ -227,25 +227,32 @@ extension ChatViewController: UIPickerViewDelegate {
                 return busStops[row-1]
             }
         } else {
-            if row == 0 {
-                return "Inbound"
+            let selected = pickerView.selectedRow(inComponent: 0)
+            if selected == 0 {
+                return ""
             } else {
-                return "Outbound"
+                if row == 0 {
+                    return "Inbound"
+                } else {
+                    return "Outbound"
+                }
             }
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
+        pickerView.reloadComponent(1)
+        
         let chosenRouteNumber = pickerView.selectedRow(inComponent: 0)
         let chosenRoute: String?
-            
+        
         if chosenRouteNumber == 0 {
             chosenRoute = "messages"
         } else {
-            chosenRoute = busStops[chosenRouteNumber+1]
+            chosenRoute = busStops[chosenRouteNumber-1]
         }
-    
+        
         let chosenDirectionNumber = pickerView.selectedRow(inComponent: 1)
         let chosenDirection: String?
         
