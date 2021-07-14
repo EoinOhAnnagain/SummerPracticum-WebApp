@@ -75,44 +75,39 @@
                                     <constraint firstItem="TVx-1F-9Gu" firstAttribute="top" secondItem="QxZ-rB-9AH" secondAttribute="top" constant="20" id="wzq-be-dOE"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O49-ej-mgq">
-                                <rect key="frame" x="380" y="788" width="14" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45641518918914" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O49-ej-mgq">
+                                <rect key="frame" x="280.33333333333331" y="660" width="133.66666666666669" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9v-5S-ZQm">
-                                <rect key="frame" x="0.0" y="44" width="414" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="NBu-mH-WA8"/>
-                                </constraints>
-                            </pickerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PcN-na-rMH">
-                                <rect key="frame" x="0.0" y="172" width="414" height="608"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="608"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="608" id="OT3-qT-hUp"/>
+                                    <constraint firstAttribute="height" constant="608" id="DwA-yt-9Xu"/>
                                 </constraints>
                                 <color key="separatorColor" name="Interface"/>
                             </tableView>
+                            <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="I9v-5S-ZQm">
+                                <rect key="frame" x="0.0" y="688" width="414" height="120"/>
+                            </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tVg-Md-VWX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="I9v-5S-ZQm" firstAttribute="trailing" secondItem="tVg-Md-VWX" secondAttribute="trailing" id="1CP-aN-ZZg"/>
-                            <constraint firstItem="PcN-na-rMH" firstAttribute="top" secondItem="I9v-5S-ZQm" secondAttribute="bottom" constant="8" symbolic="YES" id="1Mp-d0-YgW"/>
-                            <constraint firstItem="I9v-5S-ZQm" firstAttribute="top" secondItem="tVg-Md-VWX" secondAttribute="top" id="CKX-gh-AVM"/>
-                            <constraint firstItem="tVg-Md-VWX" firstAttribute="trailing" secondItem="O49-ej-mgq" secondAttribute="trailing" constant="20" id="CdD-Os-kl0"/>
-                            <constraint firstItem="O49-ej-mgq" firstAttribute="top" secondItem="PcN-na-rMH" secondAttribute="bottom" constant="8" id="DjS-tJ-1h8"/>
-                            <constraint firstItem="QxZ-rB-9AH" firstAttribute="trailing" secondItem="tVg-Md-VWX" secondAttribute="trailing" id="U4S-ve-uEs"/>
-                            <constraint firstItem="QxZ-rB-9AH" firstAttribute="top" secondItem="O49-ej-mgq" secondAttribute="bottom" constant="8" id="UvE-JD-7yY"/>
-                            <constraint firstItem="I9v-5S-ZQm" firstAttribute="leading" secondItem="tVg-Md-VWX" secondAttribute="leading" id="YD3-xc-iBo"/>
-                            <constraint firstItem="O49-ej-mgq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tVg-Md-VWX" secondAttribute="leading" symbolic="YES" id="Yd4-p0-pep"/>
-                            <constraint firstAttribute="bottom" secondItem="QxZ-rB-9AH" secondAttribute="bottom" id="bob-qL-Osg"/>
-                            <constraint firstItem="QxZ-rB-9AH" firstAttribute="leading" secondItem="tVg-Md-VWX" secondAttribute="leading" id="cf3-aw-88X"/>
-                            <constraint firstItem="QxZ-rB-9AH" firstAttribute="leading" secondItem="PcN-na-rMH" secondAttribute="leading" id="nZJ-Fg-mV1"/>
-                            <constraint firstItem="QxZ-rB-9AH" firstAttribute="top" secondItem="O49-ej-mgq" secondAttribute="bottom" constant="8.0000000000001137" id="nyE-R5-yh3"/>
-                            <constraint firstItem="QxZ-rB-9AH" firstAttribute="trailing" secondItem="PcN-na-rMH" secondAttribute="trailing" id="vTR-JU-hSE"/>
+                            <constraint firstItem="QxZ-rB-9AH" firstAttribute="leading" secondItem="tVg-Md-VWX" secondAttribute="leading" id="2gI-VY-zzx"/>
+                            <constraint firstAttribute="trailing" secondItem="I9v-5S-ZQm" secondAttribute="trailing" id="7qi-Xs-NmL"/>
+                            <constraint firstAttribute="trailing" secondItem="QxZ-rB-9AH" secondAttribute="trailing" id="8Ou-Wh-Swj"/>
+                            <constraint firstItem="QxZ-rB-9AH" firstAttribute="top" secondItem="I9v-5S-ZQm" secondAttribute="bottom" constant="8" id="ESk-is-nDx"/>
+                            <constraint firstItem="O49-ej-mgq" firstAttribute="top" secondItem="PcN-na-rMH" secondAttribute="bottom" constant="8" id="NND-g8-GUJ"/>
+                            <constraint firstItem="tVg-Md-VWX" firstAttribute="trailing" secondItem="O49-ej-mgq" secondAttribute="trailing" id="ZrO-J4-jYw"/>
+                            <constraint firstItem="I9v-5S-ZQm" firstAttribute="top" secondItem="O49-ej-mgq" secondAttribute="bottom" constant="8" id="aBj-UC-Gdj"/>
+                            <constraint firstItem="PcN-na-rMH" firstAttribute="trailing" secondItem="tVg-Md-VWX" secondAttribute="trailing" id="fw8-rw-WwC"/>
+                            <constraint firstItem="PcN-na-rMH" firstAttribute="top" secondItem="tVg-Md-VWX" secondAttribute="top" id="hQT-V5-itE"/>
+                            <constraint firstAttribute="bottom" secondItem="QxZ-rB-9AH" secondAttribute="bottom" id="jEE-83-xoR"/>
+                            <constraint firstItem="I9v-5S-ZQm" firstAttribute="leading" secondItem="AvG-Qj-Mkz" secondAttribute="leading" id="lZP-Vn-9dv"/>
+                            <constraint firstItem="PcN-na-rMH" firstAttribute="leading" secondItem="tVg-Md-VWX" secondAttribute="leading" id="zhY-rb-Xiw"/>
                         </constraints>
                     </view>
                     <connections>
