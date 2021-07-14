@@ -1,5 +1,5 @@
 from django.urls import path # new
-from .views import HelloWorldView, MainPageView, MapView, Stops, SelectRoute,show_user_list
+from .views import HelloWorldView, MainPageView, MapView, Stops, SelectRoute,show_user_list, LiveData
 
 urlpatterns = [
     path('', MainPageView, name='home'),
@@ -7,5 +7,6 @@ urlpatterns = [
     path('map', MapView, name='MapView'),
     path('stops', Stops, name='Stops'),
     path('selectRoute', SelectRoute, name='SelectRoute'),
-    path('user_list', show_user_list, name='user_list')
+    path('user_list', show_user_list, name='user_list'),
+    path('liveData/<str:stopNumber>/', LiveData, name='liveData')
 ]

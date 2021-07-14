@@ -60,10 +60,10 @@
     </div>
 
 </div>
-
+<div><h1>Holy Hell, let's do this</h1></div>
 <div id="routeSelector">
     
-    <form action="/selectRoute" id="selectRoute" method="GET">
+
 <label for="origin">Choose your Origin Stop:</label>
 
 <select name="origin" id="origin"></select> 
@@ -71,8 +71,7 @@
     <label for="destination">Choose your Destination Stop:</label>
 <select name="destination" id="destination"></select> 
     
-<input type="submit" class="button" value="Submit">
-    </form>
+<button id = "calculateRoute">Calculate Route </button>
     </div>
 
 <div id="map"></div>
@@ -94,13 +93,21 @@ function initMap() {
        data = JSON.parse(data);
        console.log("jsonData1", data[1]);
        
-       
+    //Directions API
+  var directionsService = new google.maps.DirectionsService();
+  var directionsRenderer = new google.maps.DirectionsRenderer();
    // MAP
- map = new google.maps.Map(document.getElementById("map"), {
+ const map = new google.maps.Map(document.getElementById("map"), {
    center: { lat: 53.349804, lng: -6.260310 },
    zoom: 14,
    });
-       
+   directionsRenderer.setMap(map);
+    
+   const onClickHandler = function () {
+          calculateAndDisplayRoute(directionsService, directionsRenderer);
+        };
+        document.getElementById("calculateRoute").addEventListener("click", onClickHandler);
+
     data.forEach(stop => {
         
         var selectString;
@@ -109,8 +116,8 @@ function initMap() {
         
         var optionO = document.createElement("option");
         var optionD = document.createElement("option");
-        optionO.value = stop.AtcoCode;
-        optionD.value = stop.AtcoCode;
+        optionO.value = stop.Latitude + "," + stop.Longitude;
+        optionD.value = stop.Latitude + "," + stop.Longitude;
         optionO.innerHTML = selectString;
         optionD.innerHTML = selectString;
         
@@ -140,7 +147,12 @@ function initMap() {
     // event handler for click
     marker.addListener("click", () => {
       infowindow.open(map, marker);
-
+      console.log(stop.AtcoCode, stop.RouteData);
+      console.log("here is the json " + JSON.stringify(stop.RouteData));
+      fetch("liveData/" + stop.PlateCode + "/", 
+        {method: 'POST', body: JSON.stringify(stop.RouteData)}).then(response =>{
+          return response.json()}).then(data => {console.log("it returns" + data)
+        });
     });
         
     });
@@ -179,6 +191,41 @@ function initMap() {
         
 
    }
+
+function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+
+    var start = document.getElementById('origin').value;
+  var end = document.getElementById('destination').value;
+  var startArray = start.split(",");
+  var startLat = startArray[0];
+  var startLong = startArray[1];
+  var endArray = end.split(",");
+  var endLat = endArray[0];
+  var endLong = endArray[1];
+  console.log(start);
+  var begin = new google.maps.LatLng(startLat, startLong);
+  var finish = new google.maps.LatLng(endLat, endLong);
+  var request = {
+    origin: begin,
+    destination: finish,
+    travelMode: 'TRANSIT',
+    transitOptions: {
+      departureTime: new Date(),
+      modes: ['BUS'],
+      routingPreference: 'FEWER_TRANSFERS'
+    },
+    unitSystem: google.maps.UnitSystem.METRIC
+  };
+  console.log("Have request");
+  directionsService.route(request, function(result, status) {
+    if (status == 'OK') {
+      directionsRenderer.setDirections(result);
+      console.log("OK");
+    }
+    console.log("Should show");
+  });
+}
+
 
    function handleLocationError(browserHasGeolocation, userLocation, pos) {
  userLocation.setPosition(pos);
