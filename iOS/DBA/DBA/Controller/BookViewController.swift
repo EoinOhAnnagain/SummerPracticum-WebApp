@@ -59,7 +59,7 @@ extension BookViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        bookNames.sort()
+        
         
         if component == 0 {
             return bookNames.count
@@ -79,6 +79,8 @@ extension BookViewController: UIPickerViewDataSource {
 extension BookViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        bookNames.sort()
         
         if component == 0 {
             return bookNames[row]
