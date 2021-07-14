@@ -76,7 +76,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45641518918914" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O49-ej-mgq">
-                                <rect key="frame" x="280.33333333333331" y="660" width="133.66666666666669" height="20.333333333333371"/>
+                                <rect key="frame" x="280.33333333333331" y="660" width="133.66666666666669" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -89,24 +89,27 @@
                                 </constraints>
                                 <color key="separatorColor" name="Interface"/>
                             </tableView>
-                            <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="I9v-5S-ZQm">
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9v-5S-ZQm">
                                 <rect key="frame" x="0.0" y="688" width="414" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="NBu-mH-WA8"/>
+                                </constraints>
                             </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tVg-Md-VWX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="QxZ-rB-9AH" firstAttribute="leading" secondItem="tVg-Md-VWX" secondAttribute="leading" id="2gI-VY-zzx"/>
-                            <constraint firstAttribute="trailing" secondItem="I9v-5S-ZQm" secondAttribute="trailing" id="7qi-Xs-NmL"/>
                             <constraint firstAttribute="trailing" secondItem="QxZ-rB-9AH" secondAttribute="trailing" id="8Ou-Wh-Swj"/>
-                            <constraint firstItem="QxZ-rB-9AH" firstAttribute="top" secondItem="I9v-5S-ZQm" secondAttribute="bottom" constant="8" id="ESk-is-nDx"/>
                             <constraint firstItem="O49-ej-mgq" firstAttribute="top" secondItem="PcN-na-rMH" secondAttribute="bottom" constant="8" id="NND-g8-GUJ"/>
+                            <constraint firstItem="QxZ-rB-9AH" firstAttribute="top" secondItem="I9v-5S-ZQm" secondAttribute="bottom" constant="8" id="XwS-20-4Yh"/>
                             <constraint firstItem="tVg-Md-VWX" firstAttribute="trailing" secondItem="O49-ej-mgq" secondAttribute="trailing" id="ZrO-J4-jYw"/>
-                            <constraint firstItem="I9v-5S-ZQm" firstAttribute="top" secondItem="O49-ej-mgq" secondAttribute="bottom" constant="8" id="aBj-UC-Gdj"/>
+                            <constraint firstItem="I9v-5S-ZQm" firstAttribute="trailing" secondItem="tVg-Md-VWX" secondAttribute="trailing" id="eCI-aB-qOm"/>
                             <constraint firstItem="PcN-na-rMH" firstAttribute="trailing" secondItem="tVg-Md-VWX" secondAttribute="trailing" id="fw8-rw-WwC"/>
+                            <constraint firstItem="I9v-5S-ZQm" firstAttribute="leading" secondItem="tVg-Md-VWX" secondAttribute="leading" id="gzu-uN-lrD"/>
                             <constraint firstItem="PcN-na-rMH" firstAttribute="top" secondItem="tVg-Md-VWX" secondAttribute="top" id="hQT-V5-itE"/>
                             <constraint firstAttribute="bottom" secondItem="QxZ-rB-9AH" secondAttribute="bottom" id="jEE-83-xoR"/>
-                            <constraint firstItem="I9v-5S-ZQm" firstAttribute="leading" secondItem="AvG-Qj-Mkz" secondAttribute="leading" id="lZP-Vn-9dv"/>
+                            <constraint firstItem="I9v-5S-ZQm" firstAttribute="top" secondItem="O49-ej-mgq" secondAttribute="bottom" constant="8" id="yD9-kX-VQJ"/>
                             <constraint firstItem="PcN-na-rMH" firstAttribute="leading" secondItem="tVg-Md-VWX" secondAttribute="leading" id="zhY-rb-Xiw"/>
                         </constraints>
                     </view>
