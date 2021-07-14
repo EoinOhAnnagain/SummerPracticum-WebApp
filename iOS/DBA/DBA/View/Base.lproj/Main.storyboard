@@ -76,36 +76,47 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O49-ej-mgq">
-                                <rect key="frame" x="380" y="787.66666666666663" width="14" height="20.333333333333371"/>
+                                <rect key="frame" x="380" y="788" width="14" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9v-5S-ZQm">
+                                <rect key="frame" x="0.0" y="44" width="414" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="NBu-mH-WA8"/>
+                                </constraints>
+                            </pickerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PcN-na-rMH">
-                                <rect key="frame" x="0.0" y="44" width="414" height="735.66666666666663"/>
+                                <rect key="frame" x="0.0" y="172" width="414" height="608"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="608" id="OT3-qT-hUp"/>
+                                </constraints>
                                 <color key="separatorColor" name="Interface"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tVg-Md-VWX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="PcN-na-rMH" firstAttribute="top" secondItem="tVg-Md-VWX" secondAttribute="top" id="5XL-pc-ZKx"/>
-                            <constraint firstItem="PcN-na-rMH" firstAttribute="trailing" secondItem="tVg-Md-VWX" secondAttribute="trailing" id="Bew-oe-cN8"/>
+                            <constraint firstItem="I9v-5S-ZQm" firstAttribute="trailing" secondItem="tVg-Md-VWX" secondAttribute="trailing" id="1CP-aN-ZZg"/>
+                            <constraint firstItem="PcN-na-rMH" firstAttribute="top" secondItem="I9v-5S-ZQm" secondAttribute="bottom" constant="8" symbolic="YES" id="1Mp-d0-YgW"/>
+                            <constraint firstItem="I9v-5S-ZQm" firstAttribute="top" secondItem="tVg-Md-VWX" secondAttribute="top" id="CKX-gh-AVM"/>
                             <constraint firstItem="tVg-Md-VWX" firstAttribute="trailing" secondItem="O49-ej-mgq" secondAttribute="trailing" constant="20" id="CdD-Os-kl0"/>
                             <constraint firstItem="O49-ej-mgq" firstAttribute="top" secondItem="PcN-na-rMH" secondAttribute="bottom" constant="8" id="DjS-tJ-1h8"/>
                             <constraint firstItem="QxZ-rB-9AH" firstAttribute="trailing" secondItem="tVg-Md-VWX" secondAttribute="trailing" id="U4S-ve-uEs"/>
                             <constraint firstItem="QxZ-rB-9AH" firstAttribute="top" secondItem="O49-ej-mgq" secondAttribute="bottom" constant="8" id="UvE-JD-7yY"/>
+                            <constraint firstItem="I9v-5S-ZQm" firstAttribute="leading" secondItem="tVg-Md-VWX" secondAttribute="leading" id="YD3-xc-iBo"/>
                             <constraint firstItem="O49-ej-mgq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tVg-Md-VWX" secondAttribute="leading" symbolic="YES" id="Yd4-p0-pep"/>
                             <constraint firstAttribute="bottom" secondItem="QxZ-rB-9AH" secondAttribute="bottom" id="bob-qL-Osg"/>
                             <constraint firstItem="QxZ-rB-9AH" firstAttribute="leading" secondItem="tVg-Md-VWX" secondAttribute="leading" id="cf3-aw-88X"/>
-                            <constraint firstItem="PcN-na-rMH" firstAttribute="leading" secondItem="tVg-Md-VWX" secondAttribute="leading" id="hEu-Tq-R3Y"/>
                             <constraint firstItem="QxZ-rB-9AH" firstAttribute="leading" secondItem="PcN-na-rMH" secondAttribute="leading" id="nZJ-Fg-mV1"/>
                             <constraint firstItem="QxZ-rB-9AH" firstAttribute="top" secondItem="O49-ej-mgq" secondAttribute="bottom" constant="8.0000000000001137" id="nyE-R5-yh3"/>
                             <constraint firstItem="QxZ-rB-9AH" firstAttribute="trailing" secondItem="PcN-na-rMH" secondAttribute="trailing" id="vTR-JU-hSE"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chatPicker" destination="I9v-5S-ZQm" id="QbE-ND-E6a"/>
                         <outlet property="infoLabel" destination="O49-ej-mgq" id="wWV-FK-y3n"/>
                         <outlet property="messageTextField" destination="Q0t-0u-Hpi" id="VsO-ND-VdR"/>
                         <outlet property="tableView" destination="PcN-na-rMH" id="99w-6w-8cO"/>
