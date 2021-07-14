@@ -54,7 +54,6 @@ class ChatViewController: UIViewController {
                     
                     if let snapshotDocuments = querySnapshot?.documents {
                         
-                        print(snapshotDocuments.count)
                         if snapshotDocuments.count == 0 {
                             let newMessage =  Message(sender: "Debug", body: "This chat is currently empty...\nWhy not be the first to post", date: 0)
                             self.messages.append(newMessage)
@@ -199,11 +198,15 @@ extension ChatViewController: UITableViewDelegate {
 
 extension ChatViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return busStops.count + 1
+        if component == 0 {
+            return busStops.count + 1
+        } else {
+            return 2
+        }
     }
 }
 
@@ -217,25 +220,56 @@ extension ChatViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         busStops.sort()
         
-        if row == 0 {
-            return "General"
+        if component == 0 {
+            if row == 0 {
+                return "General"
+            } else {
+                return busStops[row-1]
+            }
         } else {
-            return busStops[row-1]
+            if row == 0 {
+                return "Inbound"
+            } else {
+                return "Outbound"
+            }
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
+        let chosenRouteNumber = pickerView.selectedRow(inComponent: 0)
         let chosenRoute: String?
-        
-        if row == 0 {
+            
+        if chosenRouteNumber == 0 {
             chosenRoute = "messages"
         } else {
-            chosenRoute = busStops[row-1]
+            chosenRoute = busStops[chosenRouteNumber+1]
+        }
+    
+        let chosenDirectionNumber = pickerView.selectedRow(inComponent: 1)
+        let chosenDirection: String?
+        
+        if chosenDirectionNumber == 0 {
+            chosenDirection = "In"
+        } else {
+            chosenDirection = "Out"
         }
         
-        chosenChat = chosenRoute!
         
+        
+        
+        print("Printing Choices")
+        print(chosenRoute!)
+        print(chosenDirection!)
+        print("----------------")
+        
+        if chosenRoute == "messages" {
+            chosenChat = chosenRoute!
+        } else {
+            chosenChat = "\(chosenRoute!)\(chosenDirection!)"
+        }
+        
+        print(chosenChat)
         loadMessages()
     }
 }
