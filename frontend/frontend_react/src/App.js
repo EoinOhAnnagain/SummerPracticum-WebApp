@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Tasks from './components/Tasks'
 import About from './components/About'
+import Map from './components/Map'
 
 function App() {
   const name = 'Brad'
@@ -90,13 +91,15 @@ const deleteTask = async (id) => {
     <Router>
     <div className="container">
       <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask} title = {Welcome}/>
+      // Start of default Page
       <Route path='/' exact render={(props) => (<>
         {showAddTask && <AddTask onAdd={addTask}/>}
       {tasks.length >0 ? <Tasks tasks={tasks} onToggle={toggleReminder} onDelete = {deleteTask}/> : 'No Tasks to Show'}
       <h1 style = {{color : 'red', backgroundColor: 'black'}}>Hello From React</h1>
       <h2>Hello { name }</h2>
       </>)}/>
-      <Route path='/about' component={About}/>
+      // End of Default Page
+      <Route path='/map' component={Map}/>
       <Footer />    
     </div>
     </Router>
