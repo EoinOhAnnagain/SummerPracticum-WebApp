@@ -1,5 +1,6 @@
 import requests
 from lxml import etree
+import sys
 class fare_crawler(object):
     def __init__(self,number,direction,start,stop):
         self.number = number
@@ -7,8 +8,8 @@ class fare_crawler(object):
         self.start = start
         self.stop = stop
         self.headers={
-            'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36'
-        }
+                'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36'
+            }
         self.url = "https://www.dublinbus.ie/Fare-Calculator/Fare-Calculator-Results/?routeNumber={}&direction={}&board={}&alight={}".format(self.number,self.direction,self.start,self.stop)
     def parse(self):
         response = requests.get(self.url, headers=self.headers)
@@ -29,6 +30,5 @@ class fare_crawler(object):
             p = d.xpath("//tr/td[2]/text()")
             for j in range(0,len(p)):
                 print("".join(p[j].split()))
-
-f = fare_crawler(1,"O",0,1)
+f = fare_crawler(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
 f.parse()
