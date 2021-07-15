@@ -15,8 +15,8 @@ class BikeStationsSpider:
     def save_data(self,content):
         tz = pytz.timezone('Eire')
         dtime = datetime.datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")
-        dtime = "\"" + dtime + "\""
-        conn = connect(host="173.82.72.146", port=3306, user="root", password="4TheWin2021@", database="project",
+        dtime = "\"" + dtime + "\""	
+        conn = connect(host="localhost", port=3306, user="root", password="4TheWin!", database="project",
                             charset="utf8")
         cs = conn.cursor()
         cs.execute("TRUNCATE realtime_weather_data")
