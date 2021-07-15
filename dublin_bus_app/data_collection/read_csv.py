@@ -1,12 +1,8 @@
-#导入pymysql方法
 import pymysql
-
-
-#连接数据库
-config = {'host':'173.82.72.146',
+config = {'host':'173.82.208.22',
           'port':3306,
           'user':'root',
-          'passwd':'4TheWin2021@',
+          'passwd':'4TheWin!',
           'charset':'utf8',
           'database':'project',
           'local_infile':1
@@ -22,8 +18,7 @@ def load_csv():
     data_sql_5 = "load data local infile './shapes.csv' into table shapes fields terminated by ',';"
     data_sql_6 = "load data local infile './times.csv' into table stop_times fields terminated by ',';"
     data_sql_7 = "load data local infile './stops.csv' into table stops fields terminated by ',';"
-    data_sql_8 = "load data local infile './trans.csv' into table transfers fields terminated by ',';"
-    data_sql_9 = "load data local infile './trips.csv' into table trips fields terminated by ',';"
+    data_sql_8 = "load data local infile './trips.csv' into table trips fields terminated by ',';"
     cur.execute(data_sql)
     cur.execute(data_sql_2)
     cur.execute(data_sql_3)
@@ -32,7 +27,6 @@ def load_csv():
     cur.execute(data_sql_6)
     cur.execute(data_sql_7)
     cur.execute(data_sql_8)
-    cur.execute(data_sql_9)
     conn.commit()
     conn.close()
     cur.close()
