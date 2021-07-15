@@ -112,6 +112,10 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func toGame(_ sender: UIButton) {
+        performSegue(withIdentifier: K.toGame, sender: self)
+    }
+    
     @IBAction func bookButtonPressed(_ sender: UIButton) {
         if userEmailString == nil {
             showProUserOnlyAlert("Books")

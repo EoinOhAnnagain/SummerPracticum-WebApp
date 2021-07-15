@@ -263,13 +263,6 @@ extension ChatViewController: UIPickerViewDelegate {
         }
         
         
-        
-        
-        print("Printing Choices")
-        print(chosenRoute!)
-        print(chosenDirection!)
-        print("----------------")
-        
         if chosenRoute == "messages" {
             chosenChat = chosenRoute!
         } else {
