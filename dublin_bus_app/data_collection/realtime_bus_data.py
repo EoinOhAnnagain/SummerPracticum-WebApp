@@ -13,13 +13,15 @@ class Bus:
     def parse_url(self):
         response = requests.get(self.url, headers=self.headers)
         content = json.loads(response.text)
+        print(content)
         self.save_data(content)
     def save_data(self,content):
-        conn = connect(host="173.82.72.146", port=3306, user="root", password="4TheWin2021@", database="project",
+        conn = connect(host="173.82.208.22", port=3306, user="root", password="4TheWin!", database="project",
                             charset="utf8")
         cs = conn.cursor()
         k = len(content["entity"]) - 1
-        cs.execute("TRUNCATE current_bus_data")
+        print(k)
+        cs.execute("TRUNCATE realtime_bus_data")
         # ie = pytz.country_timezones('ie')
         tz = pytz.timezone('Eire')
         dtime = datetime.datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")
@@ -27,7 +29,9 @@ class Bus:
         for i in range(0,k):
             try:
                 l = len(content["entity"][i]["trip_update"]["stop_time_update"])-1
-                value = "insert into current_bus_data values("
+                value = "insert into realtime_bus_data values("
+                value += str(i)
+                value += ","
                 value += str(dtime)
                 value += ","
                 value += "\"" + str(content["entity"][i]["id"]) + "\""
