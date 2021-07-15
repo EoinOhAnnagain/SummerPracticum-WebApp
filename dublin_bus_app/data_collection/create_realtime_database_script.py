@@ -3,7 +3,7 @@ class create_database:
     def __init__(self):
         pass
     def create_table(self):
-        conn = connect(host="173.82.72.146", port=3306, user="root", password="4TheWin2021@", database="project",
+        conn = connect(host="173.82.208.22", port=3306, user="root", password="4TheWin! ", database="project",
                             charset="utf8")
         cs = conn.cursor()
         try:
@@ -11,13 +11,13 @@ class create_database:
                 cs.execute("drop table realtime_bus_data")
             except Exception as e:
                 pass
-            value_1 = "create table realtime_bus_data (timestamp int,id VARCHAR(45),trip_id VARCHAR(45),start_time VARCHAR(45),start_date VARCHAR(45),route_id VARCHAR(45),stop_sequence INT,arrival_delay INT,departure_delay INT,stop_id VARCHAR(45))"
+            value_1 = "create table realtime_bus_data (timestamp VARCHAR(45),id VARCHAR(45),trip_id VARCHAR(45),start_time VARCHAR(45),start_date VARCHAR(45),route_id VARCHAR(45),stop_sequence INT,arrival_delay INT,departure_delay INT,stop_id VARCHAR(45))"
             cs.execute(value_1)
             try:
                 cs.execute("drop table realtime_weather_data")
             except Exception as e:
                 pass
-            value_2 = "create table realtime_weather_data (dt INT, temp INT,humidity INT,speed INT, description VARCHAR(45))"
+            value_2 = "create table realtime_weather_data (dt VARCHAR(45), temp INT,humidity INT,speed INT, description VARCHAR(45))"
             cs.execute(value_2)
             conn.commit()
         except Exception as e:
