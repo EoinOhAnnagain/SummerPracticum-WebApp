@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime
-data_interator = pd.read_csv("./test1.txt",sep=";",chunksize = 10)
+data_interator = pd.read_csv("./rt_leavetimes_DB_2018.txt",sep=";",chunksize = 100000)
 for data_chunk in data_interator:
     df = data_chunk
     df = df[["TRIPID","PROGRNUMBER","STOPPOINTID","ACTUALTIME_ARR","DAYOFSERVICE"]]
@@ -12,7 +12,7 @@ for data_chunk in data_interator:
     df_date["date"] = df_date["date"].apply(lambda x:datetime.datetime.strptime(x,'%d-%b-%y %H:%M:%S'))
     df_date["date"] = df_date["date"].dt.date
     df_date["date"] = df_date["date"].astype(str)
-    df_weather = pd.read_csv("./weather_1.txt",sep=",")
+    df_weather = pd.read_csv("./2018_historic_weather_3.txt",sep=",")
     df_cross = pd.crosstab(df_weather["dt_iso"],df_weather["weather_main"])
     df_weather = df_weather[["dt_iso","feels_like","humidity","wind_speed"]]
     df_weather = pd.merge(df_weather,df_cross,on="dt_iso")
@@ -57,4 +57,3 @@ for data_chunk in data_interator:
     df_total = df_total[["route","feels_like","humidity","wind_speed","Rain","Snow","Clear","date","ACTUALTIME_ARR_y"]]
     df_total.to_csv('./clean_data.csv', mode='a', sep=',', header=False, index=False) 
     # df_total = df_total.dropna(inplace=True)
-
