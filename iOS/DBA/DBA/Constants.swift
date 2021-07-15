@@ -25,7 +25,7 @@ struct K {
     static let toChat = "MainToChat"
     static let toBook = "MainToBook"
     static let toUs = "MainToUs"
-    
+    static let toGame = "MainToGame"
     
     struct chat {
         static let chatCellID = "chatCell"
@@ -37,6 +37,7 @@ struct K {
             static let textField = "body"
             static let dateField = "date"
         }
+        
         
     }
 }
