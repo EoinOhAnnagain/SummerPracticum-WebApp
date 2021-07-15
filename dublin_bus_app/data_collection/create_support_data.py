@@ -3,7 +3,7 @@ class create_database:
     def __init__(self):
         pass
     def create_table(self):
-        conn = connect(host="173.82.72.146", port=3306, user="root", password="4TheWin2021@", database="project",
+        conn = connect(host="173.82.208.22", port=3306, user="root", password="4TheWin!", database="project",
                             charset="utf8")
         cs = conn.cursor()
         try:
@@ -64,7 +64,7 @@ class create_database:
                 cs.execute("drop table stops;")
             except Exception as e:
                 pass
-            value_7 = "create table stops (stop_id VARCHAR(45), stop_name VARCHAR(45),stop_lat VARCHAR(45),stop_lon VARCHAR(45));"
+            value_7 = "create table stops (stop_id VARCHAR(45), stop_name VARCHAR(45), stop_lat VARCHAR(45),stop_lon VARCHAR(45));"
             cs.execute(value_7)
 
 
