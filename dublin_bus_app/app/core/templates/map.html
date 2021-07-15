@@ -216,12 +216,12 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     unitSystem: google.maps.UnitSystem.METRIC
   };
   console.log("Have request");
+  // Hey Even, this is probably where you want to start! The result from this request might have the data you want:
   directionsService.route(request, function(result, status) {
     if (status == 'OK') {
       directionsRenderer.setDirections(result);
       console.log("OK");
     }
-    console.log("Should show");
   });
 }
 
