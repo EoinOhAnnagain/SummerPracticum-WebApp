@@ -46,8 +46,6 @@ const fetchStops = async () => {
   return data
 }
 
-fetchStops()
-
 const renderMap = async () => {
   const data = await fetchStops()
   console.log(data, "got it")
