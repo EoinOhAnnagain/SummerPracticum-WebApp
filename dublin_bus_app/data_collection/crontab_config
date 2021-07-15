@@ -1,0 +1,3 @@
+*/1 * * * * ./auto_run.sh >> ./data_select.log
+*/1 * * * * sleep 20 && ./auto_run.sh >> ./data_select.log
+*/1 * * * * sleep 40 && ./auto_run.sh >> ./data_select.log
