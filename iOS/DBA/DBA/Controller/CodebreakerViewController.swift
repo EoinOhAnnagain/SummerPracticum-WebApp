@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HitAndBlowViewController: UIViewController {
+class CodebreakerViewController: UIViewController {
     
     @IBOutlet weak var UC1: UIButton!
     @IBOutlet weak var UC2: UIButton!

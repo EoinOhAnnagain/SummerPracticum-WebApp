@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A0CC06D269F377E00BB0A93 /* HitAndBlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0CC06C269F377E00BB0A93 /* HitAndBlowViewController.swift */; };
+		6A0CC06D269F377E00BB0A93 /* CodebreakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0CC06C269F377E00BB0A93 /* CodebreakerViewController.swift */; };
 		6A0F3E9C26973EDE00B1863C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A0F3E9B26973EDE00B1863C /* GoogleService-Info.plist */; };
 		6A1E1BD12686765600A51DF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1E1BD02686765600A51DF1 /* AppDelegate.swift */; };
 		6A1E1BD32686765600A51DF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1E1BD22686765600A51DF1 /* SceneDelegate.swift */; };
@@ -41,7 +41,7 @@
 		18943BC021D0F47085E646B2 /* Pods-DBA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DBA.release.xcconfig"; path = "Target Support Files/Pods-DBA/Pods-DBA.release.xcconfig"; sourceTree = "<group>"; };
 		2F7DF73008B5561DDFADA62C /* Pods-DBA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DBA.debug.xcconfig"; path = "Target Support Files/Pods-DBA/Pods-DBA.debug.xcconfig"; sourceTree = "<group>"; };
 		5AFBC5AC62CFA2512042B848 /* Pods_DBA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DBA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A0CC06C269F377E00BB0A93 /* HitAndBlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitAndBlowViewController.swift; sourceTree = "<group>"; };
+		6A0CC06C269F377E00BB0A93 /* CodebreakerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodebreakerViewController.swift; sourceTree = "<group>"; };
 		6A0F3E9B26973EDE00B1863C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6A1E1BCD2686765600A51DF1 /* DBA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DBA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A1E1BD02686765600A51DF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 				6AC219EF26987D100064B6AC /* ChatViewController.swift */,
 				6ABDDF8E269BB9580058A93D /* BookViewController.swift */,
 				6ABDDF90269BB9840058A93D /* AboutContactUsViewController.swift */,
-				6A0CC06C269F377E00BB0A93 /* HitAndBlowViewController.swift */,
+				6A0CC06C269F377E00BB0A93 /* CodebreakerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -318,7 +318,7 @@
 				6AAC5F23268CA6C200451DD2 /* WeatherViewController.swift in Sources */,
 				6ABDDF8F269BB9580058A93D /* BookViewController.swift in Sources */,
 				6ABDDF91269BB9840058A93D /* AboutContactUsViewController.swift in Sources */,
-				6A0CC06D269F377E00BB0A93 /* HitAndBlowViewController.swift in Sources */,
+				6A0CC06D269F377E00BB0A93 /* CodebreakerViewController.swift in Sources */,
 				6A1E1BD52686765600A51DF1 /* ViewController.swift in Sources */,
 				6AAC5F1D268C8FCB00451DD2 /* weatherManager.swift in Sources */,
 				6AAC5F1F268C97A900451DD2 /* WeatherModel.swift in Sources */,
