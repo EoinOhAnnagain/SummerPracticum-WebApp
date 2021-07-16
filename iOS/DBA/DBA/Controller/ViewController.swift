@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var bookButton: UIButton!
+    @IBOutlet weak var gameButton: UIButton!
     
     @IBOutlet weak var weatherLoader: UIActivityIndicatorView!
     
@@ -47,7 +48,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         title()
-         
+        
         startingPicker.dataSource = self
         endingPicker.dataSource = self
         startingPicker.delegate = self
@@ -82,7 +83,7 @@ class ViewController: UIViewController {
             UIView.animate(withDuration: 3) {
                 self.titleLabel.alpha = 0
             }
-        
+            
         }
     }
     
@@ -113,7 +114,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func toGame(_ sender: UIButton) {
-        performSegue(withIdentifier: K.toGame, sender: self)
+        if userEmailString == nil {
+            showProUserOnlyAlert("Codebreaker")
+        } else {
+            performSegue(withIdentifier: K.toGame, sender: self)
+        }
     }
     
     @IBAction func bookButtonPressed(_ sender: UIButton) {
@@ -212,11 +217,13 @@ extension ViewController {
     
     func isUserLoggedIn() {
         if userEmailString != nil {
-            chatButton.backgroundColor = UIColor(named: "Interface")
-            bookButton.backgroundColor = UIColor(named: "Interface")
+            chatButton.backgroundColor = UIColor(named: K.color)
+            bookButton.backgroundColor = UIColor(named: K.color)
+            gameButton.backgroundColor = UIColor(named: K.color)
         } else {
             chatButton.backgroundColor = .systemGray3
             bookButton.backgroundColor = .systemGray3
+            gameButton.backgroundColor = .systemGray3
         }
     }
     
@@ -235,7 +242,7 @@ extension ViewController {
 //MARK: - Alert
 
 extension ViewController {
-
+    
     func showProUserOnlyAlert(_ feature: String) {
         let actionSheet = UIAlertController(title: "\(feature) is a Pro User Feature", message: "We are sorry but some of our features are only available for pro users. To access this feature please either login or sign up to be a pro user.", preferredStyle: .actionSheet)
         

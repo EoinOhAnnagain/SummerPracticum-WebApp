@@ -809,7 +809,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLc-pN-4pl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-162.31884057971016" y="1618.5267857142856"/>
+            <point key="canvasLocation" x="-107" y="1619"/>
         </scene>
         <!--About Contact Us View Controller-->
         <scene sceneID="tvs-b0-4Dm">
@@ -1095,6 +1095,7 @@
                         <outlet property="chatButton" destination="y6N-f9-I6B" id="YvY-6o-r3w"/>
                         <outlet property="degreesText" destination="Qwb-uR-3Pe" id="Njh-HL-gpl"/>
                         <outlet property="endingPicker" destination="LVO-EV-dhw" id="ZIS-UT-9sa"/>
+                        <outlet property="gameButton" destination="ul6-Qu-zkH" id="DHA-P4-U51"/>
                         <outlet property="locationText" destination="LM0-MG-CcF" id="6es-wk-vnh"/>
                         <outlet property="startingPicker" destination="g9O-1n-JZ2" id="6PT-gC-Nho"/>
                         <outlet property="tempDisplay" destination="IhM-KX-rep" id="gYO-Hc-OIn"/>
