@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     # local
     'core',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -67,7 +68,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "core" / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -167,7 +168,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # New
-AUTH_USER_MODEL = 'core.CustomUser'
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 """Shows the email content in console"""
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

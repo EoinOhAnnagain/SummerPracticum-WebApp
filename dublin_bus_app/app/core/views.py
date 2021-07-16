@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import CustomUser
+# from .models import CustomUser
 
 from django.http import JsonResponse
 from django.contrib.staticfiles import finders

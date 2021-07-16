@@ -7,6 +7,6 @@ urlpatterns = [
     path('map', MapView, name='MapView'),
     path('stops', Stops, name='Stops'),
     path('selectRoute', SelectRoute, name='SelectRoute'),
-    path('user_list', show_user_list, name='user_list'),
+    # path('user_list', show_user_list, name='user_list'),
     path('liveData/<str:stopNumber>/', LiveData, name='liveData')
 ]
