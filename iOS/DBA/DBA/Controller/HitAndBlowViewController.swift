@@ -76,9 +76,9 @@ class HitAndBlowViewController: UIViewController {
             circle.layer.borderColor = UIColor.systemGray3.cgColor
         }
         
-        for i in 0...3 {
-            AnswerCircles[i].backgroundColor = codeColors[i]
-        }
+        //for i in 0...3 {
+        //    AnswerCircles[i].backgroundColor = codeColors[i]
+        //}
         
         prepRoundCircles(roundCircles)
         prepRoundLabels()
