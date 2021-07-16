@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+
 class Agency(models.Model):
     agency_id = models.CharField(primary_key=True, max_length=45)
     agency_name = models.CharField(max_length=45, blank=True, null=True)

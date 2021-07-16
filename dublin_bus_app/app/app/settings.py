@@ -96,7 +96,7 @@ DATABASES = {
 """
 
 DATABASES = {
-    'default': {
+    'bus': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'project',
         'USER': 'root',
@@ -107,7 +107,7 @@ DATABASES = {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
     },
-    'bus': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djangoLoginSys',
         'USER': 'root',
@@ -120,7 +120,13 @@ DATABASES = {
     }
 }
 
+DATABASE_ROUTERS = ['app.database_router.DatabaseAppsRouter']
 
+DATABASE_APPS_MAPPING = {
+    # example:
+    # 'app_name':'database_name',
+    'core': 'bus',
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
