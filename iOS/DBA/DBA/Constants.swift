@@ -40,4 +40,7 @@ struct K {
         
         
     }
+    
+    static let bookCell = "BookCollectionViewCell"
+    
 }
