@@ -15,6 +15,7 @@
 		6A1E1BD82686765600A51DF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A1E1BD62686765600A51DF1 /* Main.storyboard */; };
 		6A1E1BDA2686765C00A51DF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A1E1BD92686765C00A51DF1 /* Assets.xcassets */; };
 		6A1E1BDD2686765C00A51DF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A1E1BDB2686765C00A51DF1 /* LaunchScreen.storyboard */; };
+		6A76038E26A269A700DE482C /* BookCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A76038D26A269A700DE482C /* BookCollectionViewController.swift */; };
 		6A78A642268A0819003BA1ED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A78A641268A0819003BA1ED /* LoginViewController.swift */; };
 		6A78A644268A0987003BA1ED /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A78A643268A0987003BA1ED /* MapViewController.swift */; };
 		6A923788269DC76000160000 /* Alice1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6A923786269DC76000160000 /* Alice1.txt */; };
@@ -51,6 +52,7 @@
 		6A1E1BD92686765C00A51DF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A1E1BDC2686765C00A51DF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6A1E1BDE2686765C00A51DF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A76038D26A269A700DE482C /* BookCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewController.swift; sourceTree = "<group>"; };
 		6A78A641268A0819003BA1ED /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = DBA/View/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		6A78A643268A0987003BA1ED /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = DBA/View/MapViewController.swift; sourceTree = SOURCE_ROOT; };
 		6A923786269DC76000160000 /* Alice1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Alice1.txt; path = Books/Alice1.txt; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				6ABDDF8E269BB9580058A93D /* BookViewController.swift */,
 				6ABDDF90269BB9840058A93D /* AboutContactUsViewController.swift */,
 				6A0CC06C269F377E00BB0A93 /* CodebreakerViewController.swift */,
+				6A76038D26A269A700DE482C /* BookCollectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				6A78A642268A0819003BA1ED /* LoginViewController.swift in Sources */,
 				6ABDDF9A269C98890058A93D /* ChatCell.swift in Sources */,
 				6AAC5F23268CA6C200451DD2 /* WeatherViewController.swift in Sources */,
+				6A76038E26A269A700DE482C /* BookCollectionViewController.swift in Sources */,
 				6ABDDF8F269BB9580058A93D /* BookViewController.swift in Sources */,
 				6ABDDF91269BB9840058A93D /* AboutContactUsViewController.swift in Sources */,
 				6A0CC06D269F377E00BB0A93 /* CodebreakerViewController.swift in Sources */,

@@ -7,6 +7,7 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -124,6 +125,49 @@
             </objects>
             <point key="canvasLocation" x="-1223.1884057971015" y="873.88392857142856"/>
         </scene>
+        <!--Book Collection View Controller-->
+        <scene sceneID="Jnk-Ll-hSd">
+            <objects>
+                <viewController id="KZC-JY-Cne" customClass="BookCollectionViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4sg-AD-0hq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Gz-Gm-guF">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Qok-Es-4Jl">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="JQB-2r-80D">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6PA-6d-LKX">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="TY4-Em-Jep"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0Gz-Gm-guF" firstAttribute="leading" secondItem="TY4-Em-Jep" secondAttribute="leading" id="aUT-C6-Bwb"/>
+                            <constraint firstItem="0Gz-Gm-guF" firstAttribute="top" secondItem="TY4-Em-Jep" secondAttribute="top" id="fX9-Mc-jXI"/>
+                            <constraint firstItem="0Gz-Gm-guF" firstAttribute="bottom" secondItem="TY4-Em-Jep" secondAttribute="bottom" id="hF1-ZM-IVj"/>
+                            <constraint firstItem="0Gz-Gm-guF" firstAttribute="trailing" secondItem="TY4-Em-Jep" secondAttribute="trailing" id="w0R-hT-xMM"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Pd-VF-wbS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-957.97101449275374" y="1706.9196428571429"/>
+        </scene>
         <!--Book View Controller-->
         <scene sceneID="xV2-3J-em2">
             <objects>
@@ -180,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WvU-Yt-Sh9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-107.24637681159422" y="873.88392857142856"/>
+            <point key="canvasLocation" x="-107" y="1707"/>
         </scene>
         <!--Codebreaker View Controller-->
         <scene sceneID="9nn-Pt-hSZ">
@@ -809,7 +853,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLc-pN-4pl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-107" y="1619"/>
+            <point key="canvasLocation" x="-107" y="874"/>
         </scene>
         <!--About Contact Us View Controller-->
         <scene sceneID="tvs-b0-4Dm">
@@ -1108,7 +1152,7 @@
                         <segue destination="Dv3-3x-ApG" kind="presentation" identifier="toWeather" id="rWG-q9-Iep"/>
                         <segue destination="76j-rU-nC6" kind="presentation" identifier="MainToChat" modalPresentationStyle="fullScreen" id="nlx-U9-drR"/>
                         <segue destination="t2D-eN-zyk" kind="presentation" identifier="MainToUs" id="Ibc-Tb-y5O"/>
-                        <segue destination="EJB-2K-zfZ" kind="presentation" identifier="MainToBook" id="CAh-uG-USQ"/>
+                        <segue destination="EJB-2K-zfZ" kind="presentation" identifier="MainToBookCollection" id="CAh-uG-USQ"/>
                         <segue destination="3oa-Dk-MC7" kind="presentation" identifier="MainToSignUp" id="6f0-Ip-aVG"/>
                         <segue destination="R8Y-uH-LR3" kind="show" identifier="MainToGame" id="1sz-Ea-zle"/>
                     </connections>

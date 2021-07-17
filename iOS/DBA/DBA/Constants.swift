@@ -23,7 +23,7 @@ struct K {
     static let toSignUp = "MainToSignUp"
     
     static let toChat = "MainToChat"
-    static let toBook = "MainToBook"
+    static let toBook = "MainToBookCollection"
     static let toUs = "MainToUs"
     static let toGame = "MainToGame"
     
