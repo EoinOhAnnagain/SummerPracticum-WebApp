@@ -14,6 +14,11 @@ class BookCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 120, height: 120)
+        collectionView.collectionViewLayout = layout
+        collectionView.register(BookCollectionViewCell.nib(), forCellWithReuseIdentifier: K.bookCell)
+        
         collectionView.delegate = self
         collectionView.dataSource = self
 
@@ -50,7 +55,9 @@ extension BookCollectionViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.bookCell, for: indexPath) as! BookCollectionViewCell
+        
+        cell.configure(with: UIImage(named: "temp")!)
         
         return cell
     }
@@ -58,6 +65,10 @@ extension BookCollectionViewController: UICollectionViewDataSource {
     
 }
 
-//extension BookCollectionViewController: UICollectionViewDelegateFlowLayout {
-//    
-//}
+extension BookCollectionViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 200, height: 120)
+    }
+    
+}
