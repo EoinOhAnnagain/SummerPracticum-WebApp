@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import CustomUser
+# from .models import CustomUser
 
 from django.http import JsonResponse
 from django.contrib.staticfiles import finders
@@ -10,6 +10,12 @@ from .models import *
 from django.views.decorators.csrf import csrf_exempt
 
 import json
+
+"""Hank add for testing dB"""
+def show_agency_list(request):
+    user_list = Agency.objects.order_by('agency_name')
+    output = ', '.join([user.agency_name for user in user_list])
+    return HttpResponse(output)
 
 @csrf_exempt
 def LiveData(request, stopNumber):

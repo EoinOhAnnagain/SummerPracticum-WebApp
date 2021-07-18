@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     # local
     'core',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -67,7 +68,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "core" / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -95,7 +96,7 @@ DATABASES = {
 """
 
 DATABASES = {
-    'default': {
+    'bus': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'project',
         'USER': 'root',
@@ -106,7 +107,7 @@ DATABASES = {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
     },
-    'bus': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djangoLoginSys',
         'USER': 'root',
@@ -119,7 +120,13 @@ DATABASES = {
     }
 }
 
+DATABASE_ROUTERS = ['app.database_router.DatabaseAppsRouter']
 
+DATABASE_APPS_MAPPING = {
+    # example:
+    # 'app_name':'database_name',
+    'core': 'bus',
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -167,7 +174,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # New
-AUTH_USER_MODEL = 'core.CustomUser'
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 """Shows the email content in console"""
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
