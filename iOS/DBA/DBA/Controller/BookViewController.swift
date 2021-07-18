@@ -20,8 +20,8 @@ class BookViewController: UIViewController {
         
         //bookText.text =
         
-        bookPicker.dataSource = self
-        bookPicker.delegate = self
+        //bookPicker.dataSource = self
+        //bookPicker.delegate = self
 
         // Do any additional setup after loading the view.
     }
