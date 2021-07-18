@@ -128,13 +128,13 @@
         <!--Book Collection View Controller-->
         <scene sceneID="Jnk-Ll-hSd">
             <objects>
-                <viewController id="KZC-JY-Cne" customClass="BookCollectionViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="KZC-JY-Cne" customClass="BookCollectionViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4sg-AD-0hq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Gz-Gm-guF">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Qok-Es-4Jl">
                                     <size key="itemSize" width="128" height="128"/>
@@ -165,11 +165,65 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="0Gz-Gm-guF" id="rfl-7P-UgI"/>
+                        <segue destination="de5-6K-IQB" kind="presentation" identifier="bookChosen" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="tgc-4n-8AA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Pd-VF-wbS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-957.97101449275374" y="1706.9196428571429"/>
+            <point key="canvasLocation" x="-1223" y="1707"/>
+        </scene>
+        <!--Chosen Book View Controller-->
+        <scene sceneID="56d-vx-Qlq">
+            <objects>
+                <viewController id="de5-6K-IQB" customClass="ChosenBookViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lyk-B6-Mw4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xqz-IR-K0d">
+                                <rect key="frame" x="20" y="64" width="374" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="2xr-o6-7ps"/>
+                                </constraints>
+                            </imageView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zuY-kh-qWa">
+                                <rect key="frame" x="20" y="474" width="374" height="309"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="309" id="2ab-cp-eZz"/>
+                                    <constraint firstAttribute="height" constant="309" id="fF0-1p-g7a"/>
+                                </constraints>
+                            </pickerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="n7n-ia-hfQ"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.83447510943152126" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="xqz-IR-K0d" firstAttribute="top" secondItem="n7n-ia-hfQ" secondAttribute="top" constant="20" id="Y0d-bl-KSN"/>
+                            <constraint firstItem="n7n-ia-hfQ" firstAttribute="trailing" secondItem="xqz-IR-K0d" secondAttribute="trailing" constant="20" id="hoW-MD-fAg"/>
+                            <constraint firstItem="zuY-kh-qWa" firstAttribute="leading" secondItem="n7n-ia-hfQ" secondAttribute="leading" constant="20" id="jTl-6o-WwF"/>
+                            <constraint firstItem="zuY-kh-qWa" firstAttribute="leading" secondItem="n7n-ia-hfQ" secondAttribute="leading" constant="20" id="kWv-3L-k3x"/>
+                            <constraint firstItem="zuY-kh-qWa" firstAttribute="trailing" secondItem="n7n-ia-hfQ" secondAttribute="trailing" constant="-20" id="nCJ-lO-2Ha"/>
+                            <constraint firstItem="zuY-kh-qWa" firstAttribute="top" secondItem="xqz-IR-K0d" secondAttribute="bottom" constant="10" id="wW2-NL-OXA"/>
+                            <constraint firstItem="xqz-IR-K0d" firstAttribute="leading" secondItem="n7n-ia-hfQ" secondAttribute="leading" constant="20" id="yJK-oB-AQj"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jif-7h-8OJ" appends="YES" id="0a0-w0-eNc"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="bookCover" destination="xqz-IR-K0d" id="Xdj-Re-Mwd"/>
+                        <outlet property="chaptersPicker" destination="zuY-kh-qWa" id="PZh-Fm-SeJ"/>
+                        <outlet property="tap" destination="jif-7h-8OJ" id="ETV-ag-ocq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6kJ-JU-G8g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="jif-7h-8OJ">
+                    <connections>
+                        <action selector="tapper:" destination="de5-6K-IQB" id="J6c-hr-V5q"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-107.24637681159422" y="1706.9196428571429"/>
         </scene>
         <!--Book View Controller-->
         <scene sceneID="xV2-3J-em2">
@@ -227,7 +281,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WvU-Yt-Sh9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-107" y="1707"/>
+            <point key="canvasLocation" x="986" y="1707"/>
         </scene>
         <!--Codebreaker View Controller-->
         <scene sceneID="9nn-Pt-hSZ">
@@ -890,7 +944,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Idx-jf-Jma" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="986" y="874"/>
+            <point key="canvasLocation" x="985.50724637681162" y="873.88392857142856"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -1355,7 +1409,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screen-Shot-2018-03-06-at-141354" translatesAutoresizingMaskIntoConstraints="NO" id="Kos-w7-x2c">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="temp" translatesAutoresizingMaskIntoConstraints="NO" id="Kos-w7-x2c">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="907"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -1380,6 +1434,9 @@
                         <viewLayoutGuide key="safeArea" id="jP1-yf-E99"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="image" destination="Kos-w7-x2c" id="Q1b-p9-v19"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xum-7n-xzB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1687,7 +1744,6 @@
         <segue reference="OFs-Hh-Nq1"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Screen-Shot-2018-03-06-at-141354" width="400" height="300"/>
         <image name="arrow.up" catalog="system" width="120" height="128"/>
         <image name="arrow.up.and.person.rectangle.portrait" catalog="system" width="128" height="100"/>
         <image name="arrowshape.turn.up.backward" catalog="system" width="128" height="106"/>
@@ -1702,6 +1758,7 @@
         <image name="sun.max" catalog="system" width="128" height="124"/>
         <image name="sunrise" catalog="system" width="128" height="97"/>
         <image name="sunset" catalog="system" width="128" height="97"/>
+        <image name="temp" width="400" height="300"/>
         <image name="xmark.seal.fill" catalog="system" width="128" height="128"/>
         <namedColor name="Interface">
             <color red="0.18799999356269836" green="0.63899999856948853" blue="0.3449999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

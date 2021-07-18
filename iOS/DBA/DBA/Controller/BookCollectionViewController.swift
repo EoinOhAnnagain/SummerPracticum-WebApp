@@ -11,6 +11,8 @@ class BookCollectionViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
     
+    var chosenBookName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,21 +45,36 @@ extension BookCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
-        print("You tapped me")
+        chosenBookName = K.bookTitles[indexPath[1]]
+        
+        print("You tapped me: \(chosenBookName!)")
+        
+        performSegue(withIdentifier: K.bookChosen, sender: self)
+        
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.bookChosen {
+            let destinationVC = segue.destination as! ChosenBookViewController
+            destinationVC.bookTitle = chosenBookName
+        }
+    }
+    
     
 }
 
 extension BookCollectionViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return K.bookTitles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.bookCell, for: indexPath) as! BookCollectionViewCell
         
-        cell.configure(with: UIImage(named: "temp")!)
+        
+        
+        cell.configure(with: UIImage(named: K.bookTitles[indexPath[1]])!)
         
         return cell
     }
@@ -68,7 +85,7 @@ extension BookCollectionViewController: UICollectionViewDataSource {
 extension BookCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: 120)
+        return CGSize(width: 200, height: 300)
     }
     
 }
