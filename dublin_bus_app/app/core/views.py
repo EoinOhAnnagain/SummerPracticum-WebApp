@@ -20,9 +20,8 @@ def Stops(request):
    # print(stopsString)
    json_data = open(finders.find('JSON/stops_and_their_buses.json'))
    data1 = json.load(json_data)  # deserialises it
-   data2 = json.dumps(data1)  # json formatted string
    json_data.close()
-   return JsonResponse(data2, safe=False)
+   return JsonResponse(data1, safe=False) # , safe=False
 
 
 def HelloWorldView(request):
