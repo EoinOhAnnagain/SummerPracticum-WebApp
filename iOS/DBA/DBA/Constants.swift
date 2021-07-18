@@ -41,6 +41,7 @@ struct K {
         
     }
     
+    static let bookChosen = "bookChosen"
     static let bookCell = "BookCollectionViewCell"
-    
+    static let bookTitles = ["Alice", "Baskervilles", "Christmas", "Cities", "Darkness", "Dorian", "Dracula", "Expectations", "Finn", "Frankenstein", "Moby", "Oliver", "Oz", "Pride", "Scarlet", "Stranger", "Treasure", "Ulysses", "Wild", "Women", "Worlds"]
 }
