@@ -88,9 +88,6 @@ function initMap() {
      return response.json();
      }).then(data => {
      console.log("data ", data);
-
-       data = JSON.parse(data);
-       console.log("jsonData1", data[1]);
        
     //Directions API
   var directionsService = new google.maps.DirectionsService();
