@@ -10,12 +10,32 @@ from .models import *
 from django.views.decorators.csrf import csrf_exempt
 
 import json
+from datetime import datetime, timedelta
 
 """Hank add for testing dB"""
 def show_agency_list(request):
     user_list = Agency.objects.order_by('agency_name')
     output = ', '.join([user.agency_name for user in user_list])
     return HttpResponse(output)
+
+def ApproachingBuses(request, stopNumber):
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print(current_time, "is current time")
+    format = "%H:%M:%S"
+    allBuses = StopTimesSeqNum.objects.filter(stop_id = stopNumber)
+    print(allBuses)
+    dueBuses = []
+    for bus in allBuses:
+        print("here is the bus", bus)
+        tdelta = datetime.strptime(bus.arrival_time, format) - datetime.strptime(current_time, format)
+        # if tdelta.days < 0:
+        #     tdelta = timedelta(days=0, seconds=tdelta.seconds)
+        if tdelta.seconds >0:
+            dueBuses.append({"id": bus.trip_id, "arrivalTime": bus.arrival_time})
+    print(dueBuses)
+    return JsonResponse(allBuses)
+
 
 @csrf_exempt
 def LiveData(request, stopNumber):
