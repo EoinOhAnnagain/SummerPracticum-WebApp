@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+  </head>
+  <body>
+      <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'MapView' %}">Map</a></li>
+          <li><a href="{% url 'account_email' %}">Profile</a></li>
+          <li><a href="{% url 'home' %}">About</a></li>
+          {% block navi %}
+          {% endblock %}
+      </ul>
+    {% block content %}
+    {% endblock %}
+
+    {% block extra_body %}
+    {% endblock %}
+  </body>
+</html>
