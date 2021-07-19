@@ -47,8 +47,8 @@ class BookViewController: UIViewController {
             print("Failed to read fom project")
             print(error)
         }
-        bookText.text =  String(readStringProject.filter { !"\n".contains($0) })
-        
+        //bookText.text =  String(readStringProject.filter { !"\n".contains($0) })
+        bookText.text = readStringProject
         
     }
     
