@@ -81,7 +81,6 @@ extension ChosenBookViewController: UIPickerViewDelegate {
         print(bookTitle!+String(currentRow))
         
         performSegue(withIdentifier: K.readBook, sender: self)
-        dismiss(animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
