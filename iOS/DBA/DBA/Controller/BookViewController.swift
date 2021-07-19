@@ -49,12 +49,37 @@ class BookViewController: UIViewController {
         }
         //bookText.text =  String(readStringProject.filter { !"\n".contains($0) })
         bookText.text = readStringProject
+        bookText.scrollRangeToVisible(NSRange(location: 0, length: 0))
         
     }
     
 
     @IBAction func dismissPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func previousPressed(_ sender: UIButton) {
+        if chapterNumber! > 0 {
+            chapterNumber! -= 1
+            setFileName()
+            readChapter()
+        } else {
+            print("nope")
+        }
+    }
+    
+    @IBAction func forwardPressed(_ sender: UIButton) {
+        if chapterNumber!+1 < K.bookChapterNames[bookTitle!]!.count {
+            chapterNumber! += 1
+            setFileName()
+            readChapter()
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func toTopPressed(_ sender: UIButton) {
+        bookText.scrollRangeToVisible(NSRange(location: 0, length: 0))
     }
     /*
     // MARK: - Navigation
