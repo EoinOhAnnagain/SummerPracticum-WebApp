@@ -9,16 +9,20 @@ import UIKit
 
 class BookViewController: UIViewController {
 
-    @IBOutlet weak var bookPicker: UIPickerView!
     @IBOutlet weak var bookText: UITextView!
     @IBOutlet weak var choiceLabel: UILabel!
     
-    var bookName: String?
+    var bookTitle: String?
+    var chapterNumber: Int?
+    var fileName: String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //bookText.text =
+        setFileName()
+        
+        bookText.text = fileName
         
         //bookPicker.dataSource = self
         //bookPicker.delegate = self
@@ -27,7 +31,9 @@ class BookViewController: UIViewController {
     }
     
     
-     
+    func setFileName() {
+        fileName = bookTitle!+String(chapterNumber!)
+    }
     
     
     

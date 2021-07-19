@@ -16,6 +16,7 @@ class BookCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 120, height: 120)
         collectionView.collectionViewLayout = layout

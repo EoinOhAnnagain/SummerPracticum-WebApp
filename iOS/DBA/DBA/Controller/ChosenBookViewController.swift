@@ -16,6 +16,10 @@ class ChosenBookViewController: UIViewController {
     
     var bookTitle: String?
     
+    @IBOutlet weak var bookSelect: UIButton!
+    
+    var currentRow = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,7 +27,7 @@ class ChosenBookViewController: UIViewController {
         chaptersPicker.delegate = self
         chaptersPicker.dataSource = self
         
-        
+        bookSelect.layer.cornerRadius = 0.5 * bookSelect.bounds.size.width
         
         
         bookCover.image = UIImage(named: bookTitle!)
@@ -68,8 +72,23 @@ extension ChosenBookViewController: UIPickerViewDelegate {
             }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let choice = pickerView.selectedRow(inComponent: 0)
-        print(choice)
+        currentRow = pickerView.selectedRow(inComponent: 0)
     }
     
+    
+    @IBAction func bookSelectPressed(_ sender: UIButton) {
+        
+        print(bookTitle!+String(currentRow))
+        
+        performSegue(withIdentifier: K.readBook, sender: self)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.readBook {
+            let destinationVC = segue.destination as! BookViewController
+            destinationVC.bookTitle = bookTitle
+            destinationVC.chapterNumber = currentRow
+        }
+    }
 }
