@@ -10,7 +10,7 @@ import UIKit
 class BookViewController: UIViewController {
 
     @IBOutlet weak var bookText: UITextView!
-    @IBOutlet weak var choiceLabel: UILabel!
+    
     
     var bookTitle: String?
     var chapterNumber: Int?
@@ -21,8 +21,11 @@ class BookViewController: UIViewController {
         super.viewDidLoad()
         
         setFileName()
+        readChapter()
         
-        bookText.text = fileName
+        
+        
+        
         
         //bookPicker.dataSource = self
         //bookPicker.delegate = self
@@ -35,7 +38,19 @@ class BookViewController: UIViewController {
         fileName = bookTitle!+String(chapterNumber!)
     }
     
-    
+    func readChapter() {
+        let fileURLProject = Bundle.main.path(forResource: "Books/\(bookTitle!)/\(fileName!)", ofType: "txt")
+        var readStringProject = ""
+        do {
+            readStringProject = try String(contentsOfFile: fileURLProject!, encoding: String.Encoding.utf8)
+        } catch let error as NSError {
+            print("Failed to read fom project")
+            print(error)
+        }
+        bookText.text =  String(readStringProject.filter { !"\n".contains($0) })
+        
+        
+    }
     
 
     @IBAction func dismissPressed(_ sender: UIButton) {
