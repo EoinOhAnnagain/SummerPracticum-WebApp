@@ -128,7 +128,7 @@
         <!--Book Collection View Controller-->
         <scene sceneID="Jnk-Ll-hSd">
             <objects>
-                <viewController id="KZC-JY-Cne" customClass="BookCollectionViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="KZC-JY-Cne" customClass="BookCollectionViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4sg-AD-0hq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -163,26 +163,107 @@
                             <constraint firstItem="0Gz-Gm-guF" firstAttribute="trailing" secondItem="TY4-Em-Jep" secondAttribute="trailing" id="w0R-hT-xMM"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="0Gz-Gm-guF" id="rfl-7P-UgI"/>
+                        <segue destination="de5-6K-IQB" kind="presentation" identifier="bookChosen" modalPresentationStyle="overFullScreen" modalTransitionStyle="flipHorizontal" id="tgc-4n-8AA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Pd-VF-wbS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-957.97101449275374" y="1706.9196428571429"/>
+            <point key="canvasLocation" x="-1223" y="1707"/>
+        </scene>
+        <!--Chosen Book View Controller-->
+        <scene sceneID="56d-vx-Qlq">
+            <objects>
+                <viewController id="de5-6K-IQB" customClass="ChosenBookViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lyk-B6-Mw4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xqz-IR-K0d">
+                                <rect key="frame" x="20" y="64" width="374" height="400"/>
+                            </imageView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zuY-kh-qWa">
+                                <rect key="frame" x="20" y="474" width="374" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="250" id="2ab-cp-eZz"/>
+                                    <constraint firstAttribute="height" constant="250" id="fF0-1p-g7a"/>
+                                </constraints>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RV4-wb-f2Q">
+                                <rect key="frame" x="334" y="732" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="150"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="book" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="bookSelectPressed:" destination="de5-6K-IQB" eventType="touchUpInside" id="zPU-Aq-NgM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="n7n-ia-hfQ"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.83447510943152126" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="n7n-ia-hfQ" firstAttribute="bottom" secondItem="zuY-kh-qWa" secondAttribute="bottom" constant="138" id="Boq-Pb-vmt"/>
+                            <constraint firstItem="xqz-IR-K0d" firstAttribute="top" secondItem="n7n-ia-hfQ" secondAttribute="top" constant="20" id="Y0d-bl-KSN"/>
+                            <constraint firstItem="n7n-ia-hfQ" firstAttribute="trailing" secondItem="xqz-IR-K0d" secondAttribute="trailing" constant="20" id="hoW-MD-fAg"/>
+                            <constraint firstItem="zuY-kh-qWa" firstAttribute="leading" secondItem="n7n-ia-hfQ" secondAttribute="leading" constant="20" id="jTl-6o-WwF"/>
+                            <constraint firstItem="zuY-kh-qWa" firstAttribute="leading" secondItem="n7n-ia-hfQ" secondAttribute="leading" constant="20" id="kWv-3L-k3x"/>
+                            <constraint firstItem="zuY-kh-qWa" firstAttribute="top" secondItem="xqz-IR-K0d" secondAttribute="bottom" constant="10" id="lKl-9b-TIj"/>
+                            <constraint firstItem="zuY-kh-qWa" firstAttribute="trailing" secondItem="n7n-ia-hfQ" secondAttribute="trailing" constant="-20" id="nCJ-lO-2Ha"/>
+                            <constraint firstItem="zuY-kh-qWa" firstAttribute="top" secondItem="xqz-IR-K0d" secondAttribute="bottom" constant="10" id="wW2-NL-OXA"/>
+                            <constraint firstItem="xqz-IR-K0d" firstAttribute="leading" secondItem="n7n-ia-hfQ" secondAttribute="leading" constant="20" id="yJK-oB-AQj"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jif-7h-8OJ" appends="YES" id="0a0-w0-eNc"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="bookCover" destination="xqz-IR-K0d" id="Xdj-Re-Mwd"/>
+                        <outlet property="bookSelect" destination="RV4-wb-f2Q" id="l1r-ie-t19"/>
+                        <outlet property="chaptersPicker" destination="zuY-kh-qWa" id="PZh-Fm-SeJ"/>
+                        <outlet property="tap" destination="jif-7h-8OJ" id="ETV-ag-ocq"/>
+                        <segue destination="EJB-2K-zfZ" kind="presentation" identifier="ReadyToRead" modalPresentationStyle="fullScreen" id="Hwg-5i-fNZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6kJ-JU-G8g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="jif-7h-8OJ">
+                    <connections>
+                        <action selector="tapper:" destination="de5-6K-IQB" id="J6c-hr-V5q"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-107.24637681159422" y="1706.9196428571429"/>
         </scene>
         <!--Book View Controller-->
         <scene sceneID="xV2-3J-em2">
             <objects>
                 <viewController id="EJB-2K-zfZ" customClass="BookViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eI5-bF-Wii">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8GN-JB-mpq">
-                                <rect key="frame" x="46" y="711" width="323" height="60"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Error" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="OrJ-2g-e8G">
+                                <rect key="frame" x="0.0" y="75" width="414" height="679"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8GN-JB-mpq">
+                                <rect key="frame" x="20" y="781" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="Interface"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="Dismiss">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="arrowshape.turn.up.backward" catalog="system" symbolScale="large"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -193,38 +274,71 @@
                                     <action selector="dismissPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="YVD-9a-a7d"/>
                                 </connections>
                             </button>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lec-eS-P3m">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="143"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OrJ-2g-e8G">
-                                <rect key="frame" x="0.0" y="173" width="414" height="521"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAZ-D3-oOZ">
+                                <rect key="frame" x="98" y="781" width="90" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpv-I5-5rN">
-                                <rect key="frame" x="20" y="129" width="374" height="42"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="backward.end" catalog="system" symbolScale="large"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="previousPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="M6V-fY-ciP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDq-4h-Fgn">
+                                <rect key="frame" x="200" y="781" width="90" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="backgroundColor" name="Interface"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="arrow.up" catalog="system" symbolScale="large"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="toTopPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="f7k-am-Gx0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ac-VP-FbF">
+                                <rect key="frame" x="304" y="781" width="90" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="forward.end" catalog="system" symbolScale="large"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="forwardPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="1uL-fc-qQa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pxw-5Y-lXa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="bookPicker" destination="lec-eS-P3m" id="woi-0W-Lox"/>
                         <outlet property="bookText" destination="OrJ-2g-e8G" id="U8b-TT-BeC"/>
-                        <outlet property="choiceLabel" destination="Jpv-I5-5rN" id="HWp-QZ-Eiv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WvU-Yt-Sh9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-107" y="1707"/>
+            <point key="canvasLocation" x="985.50724637681162" y="1706.9196428571429"/>
         </scene>
         <!--Codebreaker View Controller-->
         <scene sceneID="9nn-Pt-hSZ">
@@ -887,7 +1001,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Idx-jf-Jma" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="986" y="874"/>
+            <point key="canvasLocation" x="985.50724637681162" y="873.88392857142856"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -1027,20 +1141,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="D B A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFf-7a-lF5">
-                                <rect key="frame" x="46" y="52" width="198" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6N-f9-I6B">
                                 <rect key="frame" x="34" y="796.33333333333337" width="80" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1129,6 +1229,20 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="D B A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFf-7a-lF5">
+                                <rect key="frame" x="46" y="52" width="198" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1152,9 +1266,9 @@
                         <segue destination="Dv3-3x-ApG" kind="presentation" identifier="toWeather" id="rWG-q9-Iep"/>
                         <segue destination="76j-rU-nC6" kind="presentation" identifier="MainToChat" modalPresentationStyle="fullScreen" id="nlx-U9-drR"/>
                         <segue destination="t2D-eN-zyk" kind="presentation" identifier="MainToUs" id="Ibc-Tb-y5O"/>
-                        <segue destination="EJB-2K-zfZ" kind="presentation" identifier="MainToBookCollection" id="CAh-uG-USQ"/>
                         <segue destination="3oa-Dk-MC7" kind="presentation" identifier="MainToSignUp" id="6f0-Ip-aVG"/>
                         <segue destination="R8Y-uH-LR3" kind="show" identifier="MainToGame" id="1sz-Ea-zle"/>
+                        <segue destination="KZC-JY-Cne" kind="presentation" identifier="MainToBookCollection" id="k5Y-yg-h9m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1352,7 +1466,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screen-Shot-2018-03-06-at-141354" translatesAutoresizingMaskIntoConstraints="NO" id="Kos-w7-x2c">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="temp" translatesAutoresizingMaskIntoConstraints="NO" id="Kos-w7-x2c">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="907"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -1377,6 +1491,9 @@
                         <viewLayoutGuide key="safeArea" id="jP1-yf-E99"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="image" destination="Kos-w7-x2c" id="Q1b-p9-v19"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xum-7n-xzB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1684,13 +1801,15 @@
         <segue reference="OFs-Hh-Nq1"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Screen-Shot-2018-03-06-at-141354" width="400" height="300"/>
         <image name="arrow.up" catalog="system" width="120" height="128"/>
         <image name="arrow.up.and.person.rectangle.portrait" catalog="system" width="128" height="100"/>
         <image name="arrowshape.turn.up.backward" catalog="system" width="128" height="106"/>
+        <image name="backward.end" catalog="system" width="128" height="120"/>
+        <image name="book" catalog="system" width="128" height="102"/>
         <image name="book.circle" catalog="system" width="128" height="121"/>
         <image name="checkmark.seal.fill" catalog="system" width="128" height="128"/>
         <image name="circle.grid.2x2" catalog="system" width="128" height="112"/>
+        <image name="forward.end" catalog="system" width="128" height="120"/>
         <image name="gamecontroller.fill" catalog="system" width="128" height="80"/>
         <image name="message.circle" catalog="system" width="128" height="121"/>
         <image name="paperplane.circle" catalog="system" width="128" height="121"/>
@@ -1699,6 +1818,7 @@
         <image name="sun.max" catalog="system" width="128" height="124"/>
         <image name="sunrise" catalog="system" width="128" height="97"/>
         <image name="sunset" catalog="system" width="128" height="97"/>
+        <image name="temp" width="400" height="300"/>
         <image name="xmark.seal.fill" catalog="system" width="128" height="128"/>
         <namedColor name="Interface">
             <color red="0.18799999356269836" green="0.63899999856948853" blue="0.3449999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
