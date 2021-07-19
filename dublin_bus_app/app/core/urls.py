@@ -8,5 +8,7 @@ urlpatterns = [
     path('stops', Stops, name='Stops'),
     path('selectRoute', SelectRoute, name='SelectRoute'),
     path('liveData/<str:stopNumber>/', LiveData, name='liveData'),
-    path('agn_list',show_agency_list, name ='show_agency_list')
+    path('agn_list',show_agency_list, name ='show_agency_list'),
+    path('Fare', FareCalculation, name='FareCalculation'),
+    path('Travel',Traveltime, name='Traveltime')
 ]
