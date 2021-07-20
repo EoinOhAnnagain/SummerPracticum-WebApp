@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     # local
     'core',
     'accounts',
-    'cpanel',
+    'todo',
 ]
 
 MIDDLEWARE = [
