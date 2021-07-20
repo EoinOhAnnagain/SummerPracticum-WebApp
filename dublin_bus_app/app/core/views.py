@@ -92,10 +92,10 @@ def MapView(request):
 
     return render(request, "map.html")
 
-def show_user_list(request):
-    user_list = CustomUser.objects.order_by('username')
-    output = ', '.join([user.username for user in user_list])
-    return HttpResponse(output)
+# def show_user_list(request):
+#     user_list = CustomUser.objects.order_by('username')
+#     output = ', '.join([user.username for user in user_list])
+#     return HttpResponse(output)
 
 from core.fare_calculation import fare_crawler
 def FareCalculation(request):
