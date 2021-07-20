@@ -11,6 +11,7 @@ import Footer from './components/Footer'
 import Tasks from './components/Tasks'
 import About from './components/About'
 import Map from './components/MapContainer'
+import MapContainer from './components/MapContainer'
 
 function App() {
   const name = 'Brad'
@@ -104,21 +105,17 @@ const deleteTask = async (id) => {
    setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: data.reminder} : task))
  }
 
- const Welcome = 'Hello'
   return (
     <Router>
     <div className="container">
-      <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask} title = {Welcome}/>
-      // Start of default Page
-      <Navbar></Navbar>
+      <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask}/>
+      <Navbar stopData={stopData}></Navbar>
       <Route path='/' exact render={(props) => (<>
         {showAddTask && <AddTask onAdd={addTask}/>}
       {tasks.length >0 ? <Tasks tasks={tasks} onToggle={toggleReminder} onDelete = {deleteTask}/> : 'No Tasks to Show'}
       <h1 style = {{color : 'red', backgroundColor: 'black'}}>Hello From React</h1>
-      <h2>Hello { name }</h2>
       </>)}/>
-      // End of Default Page
-      <Route path='/map' render={(props) => (<><Map stopData={stopData}/></>)}/>
+      <Route path='/map' render={(props) => (<div className={"MapContainer"}><MapContainer stopData={stopData}/></div>)}/>
       <Route path='/gmap' render={(props) => (<><GoogleMap stopData={stopData}/></>)}/>
       <Footer />    
     </div>

@@ -1,5 +1,6 @@
 import { GoogleMap, LoadScript, Marker, MarkerClusterer, InfoWindow } from '@react-google-maps/api'
 import { useState } from 'react';
+import ApproachingBuses from './ApproachingBuses';
 
 const MapContainer = ({stopData}) => {
       
@@ -50,7 +51,7 @@ const MapContainer = ({stopData}) => {
        googleMapsApiKey='AIzaSyDMShWhoPlx171FYgvYn_nOroBgsf28oCk'>
         <GoogleMap
           mapContainerStyle={mapStyles}
-          zoom={13}
+          zoom={15}
           center={defaultCenter}>
               {
                   locations.map(stop=>{
@@ -70,6 +71,9 @@ const MapContainer = ({stopData}) => {
                           <div>
                           <p> {selected.ShortCommonName_en} | {selected.PlateCode}</p>
                           <p>Serving Routes {selected.RouteData}</p>
+                          {console.log(selected.AtcoCode)}
+                          <ApproachingBuses stopNumber={selected.AtcoCode} />
+                
                           </div>
                       </InfoWindow>
                   )

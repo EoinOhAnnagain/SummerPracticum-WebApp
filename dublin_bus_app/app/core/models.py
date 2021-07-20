@@ -128,6 +128,8 @@ class StopTimesSeqNum(models.Model):
     pickup_type = models.TextField(blank=True, null=True)
     drop_off_type = models.TextField(blank=True, null=True)
     shape_dist_traveled = models.FloatField(blank=True, null=True)
+    route_id = models.CharField(max_length=45, blank=True, null=True)
+    route_number = models.CharField(max_length=45, blank=True, null=True)
 
     class Meta:
         managed = False

@@ -23,18 +23,33 @@ def ApproachingBuses(request, stopNumber):
     current_time = now.strftime("%H:%M:%S")
     print(current_time, "is current time")
     format = "%H:%M:%S"
+    current_time = datetime.strptime(current_time, format)
     allBuses = StopTimesSeqNum.objects.filter(stop_id = stopNumber)
     print(allBuses)
     dueBuses = []
     for bus in allBuses:
-        print("here is the bus", bus)
-        tdelta = datetime.strptime(bus.arrival_time, format) - datetime.strptime(current_time, format)
-        # if tdelta.days < 0:
-        #     tdelta = timedelta(days=0, seconds=tdelta.seconds)
-        if tdelta.seconds >0:
-            dueBuses.append({"id": bus.trip_id, "arrivalTime": bus.arrival_time})
-    print(dueBuses)
-    return JsonResponse(allBuses)
+        route_id = bus.route_id
+        split_elements = route_id.split("-")
+        route_number = split_elements[1]
+        if bus.arrival_time.startswith("24"): # Correct incorrect formatting of time
+            arrival = bus.arrival_time.replace("24", "00", 1)
+        else:
+            arrival = bus.arrival_time
+        arrival = datetime.strptime(arrival, format)
+        tdelta = arrival - current_time # Get time difference between arrival and now
+        if tdelta.days < 0:
+            tdelta = timedelta(days=0, seconds=tdelta.seconds)
+        print(tdelta.seconds)
+        if (tdelta.seconds >0 and tdelta.seconds < 3600): # Get details of all buses in next hour
+            dueBuses.append({"id": bus.trip_id, "route_number": route_number, "arrivalTime": bus.arrival_time})
+    json_string = json.dumps(dueBuses)
+    jsonBuses = json.loads(json_string)
+    # Sort by closest to furthest away
+    def sortByArrival(value):
+        return value["arrivalTime"]
+    sortedBuses = sorted(jsonBuses, key=sortByArrival)
+    print(sortedBuses)
+    return JsonResponse(sortedBuses, safe=False)
 
 
 @csrf_exempt
