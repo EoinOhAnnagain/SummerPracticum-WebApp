@@ -40,7 +40,7 @@ def ApproachingBuses(request, stopNumber):
         if tdelta.days < 0:
             tdelta = timedelta(days=0, seconds=tdelta.seconds)
         print(tdelta.seconds)
-        if (tdelta.seconds >0 and tdelta.seconds < 3600): # Get details of all buses in next hour
+        if (tdelta.seconds >0 and tdelta.seconds < 1800): # Get details of all buses in next hour
             dueBuses.append({"id": bus.trip_id, "route_number": route_number, "arrivalTime": bus.arrival_time})
     json_string = json.dumps(dueBuses)
     jsonBuses = json.loads(json_string)

@@ -1,11 +1,16 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const ApproachingBuses = ({stopNumber}) => {
     
-    const [approachingBusData, setApproachingBusData] = useState({})
+    const [approachingBusData, setApproachingBusData] = useState([])
 
-
+useEffect(async ()=> {
+    const res = await fetch(`http://localhost:8000/approach/${stopNumber}/`)
+        const data = await res.json()
+        console.log(data, "approaching bus data")
+        setApproachingBusData(data)
+}, [])
     console.log(approachingBusData, "approaching bus data")
     // const fetchStopSchedule = async () => {
     //     const res = await fetch(`http://localhost:8000/approach/${stopNumber}/`)
@@ -19,7 +24,7 @@ const ApproachingBuses = ({stopNumber}) => {
         <div>
             <ul>
                 {approachingBusData.map(item=>{
-                    return <li>{item.route_number} {item.arrival_time}</li>
+                    return <li>{item.route_number} {item.arrivalTime}</li>
                 })}
             </ul>
         </div>
