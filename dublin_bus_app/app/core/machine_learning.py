@@ -40,18 +40,24 @@ class travel_time(object):
         li = [tem,hum,wind,rain,snow,week_day]
 
         #stops
-        self.start_stop = re.match(r".*stop (.*)",self.start_stop)
-        self.start_stop = self.start_stop.group(1)
-        print(self.start_stop)
-        cs.execute("SELECT StopSequence FROM project.route_by_stops where RouteName={} and PlateCode={} and Direction = 'O';".format(str(self.route_number),str(self.start_stop)))
-        sequence_data = cs.fetchone()
-        sequence_data = sequence_data[0]
+        try:
+            self.start_stop = re.match(r".*stop (.*)",self.start_stop)
+            self.start_stop = self.start_stop.group(1)
+            print(self.start_stop)
+        except Exception as e:
+            self.start_stop = 1
+        try:
+            cs.execute("SELECT StopSequence FROM project.route_by_stops where RouteName='{}' and PlateCode='{}';".format(str(self.route_number),str(self.start_stop)))
+            sequence_data = cs.fetchone()
+            sequence_data = sequence_data[0]
+        except Exception as e:
+            sequence_data = 1
         print(sequence_data)
         l_stops = []
         self.stops_number = int(self.stops_number)
         for s in range(0,self.stops_number):
             sequence_data = sequence_data + 1
-            cs.execute("SELECT PlateCode FROM project.route_by_stops where StopSequence={} and RouteName={};".format(sequence_data,self.route_number))
+            cs.execute("SELECT PlateCode FROM project.route_by_stops where StopSequence='{}' and RouteName='{}';".format(sequence_data,str(self.route_number)))
             stop_name = cs.fetchone()
             stop_name = stop_name[0]
             l_stops.append(stop_name)
@@ -71,15 +77,6 @@ class travel_time(object):
             total_time = total_time + time
         print(total_time)
         return total_time
-    # def get_stops():
-    #     l = len(sys.argv)
-    #     route_list = []
-    #     start = sys.argv[1]
-    #     for i in range(2,l):
-    #         route_list.append(start + "_" + sys.argv[i])
-    #         start =sys.argv[i]
-    #     print(route_list)
-    #     return route_list
     def machine_learning(self,route,x_li):
         try:
             df = pd.read_csv("/app/core/machine_learn_data/{}.csv".format(route),names=["route","feels_like","humidity","wind_speed","Rain","Snow","Clear","date","ACTUALTIME_ARR_y"],sep=",")
