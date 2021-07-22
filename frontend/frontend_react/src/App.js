@@ -10,8 +10,9 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Tasks from './components/Tasks'
 import About from './components/About'
-import Map from './components/MapContainer'
+import Directions from './components/Map'
 import MapContainer from './components/MapContainer'
+import MainMaps from './components/Map'
 
 function App() {
   const name = 'Brad'
@@ -117,6 +118,7 @@ const deleteTask = async (id) => {
       </>)}/>
       <Route path='/map' render={(props) => (<div className={"MapContainer"}><MapContainer stopData={stopData}/></div>)}/>
       <Route path='/gmap' render={(props) => (<><GoogleMap stopData={stopData}/></>)}/>
+      <Route path='/mapJS' render={(props) => (<><MainMaps stopData={stopData}/></>)}/>
       <Footer />    
     </div>
     </Router>

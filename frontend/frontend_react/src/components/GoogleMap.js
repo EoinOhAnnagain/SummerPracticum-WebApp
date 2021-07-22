@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import mapStyles from './MapStyles';
+import mapStyles from './mapStyles';
 
 function GoogleMap(props) {
   const [zoomLevel, setZoomLevel] = useState(13);
-  const [lat, setLat] = useState(51.4934);
-  const [lng, setLng] = useState(0.0098);
+  const [lat, setLat] = useState(53.349804);
+  const [lng, setLng] = useState(-6.260310);
   const [state, setState] = useState({
     activeMarker: {},
     showingInfoWindow: false,
