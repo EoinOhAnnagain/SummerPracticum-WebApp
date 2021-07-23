@@ -1,6 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
 import AsyncSelect from 'react-select/async'
+import eventBus from './eventBus'
 
 const JourneySelect = ({stopData}) => {
     console.log(stopData, "in journey")

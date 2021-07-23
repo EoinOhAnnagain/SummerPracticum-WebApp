@@ -38,6 +38,10 @@ const MainMaps = ({stopData}) => {
   const [origin2, setOrigin2] = React.useState("dublin");
   const [destination2, setDestination2] = React.useState("cork");
   const [response, setResponse] = React.useState(null);
+  const toggleMarkers = () => {
+      setShowAllMarkers(!showAllMarkers)
+  }
+
   let count = React.useRef(0);
   const directionsCallback = (response) => {
     console.log(response);
@@ -69,7 +73,8 @@ const MainMaps = ({stopData}) => {
 
 const onCloseInfoWindow = (position) => {
   setSelected({});
-  setCenter(position);
+//   setCenter(position);
+    onMapLoad();
 } 
 const options = {
     styles: mapStyles,
@@ -77,8 +82,8 @@ const options = {
   }
 
   const DirectionsServiceOption = {
-    destination: destination2,
-    origin: origin2,
+    destination: destination,
+    origin: origin,
     travelMode: "TRANSIT",
     transitOptions: {
         modes: ['BUS'],
@@ -89,11 +94,13 @@ const options = {
   const setJourney = () =>{
     setOrigin({lat: 53.39187739, lng: -6.259719573})
     setDestination({lat: 53.22102148, lng: -6.225605532})
+    setShowAllMarkers(false)
   }
 
   return (
     <div>
       <Button text={"Calculate Route"} onClick={setJourney}></Button>
+      <Button text={"Show All Stops"} onClick={toggleMarkers}></Button>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={15}

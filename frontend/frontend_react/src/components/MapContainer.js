@@ -5,7 +5,7 @@ import {getGeocode, getLatLng} from "use-places-autocomplete"
 import ApproachingBuses from './ApproachingBuses';
 import mapStyles from './mapStyles';
 import Button from './Button';
-import {Helmet} from 'react-helmet'
+import eventBus from './eventBus';
 
 const libraries = ["directions"];
 
@@ -19,6 +19,7 @@ const MapContainer = ({stopData}) => {
     //lat: 41.3851, lng: 2.1734
     lat: 53.349804, lng: -6.260310 
   });
+  const [renderState, setRenderState] = useState(false)
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
     mapRef.current = map;
@@ -33,16 +34,16 @@ const MapContainer = ({stopData}) => {
   if (!isLoaded) return "Loading Maps";
 
 const directionsCallback = (reponse) =>{
-  console.log(response)
-  console.log("Made it to directionsCallback function")
+  console.log(response);
+  console.log("Made it to directionsCallback function");
   if (response!== null){
     if (response.status === "OK"){
-      setResponse(response)
+      setResponse(response);
     }else{
-      console.log("directions callback:", response)
+      console.log("directions callback:", response);
     }
   }
-  console.log("directions callback:", response)
+  console.log("directions callback:", response);
 }
 
 const getOrigin = (props) =>{
@@ -132,7 +133,7 @@ const setJourney = () =>{
                   )
               }
               
-              { response !== null && (
+              { response !== null && renderState &&(
           <DirectionsRenderer
             options={{
               directions: response,
