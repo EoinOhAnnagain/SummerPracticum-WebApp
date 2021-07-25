@@ -71,7 +71,8 @@ class SignUpViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.signedUp {
             let destinationVC = segue.destination as! ViewController
-                destinationVC.userEmailString = self.emailTextField.text
+            destinationVC.userEmailString = self.emailTextField.text
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: nil, action: nil)
         }
     }
     

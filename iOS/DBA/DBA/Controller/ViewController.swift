@@ -47,6 +47,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         title()
         
         startingPicker.dataSource = self
@@ -89,12 +91,10 @@ class ViewController: UIViewController {
     
     
     
-    
-    @IBAction func toMap(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: K.mapSegue, sender: self)
-        
+    @IBAction func mapButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "Mappy", sender: self)
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.weatherSegue {
@@ -224,17 +224,6 @@ extension ViewController {
             chatButton.backgroundColor = .systemGray3
             bookButton.backgroundColor = .systemGray3
             gameButton.backgroundColor = .systemGray3
-        }
-    }
-    
-    
-    @IBAction func logOutPressed(_ sender: UIButton) {
-        do {
-            try Auth.auth().signOut()
-            userEmailString = nil
-            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
-        } catch {
-            print("ERROR")
         }
     }
 }
