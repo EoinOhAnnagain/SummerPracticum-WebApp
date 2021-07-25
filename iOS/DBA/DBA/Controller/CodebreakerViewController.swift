@@ -76,9 +76,10 @@ class CodebreakerViewController: UIViewController {
             circle.layer.borderColor = UIColor.systemGray3.cgColor
         }
         
-        //for i in 0...3 {
-        //    AnswerCircles[i].backgroundColor = codeColors[i]
-        //}
+//        Uncomment this section to dispaly the devices chosen code for debugging 
+//        for i in 0...3 {
+//            AnswerCircles[i].backgroundColor = codeColors[i]
+//        }
         
         prepRoundCircles(roundCircles)
         prepRoundLabels()
@@ -212,6 +213,7 @@ class CodebreakerViewController: UIViewController {
                 if answerColors[g].accessibilityName == codeColors[i].accessibilityName {
                     used[g] = true
                     blows[i] = true
+                    break 
                 }
             }
         }
