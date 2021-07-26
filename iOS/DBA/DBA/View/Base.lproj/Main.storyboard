@@ -381,6 +381,9 @@
                                         <integer key="value" value="25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="Pk2-zs-4qE" kind="presentation" modalPresentationStyle="overFullScreen" modalTransitionStyle="flipHorizontal" id="d61-Lr-sgI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZX-Qj-kWR">
                                 <rect key="frame" x="82" y="802" width="60" height="60"/>
@@ -950,6 +953,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLc-pN-4pl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-107" y="874"/>
+        </scene>
+        <!--Code Breaker Rules View Controller-->
+        <scene sceneID="sZM-YD-MOf">
+            <objects>
+                <viewController id="Pk2-zs-4qE" customClass="CodeBreakerRulesViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WfH-Sw-fLN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAf-Ev-46V">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vgw-i0-igU">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <gestureRecognizers/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="ujh-DS-tEW" appends="YES" id="fmx-B0-k1g"/>
+                                    </connections>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ho5-Sm-LFg"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="cAf-Ev-46V" secondAttribute="bottom" id="4Qd-aX-3wL"/>
+                            <constraint firstItem="cAf-Ev-46V" firstAttribute="trailing" secondItem="Ho5-Sm-LFg" secondAttribute="trailing" id="8O0-nz-A6d"/>
+                            <constraint firstItem="cAf-Ev-46V" firstAttribute="leading" secondItem="Ho5-Sm-LFg" secondAttribute="leading" id="X5K-95-Av7"/>
+                            <constraint firstItem="cAf-Ev-46V" firstAttribute="top" secondItem="WfH-Sw-fLN" secondAttribute="top" id="ueB-yW-wJ2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tap" destination="ujh-DS-tEW" id="y3c-g6-8Pa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IrF-pF-Jjz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ujh-DS-tEW">
+                    <connections>
+                        <action selector="tapper:" destination="Pk2-zs-4qE" id="O8T-Gf-z97"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="985.50724637681162" y="873.88392857142856"/>
         </scene>
         <!--About Us-->
         <scene sceneID="tvs-b0-4Dm">
