@@ -14,6 +14,7 @@ const MapContainer = ({stopData}) => {
   const [destination, setDestination] = useState(null);
   const [origin, setOrigin] = useState(null);
   const [showAllMarkers, setShowAllMarkers] = useState(false);
+  console.log(showAllMarkers);
   const [ selected, setSelected ] = useState({});
   const [defaultCenter, setDefaultCenter] = useState({
     //lat: 41.3851, lng: 2.1734

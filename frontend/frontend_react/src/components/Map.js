@@ -11,6 +11,9 @@ import { useState } from "react";
 import mapStyles from "./mapStyles";
 import Button from "./Button";
 import ApproachingBuses from "./ApproachingBuses";
+import eventBus from "./eventBus";
+import { useSelector, useDispatch } from 'react-redux';
+import { setDirectionsResponseBoolean } from '../redux/directionsResponseBool'
 
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
@@ -26,17 +29,26 @@ const MainMaps = ({stopData}) => {
     libraries,
   });
 
-  const [destination, setDestination] = useState(null);
-  const [origin, setOrigin] = useState(null);
+  // const [destination, setDestination] = useState(null);
+  // const [origin, setOrigin] = useState(null);
+
+  const { directionsRenderBoolean } = useSelector((state) => state.directionsRenderBoolean);
+  const {directionsResponseBoolean } = useSelector((state) => state.directionsResponseBoolean)
+    console.log("render is currently set to ", directionsRenderBoolean);
+    const { showAllStopsBoolean } = useSelector((state) => state.showAllStopsBoolean);
+    const { origin } = useSelector((state) => state.origin);
+    const { destination } = useSelector((state) => state.destination);
+    const dispatch = useDispatch();
+
   const [showAllMarkers, setShowAllMarkers] = useState(true);
   const [ selected, setSelected ] = useState({});
   const [center, setCenter] = useState({
     lat: 53.349804, lng: -6.260310 
   });
+  const [renderState, setRenderState] = useState(false)
 
-
-  const [origin2, setOrigin2] = React.useState("dublin");
-  const [destination2, setDestination2] = React.useState("cork");
+  // const [origin2, setOrigin2] = React.useState("dublin");
+  // const [destination2, setDestination2] = React.useState("cork");
   const [response, setResponse] = React.useState(null);
   const toggleMarkers = () => {
       setShowAllMarkers(!showAllMarkers)
@@ -46,9 +58,9 @@ const MainMaps = ({stopData}) => {
   const directionsCallback = (response) => {
     console.log(response);
 
-    if (response !== null && count.current<2) {
+    if (response !== null && directionsResponseBoolean) {
       if (response.status === "OK") {
-          count.current +=1;
+          dispatch(setDirectionsResponseBoolean(false));
         setResponse(response);
       } else {
         count.current = 0;
@@ -91,15 +103,16 @@ const options = {
       }
   };
 
-  const setJourney = () =>{
-    setOrigin({lat: 53.39187739, lng: -6.259719573})
-    setDestination({lat: 53.22102148, lng: -6.225605532})
-    setShowAllMarkers(false)
-  }
+  // const setJourney = () =>{
+  //   setOrigin({lat: 53.39187739, lng: -6.259719573})
+  //   setDestination({lat: 53.22102148, lng: -6.225605532})
+  //   setShowAllMarkers(false)
+  //   setRenderState(true)
+  // }
 
   return (
     <div>
-      <Button text={"Calculate Route"} onClick={setJourney}></Button>
+      {/* <Button text={"Calculate Route"} onClick={setJourney}></Button> */}
       <Button text={"Show All Stops"} onClick={toggleMarkers}></Button>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
@@ -109,7 +122,7 @@ const options = {
         onLoad={onMapLoad}
       >
           {
-                  showAllMarkers && ( locations.map(stop=>{
+                  showAllStopsBoolean && ( locations.map(stop=>{
                     const location = { lat: parseFloat(stop.Latitude), lng: parseFloat(stop.Longitude) }
                       return(
                           <Marker key={stop.AtcoCode} position = {location} onClick={() => onSelect(stop)}/>
@@ -134,7 +147,7 @@ const options = {
             </InfoWindow>
         )
     }
-        {response !== null && (
+        {response !== null && directionsRenderBoolean && (
           <DirectionsRenderer
             options={{
               directions: response,
