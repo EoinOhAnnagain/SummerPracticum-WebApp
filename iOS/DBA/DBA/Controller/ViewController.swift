@@ -41,15 +41,20 @@ class ViewController: UIViewController {
     
     var weatherTimer: Timer?
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var titleLabel2: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let fadeTextAnimation = CATransition()
+        fadeTextAnimation.duration = 0.5
+        fadeTextAnimation.type = .fade
+            
+        navigationController?.navigationBar.layer.add(fadeTextAnimation, forKey: "fadeText")
+        navigationItem.title = "D B A"
         
         
-        title()
         
         startingPicker.dataSource = self
         endingPicker.dataSource = self
@@ -69,25 +74,6 @@ class ViewController: UIViewController {
         
     }
     
-    
-    
-    func title() {
-        titleLabel.text = ""
-        var i = 1
-        let titleText = "D B A"
-        for letter in titleText {
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(i)*0.3, repeats: false) { (timer) in
-                self.titleLabel.text?.append(letter)
-            }
-            i += 1
-        }
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
-            UIView.animate(withDuration: 3) {
-                self.titleLabel.alpha = 0
-            }
-            
-        }
-    }
     
     
     
