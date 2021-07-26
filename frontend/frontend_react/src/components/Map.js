@@ -14,6 +14,8 @@ import ApproachingBuses from "./ApproachingBuses";
 import eventBus from "./eventBus";
 import { useSelector, useDispatch } from 'react-redux';
 import { setDirectionsResponseBoolean } from '../redux/directionsResponseBool'
+import { setShowAllStopsBoolean } from "../redux/showAllStopsBool";
+import directionsRenderBool, { setDirectionsRenderBoolean } from "../redux/directionsRenderBool";
 
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
@@ -51,7 +53,8 @@ const MainMaps = ({stopData}) => {
   // const [destination2, setDestination2] = React.useState("cork");
   const [response, setResponse] = React.useState(null);
   const toggleMarkers = () => {
-      setShowAllMarkers(!showAllMarkers)
+      dispatch(setShowAllStopsBoolean(!showAllStopsBoolean));
+      dispatch(setDirectionsRenderBoolean(!directionsRenderBoolean));
   }
 
   let count = React.useRef(0);
@@ -61,7 +64,7 @@ const MainMaps = ({stopData}) => {
     if (response !== null && directionsResponseBoolean) {
       if (response.status === "OK") {
           dispatch(setDirectionsResponseBoolean(false));
-        setResponse(response);
+          setResponse(response);
       } else {
         count.current = 0;
         console.log("response: ", response);
