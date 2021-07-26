@@ -20,7 +20,6 @@ class CodeBreakerRulesViewController: UIViewController {
     
 
     @IBAction func tapper(_ sender: Any) {
-        print("tapped")
         dismiss(animated: true, completion: nil)
     }
     
