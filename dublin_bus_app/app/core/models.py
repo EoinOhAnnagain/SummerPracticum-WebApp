@@ -118,6 +118,23 @@ class Shapes(models.Model):
         db_table = 'shapes'
         unique_together = (('shape_id', 'shape_pt_sequence'),)
 
+class StopTimesSeqNum(models.Model):
+    trip_id = models.CharField(primary_key=True, max_length=45)
+    arrival_time = models.CharField(max_length=45, blank=True, null=True)
+    departure_time = models.CharField(max_length=45)
+    stop_id = models.CharField(max_length=45, blank=True, null=True)
+    stop_sequence = models.IntegerField(blank=True, null=True)
+    stop_headsign = models.CharField(max_length=45, blank=True, null=True)
+    pickup_type = models.TextField(blank=True, null=True)
+    drop_off_type = models.TextField(blank=True, null=True)
+    shape_dist_traveled = models.FloatField(blank=True, null=True)
+    route_id = models.CharField(max_length=45, blank=True, null=True)
+    route_number = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'stop_times_seq_num'
+        unique_together = (('trip_id', 'departure_time'),)
 
 class Stops(models.Model):
     stop_id = models.CharField(primary_key=True, max_length=45)
