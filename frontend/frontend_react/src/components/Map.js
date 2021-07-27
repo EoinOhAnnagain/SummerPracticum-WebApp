@@ -57,16 +57,57 @@ const MainMaps = ({stopData}) => {
       dispatch(setDirectionsRenderBoolean(!directionsRenderBoolean));
   }
 
-  let count = React.useRef(0);
+  const postData_fare = async (stops_number, route_number) => {
+    console.log(stops_number, route_number, "in postData_fare");
+    const requestOptions = {
+      method: 'POST',
+      headers: {'Content-Type' : 'application/json' },
+      body: JSON.stringify({
+        param_1: stops_number,
+        param_2: route_number}),
+      };
+      const fareResponse = await fetch('http://localhost:8000/Fare', requestOptions);
+      const data = await fareResponse.json();
+      console.log(data, "fare django response")
+    }
+
+  const postData_traveltime = async (stops_number,route_number,start_stop) => {
+    console.log(stops_number, route_number, start_stop, "in postData_fare")
+    const requestOptions = {
+      method: 'POST',
+      headers: {'Content-Type' : 'application/json' },
+      body: JSON.stringify({
+        param_1: stops_number,
+        param_2: route_number,
+        param_3: start_stop}),
+      };
+      const fareResponse = await fetch('http://localhost:8000/Travel', requestOptions);
+      const data = await fareResponse.json();
+      console.log(data, "ML django response")
+  }
+
+
   const directionsCallback = (response) => {
     console.log(response);
-
     if (response !== null && directionsResponseBoolean) {
       if (response.status === "OK") {
-          dispatch(setDirectionsResponseBoolean(false));
-          setResponse(response);
+        console.log("response from directions API is ", response);  
+        dispatch(setDirectionsResponseBoolean(false));
+        setResponse(response);
+        let fare_info = response["routes"][0]["legs"][0]["steps"];
+        console.log("FARE INFO", fare_info);
+        for (let i in fare_info){
+          if (fare_info[i]["travel_mode"] == "TRANSIT") {
+            let stops_number = fare_info[i]["transit"]["num_stops"];
+            console.log(stops_number);
+            let route_number = fare_info[i]["transit"]["line"]["short_name"];
+            let start_stop = fare_info[i]["transit"]["departure_stop"]["name"];
+            postData_traveltime(stops_number,route_number,start_stop);
+            postData_fare(stops_number,route_number);
+          }
+        }
+        
       } else {
-        count.current = 0;
         console.log("response: ", response);
       }
     }
