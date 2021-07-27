@@ -41,13 +41,20 @@ class ViewController: UIViewController {
     
     var weatherTimer: Timer?
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var titleLabel2: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title()
+        let fadeTextAnimation = CATransition()
+        fadeTextAnimation.duration = 0.5
+        fadeTextAnimation.type = .fade
+            
+        navigationController?.navigationBar.layer.add(fadeTextAnimation, forKey: "fadeText")
+        navigationItem.title = "D B A"
+        
+        
         
         startingPicker.dataSource = self
         endingPicker.dataSource = self
@@ -69,32 +76,11 @@ class ViewController: UIViewController {
     
     
     
-    func title() {
-        titleLabel.text = ""
-        var i = 1
-        let titleText = "D B A"
-        for letter in titleText {
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(i)*0.3, repeats: false) { (timer) in
-                self.titleLabel.text?.append(letter)
-            }
-            i += 1
-        }
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
-            UIView.animate(withDuration: 3) {
-                self.titleLabel.alpha = 0
-            }
-            
-        }
+    
+    @IBAction func mapButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "Mappy", sender: self)
     }
     
-    
-    
-    
-    @IBAction func toMap(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: K.mapSegue, sender: self)
-        
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.weatherSegue {
@@ -224,17 +210,6 @@ extension ViewController {
             chatButton.backgroundColor = .systemGray3
             bookButton.backgroundColor = .systemGray3
             gameButton.backgroundColor = .systemGray3
-        }
-    }
-    
-    
-    @IBAction func logOutPressed(_ sender: UIButton) {
-        do {
-            try Auth.auth().signOut()
-            userEmailString = nil
-            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
-        } catch {
-            print("ERROR")
         }
     }
 }

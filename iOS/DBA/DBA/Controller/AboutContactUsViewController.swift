@@ -14,11 +14,8 @@ class AboutContactUsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
 
-    @IBAction func dismissPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
+    
     /*
     // MARK: - Navigation
 

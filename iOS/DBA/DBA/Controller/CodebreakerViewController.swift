@@ -118,10 +118,7 @@ class CodebreakerViewController: UIViewController {
         roundLabel.alpha = 1
     }
     
-    
-    @IBAction func dismissPressed (_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
+   
     
     
     

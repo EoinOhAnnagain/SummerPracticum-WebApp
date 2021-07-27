@@ -2,26 +2,20 @@
 //  MapViewController.swift
 //  DBA
 //
-//  Created by Eoin Ó'hAnnagáin on 28/06/2021.
+//  Created by Eoin Ó'hAnnagáin on 25/07/2021.
 //
 
 import UIKit
 
 class MapViewController: UIViewController {
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         // Do any additional setup after loading the view.
     }
     
 
-    @IBAction func DismissPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
     /*
     // MARK: - Navigation
 
@@ -33,6 +27,3 @@ class MapViewController: UIViewController {
     */
 
 }
-
-//lc results
-//using less than recent employer

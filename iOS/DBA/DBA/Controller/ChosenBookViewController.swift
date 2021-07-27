@@ -35,7 +35,6 @@ class ChosenBookViewController: UIViewController {
     }
     
     @IBAction func tapper(_ sender: Any) {
-        print("tapped")
         dismiss(animated: true, completion: nil)
     }
     
@@ -67,7 +66,6 @@ extension ChosenBookViewController: UIPickerViewDataSource {
 extension ChosenBookViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        print(row)
         return K.bookChapterNames[bookTitle!]![row]
             }
     
@@ -77,9 +75,6 @@ extension ChosenBookViewController: UIPickerViewDelegate {
     
     
     @IBAction func bookSelectPressed(_ sender: UIButton) {
-        
-        print(bookTitle!+String(currentRow))
-        
         performSegue(withIdentifier: K.readBook, sender: self)
     }
     
