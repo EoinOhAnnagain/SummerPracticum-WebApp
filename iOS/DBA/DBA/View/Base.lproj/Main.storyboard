@@ -77,18 +77,15 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PcN-na-rMH">
-                                <rect key="frame" x="0.0" y="140" width="414" height="608"/>
+                                <rect key="frame" x="0.0" y="140.00000000000003" width="414" height="415.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="608" id="DwA-yt-9Xu"/>
-                                </constraints>
                                 <color key="separatorColor" name="Interface"/>
                             </tableView>
                             <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="I9v-5S-ZQm">
-                                <rect key="frame" x="0.0" y="784.33333333333337" width="414" height="23.666666666666629"/>
+                                <rect key="frame" x="0.0" y="592" width="414" height="216"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O49-ej-mgq">
-                                <rect key="frame" x="380" y="756" width="14" height="20.333333333333371"/>
+                                <rect key="frame" x="380" y="563.66666666666663" width="14" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -967,7 +964,21 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vgw-i0-igU">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7dI-ct-dMk">
+                                            <rect key="frame" x="8" y="59" width="398" height="128"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="7dI-ct-dMk" secondAttribute="height" multiplier="199:64" id="ReE-Gi-7bq"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
                                     <gestureRecognizers/>
+                                    <constraints>
+                                        <constraint firstItem="7dI-ct-dMk" firstAttribute="centerX" secondItem="vgw-i0-igU" secondAttribute="centerX" id="Ccn-wZ-7fO"/>
+                                        <constraint firstAttribute="trailing" secondItem="7dI-ct-dMk" secondAttribute="trailing" constant="8" id="JLq-bF-rBj"/>
+                                        <constraint firstItem="7dI-ct-dMk" firstAttribute="leading" secondItem="vgw-i0-igU" secondAttribute="leading" constant="8" id="d6n-Og-Cxl"/>
+                                        <constraint firstItem="7dI-ct-dMk" firstAttribute="top" secondItem="vgw-i0-igU" secondAttribute="top" constant="59" id="fgO-Wp-CJU"/>
+                                    </constraints>
                                     <connections>
                                         <outletCollection property="gestureRecognizers" destination="ujh-DS-tEW" appends="YES" id="fmx-B0-k1g"/>
                                     </connections>
@@ -986,6 +997,7 @@
                     </view>
                     <connections>
                         <outlet property="tap" destination="ujh-DS-tEW" id="y3c-g6-8Pa"/>
+                        <outlet property="titleImage" destination="7dI-ct-dMk" id="kdn-tb-5ZY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IrF-pF-Jjz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1234,7 +1246,7 @@
             </objects>
             <point key="canvasLocation" x="985.50724637681162" y="87.723214285714278"/>
         </scene>
-        <!--...-->
+        <!--Login View Controller-->
         <scene sceneID="t7U-15-v2c">
             <objects>
                 <viewController id="QJF-4w-IrE" customClass="LoginViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
@@ -1250,11 +1262,6 @@
                                 <state key="normal" title="Continue as Guest">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="guestPressed:" destination="QJF-4w-IrE" eventType="touchUpInside" id="osj-WV-b6R"/>
                                 </connections>
@@ -1366,7 +1373,7 @@
                         <viewLayoutGuide key="safeArea" id="Fli-dP-3FC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="..." id="78T-fk-5C8"/>
+                    <navigationItem key="navigationItem" id="78T-fk-5C8"/>
                     <connections>
                         <outlet property="infoLabel" destination="U34-s3-ZIX" id="pef-uW-aB7"/>
                         <outlet property="loginEmailTextField" destination="qEi-6Z-2Aw" id="tbz-RV-rdp"/>
@@ -1376,6 +1383,11 @@
                         <outlet property="signUpSecondPasswordTextField" destination="SIs-ZY-sCd" id="odp-Uq-9fM"/>
                         <outlet property="titleLabel" destination="gWw-ny-lz4" id="Uns-dG-UK8"/>
                         <outlet property="titleLabel2" destination="WVW-BP-DPH" id="i4I-An-C9d"/>
+                        <outletCollection property="buttonsToRound" destination="Jg1-r2-KnS" collectionClass="NSMutableArray" id="oFz-Ju-3SG"/>
+                        <outletCollection property="buttonsToRound" destination="KFk-h0-cnG" collectionClass="NSMutableArray" id="jsO-r1-9sx"/>
+                        <outletCollection property="buttonsToRound" destination="eyx-nz-tql" collectionClass="NSMutableArray" id="TIV-qp-l0w"/>
+                        <outletCollection property="labelsToRound" destination="gWw-ny-lz4" collectionClass="NSMutableArray" id="0xZ-QK-5ia"/>
+                        <outletCollection property="labelsToRound" destination="WVW-BP-DPH" collectionClass="NSMutableArray" id="wOr-j6-efF"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="LoginToMain" id="OFs-Hh-Nq1"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="GuestToMain" id="DOJ-S0-buZ"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="SignToMain" id="Cmc-VE-ar6"/>
