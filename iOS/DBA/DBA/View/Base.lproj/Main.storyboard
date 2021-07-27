@@ -965,7 +965,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7dI-ct-dMk">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CodeBreaker-23" translatesAutoresizingMaskIntoConstraints="NO" id="7dI-ct-dMk">
                                             <rect key="frame" x="8" y="59" width="398" height="128"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="7dI-ct-dMk" secondAttribute="height" multiplier="199:64" id="ReE-Gi-7bq"/>
@@ -1725,6 +1725,7 @@
         <segue reference="Cmc-VE-ar6"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="CodeBreaker-23" width="851" height="315"/>
         <image name="arrow.up" catalog="system" width="120" height="128"/>
         <image name="arrow.up.and.person.rectangle.portrait" catalog="system" width="128" height="100"/>
         <image name="arrowshape.turn.up.backward" catalog="system" width="128" height="106"/>

@@ -19,15 +19,10 @@ class CodeBreakerRulesViewController: UIViewController {
         super.viewDidLoad()
 
         
-//        titleImage.image = UIImage(named: "CodeBreaker-1")
-        titleImage.animationImages = animateImage(for: "CodeBreaker-")
-        titleImage.animationDuration = 0.9
-        titleImage.animationRepeatCount = 2
-        titleImage.image = titleImage.animationImages?.first
-        titleImage.startAnimating()
+        animateTitle()
         
-        
-        // Do any additional setup after loading the view.
+
+      
     }
     
 
@@ -46,17 +41,39 @@ class CodeBreakerRulesViewController: UIViewController {
     }
     */
 
+    
+    
+
+
+
+//MARK: - Title Animation
+    
+    func animateTitle() {
+        titleImage.image = UIImage(named: "CodeBreaker-23")
+        titleImage.animationImages = animateImage(for: "CodeBreaker-")
+        titleImage.animationDuration = 19
+        titleImage.startAnimating()
+    }
+    
     func animateImage(for name: String) -> [UIImage] {
         
-        var i = 0
+        var i = 1
         var images = [UIImage]()
         
         while let image = UIImage(named: "\(name)\(i)") {
             images.append(image)
             i += 1
+            if i == 30 {
+                for _ in 0...115 {
+                    images.append(UIImage(named: "CodeBreaker-30")!)
+                }
+            }
+        }
+        
+        for _ in 0...120 {
+            images.append(UIImage(named: "CodeBreaker-1")!)
         }
         
         return images
     }
-    
 }
