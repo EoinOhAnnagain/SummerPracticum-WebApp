@@ -39,12 +39,15 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
         round()
         title()
         
-        
+        loginEmailTextField.delegate = self
+        loginPasswordTextField.delegate = self
+        signUpEmailTextField.delegate = self
+        signUpPasswordTextField.delegate = self
+        signUpSecondPasswordTextField.delegate = self
         // Do any additional setup after loading the view.
         
     }
-    
-    
+  
     
     func title() {
         titleLabel.text = ""
@@ -115,6 +118,10 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
 extension LoginViewController {
     
     @IBAction func loginPressed(_ sender: UIButton) {
+        login()
+    }
+    
+    func login() {
         
         if let email = loginEmailTextField.text, let password = loginPasswordTextField.text {
             if email != "" && password != "" {
@@ -140,7 +147,10 @@ extension LoginViewController {
 extension LoginViewController {
     
     @IBAction func signUpPressed(_ sender: UIButton) {
-        
+        signUp()
+    }
+    
+    func signUp() {
         if let email = signUpEmailTextField.text, let password = signUpPasswordTextField.text, let password2 = signUpSecondPasswordTextField.text {
             if email != "" && password != "" && password2 != "" {
                 if password == password2 {
@@ -192,5 +202,19 @@ extension LoginViewController {
     
     func roundLabels(_ name: UILabel) {
         name.layer.cornerRadius = 0.3 * name.bounds.size.height
+    }
+}
+
+
+// MARK: - Manage Return Key
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == loginPasswordTextField {
+            login()
+        } else if textField == signUpSecondPasswordTextField {
+            signUp()
+        }
+        return view.endEditing(true)
     }
 }
