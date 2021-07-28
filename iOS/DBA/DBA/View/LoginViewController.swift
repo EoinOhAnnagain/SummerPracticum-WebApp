@@ -30,7 +30,10 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
     
     
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        infoLabel.text = ""
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

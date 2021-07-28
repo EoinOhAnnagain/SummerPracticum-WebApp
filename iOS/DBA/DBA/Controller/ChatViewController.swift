@@ -37,6 +37,7 @@ class ChatViewController: UIViewController {
         chatPicker.dataSource = self
         chatPicker.delegate = self
         
+        messageTextField.delegate = self
         
         tableView.register(UINib(nibName: K.chat.chatNib, bundle: nil), forCellReuseIdentifier: K.chat.chatCellID)
         // Do any additional setup after loading the view.
@@ -88,32 +89,7 @@ class ChatViewController: UIViewController {
                 }
             }
     }
-    
-    @IBAction func sendPressed(_ sender: UIButton) {
-        
-        if let messageText = messageTextField.text, let messageSender = Auth.auth().currentUser?.email {
-            if messageText != "" {
-                db.collection(chosenChat).addDocument(data: [
-                    K.chat.FStore.senderField: messageSender,
-                    K.chat.FStore.textField: messageText,
-                    K.chat.FStore.dateField: Date().timeIntervalSince1970
-                ]) { (error) in
-                    if let e = error {
-                        print(e.localizedDescription)
-                    } else {
-                        print("saved data")
-                        DispatchQueue.main.async {
-                            self.messageTextField.text = ""
-                        }
-                    }
-                }
-            } else {
-                print("Message is empty")
-            }
-        } else {
-            print("Fill fields")
-        }
-    }
+
     
     @IBAction func dismissPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
@@ -271,5 +247,43 @@ extension ChatViewController: UIPickerViewDelegate {
         
         print(chosenChat)
         loadMessages()
+    }
+}
+
+// MARK: - Manage Return Key
+
+extension ChatViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        send()
+        return view.endEditing(true)
+    }
+    
+    func send() {
+        if let messageText = messageTextField.text, let messageSender = Auth.auth().currentUser?.email {
+            if messageText != "" {
+                db.collection(chosenChat).addDocument(data: [
+                    K.chat.FStore.senderField: messageSender,
+                    K.chat.FStore.textField: messageText,
+                    K.chat.FStore.dateField: Date().timeIntervalSince1970
+                ]) { (error) in
+                    if let e = error {
+                        print(e.localizedDescription)
+                    } else {
+                        print("saved data")
+                        DispatchQueue.main.async {
+                            self.messageTextField.text = ""
+                        }
+                    }
+                }
+            } else {
+                print("Message is empty")
+            }
+        } else {
+            print("Fill fields")
+        }
+    }
+    
+    @IBAction func sendPressed(_ sender: UIButton) {
+        send()
     }
 }
