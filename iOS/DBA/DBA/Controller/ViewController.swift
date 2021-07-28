@@ -101,7 +101,7 @@ class ViewController: UIViewController {
     
     @IBAction func toGame(_ sender: UIButton) {
         if userEmailString == nil {
-            showProUserOnlyAlert("Codebreaker")
+            showProUserOnlyAlert("CodeBreaker")
         } else {
             performSegue(withIdentifier: K.toGame, sender: self)
         }
@@ -115,7 +115,9 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func contactAboutUs(_ sender: Any) {
+    @IBAction func contactUsPressed(_ sender: UIButton) {
+    }
+    @IBAction func aboutUsPressed(_ sender: Any) {
         performSegue(withIdentifier: K.toUs, sender: self)
     }
 }
@@ -221,12 +223,11 @@ extension ViewController {
     func showProUserOnlyAlert(_ feature: String) {
         let actionSheet = UIAlertController(title: "\(feature) is a Pro User Feature", message: "We are sorry but some of our features are only available for pro users. To access this feature please either login or sign up to be a pro user.", preferredStyle: .actionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: "Sign Up", style: .default, handler: { action in
-            self.performSegue(withIdentifier: K.toSignUp, sender: self)
-        }))
         
-        actionSheet.addAction(UIAlertAction(title: "Login", style: .default, handler: { action in
-            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        
+        actionSheet.addAction(UIAlertAction(title: "Login or Sign Up", style: .default, handler: { action in
+            print("here")
+            self.navigationController?.popViewController(animated: true)
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in
