@@ -10,12 +10,47 @@ from .models import *
 from django.views.decorators.csrf import csrf_exempt
 
 import json
+from datetime import datetime, timedelta
 
 """Hank add for testing dB"""
 def show_agency_list(request):
     user_list = Agency.objects.order_by('agency_name')
     output = ', '.join([user.agency_name for user in user_list])
     return HttpResponse(output)
+
+def ApproachingBuses(request, stopNumber):
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print(current_time, "is current time")
+    format = "%H:%M:%S"
+    current_time = datetime.strptime(current_time, format)
+    allBuses = StopTimesSeqNum.objects.filter(stop_id = stopNumber)
+    print(allBuses)
+    dueBuses = []
+    for bus in allBuses:
+        route_id = bus.route_id
+        split_elements = route_id.split("-")
+        route_number = split_elements[1]
+        if bus.arrival_time.startswith("24"): # Correct incorrect formatting of time
+            arrival = bus.arrival_time.replace("24", "00", 1)
+        else:
+            arrival = bus.arrival_time
+        arrival = datetime.strptime(arrival, format)
+        tdelta = arrival - current_time # Get time difference between arrival and now
+        if tdelta.days < 0:
+            tdelta = timedelta(days=0, seconds=tdelta.seconds)
+        print(tdelta.seconds)
+        if (tdelta.seconds >0 and tdelta.seconds < 1800): # Get details of all buses in next hour
+            dueBuses.append({"id": bus.trip_id, "route_number": route_number, "arrivalTime": bus.arrival_time})
+    json_string = json.dumps(dueBuses)
+    jsonBuses = json.loads(json_string)
+    # Sort by closest to furthest away
+    def sortByArrival(value):
+        return value["arrivalTime"]
+    sortedBuses = sorted(jsonBuses, key=sortByArrival)
+    print(sortedBuses)
+    return JsonResponse(sortedBuses, safe=False)
+
 
 @csrf_exempt
 def LiveData(request, stopNumber):
@@ -92,8 +127,29 @@ def MapView(request):
 
     return render(request, "map.html")
 
-def show_user_list(request):
-    user_list = CustomUser.objects.order_by('username')
-    output = ', '.join([user.username for user in user_list])
-    return HttpResponse(output)
+# def show_user_list(request):
+#     user_list = CustomUser.objects.order_by('username')
+#     output = ', '.join([user.username for user in user_list])
+#     return HttpResponse(output)
 
+from core.fare_calculation import fare_crawler
+def FareCalculation(request):
+    if request.method == "POST":
+        stops_number = request.POST.get('param_1')
+        route_number = request.POST.get('param_2')
+        f = fare_crawler(int(route_number),int(stops_number))
+        result = f.parse()
+        #order = "python3 core/fare_calculation.py {} {}".format(stops_number,route_number)
+        #result = subprocess.check_output(order)
+        print(result)
+        return HttpResponse(result)
+from core.machine_learning import travel_time
+def Traveltime(request):
+    # total_time = 1
+    if request.method == "POST":
+        stops_number = request.POST.get('param_1')
+        route_number = request.POST.get('param_2')
+        start_stop = request.POST.get('param_3')
+        time = travel_time(stops_number,route_number,start_stop)
+        total_time = time.get_sql_info()
+    return HttpResponse(total_time)

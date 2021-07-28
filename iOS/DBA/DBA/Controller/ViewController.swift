@@ -41,13 +41,20 @@ class ViewController: UIViewController {
     
     var weatherTimer: Timer?
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var titleLabel2: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title()
+        let fadeTextAnimation = CATransition()
+        fadeTextAnimation.duration = 0.5
+        fadeTextAnimation.type = .fade
+            
+        navigationController?.navigationBar.layer.add(fadeTextAnimation, forKey: "fadeText")
+        navigationItem.title = "D B A"
+        
+        
         
         startingPicker.dataSource = self
         endingPicker.dataSource = self
@@ -69,32 +76,11 @@ class ViewController: UIViewController {
     
     
     
-    func title() {
-        titleLabel.text = ""
-        var i = 1
-        let titleText = "D B A"
-        for letter in titleText {
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(i)*0.3, repeats: false) { (timer) in
-                self.titleLabel.text?.append(letter)
-            }
-            i += 1
-        }
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
-            UIView.animate(withDuration: 3) {
-                self.titleLabel.alpha = 0
-            }
-            
-        }
+    
+    @IBAction func mapButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "Mappy", sender: self)
     }
     
-    
-    
-    
-    @IBAction func toMap(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: K.mapSegue, sender: self)
-        
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.weatherSegue {
@@ -115,7 +101,7 @@ class ViewController: UIViewController {
     
     @IBAction func toGame(_ sender: UIButton) {
         if userEmailString == nil {
-            showProUserOnlyAlert("Codebreaker")
+            showProUserOnlyAlert("CodeBreaker")
         } else {
             performSegue(withIdentifier: K.toGame, sender: self)
         }
@@ -129,7 +115,9 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func contactAboutUs(_ sender: Any) {
+    @IBAction func contactUsPressed(_ sender: UIButton) {
+    }
+    @IBAction func aboutUsPressed(_ sender: Any) {
         performSegue(withIdentifier: K.toUs, sender: self)
     }
 }
@@ -226,17 +214,6 @@ extension ViewController {
             gameButton.backgroundColor = .systemGray3
         }
     }
-    
-    
-    @IBAction func logOutPressed(_ sender: UIButton) {
-        do {
-            try Auth.auth().signOut()
-            userEmailString = nil
-            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
-        } catch {
-            print("ERROR")
-        }
-    }
 }
 
 //MARK: - Alert
@@ -246,12 +223,11 @@ extension ViewController {
     func showProUserOnlyAlert(_ feature: String) {
         let actionSheet = UIAlertController(title: "\(feature) is a Pro User Feature", message: "We are sorry but some of our features are only available for pro users. To access this feature please either login or sign up to be a pro user.", preferredStyle: .actionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: "Sign Up", style: .default, handler: { action in
-            self.performSegue(withIdentifier: K.toSignUp, sender: self)
-        }))
         
-        actionSheet.addAction(UIAlertAction(title: "Login", style: .default, handler: { action in
-            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        
+        actionSheet.addAction(UIAlertAction(title: "Login or Sign Up", style: .default, handler: { action in
+            print("here")
+            self.navigationController?.popViewController(animated: true)
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in

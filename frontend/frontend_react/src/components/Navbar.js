@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import SidebarInputFields from './SidebarInputFields'
 import './Navbar.css'
 
-const Navbar = () => {
+const Navbar = ({stopData}) => {
     const[sidebar, setSidebar] = useState(false)
 
     const showSidebar = () => setSidebar(!sidebar)
@@ -20,12 +20,12 @@ const Navbar = () => {
             <ul className='nav-menu-items'>
                 <li className='navbar-toggle'>
                     <Link to='#' className =  'menu-bars'>
-                        <AiIcons.AiOutlineClose/>
+                        <AiIcons.AiOutlineClose onClick={showSidebar}/>
                     </Link>
+                    <SidebarInputFields stopData={stopData}/>
                 </li>
-                <li key= {1} className="firstSidebar" >
-                    <SidebarInputFields/> Hey
-                </li>
+                    
+                
             </ul>
         </nav>
         </>

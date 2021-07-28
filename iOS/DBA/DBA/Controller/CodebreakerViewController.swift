@@ -76,9 +76,10 @@ class CodebreakerViewController: UIViewController {
             circle.layer.borderColor = UIColor.systemGray3.cgColor
         }
         
-        //for i in 0...3 {
-        //    AnswerCircles[i].backgroundColor = codeColors[i]
-        //}
+//        Uncomment this section to dispaly the devices chosen code for debugging 
+//        for i in 0...3 {
+//            AnswerCircles[i].backgroundColor = codeColors[i]
+//        }
         
         prepRoundCircles(roundCircles)
         prepRoundLabels()
@@ -117,10 +118,7 @@ class CodebreakerViewController: UIViewController {
         roundLabel.alpha = 1
     }
     
-    
-    @IBAction func dismissPressed (_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
+   
     
     
     
@@ -159,17 +157,20 @@ class CodebreakerViewController: UIViewController {
             }
             
             if currentRound == 8 {
+                
+                
                 currentRound = -1
                 currentCircle = 0
                 
-                gameLost()
-                
+                if checkAnswers(true) == false {
+                    gameLost()
+                }
                 
                 
                 
             } else {
                 
-                checkAnswers()
+                checkAnswers(false)
                 
                 
                 
@@ -177,7 +178,7 @@ class CodebreakerViewController: UIViewController {
         }
     }
     
-    func checkAnswers() {
+    func checkAnswers(_ last: Bool) -> Bool {
         
         used = [false, false, false, false]
         hits = [false, false, false, false]
@@ -212,6 +213,7 @@ class CodebreakerViewController: UIViewController {
                 if answerColors[g].accessibilityName == codeColors[i].accessibilityName {
                     used[g] = true
                     blows[i] = true
+                    break 
                 }
             }
         }
@@ -228,7 +230,8 @@ class CodebreakerViewController: UIViewController {
         
         if hitCounter == 4 {
             gameWon()
-        } else {
+            return true
+        } else if last == false {
             
             HitandBlowLabels[currentRound-1].alpha = 1
             var hitAndBlowString = "\(hitCounter) hit"
@@ -242,6 +245,7 @@ class CodebreakerViewController: UIViewController {
             HitandBlowLabels[currentRound-1].text = hitAndBlowString
             currectRoundPrep(roundCircles, roundLabels[currentRound])
         }
+        return false
     }
     
     
