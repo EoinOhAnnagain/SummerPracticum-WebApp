@@ -245,98 +245,133 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Error" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="OrJ-2g-e8G">
-                                <rect key="frame" x="0.0" y="75" width="414" height="679"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Error" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="OrJ-2g-e8G">
+                                <rect key="frame" x="10" y="64" width="394" height="712"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8GN-JB-mpq">
-                                <rect key="frame" x="20" y="781" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <imageReference key="image" image="arrowshape.turn.up.backward" catalog="system" symbolScale="large"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="dismissPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="YVD-9a-a7d"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAZ-D3-oOZ">
-                                <rect key="frame" x="98" y="781" width="90" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <imageReference key="image" image="backward.end" catalog="system" symbolScale="large"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="previousPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="M6V-fY-ciP"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDq-4h-Fgn">
-                                <rect key="frame" x="200" y="781" width="90" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <imageReference key="image" image="arrow.up" catalog="system" symbolScale="large"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="toTopPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="f7k-am-Gx0"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ac-VP-FbF">
-                                <rect key="frame" x="304" y="781" width="90" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <imageReference key="image" image="forward.end" catalog="system" symbolScale="large"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="forwardPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="1uL-fc-qQa"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Fq0-gy-eJs">
+                                <rect key="frame" x="20" y="796" width="374" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8GN-JB-mpq">
+                                        <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="60"/>
+                                        <color key="backgroundColor" name="Interface"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="46b-uZ-qwP"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="lbo-Rn-Hgl"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <imageReference key="image" image="arrowshape.turn.up.backward" catalog="system" symbolScale="large"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="dismissPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="YVD-9a-a7d"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAZ-D3-oOZ">
+                                        <rect key="frame" x="76.666666666666671" y="0.0" width="67.000000000000014" height="60"/>
+                                        <color key="backgroundColor" name="Interface"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <imageReference key="image" image="arrow.left" catalog="system" symbolScale="large"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="previousPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="M6V-fY-ciP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDq-4h-Fgn">
+                                        <rect key="frame" x="153.66666666666666" y="0.0" width="66.666666666666657" height="60"/>
+                                        <color key="backgroundColor" name="Interface"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <imageReference key="image" image="arrow.up" catalog="system" symbolScale="large"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="toTopPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="f7k-am-Gx0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ac-VP-FbF">
+                                        <rect key="frame" x="230.33333333333337" y="0.0" width="67" height="60"/>
+                                        <color key="backgroundColor" name="Interface"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <imageReference key="image" image="arrow.right" catalog="system" symbolScale="large"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="forwardPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="1uL-fc-qQa"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpu-nC-9fe">
+                                        <rect key="frame" x="307.33333333333331" y="0.0" width="66.666666666666686" height="60"/>
+                                        <color key="backgroundColor" name="Interface"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <imageReference key="image" image="playpause" catalog="system" symbolScale="large"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="mediaButtonPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="4S3-aR-QfH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="eqi-Eg-I2c"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pxw-5Y-lXa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pxw-5Y-lXa" firstAttribute="trailing" secondItem="Fq0-gy-eJs" secondAttribute="trailing" constant="20" id="3Mg-w5-XMp"/>
+                            <constraint firstItem="Fq0-gy-eJs" firstAttribute="centerX" secondItem="eI5-bF-Wii" secondAttribute="centerX" id="CjE-Ug-tXn"/>
+                            <constraint firstItem="Fq0-gy-eJs" firstAttribute="leading" secondItem="pxw-5Y-lXa" secondAttribute="leading" constant="20" id="DjR-Uh-rnW"/>
+                            <constraint firstAttribute="bottom" secondItem="Fq0-gy-eJs" secondAttribute="bottom" constant="40" id="jeX-md-GkM"/>
+                            <constraint firstItem="OrJ-2g-e8G" firstAttribute="trailing" secondItem="pxw-5Y-lXa" secondAttribute="trailing" constant="-10" id="l9l-xD-mnE"/>
+                            <constraint firstItem="OrJ-2g-e8G" firstAttribute="leading" secondItem="pxw-5Y-lXa" secondAttribute="leading" constant="10" id="mY3-po-6y0"/>
+                            <constraint firstItem="OrJ-2g-e8G" firstAttribute="top" secondItem="pxw-5Y-lXa" secondAttribute="top" constant="20" id="oKy-Im-0Tu"/>
+                            <constraint firstItem="Fq0-gy-eJs" firstAttribute="top" secondItem="OrJ-2g-e8G" secondAttribute="bottom" constant="20" id="zlU-hP-CjI"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dEU-FU-Di2"/>
                     <connections>
                         <outlet property="bookText" destination="OrJ-2g-e8G" id="U8b-TT-BeC"/>
+                        <outlet property="mediaButton" destination="dpu-nC-9fe" id="UXd-B2-jSD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WvU-Yt-Sh9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="641" y="-469"/>
+            <point key="canvasLocation" x="640.57971014492762" y="-469.41964285714283"/>
         </scene>
         <!--CodeBreaker-->
         <scene sceneID="9nn-Pt-hSZ">
@@ -1765,19 +1800,20 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="CodeBreaker-23" width="851" height="315"/>
+        <image name="arrow.left" catalog="system" width="128" height="98"/>
+        <image name="arrow.right" catalog="system" width="128" height="98"/>
         <image name="arrow.up" catalog="system" width="120" height="128"/>
         <image name="arrow.up.and.person.rectangle.portrait" catalog="system" width="128" height="100"/>
         <image name="arrowshape.turn.up.backward" catalog="system" width="128" height="106"/>
-        <image name="backward.end" catalog="system" width="128" height="120"/>
         <image name="book" catalog="system" width="128" height="102"/>
         <image name="book.circle" catalog="system" width="128" height="121"/>
         <image name="checkmark.seal.fill" catalog="system" width="128" height="128"/>
         <image name="circle.grid.2x2" catalog="system" width="128" height="112"/>
-        <image name="forward.end" catalog="system" width="128" height="120"/>
         <image name="gamecontroller.fill" catalog="system" width="128" height="80"/>
         <image name="message.circle" catalog="system" width="128" height="121"/>
         <image name="paperplane.circle" catalog="system" width="128" height="121"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="playpause" catalog="system" width="128" height="80"/>
         <image name="questionmark.circle" catalog="system" width="128" height="121"/>
         <image name="sun.max" catalog="system" width="128" height="124"/>
         <image name="sunrise" catalog="system" width="128" height="97"/>
