@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AboutContactUsViewController: UIViewController {
+class AboutUsViewController: UIViewController {
 
     @IBOutlet weak var bookStopButton: UIBarButtonItem!
     

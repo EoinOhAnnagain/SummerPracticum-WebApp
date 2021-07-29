@@ -1096,7 +1096,7 @@
         <!--About Us-->
         <scene sceneID="tvs-b0-4Dm">
             <objects>
-                <viewController id="t2D-eN-zyk" customClass="AboutContactUsViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="t2D-eN-zyk" customClass="AboutUsViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pqu-er-Kjg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
