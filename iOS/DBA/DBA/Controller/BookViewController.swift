@@ -10,19 +10,21 @@ import UIKit
 class BookViewController: UIViewController {
 
     @IBOutlet weak var bookText: UITextView!
+    @IBOutlet weak var mediaButton: UIButton!
     
     
     var bookTitle: String?
     var chapterNumber: Int?
     var fileName: String?
     
+    var playing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setFileName()
         readChapter()
-        
+        SpeechService.shared.changedChapter(bookText.text)
         
         
         
@@ -63,6 +65,7 @@ class BookViewController: UIViewController {
             chapterNumber! -= 1
             setFileName()
             readChapter()
+            SpeechService.shared.changedChapter(bookText.text)
         } else {
             print("nope")
         }
@@ -73,6 +76,7 @@ class BookViewController: UIViewController {
             chapterNumber! += 1
             setFileName()
             readChapter()
+            SpeechService.shared.changedChapter(bookText.text)
         } else {
             dismiss(animated: true, completion: nil)
         }
@@ -90,6 +94,19 @@ class BookViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func mediaButtonPressed(_ sender: UIButton) {
+        
+        if SpeechService.isPlaying {
+            //Audio is playing (to stop)
+            //bookText.becomeFirstResponder()
+            SpeechService.shared.stopSpeeching()
+        } else {
+            //Audio not playing (to start)
+            //bookText.resignFirstResponder()
+            SpeechService.shared.startSpeech(bookText.text)
+        }
+        
+    }
+    
 }
 
