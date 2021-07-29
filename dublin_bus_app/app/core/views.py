@@ -142,14 +142,14 @@ def FareCalculation(request):
         print(stops_number, "is stops number")
         route_number = post_data.get('param_2')
         print(route_number, "is route number")
-        f = fare_crawler(int(route_number),int(stops_number))
+        f = fare_crawler(route_number,int(stops_number))
         result = f.parse()
         #order = "python3 core/fare_calculation.py {} {}".format(stops_number,route_number)
         #result = subprocess.check_output(order)
         print(result)
         return JsonResponse(result, safe=False)
 
-from core.machine_learning import travel_time
+# from core.machine_learning import travel_time
 @csrf_exempt
 def Traveltime(request):
     # total_time = 1
@@ -158,6 +158,9 @@ def Traveltime(request):
         stops_number = post_data.get('param_1')
         route_number = post_data.get('param_2')
         start_stop = post_data.get('param_3')
-        time = travel_time(stops_number,route_number,start_stop)
-        total_time = time.get_sql_info()
-    return JsonResponse(total_time, safe=False)
+        journey_date = post_data.get('param_4')
+        print(journey_date, "is journey date")
+        # time = travel_time(stops_number,route_number,start_stop)
+        # total_time = time.get_sql_info()
+    # return JsonResponse(total_time, safe=False)
+    return JsonResponse(1500, safe=False) 

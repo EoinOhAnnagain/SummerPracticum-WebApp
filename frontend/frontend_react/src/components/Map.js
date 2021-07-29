@@ -40,6 +40,7 @@ const MainMaps = ({stopData}) => {
     const { showAllStopsBoolean } = useSelector((state) => state.showAllStopsBoolean);
     const { origin } = useSelector((state) => state.origin);
     const { destination } = useSelector((state) => state.destination);
+    const { journeyDate } = useSelector((state) => state.journeyDate);
     const dispatch = useDispatch();
 
   const [showAllMarkers, setShowAllMarkers] = useState(true);
@@ -47,7 +48,8 @@ const MainMaps = ({stopData}) => {
   const [center, setCenter] = useState({
     lat: 53.349804, lng: -6.260310 
   });
-  const [renderState, setRenderState] = useState(false)
+  const [postResults, setPostResults ] = useState(false);
+  const [renderState, setRenderState] = useState(false);
 
   // const [origin2, setOrigin2] = React.useState("dublin");
   // const [destination2, setDestination2] = React.useState("cork");
@@ -71,7 +73,7 @@ const MainMaps = ({stopData}) => {
       console.log(data, "fare django response")
     }
 
-  const postData_traveltime = async (stops_number,route_number,start_stop) => {
+  const postData_traveltime = async (stops_number,route_number,start_stop, journeyDate) => {
     console.log(stops_number, route_number, start_stop, "in postData_fare")
     const requestOptions = {
       method: 'POST',
@@ -79,7 +81,8 @@ const MainMaps = ({stopData}) => {
       body: JSON.stringify({
         param_1: stops_number,
         param_2: route_number,
-        param_3: start_stop}),
+        param_3: start_stop,
+        param_4: journeyDate}),
       };
       const fareResponse = await fetch('http://localhost:8000/Travel', requestOptions);
       const data = await fareResponse.json();
@@ -102,7 +105,7 @@ const MainMaps = ({stopData}) => {
             console.log(stops_number);
             let route_number = fare_info[i]["transit"]["line"]["short_name"];
             let start_stop = fare_info[i]["transit"]["departure_stop"]["name"];
-            postData_traveltime(stops_number,route_number,start_stop);
+            postData_traveltime(stops_number,route_number,start_stop, journeyDate);
             postData_fare(stops_number,route_number);
           }
         }
@@ -156,7 +159,9 @@ const options = {
 
   return (
     <div>
-      {/* <Button text={"Calculate Route"} onClick={setJourney}></Button> */}
+      {postResults && (
+        <div></div>
+      )}
       <Button text={"Show All Stops"} onClick={toggleMarkers}></Button>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}

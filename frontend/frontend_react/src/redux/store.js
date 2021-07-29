@@ -4,6 +4,7 @@ import destinationReducer from "./destination";
 import directionsRenderBooleanReducer from "./directionsRenderBool";
 import directionsResponseBooleanReducer from "./directionsResponseBool"
 import showAllStopsBooleanReducer from "./showAllStopsBool";
+import journeyDateReducer from "./journeyDate"
 
 export default configureStore({
     reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
         directionsRenderBoolean : directionsRenderBooleanReducer,
         directionsResponseBoolean: directionsResponseBooleanReducer,
         showAllStopsBoolean : showAllStopsBooleanReducer,
+        journeyDate : journeyDateReducer,
     }
 });
