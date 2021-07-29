@@ -1118,6 +1118,31 @@
             </objects>
             <point key="canvasLocation" x="-1533" y="2084"/>
         </scene>
+        <!--Contact Us-->
+        <scene sceneID="zmK-K5-iCj">
+            <objects>
+                <viewController id="Nqi-gi-NW6" customClass="ContactUsViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NsL-FF-y77">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="UBn-7q-Ffw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Contact Us" id="8KE-hx-Ucn">
+                        <barButtonItem key="rightBarButtonItem" image="book.fill" catalog="system" width="80" id="etY-2T-1jC">
+                            <connections>
+                                <action selector="bookStopButtonPressed:" destination="Nqi-gi-NW6" id="aUC-kY-Saz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bookStopButton" destination="etY-2T-1jC" id="is1-pz-KD1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TUs-Hv-byG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1533" y="2847"/>
+        </scene>
         <!--D B A-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -1323,6 +1348,7 @@
                         <segue destination="R8Y-uH-LR3" kind="show" identifier="MainToGame" id="1sz-Ea-zle"/>
                         <segue destination="KZC-JY-Cne" kind="show" identifier="MainToBookCollection" id="k5Y-yg-h9m"/>
                         <segue destination="Lcm-pK-ovO" kind="show" identifier="Mappy" id="RkJ-gL-WvD"/>
+                        <segue destination="Nqi-gi-NW6" kind="show" identifier="toContactUs" id="M5y-La-fUL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

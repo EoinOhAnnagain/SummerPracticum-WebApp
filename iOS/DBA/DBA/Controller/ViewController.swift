@@ -132,7 +132,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func contactUsPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: K.contactUs, sender: self)
     }
+    
     @IBAction func aboutUsPressed(_ sender: Any) {
         performSegue(withIdentifier: K.toUs, sender: self)
     }
