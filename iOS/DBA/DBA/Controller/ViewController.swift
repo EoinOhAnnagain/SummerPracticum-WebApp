@@ -13,6 +13,8 @@ import Firebase
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var bookStopButton: UIBarButtonItem!
+    
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var tempDisplay: UILabel!
     @IBOutlet weak var degreesText: UILabel!
@@ -42,6 +44,15 @@ class ViewController: UIViewController {
     var weatherTimer: Timer?
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if SpeechService.shared.renderStopButton() {
+            bookStopButton.image = UIImage(systemName: "play.slash")
+        } else {
+            bookStopButton.image = nil
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -72,6 +83,11 @@ class ViewController: UIViewController {
         
         
         
+    }
+    
+    @IBAction func bookStopButtonPressed(_ sender: UIBarButtonItem) {
+        SpeechService.shared.stopSpeeching()
+        navigationItem.setRightBarButton(nil, animated: true)
     }
     
     

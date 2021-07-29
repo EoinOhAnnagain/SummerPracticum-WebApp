@@ -109,8 +109,15 @@
                             <constraint firstItem="PcN-na-rMH" firstAttribute="leading" secondItem="tVg-Md-VWX" secondAttribute="leading" id="zhY-rb-Xiw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Chat" id="trE-VA-TfX"/>
+                    <navigationItem key="navigationItem" title="Chat" id="trE-VA-TfX">
+                        <barButtonItem key="rightBarButtonItem" image="book.fill" catalog="system" width="80" id="xD9-qv-iSr">
+                            <connections>
+                                <action selector="bookStopButtonPressed:" destination="76j-rU-nC6" id="EMg-hY-NKM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="bookStopButton" destination="xD9-qv-iSr" id="8TL-mq-2Wn"/>
                         <outlet property="chatPicker" destination="I9v-5S-ZQm" id="QbE-ND-E6a"/>
                         <outlet property="infoLabel" destination="O49-ej-mgq" id="wWV-FK-y3n"/>
                         <outlet property="messageTextField" destination="Q0t-0u-Hpi" id="VsO-ND-VdR"/>
@@ -119,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kfi-49-6PX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1533" y="-1216"/>
+            <point key="canvasLocation" x="-1533.3333333333335" y="-1216.0714285714284"/>
         </scene>
         <!--Books-->
         <scene sceneID="Jnk-Ll-hSd">
@@ -159,8 +166,15 @@
                             <constraint firstItem="0Gz-Gm-guF" firstAttribute="trailing" secondItem="TY4-Em-Jep" secondAttribute="trailing" id="w0R-hT-xMM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Books" id="eY4-wZ-GjK"/>
+                    <navigationItem key="navigationItem" title="Books" id="eY4-wZ-GjK">
+                        <barButtonItem key="rightBarButtonItem" image="book.fill" catalog="system" width="80" id="AzR-b7-YlU">
+                            <connections>
+                                <action selector="bookStopButtonPressed:" destination="KZC-JY-Cne" id="isx-KW-NYy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="bookStopButton" destination="AzR-b7-YlU" id="BXf-75-6nG"/>
                         <outlet property="collectionView" destination="0Gz-Gm-guF" id="rfl-7P-UgI"/>
                         <segue destination="de5-6K-IQB" kind="presentation" identifier="bookChosen" modalPresentationStyle="overFullScreen" modalTransitionStyle="flipHorizontal" id="tgc-4n-8AA"/>
                     </connections>
@@ -916,13 +930,20 @@
                         <viewLayoutGuide key="safeArea" id="Dvr-sL-X2i"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="CodeBreaker" id="Wfg-NM-3nc"/>
+                    <navigationItem key="navigationItem" title="CodeBreaker" id="Wfg-NM-3nc">
+                        <barButtonItem key="rightBarButtonItem" image="book.fill" catalog="system" width="80" id="cg6-7O-vD3">
+                            <connections>
+                                <action selector="bookStopButtonPressed:" destination="R8Y-uH-LR3" id="bwU-YY-hVA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="UC1" destination="XZX-Qj-kWR" id="vaI-HN-SFR"/>
                         <outlet property="UC2" destination="5ZP-XY-d6M" id="WzL-s4-aNn"/>
                         <outlet property="UC3" destination="sPm-Be-zNV" id="Ohk-00-cZE"/>
                         <outlet property="UC4" destination="J8S-CS-k74" id="6JI-ZT-26c"/>
                         <outlet property="answerButton" destination="SGo-ki-Lz0" id="Iln-r9-zIw"/>
+                        <outlet property="bookStopButton" destination="cg6-7O-vD3" id="aqi-uB-a15"/>
                         <outlet property="gameOverImage" destination="ecO-lF-0tC" id="vrT-Tj-X4t"/>
                         <outlet property="resultLabel" destination="bQE-09-Ura" id="TVL-lB-hBK"/>
                         <outlet property="victoryImage" destination="xrT-r8-YJG" id="xaN-gr-POw"/>
@@ -1082,7 +1103,16 @@
                         <viewLayoutGuide key="safeArea" id="xgh-Lr-ktT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="About Us" id="BTd-gb-Qxg"/>
+                    <navigationItem key="navigationItem" title="About Us" id="BTd-gb-Qxg">
+                        <barButtonItem key="rightBarButtonItem" image="book.fill" catalog="system" width="80" id="wxp-m4-Ngx">
+                            <connections>
+                                <action selector="bookStopButtonPressed:" destination="t2D-eN-zyk" id="icw-Hs-5cS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bookStopButton" destination="wxp-m4-Ngx" id="yG8-lI-I35"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Idx-jf-Jma" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1267,9 +1297,16 @@
                             <constraint firstItem="DBa-1y-P2S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gFY-jf-hF5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="D B A" id="oTr-0G-0AE"/>
+                    <navigationItem key="navigationItem" title="D B A" id="oTr-0G-0AE">
+                        <barButtonItem key="rightBarButtonItem" image="book.fill" catalog="system" width="80" id="fxa-6z-qJ8">
+                            <connections>
+                                <action selector="bookStopButtonPressed:" destination="BYZ-38-t0r" id="1Ko-vn-Z1m"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bookButton" destination="nyT-GP-VFh" id="8CM-O5-znw"/>
+                        <outlet property="bookStopButton" destination="fxa-6z-qJ8" id="HDP-LD-ulV"/>
                         <outlet property="chatButton" destination="y6N-f9-I6B" id="YvY-6o-r3w"/>
                         <outlet property="degreesText" destination="Qwb-uR-3Pe" id="Njh-HL-gpl"/>
                         <outlet property="endingPicker" destination="LVO-EV-dhw" id="ZIS-UT-9sa"/>
@@ -1313,7 +1350,16 @@
                             <constraint firstItem="Xj0-Cw-71q" firstAttribute="top" secondItem="a7c-mN-1n8" secondAttribute="top" id="yJn-RQ-Fma"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Map" id="yUW-hc-80c"/>
+                    <navigationItem key="navigationItem" title="Map" id="yUW-hc-80c">
+                        <barButtonItem key="rightBarButtonItem" image="book.fill" catalog="system" width="80" id="VZr-9Y-rPW">
+                            <connections>
+                                <action selector="bookStopButtonPressed:" destination="Lcm-pK-ovO" id="qZ7-rZ-wjd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bookStopButton" destination="VZr-9Y-rPW" id="mAp-im-kLn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xLZ-WC-nA6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1446,8 +1492,15 @@
                         <viewLayoutGuide key="safeArea" id="Fli-dP-3FC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="78T-fk-5C8"/>
+                    <navigationItem key="navigationItem" id="78T-fk-5C8">
+                        <barButtonItem key="rightBarButtonItem" image="book.fill" catalog="system" width="80" id="WKE-5z-fvi">
+                            <connections>
+                                <action selector="bookStopButtonPressed:" destination="QJF-4w-IrE" id="bM9-B1-pzl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="bookStopButton" destination="WKE-5z-fvi" id="5KJ-9B-X0J"/>
                         <outlet property="infoLabel" destination="U34-s3-ZIX" id="pef-uW-aB7"/>
                         <outlet property="loginEmailTextField" destination="qEi-6Z-2Aw" id="tbz-RV-rdp"/>
                         <outlet property="loginPasswordTextField" destination="FpX-Rb-R0b" id="ubc-6U-3mB"/>
@@ -1807,6 +1860,7 @@
         <image name="arrowshape.turn.up.backward" catalog="system" width="128" height="106"/>
         <image name="book" catalog="system" width="128" height="102"/>
         <image name="book.circle" catalog="system" width="128" height="121"/>
+        <image name="book.fill" catalog="system" width="128" height="102"/>
         <image name="checkmark.seal.fill" catalog="system" width="128" height="128"/>
         <image name="circle.grid.2x2" catalog="system" width="128" height="112"/>
         <image name="gamecontroller.fill" catalog="system" width="128" height="80"/>

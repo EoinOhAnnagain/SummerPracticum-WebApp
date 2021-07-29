@@ -24,7 +24,7 @@ class BookViewController: UIViewController {
         
         setFileName()
         readChapter()
-        
+        SpeechService.shared.changedChapter(bookText.text)
         
         
         
@@ -65,6 +65,7 @@ class BookViewController: UIViewController {
             chapterNumber! -= 1
             setFileName()
             readChapter()
+            SpeechService.shared.changedChapter(bookText.text)
         } else {
             print("nope")
         }
@@ -75,6 +76,7 @@ class BookViewController: UIViewController {
             chapterNumber! += 1
             setFileName()
             readChapter()
+            SpeechService.shared.changedChapter(bookText.text)
         } else {
             dismiss(animated: true, completion: nil)
         }
@@ -94,18 +96,13 @@ class BookViewController: UIViewController {
     */
     @IBAction func mediaButtonPressed(_ sender: UIButton) {
         
-        if playing {
+        if SpeechService.isPlaying {
             //Audio is playing (to stop)
-            playing = false
-            bookText.becomeFirstResponder()
-            SpeechService.shared.stopSpeeching()x
-            
-            
+            //bookText.becomeFirstResponder()
+            SpeechService.shared.stopSpeeching()
         } else {
             //Audio not playing (to start)
-            playing = true
-            
-            bookText.resignFirstResponder()
+            //bookText.resignFirstResponder()
             SpeechService.shared.startSpeech(bookText.text)
         }
         
