@@ -166,6 +166,7 @@
                             <constraint firstItem="0Gz-Gm-guF" firstAttribute="trailing" secondItem="TY4-Em-Jep" secondAttribute="trailing" id="w0R-hT-xMM"/>
                         </constraints>
                     </view>
+<<<<<<< HEAD
                     <navigationItem key="navigationItem" title="Books" id="eY4-wZ-GjK">
                         <barButtonItem key="rightBarButtonItem" image="book.fill" catalog="system" width="80" id="AzR-b7-YlU">
                             <connections>
@@ -175,13 +176,19 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bookStopButton" destination="AzR-b7-YlU" id="BXf-75-6nG"/>
+=======
+                    <connections>
+>>>>>>> hank_login_react
                         <outlet property="collectionView" destination="0Gz-Gm-guF" id="rfl-7P-UgI"/>
                         <segue destination="de5-6K-IQB" kind="presentation" identifier="bookChosen" modalPresentationStyle="overFullScreen" modalTransitionStyle="flipHorizontal" id="tgc-4n-8AA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Pd-VF-wbS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="-1533" y="-469"/>
+=======
+            <point key="canvasLocation" x="-1223" y="1707"/>
         </scene>
         <!--Chosen Book View Controller-->
         <scene sceneID="56d-vx-Qlq">
@@ -215,6 +222,100 @@
                                     <action selector="bookSelectPressed:" destination="de5-6K-IQB" eventType="touchUpInside" id="zPU-Aq-NgM"/>
                                 </connections>
                             </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="n7n-ia-hfQ"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.83447510943152126" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="n7n-ia-hfQ" firstAttribute="bottom" secondItem="zuY-kh-qWa" secondAttribute="bottom" constant="138" id="Boq-Pb-vmt"/>
+                            <constraint firstItem="xqz-IR-K0d" firstAttribute="top" secondItem="n7n-ia-hfQ" secondAttribute="top" constant="20" id="Y0d-bl-KSN"/>
+                            <constraint firstItem="n7n-ia-hfQ" firstAttribute="trailing" secondItem="xqz-IR-K0d" secondAttribute="trailing" constant="20" id="hoW-MD-fAg"/>
+                            <constraint firstItem="zuY-kh-qWa" firstAttribute="leading" secondItem="n7n-ia-hfQ" secondAttribute="leading" constant="20" id="jTl-6o-WwF"/>
+                            <constraint firstItem="zuY-kh-qWa" firstAttribute="leading" secondItem="n7n-ia-hfQ" secondAttribute="leading" constant="20" id="kWv-3L-k3x"/>
+                            <constraint firstItem="zuY-kh-qWa" firstAttribute="top" secondItem="xqz-IR-K0d" secondAttribute="bottom" constant="10" id="lKl-9b-TIj"/>
+                            <constraint firstItem="zuY-kh-qWa" firstAttribute="trailing" secondItem="n7n-ia-hfQ" secondAttribute="trailing" constant="-20" id="nCJ-lO-2Ha"/>
+                            <constraint firstItem="zuY-kh-qWa" firstAttribute="top" secondItem="xqz-IR-K0d" secondAttribute="bottom" constant="10" id="wW2-NL-OXA"/>
+                            <constraint firstItem="xqz-IR-K0d" firstAttribute="leading" secondItem="n7n-ia-hfQ" secondAttribute="leading" constant="20" id="yJK-oB-AQj"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jif-7h-8OJ" appends="YES" id="0a0-w0-eNc"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="bookCover" destination="xqz-IR-K0d" id="Xdj-Re-Mwd"/>
+                        <outlet property="bookSelect" destination="RV4-wb-f2Q" id="l1r-ie-t19"/>
+                        <outlet property="chaptersPicker" destination="zuY-kh-qWa" id="PZh-Fm-SeJ"/>
+                        <outlet property="tap" destination="jif-7h-8OJ" id="ETV-ag-ocq"/>
+                        <segue destination="EJB-2K-zfZ" kind="presentation" identifier="ReadyToRead" modalPresentationStyle="fullScreen" id="Hwg-5i-fNZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6kJ-JU-G8g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="jif-7h-8OJ">
+                    <connections>
+                        <action selector="tapper:" destination="de5-6K-IQB" id="J6c-hr-V5q"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-107.24637681159422" y="1706.9196428571429"/>
+>>>>>>> hank_login_react
+        </scene>
+        <!--Chosen Book View Controller-->
+        <scene sceneID="56d-vx-Qlq">
+            <objects>
+<<<<<<< HEAD
+                <viewController id="de5-6K-IQB" customClass="ChosenBookViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lyk-B6-Mw4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xqz-IR-K0d">
+                                <rect key="frame" x="20" y="64" width="374" height="400"/>
+                            </imageView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zuY-kh-qWa">
+                                <rect key="frame" x="20" y="474" width="374" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="250" id="2ab-cp-eZz"/>
+                                    <constraint firstAttribute="height" constant="250" id="fF0-1p-g7a"/>
+                                </constraints>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RV4-wb-f2Q">
+                                <rect key="frame" x="334" y="732" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="150"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="book" catalog="system" symbolScale="large"/>
+=======
+                <viewController id="EJB-2K-zfZ" customClass="BookViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eI5-bF-Wii">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Error" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="OrJ-2g-e8G">
+                                <rect key="frame" x="0.0" y="75" width="414" height="679"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8GN-JB-mpq">
+                                <rect key="frame" x="20" y="781" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="arrowshape.turn.up.backward" catalog="system" symbolScale="large"/>
+>>>>>>> hank_login_react
+                                </state>
+                                <connections>
+                                    <action selector="bookSelectPressed:" destination="de5-6K-IQB" eventType="touchUpInside" id="zPU-Aq-NgM"/>
+                                </connections>
+                            </button>
+<<<<<<< HEAD
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="n7n-ia-hfQ"/>
                         <color key="backgroundColor" name="BookChapterBackground"/>
@@ -363,6 +464,62 @@
                                     <constraint firstAttribute="height" constant="60" id="eqi-Eg-I2c"/>
                                 </constraints>
                             </stackView>
+=======
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAZ-D3-oOZ">
+                                <rect key="frame" x="98" y="781" width="90" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="backward.end" catalog="system" symbolScale="large"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="previousPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="M6V-fY-ciP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDq-4h-Fgn">
+                                <rect key="frame" x="200" y="781" width="90" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="arrow.up" catalog="system" symbolScale="large"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="toTopPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="f7k-am-Gx0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ac-VP-FbF">
+                                <rect key="frame" x="304" y="781" width="90" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="forward.end" catalog="system" symbolScale="large"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="forwardPressed:" destination="EJB-2K-zfZ" eventType="touchUpInside" id="1uL-fc-qQa"/>
+                                </connections>
+                            </button>
+>>>>>>> hank_login_react
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pxw-5Y-lXa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -380,12 +537,19 @@
                     <navigationItem key="navigationItem" id="dEU-FU-Di2"/>
                     <connections>
                         <outlet property="bookText" destination="OrJ-2g-e8G" id="U8b-TT-BeC"/>
+<<<<<<< HEAD
                         <outlet property="mediaButton" destination="dpu-nC-9fe" id="UXd-B2-jSD"/>
+=======
+>>>>>>> hank_login_react
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WvU-Yt-Sh9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="640.57971014492762" y="-469.41964285714283"/>
+=======
+            <point key="canvasLocation" x="985.50724637681162" y="1706.9196428571429"/>
+>>>>>>> hank_login_react
         </scene>
         <!--CodeBreaker-->
         <scene sceneID="9nn-Pt-hSZ">
@@ -1116,7 +1280,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Idx-jf-Jma" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="-1533" y="2084"/>
+=======
+            <point key="canvasLocation" x="985.50724637681162" y="873.88392857142856"/>
+>>>>>>> hank_login_react
         </scene>
         <!--Contact Us-->
         <scene sceneID="zmK-K5-iCj">
@@ -1215,11 +1383,77 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5SG-JC-5Cv">
                                 <rect key="frame" x="184" y="526" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+<<<<<<< HEAD
                                 <state key="normal" title="Button"/>
+=======
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
+                                <color key="textColor" name="Interface"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.crop.circle.badge.minus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ms4-G1-ERI">
+                                <rect key="frame" x="289" y="53" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6N-f9-I6B">
+                                <rect key="frame" x="34" y="796.33333333333337" width="80" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="chatButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QSi-Em-zSr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2lV-Xi-tka">
+                                <rect key="frame" x="301" y="796.33333333333337" width="80" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="contactAboutUs:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HJV-wS-2VG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nyT-GP-VFh">
+                                <rect key="frame" x="122" y="796.33333333333337" width="80" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+>>>>>>> hank_login_react
                                 <connections>
                                     <action selector="mapButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F7r-X1-2nJ"/>
                                 </connections>
                             </button>
+<<<<<<< HEAD
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DBa-1y-P2S">
                                 <rect key="frame" x="20" y="802" width="374" height="60"/>
                                 <subviews>
@@ -1313,6 +1547,59 @@
                                     <constraint firstAttribute="height" constant="60" id="0s8-F7-dsm"/>
                                 </constraints>
                             </stackView>
+=======
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ul6-Qu-zkH">
+                                <rect key="frame" x="213" y="796.33333333333337" width="80" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="toGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="daf-FT-cmL"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrow.up.and.person.rectangle.portrait" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rGs-sb-sxd">
+                                <rect key="frame" x="311" y="796.33333333333337" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="message.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7WA-Sr-D5Z">
+                                <rect key="frame" x="44" y="797.33333333333337" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="book.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="D1P-tr-0F1">
+                                <rect key="frame" x="132" y="797.33333333333337" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gamecontroller.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Y89-iu-ZuS">
+                                <rect key="frame" x="223" y="798.33333333333337" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="D B A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFf-7a-lF5">
+                                <rect key="frame" x="46" y="52" width="198" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Interface"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+>>>>>>> hank_login_react
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1343,12 +1630,20 @@
                         <outlet property="weatherLoader" destination="Jhy-lA-Vkw" id="fwl-Ml-0R0"/>
                         <outlet property="weatherWidgetButton" destination="dwc-bj-jxG" id="HIx-0P-y7f"/>
                         <segue destination="Dv3-3x-ApG" kind="presentation" identifier="toWeather" id="rWG-q9-Iep"/>
+<<<<<<< HEAD
                         <segue destination="76j-rU-nC6" kind="show" identifier="MainToChat" id="nlx-U9-drR"/>
                         <segue destination="t2D-eN-zyk" kind="show" identifier="MainToUs" id="Ibc-Tb-y5O"/>
                         <segue destination="R8Y-uH-LR3" kind="show" identifier="MainToGame" id="1sz-Ea-zle"/>
                         <segue destination="KZC-JY-Cne" kind="show" identifier="MainToBookCollection" id="k5Y-yg-h9m"/>
                         <segue destination="Lcm-pK-ovO" kind="show" identifier="Mappy" id="RkJ-gL-WvD"/>
                         <segue destination="Nqi-gi-NW6" kind="show" identifier="toContactUs" id="M5y-La-fUL"/>
+=======
+                        <segue destination="76j-rU-nC6" kind="presentation" identifier="MainToChat" modalPresentationStyle="fullScreen" id="nlx-U9-drR"/>
+                        <segue destination="t2D-eN-zyk" kind="presentation" identifier="MainToUs" id="Ibc-Tb-y5O"/>
+                        <segue destination="3oa-Dk-MC7" kind="presentation" identifier="MainToSignUp" id="6f0-Ip-aVG"/>
+                        <segue destination="R8Y-uH-LR3" kind="show" identifier="MainToGame" id="1sz-Ea-zle"/>
+                        <segue destination="KZC-JY-Cne" kind="presentation" identifier="MainToBookCollection" id="k5Y-yg-h9m"/>
+>>>>>>> hank_login_react
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1495,10 +1790,46 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" name="Interface"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+<<<<<<< HEAD
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES" textContentType="new-password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jg1-r2-KnS">
                                 <rect key="frame" x="42" y="666" width="323" height="60"/>
+=======
+                                <color key="textColor" name="Interface"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="boW-82-RE7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="RlN-US-rWP" id="qI0-aU-PoH"/>
+                        <outlet property="infoLabel" destination="kvf-kS-BF0" id="iFX-0r-odw"/>
+                        <outlet property="passwordTextField" destination="t1a-m2-k5A" id="qml-IG-Ozi"/>
+                        <outlet property="secondPasswordTextField" destination="Ieg-RO-9NU" id="O0N-Ec-wS0"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="SignToMain" modalPresentationStyle="fullScreen" id="PoY-Za-62m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wa9-y2-sj4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="985.50724637681162" y="-719.19642857142856"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="u2A-ug-aMt">
+            <objects>
+                <viewController id="YJP-7s-BuX" customClass="MapViewController" customModule="DBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ah9-JL-wgB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="temp" translatesAutoresizingMaskIntoConstraints="NO" id="Kos-w7-x2c">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="907"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzq-vz-6lg">
+                                <rect key="frame" x="46" y="719" width="323" height="60"/>
+>>>>>>> hank_login_react
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="Interface"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1518,6 +1849,7 @@
                         <viewLayoutGuide key="safeArea" id="Fli-dP-3FC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+<<<<<<< HEAD
                     <navigationItem key="navigationItem" id="78T-fk-5C8">
                         <barButtonItem key="rightBarButtonItem" image="book.fill" catalog="system" width="80" id="WKE-5z-fvi">
                             <connections>
@@ -1543,6 +1875,10 @@
                         <segue destination="BYZ-38-t0r" kind="show" identifier="LoginToMain" id="OFs-Hh-Nq1"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="GuestToMain" id="DOJ-S0-buZ"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="SignToMain" id="Cmc-VE-ar6"/>
+=======
+                    <connections>
+                        <outlet property="image" destination="Kos-w7-x2c" id="Q1b-p9-v19"/>
+>>>>>>> hank_login_react
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k1d-fW-1pD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1878,17 +2214,25 @@
         <segue reference="Cmc-VE-ar6"/>
     </inferredMetricsTieBreakers>
     <resources>
+<<<<<<< HEAD
         <image name="CodeBreaker-23" width="851" height="315"/>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="arrow.right" catalog="system" width="128" height="98"/>
         <image name="arrow.up" catalog="system" width="120" height="128"/>
         <image name="arrow.up.and.person.rectangle.portrait" catalog="system" width="128" height="100"/>
         <image name="arrowshape.turn.up.backward" catalog="system" width="128" height="106"/>
+=======
+        <image name="arrow.up" catalog="system" width="120" height="128"/>
+        <image name="arrow.up.and.person.rectangle.portrait" catalog="system" width="128" height="100"/>
+        <image name="arrowshape.turn.up.backward" catalog="system" width="128" height="106"/>
+        <image name="backward.end" catalog="system" width="128" height="120"/>
+>>>>>>> hank_login_react
         <image name="book" catalog="system" width="128" height="102"/>
         <image name="book.circle" catalog="system" width="128" height="121"/>
         <image name="book.fill" catalog="system" width="128" height="102"/>
         <image name="checkmark.seal.fill" catalog="system" width="128" height="128"/>
         <image name="circle.grid.2x2" catalog="system" width="128" height="112"/>
+        <image name="forward.end" catalog="system" width="128" height="120"/>
         <image name="gamecontroller.fill" catalog="system" width="128" height="80"/>
         <image name="message.circle" catalog="system" width="128" height="121"/>
         <image name="paperplane.circle" catalog="system" width="128" height="121"/>
@@ -1898,6 +2242,7 @@
         <image name="sun.max" catalog="system" width="128" height="124"/>
         <image name="sunrise" catalog="system" width="128" height="97"/>
         <image name="sunset" catalog="system" width="128" height="97"/>
+        <image name="temp" width="400" height="300"/>
         <image name="xmark.seal.fill" catalog="system" width="128" height="128"/>
         <namedColor name="BookChapterBackground">
             <color red="1" green="1" blue="1" alpha="0.89999997615814209" colorSpace="custom" customColorSpace="sRGB"/>

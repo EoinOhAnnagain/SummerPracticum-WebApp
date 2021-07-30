@@ -10,25 +10,38 @@ import UIKit
 class BookViewController: UIViewController {
 
     @IBOutlet weak var bookText: UITextView!
+<<<<<<< HEAD
     @IBOutlet weak var mediaButton: UIButton!
+=======
+>>>>>>> hank_login_react
     
     
     var bookTitle: String?
     var chapterNumber: Int?
     var fileName: String?
     
+<<<<<<< HEAD
     var playing = false
+=======
+>>>>>>> hank_login_react
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setFileName()
         readChapter()
+<<<<<<< HEAD
         SpeechService.shared.changedChapter(bookText.text)
+=======
+>>>>>>> hank_login_react
         
         
         
         
+<<<<<<< HEAD
+=======
+        
+>>>>>>> hank_login_react
         //bookPicker.dataSource = self
         //bookPicker.delegate = self
 
@@ -65,6 +78,7 @@ class BookViewController: UIViewController {
             chapterNumber! -= 1
             setFileName()
             readChapter()
+<<<<<<< HEAD
             SpeechService.shared.changedChapter(bookText.text)
         } else {
             print("nope")
@@ -110,3 +124,35 @@ class BookViewController: UIViewController {
     
 }
 
+=======
+        } else {
+            print("nope")
+        }
+    }
+    
+    @IBAction func forwardPressed(_ sender: UIButton) {
+        if chapterNumber!+1 < K.bookChapterNames[bookTitle!]!.count {
+            chapterNumber! += 1
+            setFileName()
+            readChapter()
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func toTopPressed(_ sender: UIButton) {
+        bookText.scrollRangeToVisible(NSRange(location: 0, length: 0))
+    }
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+
+>>>>>>> hank_login_react

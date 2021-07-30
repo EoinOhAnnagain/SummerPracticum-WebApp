@@ -35,6 +35,10 @@ class ChosenBookViewController: UIViewController {
     }
     
     @IBAction func tapper(_ sender: Any) {
+<<<<<<< HEAD
+=======
+        print("tapped")
+>>>>>>> hank_login_react
         dismiss(animated: true, completion: nil)
     }
     
@@ -66,6 +70,10 @@ extension ChosenBookViewController: UIPickerViewDataSource {
 extension ChosenBookViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+<<<<<<< HEAD
+=======
+        print(row)
+>>>>>>> hank_login_react
         return K.bookChapterNames[bookTitle!]![row]
             }
     
@@ -75,6 +83,12 @@ extension ChosenBookViewController: UIPickerViewDelegate {
     
     
     @IBAction func bookSelectPressed(_ sender: UIButton) {
+<<<<<<< HEAD
+=======
+        
+        print(bookTitle!+String(currentRow))
+        
+>>>>>>> hank_login_react
         performSegue(withIdentifier: K.readBook, sender: self)
     }
     
