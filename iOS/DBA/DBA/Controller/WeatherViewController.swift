@@ -100,11 +100,6 @@ class WeatherViewController: UIViewController {
         
     }
     
-    @IBAction func dismissPressed(_ sender: UIButton) {
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
     /*
     // MARK: - Navigation
 
