@@ -55,12 +55,14 @@ struct WeatherModel {
     var sunriseTime: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-        return dateFormatter.string(from: Date(timeIntervalSince1970: sunrise-Double(TimeZone.current.secondsFromGMT())))
+        return dateFormatter.string(from: Date(timeIntervalSince1970: sunrise))
+//        return dateFormatter.string(from: Date(timeIntervalSince1970: sunrise+Double(TimeZone.current.secondsFromGMT())))
     }
     var sunsetTime: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-        return dateFormatter.string(from: Date(timeIntervalSince1970: sunset-Double(TimeZone.current.secondsFromGMT())))
+        return dateFormatter.string(from: Date(timeIntervalSince1970: sunset))
+//        return dateFormatter.string(from: Date(timeIntervalSince1970: sunset+Double(TimeZone.current.secondsFromGMT())))
     }
     
     
