@@ -6,6 +6,8 @@ import Hello from "./hello";
 import {axiosInstance} from "../axiosApi";
 
 
+
+
 class App extends Component {
     constructor() {
         super();
@@ -38,7 +40,6 @@ class App extends Component {
                     <button onClick={this.handleLogout}>Logout</button>
                 </nav>
                 <main>
-                    <h1>Ahhh after 10,000 years I'm free. Time to conquer the Earth!</h1>
 
                     <Switch>
                         <Route exact path={"/login/"} component={Login}/>
