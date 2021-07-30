@@ -2,7 +2,7 @@ import requests
 from lxml import etree
 class fare_crawler(object):
     def __init__(self,number,stop):
-        self.number = number
+        self.number = number.lower()
         self.direction = "O"
         self.start = 0
         self.stop = stop
@@ -11,10 +11,13 @@ class fare_crawler(object):
             }
         self.url = "https://www.dublinbus.ie/Fare-Calculator/Fare-Calculator-Results/?routeNumber={}&direction={}&board={}&alight={}".format(self.number,self.direction,self.start,self.stop)
     def parse(self):
-        response = requests.get(self.url, headers=self.headers)
-        html_str = response.content.decode()
-        html = etree.HTML(html_str)
-        fare = html.xpath("//div[@class='other-fares-display']/table/tbody")
+        try:
+            response = requests.get(self.url, headers=self.headers)
+            html_str = response.content.decode()
+            html = etree.HTML(html_str)
+            fare = html.xpath("//div[@class='other-fares-display']/table/tbody")
+        except Exception as e:
+            l = "DEFAULT:'AdultCash', 'AdultLeap', 'ChildCash(Under16)', 'ChildLeap(Under19)', 'SchoolHoursCash', 'SchoolHoursLeap', '€3.00', '€2.25', '€1.30', '€1.00', '€1.00', '€0.80'"
         l = []
         k = 0
         for d in fare:
@@ -30,6 +33,8 @@ class fare_crawler(object):
                 w_2 = "".join(p[j].split())
                 l.append(w_2)
                 print(w_2)
+        if len(l) == 0:
+             l = "DEFAULT:'AdultCash', 'AdultLeap', 'ChildCash(Under16)', 'ChildLeap(Under19)', 'SchoolHoursCash', 'SchoolHoursLeap', '€3.00', '€2.25', '€1.30', '€1.00', '€1.00', '€0.80'"
         return l  
 # f = fare_crawler(4,10)
 # l = f.parse()
