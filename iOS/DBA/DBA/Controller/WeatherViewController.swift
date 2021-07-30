@@ -28,7 +28,6 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var windLoader: UIActivityIndicatorView!
     
     @IBOutlet weak var tempTitle: UILabel!
-    @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var realFeelTitle: UILabel!
     @IBOutlet weak var realFeelLabel: UILabel!
     @IBOutlet weak var minTitle: UILabel!
@@ -75,7 +74,7 @@ class WeatherViewController: UIViewController {
             timeLabel.text = currentTime()
             descriptionLabel.text = weather!.description.capitalized
             
-            tempLabel.text = "\(weather!.stringTemperature)ºC"
+            tempTitle.text = "Temperature\n\(weather!.stringTemperature)ºC"
             realFeelLabel.text = "\(weather!.stringFeelsLike)ºC"
             minLabel.text = "\(weather!.stringMin)ºC"
             maxLabel.text = "\(weather!.stringMax)ºC"
@@ -156,7 +155,6 @@ class WeatherViewController: UIViewController {
             self.tempLoader.stopAnimating()
             UIView.animate(withDuration: 1.5) {
                 self.tempTitle.alpha = 1
-                self.tempLabel.alpha = 1
                 self.realFeelTitle.alpha = 1
                 self.realFeelLabel.alpha = 1
                 self.minTitle.alpha = 1
