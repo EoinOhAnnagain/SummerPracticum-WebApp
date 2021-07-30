@@ -149,7 +149,7 @@ def FareCalculation(request):
         print(result)
         return JsonResponse(result, safe=False)
 
-# from core.machine_learning import travel_time
+from core.machine_learning import travel_time
 @csrf_exempt
 def Traveltime(request):
     # total_time = 1
@@ -160,7 +160,7 @@ def Traveltime(request):
         start_stop = post_data.get('param_3')
         journey_date = post_data.get('param_4')
         print(journey_date, "is journey date")
-        # time = travel_time(stops_number,route_number,start_stop)
-        # total_time = time.get_sql_info()
-    # return JsonResponse(total_time, safe=False)
-    return JsonResponse(1500, safe=False) 
+        time = travel_time(stops_number,route_number,start_stop,journey_date)
+        total_time = time.get_sql_info()
+    return JsonResponse(total_time, safe=False)
+    #return JsonResponse(1500, safe=False) 
