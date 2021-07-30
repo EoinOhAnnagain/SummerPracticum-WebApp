@@ -9,7 +9,7 @@ import numpy as np
 from datetime import date
 import math
 import joblib
-class cal_travel_time(object):
+class travel_time(object):
     def __init__(self,stops_number,route_number,start_stop,journey_date):
         self.stops_number = stops_number
         self.route_number = route_number
@@ -93,5 +93,5 @@ class cal_travel_time(object):
         x_li = std.fit_transform(x_li.values.reshape(1,-1))
         y_pre = estimator.predict(x_li)
         return y_pre
-t = cal_travel_time(17,"1","Shanard Avenue, stop 226","2021-07-30")
+t = travel_time(17,"1","Shanard Avenue, stop 226","2021-07-30")
 t.get_sql_info()
