@@ -201,10 +201,14 @@
                                     <constraint firstAttribute="height" constant="250" id="fF0-1p-g7a"/>
                                 </constraints>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RV4-wb-f2Q">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RV4-wb-f2Q">
                                 <rect key="frame" x="334" y="732" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="Interface"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="RV4-wb-f2Q" secondAttribute="height" multiplier="1:1" id="2cl-ye-8vx"/>
+                                    <constraint firstAttribute="height" priority="750" constant="60" id="7RE-hK-LFa"/>
+                                    <constraint firstAttribute="width" priority="750" constant="60" id="Ccq-tR-sjN"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="150"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal">
@@ -220,7 +224,10 @@
                         <color key="backgroundColor" name="BookChapterBackground"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="n7n-ia-hfQ" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RV4-wb-f2Q" secondAttribute="bottom" id="2R4-0X-Q0e"/>
+                            <constraint firstItem="n7n-ia-hfQ" firstAttribute="trailing" secondItem="RV4-wb-f2Q" secondAttribute="trailing" constant="20" id="AWD-fh-sjG"/>
                             <constraint firstItem="n7n-ia-hfQ" firstAttribute="bottom" secondItem="zuY-kh-qWa" secondAttribute="bottom" constant="138" id="Boq-Pb-vmt"/>
+                            <constraint firstItem="RV4-wb-f2Q" firstAttribute="top" secondItem="zuY-kh-qWa" secondAttribute="bottom" constant="8" id="HNF-q9-WB2"/>
                             <constraint firstItem="xqz-IR-K0d" firstAttribute="top" secondItem="n7n-ia-hfQ" secondAttribute="top" constant="20" id="Y0d-bl-KSN"/>
                             <constraint firstItem="n7n-ia-hfQ" firstAttribute="trailing" secondItem="xqz-IR-K0d" secondAttribute="trailing" constant="20" id="hoW-MD-fAg"/>
                             <constraint firstItem="zuY-kh-qWa" firstAttribute="leading" secondItem="n7n-ia-hfQ" secondAttribute="leading" constant="20" id="jTl-6o-WwF"/>
