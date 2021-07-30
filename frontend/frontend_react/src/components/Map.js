@@ -136,7 +136,7 @@ const onCloseInfoWindow = (position) => {
     onMapLoad();
 } 
 const options = {
-    styles: mapStyles,
+    //styles: mapStyles,
     disableDefaultUI: true,
   }
 

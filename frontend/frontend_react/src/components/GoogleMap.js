@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import mapStyles from './mapStyles';
+// import mapStyles from './mapStyles';
 
 function GoogleMap(props) {
   const [zoomLevel, setZoomLevel] = useState(13);
@@ -33,7 +33,7 @@ function GoogleMap(props) {
       <Map
         google={props.google}
         zoom={zoomLevel}
-        styles={mapStyles}
+        // styles={mapStyles}
         
         initialCenter={{
           lat,
