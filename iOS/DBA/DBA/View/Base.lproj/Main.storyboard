@@ -395,540 +395,679 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGo-ki-Lz0">
-                                <rect key="frame" x="334" y="802" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="150"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <imageReference key="image" image="circle.grid.2x2" catalog="system" symbolScale="large"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="answerButtonPressed:" destination="R8Y-uH-LR3" eventType="touchUpInside" id="Nlz-zg-G3j"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAP-6j-CJi">
-                                <rect key="frame" x="14" y="802" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <imageReference key="image" image="questionmark.circle" catalog="system" symbolScale="large"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="Pk2-zs-4qE" kind="presentation" modalPresentationStyle="overFullScreen" modalTransitionStyle="flipHorizontal" id="d61-Lr-sgI"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZX-Qj-kWR">
-                                <rect key="frame" x="82" y="802" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="userButtonPressed:" destination="R8Y-uH-LR3" eventType="touchUpInside" id="hjk-mZ-0Rb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZP-XY-d6M">
-                                <rect key="frame" x="143" y="802" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="userButtonPressed:" destination="R8Y-uH-LR3" eventType="touchUpInside" id="HxS-HW-7ZZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPm-Be-zNV">
-                                <rect key="frame" x="206" y="802" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="userButtonPressed:" destination="R8Y-uH-LR3" eventType="touchUpInside" id="4cQ-L9-p6D"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8S-CS-k74">
-                                <rect key="frame" x="270" y="802" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="userButtonPressed:" destination="R8Y-uH-LR3" eventType="touchUpInside" id="K86-Fd-Ilh"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDS-Dr-3yf">
-                                <rect key="frame" x="83" y="682" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yra-zy-6Ri">
-                                <rect key="frame" x="144" y="682" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bg-HR-G3g">
-                                <rect key="frame" x="207" y="682" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laO-io-QhP">
-                                <rect key="frame" x="271" y="682" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pU-SM-Qvm">
-                                <rect key="frame" x="83" y="614" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgi-YA-Vcz">
-                                <rect key="frame" x="144" y="614" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FnM-kf-Mhf">
-                                <rect key="frame" x="207" y="614" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gav-89-WsW">
-                                <rect key="frame" x="271" y="614" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkO-hG-sQ6">
-                                <rect key="frame" x="83" y="546" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90k-iQ-SmS">
-                                <rect key="frame" x="144" y="546" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cs3-MH-AMd">
-                                <rect key="frame" x="207" y="546" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRd-rf-tbQ">
-                                <rect key="frame" x="271" y="546" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJh-QM-NC8">
-                                <rect key="frame" x="83" y="478" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTd-CG-YqR">
-                                <rect key="frame" x="144" y="478" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIH-YT-xxe">
-                                <rect key="frame" x="207" y="478" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6PL-b0-92P">
-                                <rect key="frame" x="271" y="478" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYP-MV-fru">
-                                <rect key="frame" x="83" y="410" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cH-Xc-Wvf">
-                                <rect key="frame" x="144" y="410" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRf-zR-kc3">
-                                <rect key="frame" x="207" y="410" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfB-ly-xeb">
-                                <rect key="frame" x="271" y="410" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PkO-LY-ToK">
-                                <rect key="frame" x="83" y="342" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQX-1f-fLX">
-                                <rect key="frame" x="144" y="342" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3h-CQ-yoY">
-                                <rect key="frame" x="207" y="342" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FGf-AP-RwA">
-                                <rect key="frame" x="271" y="342" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLw-7x-D5y">
-                                <rect key="frame" x="83" y="274" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whd-oW-KIH">
-                                <rect key="frame" x="144" y="274" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2R-Rg-7Nq">
-                                <rect key="frame" x="207" y="274" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIe-uA-QLp">
-                                <rect key="frame" x="271" y="274" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bIW-cG-iWM">
-                                <rect key="frame" x="83" y="206" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ua5-PZ-GOw">
-                                <rect key="frame" x="144" y="206" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxf-fr-yEI">
-                                <rect key="frame" x="207" y="206" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQ8-oV-s5x">
-                                <rect key="frame" x="271" y="206" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vey-ur-TqQ">
-                                <rect key="frame" x="0.0" y="206" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="jzT-I8-p7F">
+                                <rect key="frame" x="0.0" y="191.66666666666669" width="414" height="670.33333333333326"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="3mr-6u-WxZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="670.33333333333337"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="HPy-sh-aI8">
+                                                <rect key="frame" x="0.0" y="-0.66666666666666785" width="60" height="62"/>
+                                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vey-ur-TqQ">
+                                                <rect key="frame" x="0.0" y="67.666666666666657" width="60" height="60.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xI5-Co-bkG">
+                                                <rect key="frame" x="0.0" y="135.33333333333334" width="60" height="61"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LxV-2N-ad1">
+                                                <rect key="frame" x="0.0" y="203.33333333333334" width="60" height="60.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2x-M9-d0d">
+                                                <rect key="frame" x="0.0" y="271" width="60" height="60.666666666666686"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFu-IZ-wUN">
+                                                <rect key="frame" x="0.0" y="338.66666666666674" width="60" height="60.666666666666686"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjH-sp-4kc">
+                                                <rect key="frame" x="0.0" y="406.33333333333337" width="60" height="60.666666666666686"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0X-Al-H7t">
+                                                <rect key="frame" x="0.0" y="474" width="60" height="61"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxU-V6-wh4">
+                                                <rect key="frame" x="0.0" y="542" width="60" height="60.666666666666629"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAP-6j-CJi">
+                                                <rect key="frame" x="0.0" y="609.66666666666674" width="60" height="60.666666666666629"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="lAP-6j-CJi" secondAttribute="height" multiplier="1:1" id="lCf-nJ-OUV"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <imageReference key="image" image="questionmark.circle" catalog="system" symbolScale="large"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="25"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <segue destination="Pk2-zs-4qE" kind="presentation" modalPresentationStyle="overFullScreen" modalTransitionStyle="flipHorizontal" id="d61-Lr-sgI"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="my7-1b-1u9">
+                                        <rect key="frame" x="71" y="0.0" width="59.666666666666657" height="670.33333333333337"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihw-1g-XeD">
+                                                <rect key="frame" x="0.0" y="0.0" width="59.666666666666664" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="2GC-kC-8MY"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="E8J-ag-pnq"/>
+                                                    <constraint firstAttribute="width" secondItem="ihw-1g-XeD" secondAttribute="height" multiplier="1:1" id="vSn-bC-HfJ"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="..?..">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bIW-cG-iWM">
+                                                <rect key="frame" x="0.0" y="68.000000000000028" width="59.666666666666664" height="59.666666666666657"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="bIW-cG-iWM" secondAttribute="height" multiplier="1:1" id="ll6-Ja-i4S"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PkO-LY-ToK">
+                                                <rect key="frame" x="0.0" y="135.66666666666666" width="59.666666666666664" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="PkO-LY-ToK" secondAttribute="height" multiplier="1:1" id="gfW-id-1jc"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pU-SM-Qvm">
+                                                <rect key="frame" x="0.0" y="203.66666666666666" width="59.666666666666664" height="59.666666666666657"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="0pU-SM-Qvm" secondAttribute="height" multiplier="1:1" id="jmq-fh-orY"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIe-uA-QLp">
+                                                <rect key="frame" x="0.0" y="271.33333333333337" width="59.666666666666664" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="vIe-uA-QLp" secondAttribute="height" multiplier="1:1" id="Q5T-pN-pvr"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQX-1f-fLX">
+                                                <rect key="frame" x="0.0" y="339.33333333333337" width="59.666666666666664" height="59.666666666666686"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="lQX-1f-fLX" secondAttribute="height" multiplier="1:1" id="oEN-ES-nY9"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3h-CQ-yoY">
+                                                <rect key="frame" x="0.0" y="407" width="59.666666666666664" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="h3h-CQ-yoY" secondAttribute="height" multiplier="1:1" id="Ck8-El-f8c"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIH-YT-xxe">
+                                                <rect key="frame" x="0.0" y="475" width="59.666666666666664" height="59.666666666666629"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="BIH-YT-xxe" secondAttribute="height" multiplier="1:1" id="bUU-pk-pMx"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfB-ly-xeb">
+                                                <rect key="frame" x="0.0" y="542.66666666666674" width="59.666666666666664" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="cfB-ly-xeb" secondAttribute="height" multiplier="1:1" id="iaW-Oa-vhh"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZX-Qj-kWR">
+                                                <rect key="frame" x="0.0" y="610.66666666666674" width="59.666666666666664" height="59.666666666666629"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="XZX-Qj-kWR" secondAttribute="height" multiplier="1:1" id="Pdx-j1-p81"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="userButtonPressed:" destination="R8Y-uH-LR3" eventType="touchUpInside" id="hjk-mZ-0Rb"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="XZX-Qj-kWR" firstAttribute="height" secondItem="ihw-1g-XeD" secondAttribute="height" id="6xg-ES-I5a"/>
+                                            <constraint firstItem="bIW-cG-iWM" firstAttribute="width" secondItem="ihw-1g-XeD" secondAttribute="width" id="Ksy-yJ-H39"/>
+                                            <constraint firstItem="bIW-cG-iWM" firstAttribute="height" secondItem="ihw-1g-XeD" secondAttribute="height" id="SQ2-8d-GDv"/>
+                                            <constraint firstItem="XZX-Qj-kWR" firstAttribute="width" secondItem="ihw-1g-XeD" secondAttribute="width" id="mZL-ii-fjU"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Efn-8k-RSs">
+                                        <rect key="frame" x="141.66666666666666" y="0.0" width="60" height="670.33333333333337"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ps-5Y-bp4">
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="6Ps-5Y-bp4" secondAttribute="height" multiplier="1:1" id="my0-QX-F2i"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="..?..">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgi-YA-Vcz">
+                                                <rect key="frame" x="0.0" y="68.000000000000028" width="60" height="59.666666666666657"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="hgi-YA-Vcz" secondAttribute="height" multiplier="1:1" id="lFE-jK-K7k"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLw-7x-D5y">
+                                                <rect key="frame" x="0.0" y="135.66666666666666" width="60" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="fLw-7x-D5y" secondAttribute="height" multiplier="1:1" id="Wuu-26-Wu5"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJh-QM-NC8">
+                                                <rect key="frame" x="0.0" y="203.66666666666666" width="60" height="59.666666666666657"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="UJh-QM-NC8" secondAttribute="height" multiplier="1:1" id="vuF-xO-sjy"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxf-fr-yEI">
+                                                <rect key="frame" x="0.0" y="271.33333333333337" width="60" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="fxf-fr-yEI" secondAttribute="height" multiplier="1:1" id="5Nj-dJ-uL1"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYP-MV-fru">
+                                                <rect key="frame" x="0.0" y="339.33333333333337" width="60" height="59.666666666666686"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="iYP-MV-fru" secondAttribute="height" multiplier="1:1" id="yK1-Il-4OJ"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whd-oW-KIH">
+                                                <rect key="frame" x="0.0" y="407" width="60" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="whd-oW-KIH" secondAttribute="height" multiplier="1:1" id="9iG-4E-RzV"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cH-Xc-Wvf">
+                                                <rect key="frame" x="0.0" y="475" width="60" height="59.666666666666629"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="9cH-Xc-Wvf" secondAttribute="height" multiplier="1:1" id="VJV-V4-0qJ"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90k-iQ-SmS">
+                                                <rect key="frame" x="0.0" y="542.66666666666674" width="60" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="90k-iQ-SmS" secondAttribute="height" multiplier="1:1" id="g7K-OI-Ofh"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZP-XY-d6M">
+                                                <rect key="frame" x="0.0" y="610.66666666666674" width="60" height="59.666666666666629"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="5ZP-XY-d6M" secondAttribute="height" multiplier="1:1" id="B52-01-krk"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="userButtonPressed:" destination="R8Y-uH-LR3" eventType="touchUpInside" id="HxS-HW-7ZZ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3NH-aI-6yA">
+                                        <rect key="frame" x="212.66666666666666" y="0.0" width="59.666666666666657" height="670.33333333333337"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="crb-Rx-7oU">
+                                                <rect key="frame" x="0.0" y="0.0" width="59.666666666666664" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="crb-Rx-7oU" secondAttribute="height" multiplier="1:1" id="AAC-9Z-BHG"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="..?..">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ua5-PZ-GOw">
+                                                <rect key="frame" x="0.0" y="68.000000000000028" width="59.666666666666664" height="59.666666666666657"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="ua5-PZ-GOw" secondAttribute="height" multiplier="1:1" id="a1q-9M-MMF"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTd-CG-YqR">
+                                                <rect key="frame" x="0.0" y="135.66666666666666" width="59.666666666666664" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="jTd-CG-YqR" secondAttribute="height" multiplier="1:1" id="USE-bI-yNB"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkO-hG-sQ6">
+                                                <rect key="frame" x="0.0" y="203.66666666666666" width="59.666666666666664" height="59.666666666666657"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="dkO-hG-sQ6" secondAttribute="height" multiplier="1:1" id="RSg-Sb-gsP"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2R-Rg-7Nq">
+                                                <rect key="frame" x="0.0" y="271.33333333333337" width="59.666666666666664" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="d2R-Rg-7Nq" secondAttribute="height" multiplier="1:1" id="EET-Dy-Fma"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRf-zR-kc3">
+                                                <rect key="frame" x="0.0" y="339.33333333333337" width="59.666666666666664" height="59.666666666666686"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="XRf-zR-kc3" secondAttribute="height" multiplier="1:1" id="Hzf-8C-Qu5"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cs3-MH-AMd">
+                                                <rect key="frame" x="0.0" y="407" width="59.666666666666664" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Cs3-MH-AMd" secondAttribute="height" multiplier="1:1" id="Zrx-KB-ljm"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FnM-kf-Mhf">
+                                                <rect key="frame" x="0.0" y="475" width="59.666666666666664" height="59.666666666666629"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="FnM-kf-Mhf" secondAttribute="height" multiplier="1:1" id="9uA-31-3Wh"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bg-HR-G3g">
+                                                <rect key="frame" x="0.0" y="542.66666666666674" width="59.666666666666664" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="0bg-HR-G3g" secondAttribute="height" multiplier="1:1" id="V1u-7d-XHq"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPm-Be-zNV">
+                                                <rect key="frame" x="0.0" y="610.66666666666674" width="59.666666666666664" height="59.666666666666629"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="sPm-Be-zNV" secondAttribute="height" multiplier="1:1" id="TGL-LL-UGu"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="userButtonPressed:" destination="R8Y-uH-LR3" eventType="touchUpInside" id="4cQ-L9-p6D"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ceQ-pv-Nc3">
+                                        <rect key="frame" x="283.33333333333331" y="0.0" width="60" height="670.33333333333337"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70D-bo-f1T">
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="70D-bo-f1T" secondAttribute="height" multiplier="1:1" id="VWw-fN-y5d"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="..?..">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yra-zy-6Ri">
+                                                <rect key="frame" x="0.0" y="68.000000000000028" width="60" height="59.666666666666657"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="yra-zy-6Ri" secondAttribute="height" multiplier="1:1" id="U3H-u6-JJz"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDS-Dr-3yf">
+                                                <rect key="frame" x="0.0" y="135.66666666666666" width="60" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="hDS-Dr-3yf" secondAttribute="height" multiplier="1:1" id="6yG-EF-UIs"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQ8-oV-s5x">
+                                                <rect key="frame" x="0.0" y="203.66666666666666" width="60" height="59.666666666666657"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="kQ8-oV-s5x" secondAttribute="height" multiplier="1:1" id="fVR-ct-lha"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FGf-AP-RwA">
+                                                <rect key="frame" x="0.0" y="271.33333333333337" width="60" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="FGf-AP-RwA" secondAttribute="height" multiplier="1:1" id="12b-lN-orm"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6PL-b0-92P">
+                                                <rect key="frame" x="0.0" y="339.33333333333337" width="60" height="59.666666666666686"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="6PL-b0-92P" secondAttribute="height" multiplier="1:1" id="3hi-4W-ZZE"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRd-rf-tbQ">
+                                                <rect key="frame" x="0.0" y="407" width="60" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="qRd-rf-tbQ" secondAttribute="height" multiplier="1:1" id="vid-zY-R5T"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gav-89-WsW">
+                                                <rect key="frame" x="0.0" y="475" width="60" height="59.666666666666629"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Gav-89-WsW" secondAttribute="height" multiplier="1:1" id="ly8-fG-vU0"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laO-io-QhP">
+                                                <rect key="frame" x="0.0" y="542.66666666666674" width="60" height="60"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="laO-io-QhP" secondAttribute="height" multiplier="1:1" id="Tcf-9o-FUp"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8S-CS-k74">
+                                                <rect key="frame" x="0.0" y="610.66666666666674" width="60" height="59.666666666666629"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="J8S-CS-k74" secondAttribute="height" multiplier="1:1" id="7i8-Ry-jc1"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="userButtonPressed:" destination="R8Y-uH-LR3" eventType="touchUpInside" id="K86-Fd-Ilh"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="N7w-lR-ZD7">
+                                        <rect key="frame" x="354.33333333333331" y="0.0" width="59.666666666666686" height="670.33333333333337"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hand.thumbsup.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xrT-r8-YJG">
+                                                <rect key="frame" x="0.0" y="0.33333333333333215" width="59.666666666666664" height="59.333333333333343"/>
+                                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hits and Blows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKh-ma-sjX">
+                                                <rect key="frame" x="0.0" y="68.000000000000028" width="59.666666666666664" height="59.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hits and Blows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0M-jF-XS4">
+                                                <rect key="frame" x="0.0" y="135.66666666666666" width="59.666666666666664" height="60"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hits and Blows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yM-eV-bx2">
+                                                <rect key="frame" x="0.0" y="203.66666666666666" width="59.666666666666664" height="59.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hits and Blows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugp-1o-jNb">
+                                                <rect key="frame" x="0.0" y="271.33333333333337" width="59.666666666666664" height="60"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hits and Blows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PpB-od-Nbh">
+                                                <rect key="frame" x="0.0" y="339.33333333333337" width="59.666666666666664" height="59.666666666666686"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hits and Blows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIo-HP-HNV">
+                                                <rect key="frame" x="0.0" y="407" width="59.666666666666664" height="60"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hits and Blows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZR-es-PBD">
+                                                <rect key="frame" x="0.0" y="475" width="59.666666666666664" height="59.666666666666629"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Interface"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ecO-lF-0tC">
+                                                <rect key="frame" x="0.0" y="542.00000000000011" width="59.666666666666664" height="61.333333333333371"/>
+                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGo-ki-Lz0">
+                                                <rect key="frame" x="0.0" y="610.66666666666674" width="59.666666666666664" height="59.666666666666629"/>
+                                                <color key="backgroundColor" name="Interface"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="SGo-ki-Lz0" secondAttribute="height" multiplier="1:1" id="DKk-Sg-RYz"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="150"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <imageReference key="image" image="circle.grid.2x2" catalog="system" symbolScale="large"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="25"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="answerButtonPressed:" destination="R8Y-uH-LR3" eventType="touchUpInside" id="Nlz-zg-G3j"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="3mr-6u-WxZ" secondAttribute="bottom" id="7l7-JI-BAB"/>
+                                    <constraint firstAttribute="bottom" secondItem="ceQ-pv-Nc3" secondAttribute="bottom" id="9B1-vn-Fvn"/>
+                                    <constraint firstAttribute="bottom" secondItem="N7w-lR-ZD7" secondAttribute="bottom" id="JDx-g5-D4V"/>
+                                    <constraint firstItem="my7-1b-1u9" firstAttribute="top" secondItem="jzT-I8-p7F" secondAttribute="top" id="Nge-aC-eQ3"/>
+                                    <constraint firstAttribute="bottom" secondItem="my7-1b-1u9" secondAttribute="bottom" id="Q0R-Fg-6Rk"/>
+                                    <constraint firstItem="ceQ-pv-Nc3" firstAttribute="top" secondItem="jzT-I8-p7F" secondAttribute="top" id="ToV-xN-TwY"/>
+                                    <constraint firstItem="3NH-aI-6yA" firstAttribute="top" secondItem="jzT-I8-p7F" secondAttribute="top" id="Wrs-Mb-Yw9"/>
+                                    <constraint firstItem="3mr-6u-WxZ" firstAttribute="top" secondItem="jzT-I8-p7F" secondAttribute="top" id="aqE-G6-D4Z"/>
+                                    <constraint firstItem="N7w-lR-ZD7" firstAttribute="top" secondItem="jzT-I8-p7F" secondAttribute="top" id="hyI-aA-oer"/>
+                                    <constraint firstAttribute="bottom" secondItem="Efn-8k-RSs" secondAttribute="bottom" id="sgw-sF-XIj"/>
+                                    <constraint firstAttribute="bottom" secondItem="3NH-aI-6yA" secondAttribute="bottom" id="ssA-jS-cuY"/>
+                                    <constraint firstItem="Efn-8k-RSs" firstAttribute="top" secondItem="jzT-I8-p7F" secondAttribute="top" id="tLL-be-dBf"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQE-09-Ura">
+                                <rect key="frame" x="20" y="145" width="374" height="46.666666666666657"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="FXr-92-hL9"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="Interface"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hits and Blows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKh-ma-sjX">
-                                <rect key="frame" x="333" y="206" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hits and Blows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0M-jF-XS4">
-                                <rect key="frame" x="333" y="274" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hits and Blows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZR-es-PBD">
-                                <rect key="frame" x="333" y="342" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hits and Blows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIo-HP-HNV">
-                                <rect key="frame" x="333" y="410" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hits and Blows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PpB-od-Nbh">
-                                <rect key="frame" x="333" y="478" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hits and Blows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yM-eV-bx2">
-                                <rect key="frame" x="333" y="546" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hits and Blows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugp-1o-jNb">
-                                <rect key="frame" x="334" y="614" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFu-IZ-wUN">
-                                <rect key="frame" x="0.0" y="274" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xI5-Co-bkG">
-                                <rect key="frame" x="0.0" y="342" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0X-Al-H7t">
-                                <rect key="frame" x="0.0" y="410" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LxV-2N-ad1">
-                                <rect key="frame" x="0.0" y="472" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2x-M9-d0d">
-                                <rect key="frame" x="0.0" y="614" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjH-sp-4kc">
-                                <rect key="frame" x="0.0" y="682" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Round" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxU-V6-wh4">
-                                <rect key="frame" x="0.0" y="546" width="81" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQE-09-Ura">
-                                <rect key="frame" x="14" y="746" width="380" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ecO-lF-0tC">
-                                <rect key="frame" x="343" y="682" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="systemRedColor"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihw-1g-XeD">
-                                <rect key="frame" x="83" y="140" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="..?..">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ps-5Y-bp4">
-                                <rect key="frame" x="144" y="140" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="..?..">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="crb-Rx-7oU">
-                                <rect key="frame" x="207" y="140" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="..?..">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70D-bo-f1T">
-                                <rect key="frame" x="271" y="140" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="..?..">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xrT-r8-YJG">
-                                <rect key="frame" x="343" y="140" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="systemGreenColor"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Dvr-sL-X2i"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Dvr-sL-X2i" firstAttribute="trailing" secondItem="bQE-09-Ura" secondAttribute="trailing" constant="20" id="6S1-2v-i1T"/>
+                            <constraint firstItem="Dvr-sL-X2i" firstAttribute="bottom" secondItem="jzT-I8-p7F" secondAttribute="bottom" id="KvL-Eu-Vhg"/>
+                            <constraint firstItem="bQE-09-Ura" firstAttribute="top" secondItem="Dvr-sL-X2i" secondAttribute="top" constant="5" id="PLn-H5-Ya9"/>
+                            <constraint firstItem="jzT-I8-p7F" firstAttribute="top" secondItem="bQE-09-Ura" secondAttribute="bottom" id="Z9K-zl-QUv"/>
+                            <constraint firstItem="bQE-09-Ura" firstAttribute="leading" secondItem="Dvr-sL-X2i" secondAttribute="leading" constant="20" id="eda-xb-IZG"/>
+                            <constraint firstItem="Dvr-sL-X2i" firstAttribute="trailing" secondItem="jzT-I8-p7F" secondAttribute="trailing" id="iMw-79-RlI"/>
+                            <constraint firstItem="jzT-I8-p7F" firstAttribute="leading" secondItem="7Ka-kt-uW1" secondAttribute="leading" id="kB7-wW-pmN"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="CodeBreaker" id="Wfg-NM-3nc">
                         <barButtonItem key="rightBarButtonItem" image="book.fill" catalog="system" width="80" id="cg6-7O-vD3">
@@ -946,67 +1085,68 @@
                         <outlet property="bookStopButton" destination="cg6-7O-vD3" id="aqi-uB-a15"/>
                         <outlet property="gameOverImage" destination="ecO-lF-0tC" id="vrT-Tj-X4t"/>
                         <outlet property="resultLabel" destination="bQE-09-Ura" id="TVL-lB-hBK"/>
-                        <outlet property="victoryImage" destination="xrT-r8-YJG" id="xaN-gr-POw"/>
+                        <outletCollection property="roundLabels" destination="Vey-ur-TqQ" collectionClass="NSMutableArray" id="Wq4-Ga-xrU"/>
+                        <outletCollection property="roundLabels" destination="xI5-Co-bkG" collectionClass="NSMutableArray" id="jQR-GJ-xoh"/>
+                        <outletCollection property="roundLabels" destination="LxV-2N-ad1" collectionClass="NSMutableArray" id="Kde-SS-vCc"/>
+                        <outletCollection property="roundLabels" destination="S2x-M9-d0d" collectionClass="NSMutableArray" id="k74-44-Xes"/>
+                        <outletCollection property="roundLabels" destination="xFu-IZ-wUN" collectionClass="NSMutableArray" id="Gsf-uK-rmy"/>
+                        <outletCollection property="roundLabels" destination="fjH-sp-4kc" collectionClass="NSMutableArray" id="8Vb-EG-My2"/>
+                        <outletCollection property="roundLabels" destination="A0X-Al-H7t" collectionClass="NSMutableArray" id="EsV-ow-Pxo"/>
+                        <outletCollection property="roundLabels" destination="fxU-V6-wh4" collectionClass="NSMutableArray" id="ofq-Vz-SGQ"/>
                         <outletCollection property="UserCircles" destination="XZX-Qj-kWR" collectionClass="NSMutableArray" id="Z9u-Ev-APT"/>
-                        <outletCollection property="UserCircles" destination="5ZP-XY-d6M" collectionClass="NSMutableArray" id="LOG-AN-EdE"/>
-                        <outletCollection property="UserCircles" destination="sPm-Be-zNV" collectionClass="NSMutableArray" id="GVb-Xw-G2d"/>
-                        <outletCollection property="UserCircles" destination="J8S-CS-k74" collectionClass="NSMutableArray" id="Qha-kO-GQf"/>
                         <outletCollection property="AnswerCircles" destination="ihw-1g-XeD" collectionClass="NSMutableArray" id="8Xb-2r-uOw"/>
+                        <outletCollection property="UserCircles" destination="5ZP-XY-d6M" collectionClass="NSMutableArray" id="LOG-AN-EdE"/>
                         <outletCollection property="AnswerCircles" destination="6Ps-5Y-bp4" collectionClass="NSMutableArray" id="Dgb-XN-FNW"/>
                         <outletCollection property="AnswerCircles" destination="crb-Rx-7oU" collectionClass="NSMutableArray" id="l2k-za-L1q"/>
+                        <outletCollection property="UserCircles" destination="sPm-Be-zNV" collectionClass="NSMutableArray" id="GVb-Xw-G2d"/>
+                        <outletCollection property="UserCircles" destination="J8S-CS-k74" collectionClass="NSMutableArray" id="Qha-kO-GQf"/>
                         <outletCollection property="AnswerCircles" destination="70D-bo-f1T" collectionClass="NSMutableArray" id="ktc-iW-f7z"/>
-                        <outletCollection property="roundLabels" destination="Vey-ur-TqQ" collectionClass="NSMutableArray" id="Wq4-Ga-xrU"/>
-                        <outletCollection property="roundLabels" destination="xFu-IZ-wUN" collectionClass="NSMutableArray" id="Gsf-uK-rmy"/>
-                        <outletCollection property="roundLabels" destination="xI5-Co-bkG" collectionClass="NSMutableArray" id="jQR-GJ-xoh"/>
-                        <outletCollection property="roundLabels" destination="A0X-Al-H7t" collectionClass="NSMutableArray" id="EsV-ow-Pxo"/>
-                        <outletCollection property="roundLabels" destination="LxV-2N-ad1" collectionClass="NSMutableArray" id="Kde-SS-vCc"/>
-                        <outletCollection property="roundLabels" destination="fxU-V6-wh4" collectionClass="NSMutableArray" id="ofq-Vz-SGQ"/>
-                        <outletCollection property="roundLabels" destination="S2x-M9-d0d" collectionClass="NSMutableArray" id="k74-44-Xes"/>
-                        <outletCollection property="roundLabels" destination="fjH-sp-4kc" collectionClass="NSMutableArray" id="8Vb-EG-My2"/>
-                        <outletCollection property="roundCircles" destination="bIW-cG-iWM" collectionClass="NSMutableArray" id="9ZK-X4-VyL"/>
-                        <outletCollection property="roundCircles" destination="ua5-PZ-GOw" collectionClass="NSMutableArray" id="SI2-Qw-u4Q"/>
-                        <outletCollection property="roundCircles" destination="fxf-fr-yEI" collectionClass="NSMutableArray" id="qEH-e3-wSn"/>
-                        <outletCollection property="roundCircles" destination="kQ8-oV-s5x" collectionClass="NSMutableArray" id="Unt-qG-4Oj"/>
-                        <outletCollection property="roundCircles" destination="fLw-7x-D5y" collectionClass="NSMutableArray" id="nrb-S0-oWW"/>
-                        <outletCollection property="roundCircles" destination="whd-oW-KIH" collectionClass="NSMutableArray" id="nrs-cz-UL8"/>
-                        <outletCollection property="roundCircles" destination="d2R-Rg-7Nq" collectionClass="NSMutableArray" id="P0J-40-x40"/>
-                        <outletCollection property="roundCircles" destination="vIe-uA-QLp" collectionClass="NSMutableArray" id="gu3-uI-hny"/>
-                        <outletCollection property="roundCircles" destination="PkO-LY-ToK" collectionClass="NSMutableArray" id="ses-6y-xZY"/>
-                        <outletCollection property="roundCircles" destination="lQX-1f-fLX" collectionClass="NSMutableArray" id="dLN-xf-iK5"/>
-                        <outletCollection property="roundCircles" destination="h3h-CQ-yoY" collectionClass="NSMutableArray" id="3KE-D8-G3q"/>
-                        <outletCollection property="roundCircles" destination="FGf-AP-RwA" collectionClass="NSMutableArray" id="XUK-3D-XKX"/>
-                        <outletCollection property="roundCircles" destination="iYP-MV-fru" collectionClass="NSMutableArray" id="pxW-fa-FJX"/>
-                        <outletCollection property="roundCircles" destination="9cH-Xc-Wvf" collectionClass="NSMutableArray" id="WV0-bs-vCz"/>
-                        <outletCollection property="roundCircles" destination="XRf-zR-kc3" collectionClass="NSMutableArray" id="sRo-rt-T1E"/>
-                        <outletCollection property="roundCircles" destination="cfB-ly-xeb" collectionClass="NSMutableArray" id="eSN-1U-dQH"/>
-                        <outletCollection property="roundCircles" destination="UJh-QM-NC8" collectionClass="NSMutableArray" id="IbK-gn-C8z"/>
-                        <outletCollection property="roundCircles" destination="jTd-CG-YqR" collectionClass="NSMutableArray" id="d8w-hs-hw5"/>
-                        <outletCollection property="roundCircles" destination="BIH-YT-xxe" collectionClass="NSMutableArray" id="m1I-Tw-ZSM"/>
-                        <outletCollection property="roundCircles" destination="6PL-b0-92P" collectionClass="NSMutableArray" id="J0V-Nm-YMb"/>
-                        <outletCollection property="roundCircles" destination="dkO-hG-sQ6" collectionClass="NSMutableArray" id="YSO-de-P1M"/>
-                        <outletCollection property="roundCircles" destination="90k-iQ-SmS" collectionClass="NSMutableArray" id="0Gt-bs-ReT"/>
-                        <outletCollection property="roundCircles" destination="Cs3-MH-AMd" collectionClass="NSMutableArray" id="Ygw-gU-Rav"/>
-                        <outletCollection property="roundCircles" destination="qRd-rf-tbQ" collectionClass="NSMutableArray" id="vHG-t5-0Q0"/>
-                        <outletCollection property="roundCircles" destination="0pU-SM-Qvm" collectionClass="NSMutableArray" id="Dmf-Eg-9FV"/>
-                        <outletCollection property="roundCircles" destination="hgi-YA-Vcz" collectionClass="NSMutableArray" id="iHw-CN-HHg"/>
-                        <outletCollection property="roundCircles" destination="FnM-kf-Mhf" collectionClass="NSMutableArray" id="nHd-Vk-AYV"/>
-                        <outletCollection property="roundCircles" destination="Gav-89-WsW" collectionClass="NSMutableArray" id="Em2-ju-tMF"/>
-                        <outletCollection property="roundCircles" destination="hDS-Dr-3yf" collectionClass="NSMutableArray" id="jHP-4A-Bn4"/>
-                        <outletCollection property="roundCircles" destination="yra-zy-6Ri" collectionClass="NSMutableArray" id="JVh-5a-aGC"/>
-                        <outletCollection property="roundCircles" destination="0bg-HR-G3g" collectionClass="NSMutableArray" id="xjy-wQ-d2Q"/>
-                        <outletCollection property="roundCircles" destination="laO-io-QhP" collectionClass="NSMutableArray" id="ybb-YB-zJL"/>
                         <outletCollection property="HitandBlowLabels" destination="KKh-ma-sjX" collectionClass="NSMutableArray" id="61Z-sD-Oy1"/>
                         <outletCollection property="HitandBlowLabels" destination="d0M-jF-XS4" collectionClass="NSMutableArray" id="A1q-bz-ZCv"/>
-                        <outletCollection property="HitandBlowLabels" destination="pZR-es-PBD" collectionClass="NSMutableArray" id="maZ-15-Yvz"/>
-                        <outletCollection property="HitandBlowLabels" destination="nIo-HP-HNV" collectionClass="NSMutableArray" id="z6A-Is-Smn"/>
-                        <outletCollection property="HitandBlowLabels" destination="PpB-od-Nbh" collectionClass="NSMutableArray" id="NaQ-Jd-Bu9"/>
                         <outletCollection property="HitandBlowLabels" destination="6yM-eV-bx2" collectionClass="NSMutableArray" id="vC7-Up-dXF"/>
                         <outletCollection property="HitandBlowLabels" destination="Ugp-1o-jNb" collectionClass="NSMutableArray" id="qEu-2t-5H5"/>
+                        <outletCollection property="HitandBlowLabels" destination="PpB-od-Nbh" collectionClass="NSMutableArray" id="NaQ-Jd-Bu9"/>
+                        <outletCollection property="HitandBlowLabels" destination="nIo-HP-HNV" collectionClass="NSMutableArray" id="z6A-Is-Smn"/>
+                        <outletCollection property="HitandBlowLabels" destination="pZR-es-PBD" collectionClass="NSMutableArray" id="maZ-15-Yvz"/>
+                        <outletCollection property="roundCircles" destination="bIW-cG-iWM" collectionClass="NSMutableArray" id="duq-5P-y20"/>
+                        <outletCollection property="roundCircles" destination="hgi-YA-Vcz" collectionClass="NSMutableArray" id="XzS-Lu-Dul"/>
+                        <outletCollection property="roundCircles" destination="ua5-PZ-GOw" collectionClass="NSMutableArray" id="o0n-r3-API"/>
+                        <outletCollection property="roundCircles" destination="yra-zy-6Ri" collectionClass="NSMutableArray" id="BlT-XE-NcP"/>
+                        <outletCollection property="roundCircles" destination="PkO-LY-ToK" collectionClass="NSMutableArray" id="Ovj-TK-zBO"/>
+                        <outletCollection property="roundCircles" destination="fLw-7x-D5y" collectionClass="NSMutableArray" id="XBQ-7L-4Ey"/>
+                        <outletCollection property="roundCircles" destination="jTd-CG-YqR" collectionClass="NSMutableArray" id="V0a-Wh-wp5"/>
+                        <outletCollection property="roundCircles" destination="hDS-Dr-3yf" collectionClass="NSMutableArray" id="huM-IU-hJT"/>
+                        <outletCollection property="roundCircles" destination="0pU-SM-Qvm" collectionClass="NSMutableArray" id="gak-Zk-6Sb"/>
+                        <outletCollection property="roundCircles" destination="UJh-QM-NC8" collectionClass="NSMutableArray" id="Ayd-K5-qsl"/>
+                        <outletCollection property="roundCircles" destination="dkO-hG-sQ6" collectionClass="NSMutableArray" id="ElI-mi-awK"/>
+                        <outletCollection property="roundCircles" destination="kQ8-oV-s5x" collectionClass="NSMutableArray" id="p2U-XS-T6o"/>
+                        <outletCollection property="roundCircles" destination="vIe-uA-QLp" collectionClass="NSMutableArray" id="XNf-i6-O1C"/>
+                        <outletCollection property="roundCircles" destination="fxf-fr-yEI" collectionClass="NSMutableArray" id="hUK-rW-4h1"/>
+                        <outletCollection property="roundCircles" destination="d2R-Rg-7Nq" collectionClass="NSMutableArray" id="pio-mz-pnl"/>
+                        <outletCollection property="roundCircles" destination="FGf-AP-RwA" collectionClass="NSMutableArray" id="Mha-aB-sGX"/>
+                        <outletCollection property="roundCircles" destination="lQX-1f-fLX" collectionClass="NSMutableArray" id="gRw-j0-pAt"/>
+                        <outletCollection property="roundCircles" destination="iYP-MV-fru" collectionClass="NSMutableArray" id="qKl-3Y-0kr"/>
+                        <outletCollection property="roundCircles" destination="XRf-zR-kc3" collectionClass="NSMutableArray" id="UMB-kt-Q2n"/>
+                        <outletCollection property="roundCircles" destination="6PL-b0-92P" collectionClass="NSMutableArray" id="voO-7G-fep"/>
+                        <outletCollection property="roundCircles" destination="h3h-CQ-yoY" collectionClass="NSMutableArray" id="UZU-of-BsL"/>
+                        <outletCollection property="roundCircles" destination="whd-oW-KIH" collectionClass="NSMutableArray" id="tLS-ez-tqj"/>
+                        <outletCollection property="roundCircles" destination="Cs3-MH-AMd" collectionClass="NSMutableArray" id="FuM-zb-QRG"/>
+                        <outletCollection property="roundCircles" destination="qRd-rf-tbQ" collectionClass="NSMutableArray" id="9Bh-Ir-N8E"/>
+                        <outletCollection property="roundCircles" destination="BIH-YT-xxe" collectionClass="NSMutableArray" id="SVl-nb-Qy0"/>
+                        <outletCollection property="roundCircles" destination="9cH-Xc-Wvf" collectionClass="NSMutableArray" id="J7T-dF-tp0"/>
+                        <outletCollection property="roundCircles" destination="FnM-kf-Mhf" collectionClass="NSMutableArray" id="S81-ro-1Ht"/>
+                        <outletCollection property="roundCircles" destination="Gav-89-WsW" collectionClass="NSMutableArray" id="tzC-Lr-u7L"/>
+                        <outletCollection property="roundCircles" destination="cfB-ly-xeb" collectionClass="NSMutableArray" id="bur-b2-Xgz"/>
+                        <outletCollection property="roundCircles" destination="90k-iQ-SmS" collectionClass="NSMutableArray" id="5Qw-pu-Phb"/>
+                        <outletCollection property="roundCircles" destination="0bg-HR-G3g" collectionClass="NSMutableArray" id="we7-Or-UPz"/>
+                        <outletCollection property="roundCircles" destination="laO-io-QhP" collectionClass="NSMutableArray" id="fSt-8P-Ynj"/>
+                        <outletCollection property="victoryImages" destination="xrT-r8-YJG" collectionClass="NSMutableArray" id="P4G-zT-fYT"/>
+                        <outletCollection property="victoryImages" destination="HPy-sh-aI8" collectionClass="NSMutableArray" id="yKE-wn-sDG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLc-pN-4pl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1533" y="1193"/>
+            <point key="canvasLocation" x="-1533.3333333333335" y="1192.6339285714284"/>
         </scene>
         <!--Code Breaker Rules View Controller-->
         <scene sceneID="sZM-YD-MOf">
@@ -1429,45 +1569,24 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1@2.com" borderStyle="roundedRect" placeholder="Login Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qEi-6Z-2Aw">
-                                <rect key="frame" x="20" y="249" width="374" height="58"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="20" y="311" width="787.77563442452208" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" name="Interface"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FpX-Rb-R0b">
-                                <rect key="frame" x="20" y="315" width="374" height="58"/>
+                                <rect key="frame" x="20" y="377" width="374" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" name="Interface"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="new-password"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U34-s3-ZIX">
-                                <rect key="frame" x="42" y="384" width="323" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="D B A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVW-BP-DPH">
                                 <rect key="frame" x="20" y="165" width="374" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
                                 <color key="textColor" name="Interface"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="D B A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWw-ny-lz4">
-                                <rect key="frame" x="20" y="165" width="374" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Interface"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1514,6 +1633,34 @@
                                     <action selector="signUpPressed:" destination="QJF-4w-IrE" eventType="touchUpInside" id="and-Oz-f48"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VbX-rB-cch">
+                                <rect key="frame" x="0.0" y="145" width="414" height="178"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Info Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U34-s3-ZIX">
+                                        <rect key="frame" x="20" y="108" width="374" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="Interface"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="D B A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWw-ny-lz4">
+                                        <rect key="frame" x="20" y="20" width="374" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" name="Interface"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fli-dP-3FC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1538,8 +1685,8 @@
                         <outletCollection property="buttonsToRound" destination="Jg1-r2-KnS" collectionClass="NSMutableArray" id="oFz-Ju-3SG"/>
                         <outletCollection property="buttonsToRound" destination="KFk-h0-cnG" collectionClass="NSMutableArray" id="jsO-r1-9sx"/>
                         <outletCollection property="buttonsToRound" destination="eyx-nz-tql" collectionClass="NSMutableArray" id="TIV-qp-l0w"/>
-                        <outletCollection property="labelsToRound" destination="gWw-ny-lz4" collectionClass="NSMutableArray" id="0xZ-QK-5ia"/>
                         <outletCollection property="labelsToRound" destination="WVW-BP-DPH" collectionClass="NSMutableArray" id="wOr-j6-efF"/>
+                        <outletCollection property="labelsToRound" destination="gWw-ny-lz4" collectionClass="NSMutableArray" id="0xZ-QK-5ia"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="LoginToMain" id="OFs-Hh-Nq1"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="GuestToMain" id="DOJ-S0-buZ"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="SignToMain" id="Cmc-VE-ar6"/>
@@ -1547,7 +1694,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k1d-fW-1pD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3617" y="319"/>
+            <point key="canvasLocation" x="-3617.3913043478265" y="318.75"/>
         </scene>
         <!--Weather View Controller-->
         <scene sceneID="Ywc-Ux-Hnl">
@@ -1890,6 +2037,7 @@
         <image name="checkmark.seal.fill" catalog="system" width="128" height="128"/>
         <image name="circle.grid.2x2" catalog="system" width="128" height="112"/>
         <image name="gamecontroller.fill" catalog="system" width="128" height="80"/>
+        <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
         <image name="message.circle" catalog="system" width="128" height="121"/>
         <image name="paperplane.circle" catalog="system" width="128" height="121"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
