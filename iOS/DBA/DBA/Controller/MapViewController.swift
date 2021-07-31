@@ -9,6 +9,7 @@ import UIKit
 
 class MapViewController: UIViewController {
 
+<<<<<<< HEAD:iOS/DBA/DBA/Controller/MapViewController.swift
     @IBOutlet weak var bookStopButton: UIBarButtonItem!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -20,10 +21,14 @@ class MapViewController: UIViewController {
             bookStopButton.image = nil
         }
     }
+=======
+    
+>>>>>>> hank_login_react:iOS/DBA/DBA/View/MapViewController.swift
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Do any additional setup after loading the view.
     }
     

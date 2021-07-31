@@ -13,6 +13,7 @@ class BookCollectionViewController: UIViewController {
     
     var chosenBookName: String?
     
+<<<<<<< HEAD
     @IBOutlet weak var bookStopButton: UIBarButtonItem!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,6 +26,8 @@ class BookCollectionViewController: UIViewController {
         }
     }
     
+=======
+>>>>>>> hank_login_react
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,6 +71,7 @@ extension BookCollectionViewController: UICollectionViewDelegate {
         
         performSegue(withIdentifier: K.bookChosen, sender: self)
         
+<<<<<<< HEAD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -77,6 +81,17 @@ extension BookCollectionViewController: UICollectionViewDelegate {
         }
     }
     
+=======
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.bookChosen {
+            let destinationVC = segue.destination as! ChosenBookViewController
+            destinationVC.bookTitle = chosenBookName
+        }
+    }
+    
+>>>>>>> hank_login_react
     
 }
 
