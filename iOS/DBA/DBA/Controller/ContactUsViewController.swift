@@ -1,13 +1,13 @@
 //
-//  MapViewController.swift
+//  ContactUsViewController.swift
 //  DBA
 //
-//  Created by Eoin Ó'hAnnagáin on 25/07/2021.
+//  Created by Eoin Ó'hAnnagáin on 29/07/2021.
 //
 
 import UIKit
 
-class MapViewController: UIViewController {
+class ContactUsViewController: UIViewController {
 
     @IBOutlet weak var bookStopButton: UIBarButtonItem!
     
@@ -31,6 +31,7 @@ class MapViewController: UIViewController {
         SpeechService.shared.stopSpeeching()
         navigationItem.setRightBarButton(nil, animated: true)
     }
+    
 
     /*
     // MARK: - Navigation

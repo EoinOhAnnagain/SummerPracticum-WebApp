@@ -137,7 +137,7 @@ def FareCalculation(request):
     if request.method == "POST":
         stops_number = request.POST.get('param_1')
         route_number = request.POST.get('param_2')
-        f = fare_crawler(int(route_number),int(stops_number))
+        f = fare_crawler(route_number,int(stops_number))
         result = f.parse()
         #order = "python3 core/fare_calculation.py {} {}".format(stops_number,route_number)
         #result = subprocess.check_output(order)

@@ -12,6 +12,8 @@ import IQKeyboardManagerSwift
 class LoginViewController: UIViewController, UISearchTextFieldDelegate {
     
     
+    @IBOutlet weak var bookStopButton: UIBarButtonItem!
+    
     @IBOutlet weak var loginEmailTextField: UITextField!
     @IBOutlet weak var loginPasswordTextField: UITextField!
     
@@ -33,6 +35,12 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         infoLabel.text = ""
+        
+        if SpeechService.shared.renderStopButton() {
+            bookStopButton.image = UIImage(systemName: "play.slash")
+        } else {
+            bookStopButton.image = nil
+        }
     }
     
     override func viewDidLoad() {
@@ -51,6 +59,10 @@ class LoginViewController: UIViewController, UISearchTextFieldDelegate {
         
     }
   
+    @IBAction func bookStopButtonPressed(_ sender: UIBarButtonItem) {
+        SpeechService.shared.stopSpeeching()
+        navigationItem.setRightBarButton(nil, animated: true)
+    }
     
     func title() {
         titleLabel.text = ""

@@ -9,6 +9,8 @@ import UIKit
 
 class CodebreakerViewController: UIViewController {
     
+    @IBOutlet weak var bookStopButton: UIBarButtonItem!
+    
     @IBOutlet weak var UC1: UIButton!
     @IBOutlet weak var UC2: UIButton!
     @IBOutlet weak var UC3: UIButton!
@@ -41,9 +43,17 @@ class CodebreakerViewController: UIViewController {
     
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var gameOverImage: UIImageView!
-    @IBOutlet weak var victoryImage: UIImageView!
+    @IBOutlet var victoryImages: [UIImageView]!
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if SpeechService.shared.renderStopButton() {
+            bookStopButton.image = UIImage(systemName: "play.slash")
+        } else {
+            bookStopButton.image = nil
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +61,10 @@ class CodebreakerViewController: UIViewController {
         
         gameOverImage.alpha = 0
         resultLabel.alpha = 0
-        victoryImage.alpha = 0
+        for victoryImage in victoryImages {
+            victoryImage.alpha = 0
+        }
+        
         
         answerButton.setImage(UIImage(systemName: "circle.grid.2x2", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .regular, scale: .large)), for: .normal)
         
@@ -89,6 +102,11 @@ class CodebreakerViewController: UIViewController {
         
         
         // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func bookStopButtonPressed(_ sender: UIBarButtonItem) {
+        SpeechService.shared.stopSpeeching()
+        navigationItem.setRightBarButton(nil, animated: true)
     }
     
     func prepRoundCircles(_ circles: [UIButton]) {
@@ -264,7 +282,9 @@ class CodebreakerViewController: UIViewController {
         
         revealCode()
         
-        victoryImage.alpha = 1
+        for victoryImage in victoryImages {
+            victoryImage.alpha = 1
+        }
         resultLabel.alpha = 1
         resultLabel.textColor = .systemGreen
         resultLabel.text = "Congratulations!!! You Win!!!\nPress << to play again."

@@ -21,6 +21,7 @@ struct K {
     static let weatherSegue = "toWeather"
     static let mapSegue = "Map"
     static let toSignUp = "MainToSignUp"
+    static let contactUs = "toContactUs"
     
     static let toChat = "MainToChat"
     static let toBook = "MainToBookCollection"
