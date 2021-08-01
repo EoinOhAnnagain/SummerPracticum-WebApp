@@ -7,10 +7,19 @@
 
 import UIKit
 
+struct cellData {
+    var opened = Bool()
+    var title = String()
+    var sectionData = String()
+}
+
 class AboutUsViewController: UIViewController {
 
     @IBOutlet weak var bookStopButton: UIBarButtonItem!
     
+    @IBOutlet weak var tableView: UITableView!
+    
+    var tableViewData = [cellData]()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -23,6 +32,18 @@ class AboutUsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        tableViewData = [
+            cellData(opened: false, title: "Eoin", sectionData: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend velit scelerisque, efficitur augue quis, lobortis mauris. Donec magna velit, egestas vel viverra rhoncus, feugiat quis arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean eget urna lorem. Phasellus luctus fringilla leo, ut maximus nulla gravida ut. Duis nec malesuada risus, eu tempus metus. Ut in dictum tellus. Aliquam eros urna, rhoncus nec laoreet eu, imperdiet sed mi. Nunc vestibulum justo sed scelerisque consequat. Fusce rutrum facilisis justo sit amet mollis. Donec sagittis velit nulla, eget interdum purus feugiat vitae.\n\nFusce pellentesque mauris eu fringilla ultrices. Praesent maximus libero lorem, non semper neque commodo vitae. Proin turpis ipsum, consequat eget metus consequat, vulputate semper nisl. Donec et tortor convallis, pellentesque ipsum a, porttitor augue. Mauris imperdiet vel magna sit amet cursus. Mauris quis malesuada justo, at convallis augue. Proin at massa enim. Aenean accumsan magna quis mauris euismod volutpat."),
+            cellData(opened: false, title: "Eugene", sectionData: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend velit scelerisque, efficitur augue quis, lobortis mauris. Donec magna velit, egestas vel viverra rhoncus, feugiat quis arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean eget urna lorem. Phasellus luctus fringilla leo, ut maximus nulla gravida ut. Duis nec malesuada risus, eu tempus metus. Ut in dictum tellus. Aliquam eros urna, rhoncus nec laoreet eu, imperdiet sed mi. Nunc vestibulum justo sed scelerisque consequat. Fusce rutrum facilisis justo sit amet mollis. Donec sagittis velit nulla, eget interdum purus feugiat vitae.\n\nFusce pellentesque mauris eu fringilla ultrices. Praesent maximus libero lorem, non semper neque commodo vitae. Proin turpis ipsum, consequat eget metus consequat, vulputate semper nisl. Donec et tortor convallis, pellentesque ipsum a, porttitor augue. Mauris imperdiet vel magna sit amet cursus. Mauris quis malesuada justo, at convallis augue. Proin at massa enim. Aenean accumsan magna quis mauris euismod volutpat."),
+            cellData(opened: false, title: "Even", sectionData: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend velit scelerisque, efficitur augue quis, lobortis mauris. Donec magna velit, egestas vel viverra rhoncus, feugiat quis arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean eget urna lorem. Phasellus luctus fringilla leo, ut maximus nulla gravida ut. Duis nec malesuada risus, eu tempus metus. Ut in dictum tellus. Aliquam eros urna, rhoncus nec laoreet eu, imperdiet sed mi. Nunc vestibulum justo sed scelerisque consequat. Fusce rutrum facilisis justo sit amet mollis. Donec sagittis velit nulla, eget interdum purus feugiat vitae.\n\nFusce pellentesque mauris eu fringilla ultrices. Praesent maximus libero lorem, non semper neque commodo vitae. Proin turpis ipsum, consequat eget metus consequat, vulputate semper nisl. Donec et tortor convallis, pellentesque ipsum a, porttitor augue. Mauris imperdiet vel magna sit amet cursus. Mauris quis malesuada justo, at convallis augue. Proin at massa enim. Aenean accumsan magna quis mauris euismod volutpat."),
+            cellData(opened: false, title: "Hank", sectionData: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend velit scelerisque, efficitur augue quis, lobortis mauris. Donec magna velit, egestas vel viverra rhoncus, feugiat quis arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean eget urna lorem. Phasellus luctus fringilla leo, ut maximus nulla gravida ut. Duis nec malesuada risus, eu tempus metus. Ut in dictum tellus. Aliquam eros urna, rhoncus nec laoreet eu, imperdiet sed mi. Nunc vestibulum justo sed scelerisque consequat. Fusce rutrum facilisis justo sit amet mollis. Donec sagittis velit nulla, eget interdum purus feugiat vitae.\n\nFusce pellentesque mauris eu fringilla ultrices. Praesent maximus libero lorem, non semper neque commodo vitae. Proin turpis ipsum, consequat eget metus consequat, vulputate semper nisl. Donec et tortor convallis, pellentesque ipsum a, porttitor augue. Mauris imperdiet vel magna sit amet cursus. Mauris quis malesuada justo, at convallis augue. Proin at massa enim. Aenean accumsan magna quis mauris euismod volutpat.")
+        ]
+        
+        
 
         // Do any additional setup after loading the view.
     }
@@ -43,4 +64,52 @@ class AboutUsViewController: UIViewController {
     }
     */
 
+}
+
+extension AboutUsViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return tableViewData.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableViewData[section].opened == true {
+            return 2
+        } else {
+            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: K.aboutUs.cellID) else {
+                return UITableViewCell()
+            }
+            cell.textLabel?.text = tableViewData[indexPath.section].title
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: K.aboutUs.cellID) else {
+                return UITableViewCell()
+            }
+            cell.textLabel?.text = tableViewData[indexPath.section].sectionData
+            return cell
+        }
+    }
+    
+}
+
+extension AboutUsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableViewData[indexPath.section].opened {
+            tableViewData[indexPath.section].opened = false
+            let sections = IndexSet.init(integer: indexPath.section)
+            tableView.reloadSections(sections, with: .automatic)
+        } else {
+            tableViewData[indexPath.section].opened = true
+            let sections = IndexSet.init(integer: indexPath.section)
+            tableView.reloadSections(sections, with: .automatic)
+        }
+    }
+    
 }
