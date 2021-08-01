@@ -43,7 +43,7 @@ class CodebreakerViewController: UIViewController {
     
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var gameOverImage: UIImageView!
-    @IBOutlet weak var victoryImage: UIImageView!
+    @IBOutlet var victoryImages: [UIImageView]!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -61,7 +61,10 @@ class CodebreakerViewController: UIViewController {
         
         gameOverImage.alpha = 0
         resultLabel.alpha = 0
-        victoryImage.alpha = 0
+        for victoryImage in victoryImages {
+            victoryImage.alpha = 0
+        }
+        
         
         answerButton.setImage(UIImage(systemName: "circle.grid.2x2", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .regular, scale: .large)), for: .normal)
         
@@ -279,7 +282,9 @@ class CodebreakerViewController: UIViewController {
         
         revealCode()
         
-        victoryImage.alpha = 1
+        for victoryImage in victoryImages {
+            victoryImage.alpha = 1
+        }
         resultLabel.alpha = 1
         resultLabel.textColor = .systemGreen
         resultLabel.text = "Congratulations!!! You Win!!!\nPress << to play again."
