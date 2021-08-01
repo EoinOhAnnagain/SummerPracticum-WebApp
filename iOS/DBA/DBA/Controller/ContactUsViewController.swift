@@ -6,9 +6,21 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class ContactUsViewController: UIViewController {
 
+    @IBOutlet weak var firstLabel: UILabel!
+    @IBOutlet weak var secondLabel: UILabel!
+    
+    @IBOutlet weak var firstPicker: UIPickerView!
+    @IBOutlet weak var secondPicker: UIPickerView!
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var issueTextField: UITextField!
+    
+    @IBOutlet weak var sendButton: UIButton!
+    
     @IBOutlet weak var bookStopButton: UIBarButtonItem!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,6 +36,11 @@ class ContactUsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        roundButton(sendButton)
+        
+        emailTextField.delegate = self
+        issueTextField.delegate = self
+        
         // Do any additional setup after loading the view.
     }
     
@@ -43,4 +60,22 @@ class ContactUsViewController: UIViewController {
     }
     */
 
+}
+
+//MARK: - Rounding
+
+extension ContactUsViewController {
+    
+    func roundButton(_ name: UIButton) {
+        name.layer.cornerRadius = 0.4 * name.bounds.size.height
+    }
+}
+
+
+// MARK: - Manage Return Key
+
+extension ContactUsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return view.endEditing(true)
+    }
 }
