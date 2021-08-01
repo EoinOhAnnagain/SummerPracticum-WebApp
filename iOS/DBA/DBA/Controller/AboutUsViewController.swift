@@ -103,11 +103,11 @@ extension AboutUsViewController: UITableViewDelegate {
         if tableViewData[indexPath.section].opened {
             tableViewData[indexPath.section].opened = false
             let sections = IndexSet.init(integer: indexPath.section)
-            tableView.reloadSections(sections, with: .automatic)
+            tableView.reloadSections(sections, with: .none)
         } else {
             tableViewData[indexPath.section].opened = true
             let sections = IndexSet.init(integer: indexPath.section)
-            tableView.reloadSections(sections, with: .automatic)
+            tableView.reloadSections(sections, with: .none)
         }
     }
     
