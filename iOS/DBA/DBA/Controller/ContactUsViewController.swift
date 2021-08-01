@@ -7,8 +7,9 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import MessageUI
 
-class ContactUsViewController: UIViewController {
+class ContactUsViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var firstLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!
@@ -50,6 +51,41 @@ class ContactUsViewController: UIViewController {
     }
     
 
+    @IBAction func sendButtonPressed(_ sender: UIButton) {
+        
+        let toRecipients = ["eoin1711@gmail.com", "eoin.ohannagain@ucdconnect.ie"]
+        
+        let mc: MFMailComposeViewController = MFMailComposeViewController()
+        
+        mc.mailComposeDelegate = self
+        mc.setToRecipients(toRecipients)
+        mc.setSubject(emailTextField.text!)
+        
+        mc.setMessageBody("Email: \(emailTextField.text!) \n\nIssue: \(issueTextField.text!)", isHTML: false)
+        
+        self.present(mc, animated: true) {
+            
+        }
+        
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        switch result.rawValue {
+        case MFMailComposeResult.cancelled.rawValue:
+            print("Cancelled")
+        case MFMailComposeResult.failed.rawValue:
+            print("Failed")
+        case MFMailComposeResult.saved.rawValue:
+            print("Saved")
+        case MFMailComposeResult.sent.rawValue:
+            print("Sent")
+        default:
+            print("Defaul")
+            break
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 

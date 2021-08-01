@@ -1350,6 +1350,9 @@
                                 <state key="normal" title="Send">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendButtonPressed:" destination="Nqi-gi-NW6" eventType="touchUpInside" id="mLD-Zn-jUz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UBn-7q-Ffw"/>
