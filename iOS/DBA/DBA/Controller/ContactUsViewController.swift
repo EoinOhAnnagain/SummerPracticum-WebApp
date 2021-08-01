@@ -9,16 +9,18 @@ import UIKit
 import IQKeyboardManagerSwift
 import MessageUI
 
-class ContactUsViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class ContactUsViewController: UIViewController, MFMailComposeViewControllerDelegate, UITextViewDelegate {
 
+    var userEmail: String?
+    
     @IBOutlet weak var firstLabel: UILabel!
-    @IBOutlet weak var secondLabel: UILabel!
+    @IBOutlet weak var placeholderLabel: UILabel!
+    @IBOutlet weak var resultLabel: UILabel!
     
     @IBOutlet weak var firstPicker: UIPickerView!
-    @IBOutlet weak var secondPicker: UIPickerView!
     
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var issueTextField: UITextField!
+    @IBOutlet weak var issueTextView: UITextView!
     
     @IBOutlet weak var sendButton: UIButton!
     
@@ -37,10 +39,12 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUp()
         roundButton(sendButton)
-        
+        roundButton(emailTextField)
+        resultLabel.alpha = 0
         emailTextField.delegate = self
-        issueTextField.delegate = self
+        issueTextView.delegate = self
         
         // Do any additional setup after loading the view.
     }
@@ -49,8 +53,14 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
         SpeechService.shared.stopSpeeching()
         navigationItem.setRightBarButton(nil, animated: true)
     }
-    
 
+    func setUp() {
+        if userEmail != nil {
+            emailTextField.alpha = 0
+        }
+    }
+    
+    
     @IBAction func sendButtonPressed(_ sender: UIButton) {
         
         let toRecipients = ["eoin1711@gmail.com", "eoin.ohannagain@ucdconnect.ie"]
@@ -61,7 +71,7 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
         mc.setToRecipients(toRecipients)
         mc.setSubject(emailTextField.text!)
         
-        mc.setMessageBody("Email: \(emailTextField.text!) \n\nIssue: \(issueTextField.text!)", isHTML: false)
+        mc.setMessageBody("Email: \(emailTextField.text!) \n\nIssue: \(issueTextView.text!)", isHTML: false)
         
         self.present(mc, animated: true) {
             
@@ -75,10 +85,16 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
             print("Cancelled")
         case MFMailComposeResult.failed.rawValue:
             print("Failed")
+            resultLabel.text = "Message Sending Failed: \(error!.localizedDescription)"
+            resultLabel.alpha = 1
+            resultLabel.textColor = .red
         case MFMailComposeResult.saved.rawValue:
             print("Saved")
         case MFMailComposeResult.sent.rawValue:
             print("Sent")
+            resultLabel.text = "Message Successfully Sent"
+            resultLabel.alpha = 1
+            resultLabel.textColor = .green
         default:
             print("Defaul")
             break
@@ -103,6 +119,10 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
 extension ContactUsViewController {
     
     func roundButton(_ name: UIButton) {
+        name.layer.cornerRadius = 0.4 * name.bounds.size.height
+    }
+    
+    func roundButton(_ name: UITextField) {
         name.layer.cornerRadius = 0.4 * name.bounds.size.height
     }
 }
