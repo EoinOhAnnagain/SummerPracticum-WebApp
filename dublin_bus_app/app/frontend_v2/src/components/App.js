@@ -4,14 +4,16 @@ import Login from "./login";
 import Signup from "./signup";
 import Hello from "./hello";
 import {axiosInstance} from "../axiosApi";
-
-
-
+import Welcome from "./Welcome";
 
 class App extends Component {
     constructor() {
         super();
         this.handleLogout = this.handleLogout.bind(this);
+        this.state = {
+            logout: false,
+            username: ""
+        };
     }
 
     async handleLogout() {
@@ -22,6 +24,7 @@ class App extends Component {
             localStorage.removeItem('access_token');
             localStorage.removeItem('refresh_token');
             axiosInstance.defaults.headers['Authorization'] = null;
+            this.setState({logout:true});
             return response;
         }
         catch (e) {
@@ -30,6 +33,14 @@ class App extends Component {
     };
 
     render() {
+        if (this.state.logout){
+            alert("you are already log out!");
+            this.setState({username: localStorage.getItem('username')});
+            localStorage.removeItem('username');
+            this.setState({logout:false});
+            // redirect to login page.
+        }
+        
         return (
             <div className="site">
                 <nav>
@@ -37,10 +48,11 @@ class App extends Component {
                     <Link className={"nav-link"} to={"/login/"}>Login</Link>
                     <Link className={"nav-link"} to={"/signup/"}>Signup</Link>
                     <Link className={"nav-link"} to={"/hello/"}>Hello</Link>
+                    {/* if login show logout button */}
                     <button onClick={this.handleLogout}>Logout</button>
                 </nav>
+                {/* <Welcome name = {this.state.username}/>*/}
                 <main>
-
                     <Switch>
                         <Route exact path={"/login/"} component={Login}/>
                         <Route exact path={"/signup/"} component={Signup}/>

@@ -9,8 +9,8 @@ class Signup extends Component{
             username: "",
             password: "",
             email:"",
-            errors:{}
-
+            errors:{},
+            signsuccess: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -29,6 +29,7 @@ class Signup extends Component{
                 email: this.state.email,
                 password: this.state.password
             });
+            this.setState({signsuccess:true});
             return response;
         } catch (error) {
             console.log(error.stack);
@@ -39,6 +40,11 @@ class Signup extends Component{
     }
 
     render() {
+        if(this.state.signsuccess){
+            this.setState({signsuccess:false});
+            alert("Signup successfully!");
+            // redirect to login
+        }
         return (
             <div>
                 Signup
