@@ -42,6 +42,10 @@ struct K {
         
     }
     
+    struct aboutUs {
+        static let cellID = "aboutUsCell"
+    }
+    
     static let readBook = "ReadyToRead"
     static let bookChosen = "bookChosen"
     static let bookCell = "BookCollectionViewCell"
