@@ -4,7 +4,6 @@ import Login from "./login";
 import Signup from "./signup";
 import Hello from "./hello";
 import {axiosInstance} from "../axiosApi";
-import Welcome from "./Welcome";
 
 class App extends Component {
     constructor() {

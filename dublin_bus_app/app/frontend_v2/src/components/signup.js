@@ -49,11 +49,11 @@ class Signup extends Component{
             <div>
                 Signup
                 <form onSubmit={this.handleSubmit}>
-                    <label>
+                    {/* <label>
                         Username:
                         <input name="username" type="text" value={this.state.username} onChange={this.handleChange}/>
                         { this.state.errors.username ? this.state.errors.username : null}
-                    </label>
+                    </label> */}
                     <label>
                         Email:
                         <input name="email" type="email" value={this.state.email} onChange={this.handleChange}/>

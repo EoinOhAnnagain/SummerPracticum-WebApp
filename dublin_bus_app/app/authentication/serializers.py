@@ -9,7 +9,6 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token = super(MyTokenObtainPairSerializer, cls).get_token(user)
 
         # Add custom claims
-        # token['fav_color'] = user.fav_color
         return token
 
 class CustomUserSerializer(serializers.ModelSerializer):
@@ -19,17 +18,16 @@ class CustomUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
         required=True
     )
-    username = serializers.CharField()
+    # username = serializers.CharField()
     password = serializers.CharField(min_length=8, write_only=True)
 
     class Meta:
         model = CustomUser
-        fields = ('email', 'username', 'password')
+        fields = ('email', 'password')
         extra_kwargs = {'password': {'write_only': True}}
 
     # override create function
     def create(self, validated_data):
-        print("serializer create called")
         password = validated_data.pop('password', None)
         instance = self.Meta.model(**validated_data)  # as long as the fields are the same, we can just use this
         if password is not None:
