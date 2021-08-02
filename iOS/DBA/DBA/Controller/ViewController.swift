@@ -102,6 +102,11 @@ class ViewController: UIViewController {
         if segue.identifier == K.weatherSegue {
             let destinationVC = segue.destination as! WeatherViewController
             destinationVC.weather = weatherModel
+        } else if segue.identifier == K.contactUs {
+            let destinationVC = segue.destination as! ContactUsViewController
+            if userEmailString != nil {
+                destinationVC.userEmail = userEmailString
+            }
         }
     }
     
