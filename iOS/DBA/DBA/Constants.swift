@@ -45,7 +45,7 @@ struct K {
     struct contact {
         static let pickerOptions = [
             "Request Feature",
-            "Request Book",
+            "Request Book (from Project Gutenburg)",
             "Suggestion",
             "Bug in Weather",
             "Bug in Books",
