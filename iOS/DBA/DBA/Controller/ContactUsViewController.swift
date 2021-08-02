@@ -61,6 +61,7 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
     func setUp() {
         if userEmail != nil {
             emailTextField.alpha = 0
+            firstLabel.alpha = 0
         }
     }
     
