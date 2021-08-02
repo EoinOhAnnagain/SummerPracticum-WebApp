@@ -42,6 +42,22 @@ struct K {
         
     }
     
+    struct contact {
+        static let pickerOptions = [
+            "Request Feature",
+            "Request Book",
+            "Suggestion",
+            "Bug in Weather",
+            "Bug in Books",
+            "Bug in CodeBreaker",
+            "Bug in Chat",
+            "Bug in Prediction",
+            "Bug in Map",
+            "Bug in Login/SignUp",
+            "Report Abuse of Chat",
+        ]
+    }
+    
     struct aboutUs {
         static let cellID = "aboutUsCell"
         static let cellNibName = "AboutUsCellTableViewCell"

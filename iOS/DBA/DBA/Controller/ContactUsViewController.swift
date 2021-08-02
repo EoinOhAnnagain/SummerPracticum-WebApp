@@ -43,6 +43,10 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
         roundButton(sendButton)
         roundButton(emailTextField)
         resultLabel.alpha = 0
+        
+        firstPicker.dataSource = self
+        firstPicker.delegate = self
+        
         emailTextField.delegate = self
         issueTextView.delegate = self
         
@@ -63,18 +67,62 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
         
-        let toRecipients = ["eoin1711@gmail.com", "eoin.ohannagain@ucdconnect.ie"]
+        let picked = firstPicker.selectedRow(inComponent: 0)
         
-        let mc: MFMailComposeViewController = MFMailComposeViewController()
-        
-        mc.mailComposeDelegate = self
-        mc.setToRecipients(toRecipients)
-        mc.setSubject(emailTextField.text!)
-        
-        mc.setMessageBody("Email: \(emailTextField.text!) \n\nIssue: \(issueTextView.text!)", isHTML: false)
-        
-        self.present(mc, animated: true) {
+        if picked == 0 {
+            resultLabel.text = "Please select a subject"
+            resultLabel.alpha = 1
+            resultLabel.textColor = UIColor(named: "Interface")
+        } else {
             
+            
+            var reason: String?
+            var email: String?
+            
+            
+            if picked == (K.contact.pickerOptions.count + 1) {
+                reason = "Other"
+            } else {
+                reason = K.contact.pickerOptions[picked]
+            }
+            
+            let toRecipients = ["eoin1711@gmail.com", "eoin.ohannagain@ucdconnect.ie"]
+            
+            let mc: MFMailComposeViewController = MFMailComposeViewController()
+            
+            if userEmail != nil {
+                email = userEmail
+            } else {
+                email = emailTextField.text
+            }
+            
+            if email == nil || email == "" {
+                resultLabel.text = "Please include an email address."
+                resultLabel.alpha = 1
+                resultLabel.textColor = UIColor(named: "Interface")
+            } else {
+                
+                let message =  issueTextView.text
+                
+                if message == nil || message == "" {
+                    resultLabel.text = "Please include a message so we can help you."
+                    resultLabel.alpha = 1
+                    resultLabel.textColor = UIColor(named: "Interface")
+                } else {
+                    
+                    mc.mailComposeDelegate = self
+                    mc.setToRecipients(toRecipients)
+                    mc.setSubject("\(reason!) - \(email!)")
+                    
+                    
+                    
+                    mc.setMessageBody("Email: \(email!) \n\nSubject: \(reason!) \n\nIssue: \(message!)", isHTML: false)
+                    
+                    self.present(mc, animated: true) {
+                        
+                    }
+                }
+            }
         }
         
     }
@@ -82,21 +130,19 @@ class ContactUsViewController: UIViewController, MFMailComposeViewControllerDele
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         switch result.rawValue {
         case MFMailComposeResult.cancelled.rawValue:
-            print("Cancelled")
+            resultLabel.alpha = 0
         case MFMailComposeResult.failed.rawValue:
-            print("Failed")
             resultLabel.text = "Message Sending Failed: \(error!.localizedDescription)"
             resultLabel.alpha = 1
             resultLabel.textColor = .red
         case MFMailComposeResult.saved.rawValue:
-            print("Saved")
+            resultLabel.alpha = 0
         case MFMailComposeResult.sent.rawValue:
-            print("Sent")
             resultLabel.text = "Message Successfully Sent"
             resultLabel.alpha = 1
             resultLabel.textColor = .green
         default:
-            print("Defaul")
+            resultLabel.alpha = 0
             break
         }
         
@@ -134,4 +180,34 @@ extension ContactUsViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return view.endEditing(true)
     }
+}
+
+//MARK: - Picker View
+
+extension ContactUsViewController: UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return K.contact.pickerOptions.count + 2
+    }
+    
+    
+}
+
+extension ContactUsViewController: UIPickerViewDelegate {
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        if row == 0 {
+            return "Please Select an Option"
+        }else if row == K.contact.pickerOptions.count + 1 {
+            return "Other"
+        } else {
+            return K.contact.pickerOptions[row - 1]
+        }
+    }
+    
 }
