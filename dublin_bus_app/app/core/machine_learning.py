@@ -93,5 +93,5 @@ class travel_time(object):
         x_li = std.fit_transform(x_li.values.reshape(1,-1))
         y_pre = estimator.predict(x_li)
         return y_pre
-t = travel_time(17,"1","Shanard Avenue, stop 226","2021-07-30")
-t.get_sql_info()
+# t = travel_time(17,"1","Shanard Avenue, stop 226","2021-08-14")
+# t.get_sql_info()

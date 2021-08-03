@@ -3,3 +3,5 @@ function Welcome(props){
         <p>Hello, {props.name ? props.name : "who are u?" }</p>
     )
 };
+
+export default Welcome;
