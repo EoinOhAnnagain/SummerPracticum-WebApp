@@ -7,6 +7,10 @@ import Signup from "./signup";
 import Hello from "./hello";
 import {axiosInstance} from "../axiosApi";
 
+import MainMaps from "./Map";
+import Navbar from './Navbar'
+
+
 function App(){
     const [logout, setLogout] = useState(false);
     const [username, setUsername] = useState("");
@@ -64,14 +68,15 @@ console.log(stopData, "hopefully all went okay...")
                     <Link className={"nav-link"} to={"/map/"}>Map</Link>
                     <button onClick={handleLogout}>Logout</button>
                 </nav>
-                {/* <Welcome name = {this.state.username}/>*/}
+            
                 <main>
+                    <Switch>
                         <Route exact path={"/login/"} component={Login}/>
                         <Route exact path={"/signup/"} component={Signup}/>
                         <Route exact path={"/hello/"} component={Hello}/>
                         <Route path={"/"} render={() => <div>Home again</div>}/>
+                    </Switch>
                         <Route exact path='/map/' render={(props) => (<><MainMaps stopData={stopData}/><Navbar stopData={stopData}/></>)}/>
-                    
                 </main>
             </div>
             </div>
