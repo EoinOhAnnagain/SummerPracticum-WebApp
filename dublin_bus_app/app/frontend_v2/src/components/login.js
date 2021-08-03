@@ -7,7 +7,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "", 
+            email: "", 
             password: "", 
             errors: false,
             loginsucess: false,
@@ -24,7 +24,7 @@ class Login extends Component {
     handleSubmit(event){
         event.preventDefault();
         axiosInstance.post('/token/obtain/', {
-                username: this.state.username,
+                email: this.state.email,
                 password: this.state.password
             }).then(
                 result => {
@@ -48,7 +48,7 @@ class Login extends Component {
         if (this.state.loginsucess){
             alert("login successfully!")
             this.setState({loginsucess:false});
-            localStorage.setItem('username', this.state.username);
+            localStorage.setItem('email', this.state.email);
             // redirect to map page.
         }
         
@@ -57,8 +57,8 @@ class Login extends Component {
                 Login
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Username:
-                        <input name="username" type="text" value={this.state.username} onChange={this.handleChange}/>
+                        Email:
+                        <input name="email" type="text" value={this.state.email} onChange={this.handleChange}/>
                     </label>
                     <label>
                         Password:

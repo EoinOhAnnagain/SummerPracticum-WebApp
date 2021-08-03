@@ -1,21 +1,16 @@
 import React, { Component} from "react";
+import { useState, useEffect } from 'react';
 import { Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router} from 'react-router-dom'
 import Login from "./login";
 import Signup from "./signup";
 import Hello from "./hello";
 import {axiosInstance} from "../axiosApi";
-import Welcome from "./Welcome";
 
-import { useState, useEffect } from 'react'
-import { BrowserRouter as Router} from 'react-router-dom'
-import MainMaps from "./Map";
-import Navbar from './Navbar'
-
-
-function App () {
-    
+function App(){
     const [logout, setLogout] = useState(false);
     const [username, setUsername] = useState("");
+
     const handleLogout = async () => {
         try {
             const response = await axiosInstance.post('/blacklist/', {
@@ -50,12 +45,12 @@ console.log(stopData, "hopefully all went okay...")
 
 
 
-        // if (logout){
-        //     alert("you are already log out!");
-        //     setUsername(localStorage.getItem('username'));
-        //     localStorage.removeItem('username');
-        //     setLogout(false);
-        // }
+        if (logout){
+            alert("you are already log out!");
+            setUsername(localStorage.getItem('username'));
+            localStorage.removeItem('username');
+            setLogout(false);
+        }
 
         return (
             <Router>
