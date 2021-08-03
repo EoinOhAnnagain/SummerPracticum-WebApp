@@ -1,11 +1,43 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import firebase from "firebase/app";
+import Button from './Button'
+import Select from 'react-select';
 
-const WebChat = ({user = null, db = null}) => {
+const WebChat = ({user = null, db = null, routeData}) => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     const [route, setRoute] = useState('messages');
+
+    const [bus, setBus] = useState();
+    const [direction, setDirection] = useState();
+
+    const busOptions = routeData.map(route => {
+        return {value: route.route_short_name, 
+                label: route.route_short_name}
+    })
+
+    const directionOptions = [
+        {value: "In", label: "Inbound"}, {value: "Out", label: "Outbound"}
+    ]
+
+
+    const changeBus = (selected) => {
+        setBus(selected.value);
+        console.log(bus, "is new bus");
+    };
+
+    const changeDirection = (selected) => {
+        setDirection(selected.value);
+        console.log(direction, "is new direction");
+    };
+
+    const setChat = () => {
+        console.log(bus+direction)
+        const date = Date.now();
+        const timestamp = Math.floor(date/1000);
+        console.log(timestamp, "should be unix")
+    }
 
     useEffect(() => {
 
@@ -47,6 +79,9 @@ const WebChat = ({user = null, db = null}) => {
 
     return (
         <div>
+            <Select options={busOptions} onChange={changeBus}/>
+            <Select options={directionOptions} onChange={changeDirection}/>
+            <Button text="Chat" onClick={setChat}/>
             <ul>
                 {messages.map(message => (
                     <li key={message.id}> {message.body}</li>
