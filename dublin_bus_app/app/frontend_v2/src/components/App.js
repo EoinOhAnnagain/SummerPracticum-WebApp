@@ -10,6 +10,21 @@ import {axiosInstance} from "../axiosApi";
 import MainMaps from "./Map";
 import Navbar from './Navbar'
 
+import firebase from "firebase/app"
+import "firebase/auth";
+import "firebase/firestore";
+import WebChat from "./WebChat"
+
+firebase.initializeApp({
+    apiKey: "AIzaSyBUubTNjY772TYe-SMwYfOut7oUMZS53mc",
+    authDomain: "bda-2021.firebaseapp.com",
+    projectId: "bda-2021",
+    storageBucket: "bda-2021.appspot.com",
+    messagingSenderId: "930954973669",
+    appId: "1:930954973669:web:f2da910008a701469a1f0c",
+});
+
+const db = firebase.firestore();
 
 function App(){
     const [logout, setLogout] = useState(false);
@@ -66,6 +81,7 @@ console.log(stopData, "hopefully all went okay...")
                     <Link className={"nav-link"} to={"/signup/"}>Signup</Link>
                     <Link className={"nav-link"} to={"/hello/"}>Hello</Link>
                     <Link className={"nav-link"} to={"/map/"}>Map</Link>
+                    <Link className={"nav-link"} to={"/webChat/"}>Community Chat</Link>
                     <button onClick={handleLogout}>Logout</button>
                 </nav>
             
@@ -77,6 +93,8 @@ console.log(stopData, "hopefully all went okay...")
                         <Route path={"/"} render={() => <div>Home again</div>}/>
                     </Switch>
                         <Route exact path='/map/' render={(props) => (<><MainMaps stopData={stopData}/><Navbar stopData={stopData}/></>)}/>
+                        <Route exact path={"/webChat/"} render={(props) => (<WebChat user={null} db={db}/>)}/>
+                    
                 </main>
             </div>
             </div>
