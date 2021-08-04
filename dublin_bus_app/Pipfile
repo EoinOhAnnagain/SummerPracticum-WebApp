@@ -41,6 +41,7 @@ wrapt = "==1.12.1"
 lxml = "*"
 sklearn = "*"
 datetime = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 

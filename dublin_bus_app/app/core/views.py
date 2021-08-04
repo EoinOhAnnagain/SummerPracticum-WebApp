@@ -111,6 +111,7 @@ def Stops(request):
    # stopsString = json.loads(stopsPath)
    # print(stopsString)
    json_data = open(finders.find('JSON/stops_and_their_buses.json'))
+   print("Found stops")
    data1 = json.load(json_data)  # deserialises it
    json_data.close()
    return JsonResponse(data1, safe=False) # , safe=False
@@ -127,29 +128,35 @@ def MapView(request):
 
     return render(request, "map.html")
 
-# def show_user_list(request):
-#     user_list = CustomUser.objects.order_by('username')
-#     output = ', '.join([user.username for user in user_list])
-#     return HttpResponse(output)
-
 from core.fare_calculation import fare_crawler
+@csrf_exempt
 def FareCalculation(request):
+    print(request, "is the request")
     if request.method == "POST":
-        stops_number = request.POST.get('param_1')
-        route_number = request.POST.get('param_2')
+        post_data = json.loads(request.body.decode("utf-8"))
+        stops_number = post_data.get('param_1')
+        print(stops_number, "is stops number")
+        route_number = post_data.get('param_2')
+        print(route_number, "is route number")
         f = fare_crawler(route_number,int(stops_number))
         result = f.parse()
         #order = "python3 core/fare_calculation.py {} {}".format(stops_number,route_number)
         #result = subprocess.check_output(order)
         print(result)
-        return HttpResponse(result)
+        return JsonResponse(result, safe=False)
+
 from core.machine_learning import travel_time
+@csrf_exempt
 def Traveltime(request):
     # total_time = 1
     if request.method == "POST":
-        stops_number = request.POST.get('param_1')
-        route_number = request.POST.get('param_2')
-        start_stop = request.POST.get('param_3')
-        time = travel_time(stops_number,route_number,start_stop)
+        post_data = json.loads(request.body.decode("utf-8"))
+        stops_number = post_data.get('param_1')
+        route_number = post_data.get('param_2')
+        start_stop = post_data.get('param_3')
+        journey_date = post_data.get('param_4')
+        print(journey_date, "is journey date")
+        time = travel_time(stops_number,route_number,start_stop,journey_date)
         total_time = time.get_sql_info()
-    return HttpResponse(total_time)
+    return JsonResponse(total_time, safe=False)
+    #return JsonResponse(1500, safe=False) 
