@@ -2,13 +2,15 @@ import React, { Component} from "react";
 import { useState, useEffect } from 'react';
 import { Switch, Route, Link } from "react-router-dom";
 import { BrowserRouter as Router} from 'react-router-dom'
+import {axiosInstance} from "../axiosApi";
+
 import Login from "./login";
 import Signup from "./signup";
 import Hello from "./hello";
-import {axiosInstance} from "../axiosApi";
-
+import Welcome from "./Welcome";
 import MainMaps from "./Map";
-import Navbar from './Navbar'
+import Navbar from './Navbar';
+
 
 import firebase from "firebase/app"
 import "firebase/auth";
@@ -27,6 +29,7 @@ firebase.initializeApp({
 const db = firebase.firestore();
 
 function App(){
+    
     const [logout, setLogout] = useState(false);
     const [username, setUsername] = useState("");
 
@@ -47,29 +50,30 @@ function App(){
     };
    
     
-const [stopData, setStopData] = useState([])
+    const [stopData, setStopData] = useState([]);
 
-useEffect(()=> {
-  const fetchStops = async () => {
-    const res = await fetch(`http://localhost:8000/core/stops`)
-    const data = await res.json()
-    setStopData(data)
-    console.log("stop data", data)
-    return data
-  }
-  fetchStops()
-}, [])
+    useEffect(()=> {
+    const fetchStops = async () => {
+        const res = await fetch(`http://localhost:8000/core/stops`)
+        const data = await res.json()
+        setStopData(data)
+        console.log("stop data", data)
+        return data
+    }
+    fetchStops()
+    }, []);
 
-console.log(stopData, "hopefully all went okay...")
-
-
-
+    useEffect(() => {
         if (logout){
-            alert("you are already log out!");
-            setUsername(localStorage.getItem('username'));
-            localStorage.removeItem('username');
+            if (localStorage.getItem('email')){
+                alert(localStorage.getItem('email') + ", you are already log out!");
+            }else{
+                alert("Don't touch the button!");
+            }
+            localStorage.removeItem('email');
             setLogout(false);
         }
+    });
 
         return (
             <Router>
