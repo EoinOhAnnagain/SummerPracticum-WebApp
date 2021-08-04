@@ -9,8 +9,8 @@ const WebChat = ({user = null, db = null, routeData}) => {
     const [newMessage, setNewMessage] = useState('');
     const [route, setRoute] = useState('messages');
 
-    const [bus, setBus] = useState();
-    const [direction, setDirection] = useState();
+    const [bus, setBus] = useState(null);
+    const [direction, setDirection] = useState(null);
 
     const busOptions = routeData.map(route => {
         return {value: route.route_short_name, 
@@ -33,17 +33,27 @@ const WebChat = ({user = null, db = null, routeData}) => {
     };
 
     const setChat = () => {
-        console.log(bus+direction)
+        console.log(bus+direction);
         const date = Date.now();
         const timestamp = Math.floor(date/1000);
-        console.log(timestamp, "should be unix")
+        console.log(timestamp, "should be unix");
+        console.log(date, "should be unix miliseconds?");
+        if (bus == null && direction == null){
+            alert("Please select a bus route and direction")
+        } else if (bus==null){
+            alert("Please select a bus route")
+        } else if (direction==null){
+            alert("Please select a direction")
+        } else {
+            setRoute(bus+direction);
+            changeChat(bus, direction);
+        }
     }
 
     useEffect(() => {
-
         if (db){
             const unsubscribe = db
-            .collection(route)
+            .collection('messages')
             .orderBy('date')
             .limit(100)
             .onSnapshot(querySnapshot => {
@@ -58,6 +68,30 @@ const WebChat = ({user = null, db = null, routeData}) => {
         return unsubscribe;
         } 
     }, [db]);
+
+    const changeChat = (bus, direction) => {
+        if (db){
+            const unsubscribe = db
+            .collection(bus+direction)
+            .orderBy('date')
+            .limit(100)
+            .onSnapshot(querySnapshot => {
+                const data = querySnapshot.docs.map(doc => ({
+                    ...doc.data(),
+                    id: doc.id,
+                }));
+                //update State
+                console.log(data, "is data in changeChat function");
+                if (!data.length){
+                    setMessages([{id: "error", body: "No messages to show yet"}])
+                } else{
+                    setMessages(data);
+                }
+            })
+            //Detatch listener
+        return unsubscribe;
+        }
+    }
 
     const handleOnChange = e => {
         setNewMessage(e.target.value);
