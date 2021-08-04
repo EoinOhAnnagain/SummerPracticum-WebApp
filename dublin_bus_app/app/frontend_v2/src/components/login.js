@@ -1,4 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import {axiosInstance} from "../axiosApi";
 import Welcome from "./Welcome";
 
@@ -8,6 +9,7 @@ function Login(){
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState(false);
     const [loginsucess, setLoginsucess] = useState(false);
+    const [test, settest] = useState(false);
 
     const handleChange = event => {
         const { name, value } = event.currentTarget;
@@ -17,14 +19,6 @@ function Login(){
           setPassword(value);
       };
     };
-
-    // const handleChangeEmail = (event) =>{
-    //     setEmail(event.target.value);
-    // };
-    
-    // const handleChangePassword = (event) =>{
-    //     setPassword(event.target.value);
-    // };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -38,6 +32,7 @@ function Login(){
                     localStorage.setItem('refresh_token', result.data.refresh);
                     setLoginsucess(true);
                     setPassword("");
+
                 }
         ).catch (error => {
             setErrors(true);
@@ -51,26 +46,30 @@ function Login(){
             alert("login fail please try again!");
             setErrors(false);
         }
-        if (loginsucess){
-            alert("login successfully!")
-            setLoginsucess(false);
-            localStorage.setItem('email', email);
-            // redirect to map page.
-        }
     }
     );
 
+    if (loginsucess){
+        alert("login successfully!")
+        // setLoginsucess(false);
+        localStorage.setItem('email', email);
+        // redirect to map page.
+        return <Redirect to="/hello" />;
+    }
+
     return (
-        <div>
+        <div >
             Login
             <form onSubmit={handleSubmit}>
                 <label>
                     Email:
-                    <input name="email" type="text" value={email} onChange={handleChange}/>
+                    <input name="email" type="text" value={email} placeholder="E.g: abc123@gmail.com"
+                    onChange={handleChange}/>
                 </label>
                 <label>
                     Password:
-                    <input name="password" type="password" value={password} onChange={handleChange}/>
+                    <input name="password" type="password" value={password} placeholder="E.g: abcd1234"
+                    onChange={handleChange}/>
                 </label>
                 <input type="submit" value="Submit"/>
             </form>

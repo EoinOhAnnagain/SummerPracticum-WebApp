@@ -6,27 +6,27 @@ import {axiosInstance} from "../axiosApi";
 
 import Login from "./login";
 import Signup from "./signup";
+// import Signup from "./Signup_f";
 import Hello from "./hello";
 import Welcome from "./Welcome";
 import MainMaps from "./Map";
 import Navbar from './Navbar';
 
-
-import firebase from "firebase/app"
-import "firebase/auth";
-import "firebase/firestore";
+// import firebase from "firebase/app"
+// import "firebase/auth";
+// import "firebase/firestore";
 import WebChat from "./WebChat"
 
-firebase.initializeApp({
-    apiKey: "AIzaSyBUubTNjY772TYe-SMwYfOut7oUMZS53mc",
-    authDomain: "bda-2021.firebaseapp.com",
-    projectId: "bda-2021",
-    storageBucket: "bda-2021.appspot.com",
-    messagingSenderId: "930954973669",
-    appId: "1:930954973669:web:f2da910008a701469a1f0c",
-});
+// firebase.initializeApp({
+//     apiKey: "AIzaSyBUubTNjY772TYe-SMwYfOut7oUMZS53mc",
+//     authDomain: "bda-2021.firebaseapp.com",
+//     projectId: "bda-2021",
+//     storageBucket: "bda-2021.appspot.com",
+//     messagingSenderId: "930954973669",
+//     appId: "1:930954973669:web:f2da910008a701469a1f0c",
+// });
 
-const db = firebase.firestore();
+// const db = firebase.firestore();
 
 function App(){
     

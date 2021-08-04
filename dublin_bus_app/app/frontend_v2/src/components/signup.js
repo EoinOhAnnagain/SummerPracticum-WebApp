@@ -1,15 +1,24 @@
 import React, { Component, useEffect, useState } from "react";
-// import Async from "react-select/async";
+import { Redirect } from "react-router-dom";
 import {axiosInstance} from "../axiosApi";
 
+
 //  TODO: Error handling.
-function Signup(){
+const Signup = () => {
     
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [errors, setErrors] = useState({});
     const [signsuccess, setSignsuccess] = useState(false);
 
+    const createUser = (email, password) => {
+        try {
+          auth().createUserWithEmailAndPassword(email, password);
+        } catch (error) {
+          alert(error);
+        }
+      };
+    
     const handleChange = event =>{
         const { name, value } = event.currentTarget;
         if (name === "email") {
@@ -18,14 +27,6 @@ function Signup(){
           setPassword(value);
       };
     };
-
-    // const handleChangeEmail = (event) =>{
-    //     setEmail(event.target.value);
-    // };
-
-    // const handleChangePassword = (event) =>{
-    //     setPassword(event.target.value);
-    // };
 
     const handleSubmit = async (event) =>{
         event.preventDefault();
@@ -48,14 +49,23 @@ function Signup(){
         }
     };
 
-    useEffect(()=>{
-        if(signsuccess){
-            setSignsuccess(false);
-            setPassword("");
-            alert("Signup successfully!");
-            // redirect to login
-        }
-    });
+    // useEffect(()=>{
+    //     if(signsuccess){
+    //         setSignsuccess(false);
+    //         setPassword("");
+    //         alert("Signup successfully!");
+    //         // redirect to login
+    //         return <Redirect to="/login/" />;
+    //     }
+    // });
+
+    if(signsuccess){
+        // setSignsuccess(false);
+        // setPassword("");
+        alert("Signup successfully!");
+        // redirect to login
+        return <Redirect to="/login/" />;
+    }
 
     return (
         <div>
@@ -63,12 +73,14 @@ function Signup(){
             <form onSubmit={handleSubmit}>
                 <label>
                     Email:
-                    <input name="email" type="email" value={email} onChange={handleChange}/>
+                    <input name="email" type="email" value={email} placeholder="E.g: abc123@gmail.com"
+                    onChange={handleChange}/>
                     { errors.email ? errors.email : null}
                 </label>
                 <label>
                     Password:
-                    <input name="password" type="password" value={password} onChange={handleChange}/>
+                    <input name="password" type="password" value={password} placeholder="E.g: abcd1234"
+                    onChange={handleChange}/>
                     { errors.password ? errors.password : null}
                 </label>
                 <input type="submit" value="Submit"/>
