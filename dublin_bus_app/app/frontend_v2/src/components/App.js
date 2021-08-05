@@ -3,6 +3,7 @@ import { Switch, Route, Link } from "react-router-dom";
 import Login from "./login";
 import Signup from "./signup";
 import Hello from "./hello";
+import About from "./About"
 import {axiosInstance} from "../axiosApi";
 import Welcome from "./Welcome";
 
@@ -95,16 +96,20 @@ console.log(stopData, "hopefully all went okay...")
                     <Link className={"nav-link"} to={"/hello/"}>Hello</Link>
                     <Link className={"nav-link"} to={"/map/"}>Map</Link>
                     <Link className={"nav-link"} to={"/webChat/"}>Community Chat</Link>
+                    <Link className={"nav-link"} to={"/about/"}>About</Link>
                     <button onClick={handleLogout}>Logout</button>
                 </nav>
                 {/* <Welcome name = {this.state.username}/>*/}
                 <main>
+                        <Switch>
                         <Route exact path={"/login/"} component={Login}/>
                         <Route exact path={"/signup/"} component={Signup}/>
                         <Route exact path={"/hello/"} component={Hello}/>
-                        <Route path={"/"} render={() => <div>Home again</div>}/>
+                        <Route exact path={"/"} render={() => <div>Home again</div>}/>
+                        </Switch>
                         <Route exact path='/map/' render={(props) => (<><MainMaps stopData={stopData}/><Navbar stopData={stopData}/></>)}/>
                         <Route exact path={"/webChat/"} render={(props) => (<WebChat user={null} db={db} routeData={routeData}/>)}/>
+                        <Route exact path={"/about/"} render={() => (<About/>)}/>
                     
                 </main>
             </div>
