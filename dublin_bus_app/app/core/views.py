@@ -142,11 +142,22 @@ def FareCalculation(request):
         route_number = post_data.get('param_2')
         print(route_number, "is route number")
         f = fare_crawler(route_number,int(stops_number))
-        result = f.parse()
+        parsed = f.parse()
         #order = "python3 core/fare_calculation.py {} {}".format(stops_number,route_number)
         #result = subprocess.check_output(order)
-        print(result)
-        return JsonResponse(result, safe=False)
+        result = list(parsed)
+        length = len(result)//2 # to divide array
+        categories = result[:length]
+        fares = result[length:]
+        listedFares = []
+        for i in range(length):
+            combined = dict()
+            combined["category"] = categories[i]
+            combined["fare"] = fares[i]
+            listedFares.append(combined)
+        print("combined dictionary is", listedFares)
+        #zipped = list(zip(categories, fares))
+        return JsonResponse(listedFares, safe=False)
 
 from core.machine_learning import travel_time
 @csrf_exempt

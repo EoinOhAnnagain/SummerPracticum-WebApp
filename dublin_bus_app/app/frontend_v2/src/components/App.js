@@ -9,6 +9,9 @@ import Login from "./login";
 import Signup from "./signup";
 // import Signup from "./Signup_f";
 import Hello from "./hello";
+
+import About from "./About"
+
 import Welcome from "./Welcome";
 import MainMaps from "./Map";
 import Navbar from './Navbar';
@@ -110,6 +113,7 @@ console.log(stopData, "hopefully all went okay...")
                         <Link className={"nav-link"} to={"/hello/"}>Hello</Link>
                         <Link className={"nav-link"} to={"/map/"}>Map</Link>
                         <Link className={"nav-link"} to={"/webChat/"}>Community Chat</Link>
+                        <Link className={"nav-link"} to={"/about/"}>About</Link>
                         <button onClick={handleLogout}>Logout</button>
                         {/* <button onClick={() => firebaseConfig.auth().signOut()}>Logout</button> */}
                     </nav>
@@ -123,6 +127,7 @@ console.log(stopData, "hopefully all went okay...")
                         </Switch>
                             <Route exact path='/map/' render={(props) => (<><MainMaps stopData={stopData}/><Navbar stopData={stopData}/></>)}/>
                             <Route exact path={"/webChat/"} render={(props) => (<WebChat user={null} db={db} routeData={routeData}/>)}/>
+                            <Route exact path={"/about/"} render={() => (<About/>)}/>
                     </main>
                 </div>
                 </div>
