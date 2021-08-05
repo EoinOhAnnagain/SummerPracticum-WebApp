@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import {axiosInstance} from "../axiosApi";
-
+import firebaseConfig from "../config";
 
 //  TODO: Error handling.
 const Signup = () => {
@@ -35,6 +35,8 @@ const Signup = () => {
                 email: email,
                 password: password
             });
+            firebaseConfig.auth().createUserWithEmailAndPassword(email, password);      
+
             setSignsuccess(true);
             setPassword("");
             return response;
@@ -60,8 +62,6 @@ const Signup = () => {
     // });
 
     if(signsuccess){
-        // setSignsuccess(false);
-        // setPassword("");
         alert("Signup successfully!");
         // redirect to login
         return <Redirect to="/login/" />;

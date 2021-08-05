@@ -1,11 +1,22 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import firebase from "firebase/app";
+import { useState, useEffect ,useContext} from 'react';
+import { Redirect } from "react-router-dom";
+import { AuthContext } from "./Auth";
+
 
 const WebChat = ({user = null, db = null}) => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     const [route, setRoute] = useState('messages');
+    
+    localStorage.getItem('email')
+    // Check if user login firebase account.
+    const {currentUser}  = useContext(AuthContext);
+    // using localStorage.getItem('email') could get login email address.
+    if(! currentUser){
+        alert("You must login first.");
+        return <Redirect to="/login" />;
+    }
 
     useEffect(() => {
 
