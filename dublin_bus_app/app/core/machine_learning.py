@@ -20,7 +20,7 @@ class travel_time(object):
         conn = connect(host="173.82.208.22", port=3306, user="root", password="4TheWin!", database="project", 
                                     charset="utf8")
         cs = conn.cursor()
-        cs.execute("SELECT * FROM project.realtime_weather_data where dt='{}';".format(self.journey_date))
+        cs.execute("SELECT * FROM project.weather_data where dt='{}';".format(self.journey_date))
         weather_data = cs.fetchone()
         print(weather_data[0])
         # result = re.match(r"(.*-.*-.*) .*",weather_data[0])
@@ -92,6 +92,6 @@ class travel_time(object):
         x_li = pd.DataFrame(x_li)
         x_li = std.fit_transform(x_li.values.reshape(1,-1))
         y_pre = estimator.predict(x_li)
-        return y_pre
+        return int(y_pre)
 # t = travel_time(17,"1","Shanard Avenue, stop 226","2021-08-14")
 # t.get_sql_info()
