@@ -122,7 +122,7 @@ console.log(stopData, "hopefully all went okay...")
                             <Route path={"/"} render={() => <div>Home again</div>}/>
                         </Switch>
                             <Route exact path='/map/' render={(props) => (<><MainMaps stopData={stopData}/><Navbar stopData={stopData}/></>)}/>
-                            <Route exact path={"/webChat/"} render={(props) => (<WebChat user={null} db={db}/>)}/>
+                            <Route exact path={"/webChat/"} render={(props) => (<WebChat user={null} db={db} routeData={routeData}/>)}/>
                     </main>
                 </div>
                 </div>
