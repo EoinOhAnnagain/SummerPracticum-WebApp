@@ -25,14 +25,18 @@ def ApproachingBuses(request, stopNumber):
     format = "%H:%M:%S"
     current_time = datetime.strptime(current_time, format)
     allBuses = StopTimesSeqNum.objects.filter(stop_id = stopNumber)
+    lateOrEarlyBuses = RealtimeBusData.objects.all()
     print(allBuses)
     dueBuses = []
     for bus in allBuses:
         route_id = bus.route_id
         split_elements = route_id.split("-")
         route_number = split_elements[1]
-        if bus.arrival_time.startswith("24"): # Correct incorrect formatting of time
-            arrival = bus.arrival_time.replace("24", "00", 1)
+        for i in range(24, 29):
+            over24Hr = str(i)
+            in24Hr = str(i-24)
+            if bus.arrival_time.startswith(over24Hr): # Correct incorrect formatting of time
+                arrival = bus.arrival_time.replace(over24Hr, in24Hr, 1)
         else:
             arrival = bus.arrival_time
         arrival = datetime.strptime(arrival, format)
@@ -40,8 +44,13 @@ def ApproachingBuses(request, stopNumber):
         if tdelta.days < 0:
             tdelta = timedelta(days=0, seconds=tdelta.seconds)
         print(tdelta.seconds)
+        timeChange = 0
+        if lateOrEarlyBuses.filter(trip_id = bus.trip_id).exists():
+            lateOrEarlyBus = lateOrEarlyBuses.filter(trip_id = bus.trip_id)[0]
+            timeChange+= lateOrEarlyBus.departure_delay
+        countdown = tdelta.seconds + timeChange
         if (tdelta.seconds >0 and tdelta.seconds < 1800): # Get details of all buses in next hour
-            dueBuses.append({"id": bus.trip_id, "route_number": route_number, "arrivalTime": bus.arrival_time})
+            dueBuses.append({"id": bus.trip_id, "route_number": route_number, "arrivalTime": bus.arrival_time, "countDownInSeconds": countdown, "timeChange" : timeChange})
     json_string = json.dumps(dueBuses)
     jsonBuses = json.loads(json_string)
     # Sort by closest to furthest away
