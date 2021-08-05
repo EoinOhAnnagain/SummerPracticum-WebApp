@@ -50,7 +50,33 @@ function App(){
     };
    
     
-    const [stopData, setStopData] = useState([]);
+const [stopData, setStopData] = useState([]);
+const [routeData, setRouteData] = useState([]);
+
+useEffect(()=> {
+  const fetchStops = async () => {
+    const res = await fetch(`http://localhost:8000/core/stops`)
+    const data = await res.json()
+    setStopData(data)
+    console.log("stop data", data)
+    return data
+  }
+  fetchStops()
+}, [])
+
+useEffect(()=> {
+    const fetchRoutes = async () => {
+      const res = await fetch(`http://localhost:8000/core/routes`)
+      const data = await res.json()
+      setRouteData(data)
+      console.log("route data", data)
+      return data
+    }
+    fetchRoutes()
+  }, [])
+
+console.log(stopData, "hopefully all went okay...")
+
 
     useEffect(()=> {
     const fetchStops = async () => {
@@ -97,7 +123,7 @@ function App(){
                         <Route path={"/"} render={() => <div>Home again</div>}/>
                     </Switch>
                         <Route exact path='/map/' render={(props) => (<><MainMaps stopData={stopData}/><Navbar stopData={stopData}/></>)}/>
-                        <Route exact path={"/webChat/"} render={(props) => (<WebChat user={null} db={db}/>)}/>
+                        <Route exact path={"/webChat/"} render={(props) => (<WebChat user={null} db={db} routeData={routeData}/>)}/>
                     
                 </main>
             </div>

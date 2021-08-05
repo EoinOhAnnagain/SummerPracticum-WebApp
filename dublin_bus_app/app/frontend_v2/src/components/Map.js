@@ -33,14 +33,17 @@ const MainMaps = ({stopData}) => {
   // const [destination, setDestination] = useState(null);
   // const [origin, setOrigin] = useState(null);
 
-  const { directionsRenderBoolean } = useSelector((state) => state.directionsRenderBoolean);
-  const {directionsResponseBoolean } = useSelector((state) => state.directionsResponseBoolean)
+    const { directionsRenderBoolean } = useSelector((state) => state.directionsRenderBoolean);
+    const {directionsResponseBoolean } = useSelector((state) => state.directionsResponseBoolean)
     console.log("render is currently set to ", directionsRenderBoolean);
     const { showAllStopsBoolean } = useSelector((state) => state.showAllStopsBoolean);
     const { origin } = useSelector((state) => state.origin);
     const { destination } = useSelector((state) => state.destination);
     const { journeyDate } = useSelector((state) => state.journeyDate);
     const dispatch = useDispatch();
+
+  const [predictedTime, setPredictedTime] = useState([]);
+  const [fare, setFare] = useState([]);
 
   const [showAllMarkers, setShowAllMarkers] = useState(true);
   const [ selected, setSelected ] = useState({});
@@ -59,6 +62,7 @@ const MainMaps = ({stopData}) => {
   }
 
   const postData_fare = async (stops_number, route_number) => {
+    setFare(["Calculating Fare"]);
     console.log(stops_number, route_number, "in postData_fare");
     const requestOptions = {
       method: 'POST',
@@ -70,9 +74,25 @@ const MainMaps = ({stopData}) => {
       const fareResponse = await fetch('http://localhost:8000/core/Fare', requestOptions);
       const data = await fareResponse.json();
       console.log(data, "fare django response")
+      setFare(data);
     }
 
+    const secondsToHours = (seconds) => {
+      const d = Number(seconds);
+      const h = Math.floor(d / 3600);
+      const m = Math.floor(d % 3600 / 60);
+      const s = Math.floor(d % 3600 % 60);
+      console.log(h, m, s, "individual hour components");
+      const hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+      const mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+      const sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+      console.log(hDisplay, mDisplay, sDisplay, "formatted hour components");
+      setPredictedTime([hDisplay + mDisplay + sDisplay]); 
+      console.log(predictedTime, "in seconds to hours function");
+  }
+
   const postData_traveltime = async (stops_number,route_number,start_stop, journeyDate) => {
+    setPredictedTime(["Calculating Journey Time Using Weather Data"]);
     console.log(stops_number, route_number, start_stop, "in postData_fare")
     const requestOptions = {
       method: 'POST',
@@ -83,9 +103,10 @@ const MainMaps = ({stopData}) => {
         param_3: start_stop,
         param_4: journeyDate}),
       };
-      const fareResponse = await fetch('http://localhost:8000/core/Travel', requestOptions);
-      const data = await fareResponse.json();
-      console.log(data, "ML django response")
+      const MLResponse = await fetch('http://localhost:8000/core/Travel', requestOptions);
+      const data = await MLResponse.json();
+      console.log(data, "ML django response");
+      secondsToHours(data);
   }
 
 
@@ -159,8 +180,9 @@ const options = {
 
   return (
     <div>
-      {postResults && (
-        <div></div>
+      {directionsRenderBoolean && (
+        <div>Predicted Time: {predictedTime} <br/>
+        Fare: {fare}</div>
       )}
       <Button text={"Show All Stops"} onClick={toggleMarkers}></Button>
       <GoogleMap
