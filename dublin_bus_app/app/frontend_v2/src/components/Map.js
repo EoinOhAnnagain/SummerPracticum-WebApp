@@ -62,7 +62,7 @@ const MainMaps = ({stopData}) => {
   }
 
   const postData_fare = async (stops_number, route_number) => {
-    setFare(["Calculating Fare"]);
+    setFare([{category: "Calculating Fare", fare:""}]);
     console.log(stops_number, route_number, "in postData_fare");
     const requestOptions = {
       method: 'POST',
@@ -83,8 +83,8 @@ const MainMaps = ({stopData}) => {
       const m = Math.floor(d % 3600 / 60);
       const s = Math.floor(d % 3600 % 60);
       console.log(h, m, s, "individual hour components");
-      const hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
-      const mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+      const hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours ") : "";
+      const mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes ") : "";
       const sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
       console.log(hDisplay, mDisplay, sDisplay, "formatted hour components");
       setPredictedTime([hDisplay + mDisplay + sDisplay]); 
@@ -182,7 +182,11 @@ const options = {
     <div>
       {directionsRenderBoolean && (
         <div>Predicted Time: {predictedTime} <br/>
-        Fare: {fare}</div>
+        Fare: <ul>{fare.map((element) => {
+          return (
+            <li key={element.category}>{element.category}: {element.fare}</li>
+          )
+        })}</ul> </div>
       )}
       <Button text={"Show All Stops"} onClick={toggleMarkers}></Button>
       <GoogleMap
