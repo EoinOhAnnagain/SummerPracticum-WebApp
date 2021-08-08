@@ -1,10 +1,11 @@
 #root {
-  background-color: rgb(49, 153, 110);
+  background-color: rgb(255, 255, 255);
   color: black;
 }
 
 .nav-link {
-  color: white;
+  color: black;
+  display: inline-block;
   border: 1px solid white;
   padding: 1em;
 }

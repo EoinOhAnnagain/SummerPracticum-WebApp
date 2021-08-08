@@ -78,7 +78,6 @@ const SidebarInputFields = ({stopData}) => {
             <DateTimePicker format={"y-MM-dd"} minDate={new Date()} maxDate={addDays(new Date(), 13)} onChange={changeDate} value={chosenDate}/><br/>
             <Button text="Find Route" onClick={setJourney}/>
                     <br/>
-            <h2>{console.log(origin, "<-origin after change\n", destination, "<-destination after change")} is the origin</h2>
         </div>
     )
 }
