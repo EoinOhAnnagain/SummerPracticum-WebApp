@@ -147,6 +147,7 @@ const MainMaps = ({stopData}) => {
   const locations = stopData
 
   const onSelect = stop => {
+    setSelected({});
     setSelected(stop);
 }
 

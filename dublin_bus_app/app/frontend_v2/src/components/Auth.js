@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   
   useEffect(() => {
     firebaseConfig.auth().onAuthStateChanged((user) => {
-        alert("[Auth.js] Firebase state changes")
+        //alert("[Auth.js] Firebase state changes")
         // if(localStorage.getItem('email')){
         //     alert("[Auth.js] Django system already login!")
         // }else{

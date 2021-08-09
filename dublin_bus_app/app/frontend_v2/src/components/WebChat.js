@@ -1,16 +1,21 @@
 import React from 'react';
-import { useState, useEffect ,useContext} from 'react';
+import { useState, useEffect ,useContext, useRef} from 'react';
 import Button from './Button'
 import Select from 'react-select';
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "./Auth";
+import './WebChat.css'
 
 
 const WebChat = ({user = null, db = null, routeData}) => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     const [route, setRoute] = useState('messages');
+    const [email, setEmail] = useState("guest@web.com")
+    const scrollDivEndRef = useRef()
     
+    console.log("User in webchat is", user)
+
     localStorage.getItem('email')
     // Check if user login firebase account.
     const {currentUser}  = useContext(AuthContext);
@@ -59,6 +64,11 @@ const WebChat = ({user = null, db = null, routeData}) => {
             setRoute(bus+direction);
             changeChat(bus, direction);
         }
+    }
+
+    const backToGeneral = () => {
+        setRoute("messages");
+        changeChat("messages", "");
     }
 
     useEffect(() => {
@@ -116,30 +126,47 @@ const WebChat = ({user = null, db = null, routeData}) => {
             db.collection(route).add({
                 body: newMessage,
                 date: timestamp, // date object- time since 1970
-                sender: "guest@web.com"
+                sender: email
             })
-
+            setNewMessage('')
         }
+    }
+
+    useEffect(() => {
+        updateScroll()
+      }, [messages]);
+
+    const updateScroll = () => {
+        scrollDivEndRef.current?.scrollIntoView({behavior:"smooth"})
     }
 
     return (
         <div>
             <Select options={busOptions} onChange={changeBus}/>
             <Select options={directionOptions} onChange={changeDirection}/>
-            <Button text="Chat" onClick={setChat}/>
-            <ul>
+            <Button text="Chat" onClick={setChat}/> 
+            {route!="messages" && <Button text="General Chat" onClick={backToGeneral}/>}
+            <div className="msgs">
                 {messages.map(message => (
-                    <li key={message.id}> {message.body}</li>
+                    <div key={message.id}>
+                        <div key={message.id} className={`msg ${message.sender == email ? 'sent' : 'received'}`}>
+                            <p>{message.body}</p>
+                        </div>
+                    </div>
                 ))}
-            </ul>
+                <div ref={scrollDivEndRef}/>
+            </div>
             <form onSubmit={handleOnSubmit}>
                 <input
+                style={{ width: '78%', fontSize: '15px', fontWeight: '550', marginLeft: '5px', marginBottom: '-3px' }}
                 type="text"
                 value={newMessage}
                 onChange={handleOnChange}
                 placeholder="Type your message here..."
                 />
-                <button type="submit" disabled={!newMessage}>
+                <button className="btn"
+                style={{ width: '18%', fontSize: '15px', fontWeight: '550', margin: '4px 5% -13px 5%', maxWidth: '200px'}}
+                type="submit" disabled={!newMessage}>
                     Send
                 </button>
             </form>

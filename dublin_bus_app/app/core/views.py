@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 # from .models import CustomUser
+from django.db.models import Q
 
 from django.http import JsonResponse
 from django.contrib.staticfiles import finders
@@ -19,33 +20,58 @@ def show_agency_list(request):
     return HttpResponse(output)
 
 def ApproachingBuses(request, stopNumber):
-    now = datetime.now()
+    now = datetime.now() # Get todays date and format it same as database
     current_time = now.strftime("%H:%M:%S")
     print(current_time, "is current time")
     format = "%H:%M:%S"
     current_time = datetime.strptime(current_time, format)
-    allBuses = StopTimesSeqNum.objects.filter(stop_id = stopNumber)
+    print("Current hour is", current_time.hour)
+    dayOfWeek = datetime.today().weekday() # Get today's day of week
+    if dayOfWeek == 0 or (dayOfWeek==1 and int(current_time[:2])<5):
+        allBuses = MondayStops.objects.filter(stop_id = stopNumber, arrival_time__startswith=str(current_time.hour))
+        print("monday")
+    elif dayOfWeek == 1:
+        allBuses = TuesdayStops.objects.filter(Q(stop_id = stopNumber) & (Q(arrival_time__startswith=str(current_time.hour))| Q(arrival_time__startswith=str(current_time.hour +1))))
+        print("Tuesday")
+    elif dayOfWeek >= 2 and dayOfWeek <= 4:
+        allBuses = WethfrStops.objects.filter(Q(stop_id = stopNumber) & (Q(arrival_time__startswith=str(current_time.hour))| Q(arrival_time__startswith=str(current_time.hour +1))))
+        print("Weds/thurs/fri")
+    elif dayOfWeek == 5:
+        allBuses = SaturdayStops.objects.filter(stop_id = stopNumber, arrival_time__startswith=str(current_time.hour))
+        print("saturday")
+    else:
+        allBuses = SundayStops.objects.filter(stop_id = stopNumber, arrival_time__startswith=str(current_time.hour))
+        print("sunday")
+    lateOrEarlyBuses = RealtimeBusData.objects.all() # Access latest realtime buses
     print(allBuses)
-    dueBuses = []
-    for bus in allBuses:
-        route_id = bus.route_id
-        split_elements = route_id.split("-")
+    dueBuses = [] # To capture final buses
+    for bus in allBuses: # Loop through buses
+        route_id = bus.trip_id.split(".")[2]
+        split_elements = route_id.split("-") # Get the route_short_name by splitting route_id
         route_number = split_elements[1]
-        if bus.arrival_time.startswith("24"): # Correct incorrect formatting of time
-            arrival = bus.arrival_time.replace("24", "00", 1)
+        for i in range(24, 29): # Some rows are in 25+ hour time - reformat to avoid errors
+            over24Hr = str(i)
+            in24Hr = str(i-24)
+            if bus.arrival_time.startswith(over24Hr):
+                arrival = bus.arrival_time.replace(over24Hr, in24Hr, 1)
+                break
         else:
             arrival = bus.arrival_time
-        arrival = datetime.strptime(arrival, format)
+        arrival = datetime.strptime(arrival, format) # Format arrival time
         tdelta = arrival - current_time # Get time difference between arrival and now
-        if tdelta.days < 0:
+        if tdelta.days < 0: # Catch a 'minus days' situation, e.g. (00:05 - 23:55)
             tdelta = timedelta(days=0, seconds=tdelta.seconds)
         print(tdelta.seconds)
-        if (tdelta.seconds >0 and tdelta.seconds < 1800): # Get details of all buses in next hour
-            dueBuses.append({"id": bus.trip_id, "route_number": route_number, "arrivalTime": bus.arrival_time})
+        timeChange = 0 # Store deviation from schedule
+        if lateOrEarlyBuses.filter(trip_id = bus.trip_id).exists(): # Check if bus trip is in late/early buses
+            lateOrEarlyBus = lateOrEarlyBuses.filter(trip_id = bus.trip_id)[0]
+            timeChange+= lateOrEarlyBus.departure_delay # Add departure delay to time change
+        countdown = tdelta.seconds + timeChange # Additional variable for JSON that stores countdown in seconds
+        if (tdelta.seconds >0 and tdelta.seconds < 1800): # Limit response to buses arriving in next half-hour
+            dueBuses.append({"id": bus.trip_id, "route_number": route_number, "arrivalTime": bus.arrival_time, "countDownInSeconds": countdown, "timeChange" : timeChange})
     json_string = json.dumps(dueBuses)
     jsonBuses = json.loads(json_string)
-    # Sort by closest to furthest away
-    def sortByArrival(value):
+    def sortByArrival(value): # Sort JSON object so soonest bus displays at the top
         return value["arrivalTime"]
     sortedBuses = sorted(jsonBuses, key=sortByArrival)
     print(sortedBuses)
