@@ -11,6 +11,7 @@ import Signup from "./signup";
 import Hello from "./hello";
 
 import About from "./About"
+import Home from "./Home"
 
 import Welcome from "./Welcome";
 import MainMaps from "./Map";
@@ -107,27 +108,28 @@ console.log(stopData, "hopefully all went okay...")
                 <div className="container">
                 <div className="site">
                     <header>
+                    <div class="nav">
                         <nav>
-                            <ul className={"mainNav"}>
-                                <li><Link className={"nav-link"} to={"/"}>Home</Link></li>
-                                <li><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
-                                <li><Link className={"nav-link"} to={"/signup/"}>Signup</Link></li>
-                                <li><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li>
-                                <li><Link className={"nav-link"} to={"/map/"}>Map</Link></li>
-                                <li><Link className={"nav-link"} to={"/webChat/"}>Community Chat</Link></li>
-                                <li><Link className={"nav-link"} to={"/about/"}>About</Link></li>
+                            <ul>
+                                <li class="home"><Link className={"nav-link"} to={"/"}>Home</Link></li>
+                                <li class="tutorials"><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
+                                <li class="about"><Link className={"nav-link"} to={"/signup/"}>Signup</Link></li>
+                                {/* <li class="news"><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li> */}
+                                <li class="contact"><Link className={"nav-link"} to={"/map/"}>Map</Link></li>
+                                <li class="contact"><Link className={"nav-link"} to={"/webChat/"}>Chat</Link></li>
+                                <li class="contact"><Link className={"nav-link"} to={"/about/"}>About</Link></li>
                             </ul>
-                            <button onClick={handleLogout}>Logout</button>
-                            {/* <button onClick={() => firebaseConfig.auth().signOut()}>Logout</button> */}
                         </nav>
+                        <button classname="btn" onClick={handleLogout}>Logout</button>
+                    </div>
                     </header>
                 
                     <main>
                         <Switch>
                             <Route exact path={"/login/"} component={Login}/>
                             <Route exact path={"/signup/"} component={Signup}/>
-                            <Route exact path={"/hello/"} component={Hello}/>
-                            <Route exact path={"/"} render={() => <div>Home again</div>}/>
+                            {/* <Route exact path={"/hello/"} component={Hello}/> */}
+                            <Route exact path={"/"} component={Home}/>
                         </Switch>
                             <Route exact path='/map/' render={(props) => (<><Navbar stopData={stopData}/><MainMaps stopData={stopData}/></>)}/>
                             <Route exact path={"/webChat/"} render={(props) => (<WebChat user={null} db={db} routeData={routeData}/>)}/>

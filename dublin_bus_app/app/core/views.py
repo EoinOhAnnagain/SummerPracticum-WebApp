@@ -42,6 +42,7 @@ def ApproachingBuses(request, stopNumber):
     else:
         allBuses = SundayStops.objects.filter(stop_id = stopNumber, arrival_time__startswith=str(current_time.hour))
         print("sunday")
+    # allBuses = WethfrStops.objects.filter(Q(stop_id=stopNumber) & (Q(arrival_time__startswith=str(current_time.hour))| Q(arrival_time__startswith=str(current_time.hour +1))))
     lateOrEarlyBuses = RealtimeBusData.objects.all() # Access latest realtime buses
     print(allBuses)
     dueBuses = [] # To capture final buses
