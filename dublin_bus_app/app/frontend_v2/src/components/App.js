@@ -9,6 +9,7 @@ import Login from "./login";
 import Signup from "./signup";
 // import Signup from "./Signup_f";
 import Hello from "./hello";
+import ContactForm from "./Contact";
 
 import About from "./About"
 
@@ -43,8 +44,8 @@ function App(){
             axiosInstance.defaults.headers['Authorization'] = null;
             setLogout(true);
             firebaseConfig.auth().signOut();
-            // return response;
-            return <Redirect to="/" />;
+            return response;
+            // return <Redirect to="/" />;
         }
         catch (e) {
             console.log(e);
@@ -117,6 +118,7 @@ console.log(stopData, "hopefully all went okay...")
                                 <li><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li>
                                 <li><Link className={"nav-link"} to={"/map/"}>Map</Link></li>
                                 <li><Link className={"nav-link"} to={"/webChat/"}>Community Chat</Link></li>
+                                <li><Link className={"nav-link"} to={"/contact/"}>Contact</Link></li>
                                 <li><Link className={"nav-link"} to={"/about/"}>About</Link></li>
                                 <button onClick={handleLogout}>Logout</button>
                             </ul>
@@ -128,6 +130,7 @@ console.log(stopData, "hopefully all went okay...")
                             <Route exact path={"/login/"} component={Login}/>
                             <Route exact path={"/signup/"} component={Signup}/>
                             <Route exact path={"/hello/"} component={Hello}/>
+                            <Route exact path={"/contact/"} component={ContactForm}/>
                             <Route exact path={"/"} render={() => <div>Home again</div>}/>
                         </Switch>
                             <Route exact path='/map/' render={(props) => (<><Navbar stopData={stopData}/><MainMaps stopData={stopData}/></>)}/>

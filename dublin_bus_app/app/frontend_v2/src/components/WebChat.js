@@ -20,6 +20,7 @@ const WebChat = ({user = null, db = null, routeData}) => {
     // Check if user login firebase account.
     const {currentUser}  = useContext(AuthContext);
     // using localStorage.getItem('email') could get login email address.
+
     if(! currentUser){
         alert("You must login first.");
         return <Redirect to="/login" />;
