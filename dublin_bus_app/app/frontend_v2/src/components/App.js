@@ -1,6 +1,6 @@
 import React, { Component, useContext} from "react";
 import { useState, useEffect } from 'react';
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link ,Redirect} from "react-router-dom";
 import { BrowserRouter as Router} from 'react-router-dom'
 import {axiosInstance} from "../axiosApi";
 
@@ -39,10 +39,12 @@ function App(){
             });
             localStorage.removeItem('access_token');
             localStorage.removeItem('refresh_token');
+            localStorage.removeItem('email');
             axiosInstance.defaults.headers['Authorization'] = null;
             setLogout(true);
             firebaseConfig.auth().signOut();
-            return response;
+            // return response;
+            return <Redirect to="/" />;
         }
         catch (e) {
             console.log(e);
@@ -116,9 +118,8 @@ console.log(stopData, "hopefully all went okay...")
                                 <li><Link className={"nav-link"} to={"/map/"}>Map</Link></li>
                                 <li><Link className={"nav-link"} to={"/webChat/"}>Community Chat</Link></li>
                                 <li><Link className={"nav-link"} to={"/about/"}>About</Link></li>
+                                <button onClick={handleLogout}>Logout</button>
                             </ul>
-                            <button onClick={handleLogout}>Logout</button>
-                            {/* <button onClick={() => firebaseConfig.auth().signOut()}>Logout</button> */}
                         </nav>
                     </header>
                 
