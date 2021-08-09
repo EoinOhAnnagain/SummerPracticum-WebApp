@@ -1,6 +1,6 @@
 import React, { Component, useContext} from "react";
 import { useState, useEffect } from 'react';
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link ,Redirect} from "react-router-dom";
 import { BrowserRouter as Router} from 'react-router-dom'
 import {axiosInstance} from "../axiosApi";
 
@@ -40,10 +40,12 @@ function App(){
             });
             localStorage.removeItem('access_token');
             localStorage.removeItem('refresh_token');
+            localStorage.removeItem('email');
             axiosInstance.defaults.headers['Authorization'] = null;
             setLogout(true);
             firebaseConfig.auth().signOut();
-            return response;
+            // return response;
+            return <Redirect to="/" />;
         }
         catch (e) {
             console.log(e);
