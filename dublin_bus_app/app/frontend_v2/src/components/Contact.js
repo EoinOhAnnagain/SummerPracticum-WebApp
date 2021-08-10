@@ -1,5 +1,15 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import emailjs from 'emailjs-com';
+// require('dotenv').config()
+
+const serviceID = "service_i8r617i";
+const tempID = "template_e8p45d4";
+const userID = "user_FBmbcl9k2OSKgafXKvYCK";
+
+// const serviceID = process.env.REACT_APP_SERVICE_ID;
+// const tempID = process.env.REACT_APP_TEMPLATE_ID;
+// const userID = process.env.REACT_APP_USER_ID;
 
 const ContactForm = () => {
   const {
@@ -11,9 +21,22 @@ const ContactForm = () => {
   
   const onSubmit = async (data) => {
     const { email, subject, message } = data;
-    console.log('Email: ', email);
-    console.log('Subject: ', subject);
-    console.log('Message: ', message);
+    try {
+      const templateParams = {
+        email,
+        subject,
+        message
+      };
+      await emailjs.send(
+        serviceID,
+        tempID,
+        templateParams,
+        userID
+      );
+      reset();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -32,7 +55,7 @@ const ContactForm = () => {
                       name='email'
                       defaultValue={localStorage.getItem('email')? localStorage.getItem('email') : '' }
                       {...register('email', {
-                        // required: true,
+                        required: true,
                         pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
                       })}
                       className='form-control formInput'
@@ -51,10 +74,17 @@ const ContactForm = () => {
                         required: { value: true, message: 'Please select a subject' }}
                         )}>
                     <option value="" selected disabled>Subject</option>
-                    <option value="sub1">sub1</option>
-                    <option value="sub2">sub2</option>
-                    <option value="sub3">sub3</option>
-                    <option value="other">other</option>
+                    <option value="Request Feature">Request Feature</option>
+                    <option value="Request Book">Request Book</option>
+                    <option value="Suggestion">Suggestion</option>
+                    <option value="Bug in Weather">Bug in Weather</option>
+                    <option value="Bug in Books">Bug in Books</option>
+                    <option value="Bug in CodeBreaker">Bug in CodeBreaker</option>
+                    <option value="Bug in Chat">Bug in Chat</option>
+                    <option value="Bug in Prediction">Bug in Prediction</option>
+                    <option value="Bug in Map">Bug in Map</option>
+                    <option value="Bug in Login/SignUp">Bug in Login/SignUp</option>
+                    <option value="Report Abuse of Chat">Report Abuse of Chat</option>
                  </select>
                  {errors.subject && (
                       <small className='text-danger'>{errors.subject.message}</small>
