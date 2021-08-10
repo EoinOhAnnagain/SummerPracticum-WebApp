@@ -4,10 +4,12 @@ import { Switch, Route, Link ,Redirect} from "react-router-dom";
 import { BrowserRouter as Router} from 'react-router-dom'
 import {axiosInstance} from "../axiosApi";
 
-import Login from "./login";
-// import LogIn from "./SignIn_f";
+// import Login from "./login";
+import LoginForm from "./Login_v2";
+
 import Signup from "./signup";
-// import Signup from "./Signup_f";
+
+
 import Hello from "./hello";
 import ContactForm from "./Contact";
 
@@ -30,8 +32,6 @@ const db = firebaseConfig.firestore();
 function App(){
     
     const [logout, setLogout] = useState(false);
-    const [username, setUsername] = useState("");
-    const currentUser  = useContext(AuthContext);
 
     const handleLogout = async () => {
         try {
@@ -40,7 +40,6 @@ function App(){
             });
             localStorage.removeItem('access_token');
             localStorage.removeItem('refresh_token');
-            localStorage.removeItem('email');
             axiosInstance.defaults.headers['Authorization'] = null;
             setLogout(true);
             firebaseConfig.auth().signOut();
@@ -95,9 +94,9 @@ console.log(stopData, "hopefully all went okay...")
     useEffect(() => {
         if (logout){
             if (localStorage.getItem('email')){
-                alert(localStorage.getItem('email') + ", you are already log out!");
+                alert(localStorage.getItem('email') + ", you are already log out");
             }else{
-                alert("Don't touch the button!");
+                alert("You are not login yet");
             }
             localStorage.removeItem('email');
             setLogout(false);
@@ -127,7 +126,7 @@ console.log(stopData, "hopefully all went okay...")
                 
                     <main>
                         <Switch>
-                            <Route exact path={"/login/"} component={Login}/>
+                            <Route exact path={"/login/"} component={LoginForm}/>
                             <Route exact path={"/signup/"} component={Signup}/>
                             <Route exact path={"/hello/"} component={Hello}/>
                             <Route exact path={"/contact/"} component={ContactForm}/>
