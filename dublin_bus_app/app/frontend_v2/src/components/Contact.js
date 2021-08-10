@@ -3,13 +3,13 @@ import { useForm } from 'react-hook-form';
 import emailjs from 'emailjs-com';
 // require('dotenv').config()
 
-const serviceID = "service_i8r617i";
-const tempID = "template_e8p45d4";
-const userID = "user_FBmbcl9k2OSKgafXKvYCK";
+// const serviceID = "service_i8r617i";
+// const tempID = "template_e8p45d4";
+// const userID = "user_FBmbcl9k2OSKgafXKvYCK";
 
-// const serviceID = process.env.REACT_APP_SERVICE_ID;
-// const tempID = process.env.REACT_APP_TEMPLATE_ID;
-// const userID = process.env.REACT_APP_USER_ID;
+const serviceID = process.env.REACT_APP_SERVICE_ID;
+const tempID = process.env.REACT_APP_TEMPLATE_ID;
+const userID = process.env.REACT_APP_USER_ID;
 
 const ContactForm = () => {
   const {
