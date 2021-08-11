@@ -7,14 +7,15 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import mapStyles from "./mapStyles";
 import Button from "./Button";
 import ApproachingBuses from "./ApproachingBuses";
 import { useSelector, useDispatch } from 'react-redux';
 import { setDirectionsResponseBoolean } from '../redux/directionsResponseBool'
 import { setShowAllStopsBoolean } from "../redux/showAllStopsBool";
-import directionsRenderBool, { setDirectionsRenderBoolean } from "../redux/directionsRenderBool";
+import { setDirectionsRenderBoolean } from "../redux/directionsRenderBool";
+import { setTotalPredictedSeconds } from "../redux/totalPredictedSeconds";
 
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
@@ -40,10 +41,15 @@ const MainMaps = ({stopData}) => {
     const { origin } = useSelector((state) => state.origin);
     const { destination } = useSelector((state) => state.destination);
     const { journeyDate } = useSelector((state) => state.journeyDate);
+    const { totalPredictedSeconds } = useSelector((state)=> state.totalPredictedSeconds);
     const dispatch = useDispatch();
 
+  const [googleTime, setGoogleTime] = useState([]);
+  const [walkingTime, setWalkingTime] = useState([]);
+  const [cumulativeSeconds, setCumulativeSeconds] = useState(0);
   const [predictedTime, setPredictedTime] = useState([]);
   const [fare, setFare] = useState([]);
+  const [displayedRoute, setDisplayedRoute] = useState([]);
 
   const [showAllMarkers, setShowAllMarkers] = useState(true);
   const [ selected, setSelected ] = useState({});
@@ -73,27 +79,28 @@ const MainMaps = ({stopData}) => {
       };
       const fareResponse = await fetch('http://localhost:8000/core/Fare', requestOptions);
       const data = await fareResponse.json();
-      console.log(data, "fare django response")
-      setFare(data);
+      console.log(data, "fare django response");
+      return ([data]);
     }
 
-    const secondsToHours = (seconds) => {
-      const d = Number(seconds);
-      const h = Math.floor(d / 3600);
-      const m = Math.floor(d % 3600 / 60);
-      const s = Math.floor(d % 3600 % 60);
-      console.log(h, m, s, "individual hour components");
-      const hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours ") : "";
-      const mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes ") : "";
-      const sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+    // For simplicity, used this secondstoHours function found online
+    // https://www.codegrepper.com/code-examples/javascript/convert+seconds+to+hours+minutes+seconds+javascript
+    const displaySecondsHMS = (seconds) => {
+      const totSecs = Number(seconds);
+      const hrs = Math.floor(totSecs / 3600);
+      const mins = Math.floor(totSecs % 3600 / 60);
+      const secs = Math.floor(totSecs % 3600 % 60);
+      const hDisplay = hrs > 0 ? hrs + (hrs == 1 ? " hour, " : " hours ") : "";
+      const mDisplay = mins > 0 ? mins + (mins == 1 ? " minute, " : " minutes ") : "";
+      const sDisplay = secs > 0 ? secs + (secs == 1 ? " second" : " seconds") : "";
       console.log(hDisplay, mDisplay, sDisplay, "formatted hour components");
-      setPredictedTime([hDisplay + mDisplay + sDisplay]); 
-      console.log(predictedTime, "in seconds to hours function");
+      return ([hDisplay + mDisplay + sDisplay]);
   }
 
-  const postData_traveltime = async (stops_number,route_number,start_stop, journeyDate) => {
+  const postData_traveltime = async (stops_number,route_number,start_stop, journeyDate, response) => {
     setPredictedTime(["Calculating Journey Time Using Weather Data"]);
-    console.log(stops_number, route_number, start_stop, "in postData_fare")
+    console.log(totalPredictedSeconds, "the number of TOTAL PREDICTED SECONDS");
+    console.log(stops_number, route_number, start_stop, "in postData_traveltime");
     const requestOptions = {
       method: 'POST',
       headers: {'Content-Type' : 'application/json' },
@@ -106,17 +113,28 @@ const MainMaps = ({stopData}) => {
       const MLResponse = await fetch('http://localhost:8000/core/Travel', requestOptions);
       const data = await MLResponse.json();
       console.log(data, "ML django response");
-      secondsToHours(data);
+      const interimSeconds = cumulativeSeconds + data;
+      setCumulativeSeconds((cumulativeSeconds) => {return (cumulativeSeconds + data)});
+      console.log(cumulativeSeconds, "Total Cumulative Seconds So Far");
+      dispatch(setTotalPredictedSeconds(interimSeconds));
+      console.log("SUM TOTAL OF SECONDS IN POSTDATA_TRAVELTIME IS", interimSeconds);
+      // secondsToHours(interimSeconds);
+      return interimSeconds
   }
 
 
-  const directionsCallback = (response) => {
+  const directionsCallback = async (response) => {
     console.log(response);
     if (response !== null && directionsResponseBoolean) {
       if (response.status === "OK") {
         console.log("response from directions API is ", response);  
         dispatch(setDirectionsResponseBoolean(false));
         setResponse(response);
+        setGoogleTime(response["routes"][0]["legs"][0]["duration"]["text"])
+        //Set up variables to catch necessary products from functions here
+        let seconds = 0;
+        let allFares = [];
+        let routeNumbers = [];
         let fare_info = response["routes"][0]["legs"][0]["steps"];
         console.log("FARE INFO", fare_info);
         for (let i in fare_info){
@@ -124,12 +142,23 @@ const MainMaps = ({stopData}) => {
             let stops_number = fare_info[i]["transit"]["num_stops"];
             console.log(stops_number);
             let route_number = fare_info[i]["transit"]["line"]["short_name"];
+            routeNumbers += " " + route_number;
             let start_stop = fare_info[i]["transit"]["departure_stop"]["name"];
-            postData_traveltime(stops_number,route_number,start_stop, journeyDate);
-            postData_fare(stops_number,route_number);
+            const traveltime = await postData_traveltime(stops_number,route_number,start_stop, journeyDate, response);
+            seconds += traveltime;
+            const queriedFares = await postData_fare(stops_number,route_number);
+            allFares += queriedFares;
+          }
+          if (fare_info[i]["travel_mode"] == "WALKING"){
+            seconds += fare_info[i]["duration"]["value"];
           }
         }
-        
+        console.log("THE COMBINED OUTPUT OF THE QUERIED FARES", allFares);
+        const formattedSeconds = displaySecondsHMS(seconds);
+        setPredictedTime([formattedSeconds]);
+        setDisplayedRoute(routeNumbers);
+        //setFare(allFares);
+        console.log("SHOULD BE SEEING THE LOGS IN THE DISPLAY SECONDS FUNCTION");
       } else {
         console.log("response: ", response);
       }
@@ -182,14 +211,18 @@ const options = {
   return (
     <div>
       {directionsRenderBoolean && (
-        <div>Predicted Time: {predictedTime} <br/>
-        Fare: <ul>{fare.map((element) => {
+        <div>
+          Route Number: {displayedRoute} <br/>
+          Google Time: {googleTime} <br/>
+          Predicted Time: {predictedTime} <br/>
+        Fare:<ul>{fare.map((element) => {
           return (
             <li key={element.category}>{element.category}: {element.fare}</li>
           )
-        })}</ul> </div>
+        })}</ul> 
+        </div>
       )}
-      <Button text={"Show All Stops"} onClick={toggleMarkers}></Button>
+      {directionsRenderBoolean && <Button text={"Show All Stops"} onClick={toggleMarkers}></Button>}
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={15}

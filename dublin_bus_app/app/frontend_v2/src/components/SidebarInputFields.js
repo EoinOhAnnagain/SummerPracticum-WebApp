@@ -15,6 +15,7 @@ import { setDirectionsRenderBoolean } from '../redux/directionsRenderBool'
 import { setDirectionsResponseBoolean } from '../redux/directionsResponseBool'
 import { setShowAllStopsBoolean } from '../redux/showAllStopsBool'
 import { setJourneyDate } from '../redux/journeyDate'
+import { setTotalPredictedSeconds } from "../redux/totalPredictedSeconds";
 
 
 
@@ -63,7 +64,8 @@ const SidebarInputFields = ({stopData}) => {
         dispatch(setDirectionsRenderBoolean(true));
         dispatch(setShowAllStopsBoolean(false));
         dispatch(setDirectionsResponseBoolean(true));
-        dispatch(setJourneyDate(formattedDate))
+        dispatch(setJourneyDate(formattedDate));
+        dispatch(setTotalPredictedSeconds(0));
         console.log(formattedDate, "is THE date WE should ALL see");
     };
 

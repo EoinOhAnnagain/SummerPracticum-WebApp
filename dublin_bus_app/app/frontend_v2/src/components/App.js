@@ -83,10 +83,10 @@ console.log(stopData, "hopefully all went okay...")
 
     useEffect(()=> {
     const fetchStops = async () => {
-        const res = await fetch(`http://localhost:8000/core/stops`)
+        const res = await fetch(`http://173.82.208.22:8000/core/stops`)
         const data = await res.json()
         setStopData(data)
-        console.log("stop data", data)
+        console.log("stop data from 173.82.208.22", data)
         return data
     }
     fetchStops()
