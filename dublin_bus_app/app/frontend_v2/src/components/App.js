@@ -110,19 +110,19 @@ console.log(stopData, "hopefully all went okay...")
                 <div className="container">
                 <div className="site">
                     <header>
-                    <div class="nav">
+                    <div className="nav">
                         <nav>
                             <ul>
-                                <li class="home"><Link className={"nav-link"} to={"/"}>Home</Link></li>
-                                <li class="tutorials"><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
-                                <li class="about"><Link className={"nav-link"} to={"/signup/"}>Signup</Link></li>
-                                {/* <li class="news"><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li> */}
-                                <li class="contact"><Link className={"nav-link"} to={"/map/"}>Map</Link></li>
-                                <li class="contact"><Link className={"nav-link"} to={"/webChat/"}>Chat</Link></li>
-                                <li class="contact"><Link className={"nav-link"} to={"/about/"}>About</Link></li>
+                                <li className="home"><Link className={"nav-link"} to={"/"}>Home</Link></li>
+                                <li className="tutorials"><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
+                                <li className="about"><Link className={"nav-link"} to={"/signup/"}>Signup</Link></li>
+                                {/* <li className="news"><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li> */}
+                                <li className="contact"><Link className={"nav-link"} to={"/map/"}>Map</Link></li>
+                                <li className="contact"><Link className={"nav-link"} to={"/webChat/"}>Chat</Link></li>
+                                <li className="contact"><Link className={"nav-link"} to={"/about/"}>About</Link></li>
                             </ul>
                         </nav>
-                        <button classname="btn" onClick={handleLogout}>Logout</button>
+                        <button className="btn" onClick={handleLogout}>Logout</button>
                     </div>
                     </header>
                 

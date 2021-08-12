@@ -7,7 +7,7 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import mapStyles from "./mapStyles";
 import Button from "./Button";
 import ApproachingBuses from "./ApproachingBuses";
@@ -68,7 +68,7 @@ const MainMaps = ({stopData}) => {
   }
 
   const postData_fare = async (stops_number, route_number) => {
-    setFare([{category: "Calculating Fare", fare:""}]);
+    setFare([[{category: "Calculating Fare", fare:""}]]);
     console.log(stops_number, route_number, "in postData_fare");
     const requestOptions = {
       method: 'POST',
@@ -80,7 +80,8 @@ const MainMaps = ({stopData}) => {
       const fareResponse = await fetch('http://localhost:8000/core/Fare', requestOptions);
       const data = await fareResponse.json();
       console.log(data, "fare django response");
-      return ([data]);
+      //setFare(data);
+      return (data);
     }
 
     // For simplicity, used this secondstoHours function found online
@@ -113,13 +114,7 @@ const MainMaps = ({stopData}) => {
       const MLResponse = await fetch('http://localhost:8000/core/Travel', requestOptions);
       const data = await MLResponse.json();
       console.log(data, "ML django response");
-      const interimSeconds = cumulativeSeconds + data;
-      setCumulativeSeconds((cumulativeSeconds) => {return (cumulativeSeconds + data)});
-      console.log(cumulativeSeconds, "Total Cumulative Seconds So Far");
-      dispatch(setTotalPredictedSeconds(interimSeconds));
-      console.log("SUM TOTAL OF SECONDS IN POSTDATA_TRAVELTIME IS", interimSeconds);
-      // secondsToHours(interimSeconds);
-      return interimSeconds
+      return data
   }
 
 
@@ -133,8 +128,11 @@ const MainMaps = ({stopData}) => {
         setGoogleTime(response["routes"][0]["legs"][0]["duration"]["text"])
         //Set up variables to catch necessary products from functions here
         let seconds = 0;
+        let timeTilBus = 0;
         let allFares = [];
         let routeNumbers = [];
+        let count= 0;
+        let arrival_time;
         let fare_info = response["routes"][0]["legs"][0]["steps"];
         console.log("FARE INFO", fare_info);
         for (let i in fare_info){
@@ -142,22 +140,39 @@ const MainMaps = ({stopData}) => {
             let stops_number = fare_info[i]["transit"]["num_stops"];
             console.log(stops_number);
             let route_number = fare_info[i]["transit"]["line"]["short_name"];
-            routeNumbers += " " + route_number;
+            routeNumbers.push(route_number);
             let start_stop = fare_info[i]["transit"]["departure_stop"]["name"];
+            let departure_time = fare_info[i]["transit"]["departure_time"]["value"];
+            if (count == 0){
+              let query_time = new Date();
+              let time_difference = departure_time.getTime() - query_time.getTime();
+              let seconds_difference = Math.floor(time_difference/1000);
+              console.log("TIME UNTIL BUS____________________________", seconds_difference);
+              timeTilBus += seconds_difference;
+              arrival_time = fare_info[i]["transit"]["arrival_time"]["value"];
+              count +=1;
+            } else {
+              let time_difference = departure_time.getTime() - arrival_time.getTime();
+              let seconds_difference = Math.floor(time_difference/1000);
+              console.log("SECONDS DIFFERENCE BETWEEN TWO DATES____________________________", seconds_difference);
+              seconds += seconds_difference;
+            }
             const traveltime = await postData_traveltime(stops_number,route_number,start_stop, journeyDate, response);
             seconds += traveltime;
             const queriedFares = await postData_fare(stops_number,route_number);
-            allFares += queriedFares;
+            allFares.push(queriedFares);
           }
           if (fare_info[i]["travel_mode"] == "WALKING"){
             seconds += fare_info[i]["duration"]["value"];
           }
         }
+        console.log("SECONDS AFTER LOOP ____________________________", seconds);
         console.log("THE COMBINED OUTPUT OF THE QUERIED FARES", allFares);
         const formattedSeconds = displaySecondsHMS(seconds);
-        setPredictedTime([formattedSeconds]);
+        setPredictedTime(formattedSeconds);
         setDisplayedRoute(routeNumbers);
-        //setFare(allFares);
+        console.log("ALL FARES_____________________", allFares);
+        setFare(allFares);
         console.log("SHOULD BE SEEING THE LOGS IN THE DISPLAY SECONDS FUNCTION");
       } else {
         console.log("response: ", response);
@@ -215,11 +230,20 @@ const options = {
           Route Number: {displayedRoute} <br/>
           Google Time: {googleTime} <br/>
           Predicted Time: {predictedTime} <br/>
-        Fare:<ul>{fare.map((element) => {
+        Fare: 
+        {fare.map((subarray, index) => {
           return (
-            <li key={element.category}>{element.category}: {element.fare}</li>
-          )
-        })}</ul> 
+            <Fragment>
+              <p>Bus {index+1}</p>
+            {subarray.map((element) => {
+              return(
+                <li key={element.category}>{element.category}: {element.fare}</li>
+              )
+            })
+          }
+          </Fragment>
+          );
+        })}
         </div>
       )}
       {directionsRenderBoolean && <Button text={"Show All Stops"} onClick={toggleMarkers}></Button>}
