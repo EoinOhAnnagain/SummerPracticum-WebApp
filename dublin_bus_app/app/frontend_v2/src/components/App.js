@@ -6,12 +6,10 @@ import {axiosInstance} from "../axiosApi";
 
 // import Login from "./login";
 import LoginForm from "./Login_v2";
-
 import Signup from "./signup";
-
-
 import Hello from "./hello";
 import ContactForm from "./Contact";
+import Weather from "./Weather";
 
 import About from "./About"
 
@@ -24,7 +22,7 @@ import WebChat from "./WebChat"
 
 import { AuthProvider} from "./Auth";
 import firebaseConfig from "../config";
-import { AuthContext } from "./Auth";
+
 
 const db = firebaseConfig.firestore();
 
@@ -115,6 +113,7 @@ console.log(stopData, "hopefully all went okay...")
                                 <li><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
                                 <li><Link className={"nav-link"} to={"/signup/"}>Signup</Link></li>
                                 <li><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li>
+                                <li><Link className={"nav-link"} to={"/weather/"}>Weather</Link></li>
                                 <li><Link className={"nav-link"} to={"/map/"}>Map</Link></li>
                                 <li><Link className={"nav-link"} to={"/webChat/"}>Community Chat</Link></li>
                                 <li><Link className={"nav-link"} to={"/contact/"}>Contact</Link></li>
@@ -129,6 +128,7 @@ console.log(stopData, "hopefully all went okay...")
                             <Route exact path={"/login/"} component={LoginForm}/>
                             <Route exact path={"/signup/"} component={Signup}/>
                             <Route exact path={"/hello/"} component={Hello}/>
+                            <Route exact path={"/weather/"} component={Weather}/>
                             <Route exact path={"/contact/"} component={ContactForm}/>
                             <Route exact path={"/"} render={() => <div>Home again</div>}/>
                         </Switch>

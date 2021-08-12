@@ -125,3 +125,11 @@ footer {
   border: 1px solid rgb(255, 255, 255);
   padding: 1em;
 }
+
+.weatherIcon {
+  background-color: #1879b1;
+}
+
+.weatherIcon .img-responsive {
+  margin: 0 auto;
+}
