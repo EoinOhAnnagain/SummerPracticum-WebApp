@@ -17,7 +17,7 @@ class fare_crawler(object):
             html = etree.HTML(html_str)
             fare = html.xpath("//div[@class='other-fares-display']/table/tbody")
         except Exception as e:
-            l = "DEFAULT:'AdultCash', 'AdultLeap', 'ChildCash(Under16)', 'ChildLeap(Under19)', 'SchoolHoursCash', 'SchoolHoursLeap', '€3.00', '€2.25', '€1.30', '€1.00', '€1.00', '€0.80'"
+            l = "'AdultCash', 'AdultLeap', 'ChildCash(Under16)', 'ChildLeap(Under19)', 'SchoolHoursCash', 'SchoolHoursLeap', '€3.00', '€2.25', '€1.30', '€1.00', '€1.00', '€0.80'"
         l = []
         k = 0
         for d in fare:
@@ -34,7 +34,7 @@ class fare_crawler(object):
                 l.append(w_2)
                 print(w_2)
         if len(l) == 0:
-             l = "DEFAULT:'AdultCash', 'AdultLeap', 'ChildCash(Under16)', 'ChildLeap(Under19)', 'SchoolHoursCash', 'SchoolHoursLeap', '€3.00', '€2.25', '€1.30', '€1.00', '€1.00', '€0.80'"
+             l = "'AdultCash', 'AdultLeap', 'ChildCash(Under16)', 'ChildLeap(Under19)', 'SchoolHoursCash', 'SchoolHoursLeap', '€3.00', '€2.25', '€1.30', '€1.00', '€1.00', '€0.80'"
         return l  
 # f = fare_crawler(4,10)
 # l = f.parse()
