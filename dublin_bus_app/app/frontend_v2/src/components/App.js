@@ -4,14 +4,13 @@ import { Switch, Route, Link ,Redirect} from "react-router-dom";
 import { BrowserRouter as Router} from 'react-router-dom'
 import {axiosInstance} from "../axiosApi";
 
-// import Login from "./login";
 import LoginForm from "./Login_v2";
 import Signup from "./signup";
 import Hello from "./hello";
 import ContactForm from "./Contact";
 import Weather from "./Weather";
-
 import About from "./About"
+
 import Home from "./Home"
 
 import Welcome from "./Welcome";
@@ -134,7 +133,7 @@ console.log(stopData, "hopefully all went okay...")
                             <Route exact path={"/hello/"} component={Hello}/>
                             <Route exact path={"/weather/"} component={Weather}/>
                             <Route exact path={"/contact/"} component={ContactForm}/>
-                            <Route exact path={"/"} render={() => <div>Home again</div>}/>
+                            <Route exact path={"/"} component = {Home}/>
                         </Switch>
                             <Route exact path='/map/' render={(props) => (<><Navbar stopData={stopData}/><MainMaps stopData={stopData}/></>)}/>
                             <Route exact path={"/webChat/"} render={(props) => (<WebChat user={null} db={db} routeData={routeData}/>)}/>
