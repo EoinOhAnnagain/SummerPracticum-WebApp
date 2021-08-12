@@ -12,6 +12,7 @@ import Hello from "./hello";
 import ContactForm from "./Contact";
 
 import About from "./About"
+import Home from "./Home"
 
 import Welcome from "./Welcome";
 import MainMaps from "./Map";
@@ -110,6 +111,7 @@ console.log(stopData, "hopefully all went okay...")
                 <div className="container">
                 <div className="site">
                     <header>
+                    <div class="nav">
                         <nav>
                             <ul className={"mainNav"}>
                                 <li><Link className={"nav-link"} to={"/"}>Home</Link></li>
@@ -123,6 +125,8 @@ console.log(stopData, "hopefully all went okay...")
                                 <button onClick={handleLogout}>Logout</button>
                             </ul>
                         </nav>
+                        <button classname="btn" onClick={handleLogout}>Logout</button>
+                    </div>
                     </header>
                 
                     <main>

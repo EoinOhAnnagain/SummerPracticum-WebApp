@@ -11,7 +11,7 @@ const WebChat = ({user = null, db = null, routeData}) => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     const [route, setRoute] = useState('messages');
-    const [email, setEmail] = useState("guest@web.com")
+    const [email, setEmail] = useState("guest1@web.com")
     const scrollDivEndRef = useRef()
     
     console.log("User in webchat is", user)
