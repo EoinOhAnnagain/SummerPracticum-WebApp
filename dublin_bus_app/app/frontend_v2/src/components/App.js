@@ -119,7 +119,6 @@ console.log(stopData, "hopefully all went okay...")
                                 <li><Link className={"nav-link"} to={"/webChat/"}>Community Chat</Link></li>
                                 <li><Link className={"nav-link"} to={"/contact/"}>Contact</Link></li>
                                 <li><Link className={"nav-link"} to={"/about/"}>About</Link></li>
-                                <button onClick={handleLogout}>Logout</button>
                             </ul>
                         </nav>
                         <button classname="btn" onClick={handleLogout}>Logout</button>
