@@ -8,6 +8,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import { useState, useEffect, Fragment } from "react";
+import { addDays, format } from 'date-fns';
 import mapStyles from "./mapStyles";
 import Button from "./Button";
 import ApproachingBuses from "./ApproachingBuses";
@@ -42,6 +43,7 @@ const MainMaps = ({stopData}) => {
     const { destination } = useSelector((state) => state.destination);
     const { journeyDate } = useSelector((state) => state.journeyDate);
     const { totalPredictedSeconds } = useSelector((state)=> state.totalPredictedSeconds);
+    const { journeyDateString } = useSelector((state) => state.journeyDateString);
     const dispatch = useDispatch();
 
   const [googleTime, setGoogleTime] = useState([]);
@@ -210,6 +212,7 @@ const options = {
     origin: origin,
     travelMode: "TRANSIT",
     transitOptions: {
+        departureTime: new Date(journeyDateString),
         modes: ['BUS'],
         routingPreference: 'FEWER_TRANSFERS'
       }
