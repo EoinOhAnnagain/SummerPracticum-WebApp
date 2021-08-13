@@ -109,27 +109,16 @@ console.log(stopData, "hopefully all went okay...")
                     <header>
                     <div className="nav">
                         <nav>
-<<<<<<< HEAD
-                            <ul className={"mainNav"}>
-                                <li><Link className={"nav-link"} to={"/"}>Home</Link></li>
-                                <li><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
-                                <li><Link className={"nav-link"} to={"/signup/"}>Signup</Link></li>
-                                <li><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li>
-                                <li><Link className={"nav-link"} to={"/weather/"}>Weather</Link></li>
-                                <li><Link className={"nav-link"} to={"/map/"}>Map</Link></li>
-                                <li><Link className={"nav-link"} to={"/webChat/"}>Community Chat</Link></li>
-                                <li><Link className={"nav-link"} to={"/contact/"}>Contact</Link></li>
-                                <li><Link className={"nav-link"} to={"/about/"}>About</Link></li>
-=======
                             <ul>
                                 <li className="home"><Link className={"nav-link"} to={"/"}>Home</Link></li>
                                 <li className="tutorials"><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
                                 <li className="about"><Link className={"nav-link"} to={"/signup/"}>Signup</Link></li>
                                 {/* <li className="news"><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li> */}
+                                <li className="contact"><Link className={"nav-link"} to={"/weather/"}>Weather</Link></li>
                                 <li className="contact"><Link className={"nav-link"} to={"/map/"}>Map</Link></li>
+                                <li className="contact"><Link className={"nav-link"} to={"/contact/"}>Contact</Link></li>
                                 <li className="contact"><Link className={"nav-link"} to={"/webChat/"}>Chat</Link></li>
                                 <li className="contact"><Link className={"nav-link"} to={"/about/"}>About</Link></li>
->>>>>>> Styling
                             </ul>
                         </nav>
                         <button className="btn" onClick={handleLogout}>Logout</button>
