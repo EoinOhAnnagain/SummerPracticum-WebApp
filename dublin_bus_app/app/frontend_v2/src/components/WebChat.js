@@ -16,16 +16,17 @@ const WebChat = ({user = null, db = null, routeData}) => {
     
     console.log("User in webchat is", user)
 
-    localStorage.getItem('email')
+    // localStorage.getItem('email')
     // Check if user login firebase account.
     const {currentUser}  = useContext(AuthContext);
     // using localStorage.getItem('email') could get login email address.
 
     if(! currentUser){
-        alert("You must login first.");
+        alert("You must login to access Chat");
         return <Redirect to="/login" />;
     }
 
+    const userEmail = localStorage.getItem('email');
     const [bus, setBus] = useState(null);
     const [direction, setDirection] = useState(null);
 
@@ -127,7 +128,7 @@ const WebChat = ({user = null, db = null, routeData}) => {
             db.collection(route).add({
                 body: newMessage,
                 date: timestamp, // date object- time since 1970
-                sender: email
+                sender: userEmail
             })
             setNewMessage('')
         }
@@ -150,7 +151,7 @@ const WebChat = ({user = null, db = null, routeData}) => {
             <div className="msgs">
                 {messages.map(message => (
                     <div key={message.id}>
-                        <div key={message.id} className={`msg ${message.sender == email ? 'sent' : 'received'}`}>
+                        <div key={message.id} className={`msg ${message.sender == userEmail ? 'sent' : 'received'}`}>
                             <p>{message.body}</p>
                         </div>
                     </div>

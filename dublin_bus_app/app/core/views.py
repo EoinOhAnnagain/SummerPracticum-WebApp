@@ -25,22 +25,29 @@ def ApproachingBuses(request, stopNumber):
     print(current_time, "is current time")
     format = "%H:%M:%S"
     current_time = datetime.strptime(current_time, format)
+    current_hour = str(current_time.hour)
+    if int(str(current_hour))+ 1 >= 24:
+        next_hour = str(int(str(current_hour))+ 1 - 24) 
+    else:
+        next_hour = str(int(str(current_hour))+ 1) 
+    current_hour = current_hour.zfill(2)
+    next_hour = next_hour.zfill(2)
     print("Current hour is", current_time.hour)
     dayOfWeek = datetime.today().weekday() # Get today's day of week
-    if dayOfWeek == 0 or (dayOfWeek==1 and int(current_time[:2])<5):
-        allBuses = MondayStops.objects.filter(stop_id = stopNumber, arrival_time__startswith=str(current_time.hour))
+    if dayOfWeek == 0 or (dayOfWeek==1 and int(str(current_time)[:2])<4):
+        allBuses = MondayStops.objects.filter(Q(stop_id = stopNumber) & (Q(arrival_time__startswith=current_hour)| Q(arrival_time__startswith=next_hour)))
         print("monday")
-    elif dayOfWeek == 1:
-        allBuses = TuesdayStops.objects.filter(Q(stop_id = stopNumber) & (Q(arrival_time__startswith=str(current_time.hour))| Q(arrival_time__startswith=str(current_time.hour +1))))
+    elif dayOfWeek == 1 or (dayOfWeek==2 and int(str(current_time)[:2])<4):
+        allBuses = TuesdayStops.objects.filter(Q(stop_id = stopNumber) & (Q(arrival_time__startswith=current_hour)| Q(arrival_time__startswith=next_hour)))
         print("Tuesday")
-    elif dayOfWeek >= 2 and dayOfWeek <= 4:
-        allBuses = WethfrStops.objects.filter(Q(stop_id = stopNumber) & (Q(arrival_time__startswith=str(current_time.hour))| Q(arrival_time__startswith=str(current_time.hour +1))))
+    elif dayOfWeek >= 2 and dayOfWeek <= 4 or (dayOfWeek==5 and int(str(current_time)[:2])<4):
+        allBuses = WethfrStops.objects.filter(Q(stop_id = stopNumber) & (Q(arrival_time__startswith=current_hour)| Q(arrival_time__startswith=next_hour)))
         print("Weds/thurs/fri")
-    elif dayOfWeek == 5:
-        allBuses = SaturdayStops.objects.filter(stop_id = stopNumber, arrival_time__startswith=str(current_time.hour))
+    elif dayOfWeek == 5 or (dayOfWeek==6 and int(str(current_time)[:2])<4):
+        allBuses = SaturdayStops.objects.filter(Q(stop_id = stopNumber) & (Q(arrival_time__startswith=current_hour)| Q(arrival_time__startswith=next_hour)))
         print("saturday")
     else:
-        allBuses = SundayStops.objects.filter(stop_id = stopNumber, arrival_time__startswith=str(current_time.hour))
+        allBuses = SundayStops.objects.filter(Q(stop_id = stopNumber) & (Q(arrival_time__startswith=current_hour)| Q(arrival_time__startswith=next_hour)))
         print("sunday")
     # allBuses = WethfrStops.objects.filter(Q(stop_id=stopNumber) & (Q(arrival_time__startswith=str(current_time.hour))| Q(arrival_time__startswith=str(current_time.hour +1))))
     lateOrEarlyBuses = RealtimeBusData.objects.all() # Access latest realtime buses
@@ -50,12 +57,13 @@ def ApproachingBuses(request, stopNumber):
         route_id = bus.trip_id.split(".")[2]
         split_elements = route_id.split("-") # Get the route_short_name by splitting route_id
         route_number = split_elements[1]
-        for i in range(24, 29): # Some rows are in 25+ hour time - reformat to avoid errors
-            over24Hr = str(i)
-            in24Hr = str(i-24)
-            if bus.arrival_time.startswith(over24Hr):
-                arrival = bus.arrival_time.replace(over24Hr, in24Hr, 1)
-                break
+        if int(current_hour) >= 23 and int(current_hour) <=3: # This method takes a lot of time - only call in early morning when necessary
+            for i in range(24, 30): # Some rows are in 25+ hour time - reformat to avoid errors
+                over24Hr = str(i)
+                in24Hr = str(i-24)
+                if bus.arrival_time.startswith(over24Hr):
+                    arrival = bus.arrival_time.replace(over24Hr, in24Hr, 1)
+                    break
         else:
             arrival = bus.arrival_time
         arrival = datetime.strptime(arrival, format) # Format arrival time
@@ -64,12 +72,12 @@ def ApproachingBuses(request, stopNumber):
             tdelta = timedelta(days=0, seconds=tdelta.seconds)
         print(tdelta.seconds)
         timeChange = 0 # Store deviation from schedule
-        if lateOrEarlyBuses.filter(trip_id = bus.trip_id).exists(): # Check if bus trip is in late/early buses
-            lateOrEarlyBus = lateOrEarlyBuses.filter(trip_id = bus.trip_id)[0]
-            timeChange+= lateOrEarlyBus.departure_delay # Add departure delay to time change
+        # if lateOrEarlyBuses.filter(trip_id = bus.trip_id).exists(): # Check if bus trip is in late/early buses
+        #     lateOrEarlyBus = lateOrEarlyBuses.filter(trip_id = bus.trip_id)[0]
+        #     timeChange+= lateOrEarlyBus.departure_delay # Add departure delay to time change
         countdown = tdelta.seconds + timeChange # Additional variable for JSON that stores countdown in seconds
         if (tdelta.seconds >0 and tdelta.seconds < 1800): # Limit response to buses arriving in next half-hour
-            dueBuses.append({"id": bus.trip_id, "route_number": route_number, "arrivalTime": bus.arrival_time, "countDownInSeconds": countdown, "timeChange" : timeChange})
+            dueBuses.append({"id": bus.trip_id, "route_number": route_number, "arrivalTime": bus.arrival_time, "timeChange" : timeChange, "countdown": countdown})
     json_string = json.dumps(dueBuses)
     jsonBuses = json.loads(json_string)
     def sortByArrival(value): # Sort JSON object so soonest bus displays at the top
