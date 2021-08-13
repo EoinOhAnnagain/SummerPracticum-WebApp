@@ -1,14 +1,15 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import {
   GoogleMap,
   useLoadScript,
   DirectionsService,
   DirectionsRenderer,
   Marker,
+  MarkerClusterer,
   InfoWindow,
 } from "@react-google-maps/api";
 import { useState, useEffect, Fragment } from "react";
-import { addDays, format } from 'date-fns';
 import mapStyles from "./mapStyles";
 import Button from "./Button";
 import ApproachingBuses from "./ApproachingBuses";
@@ -219,17 +220,16 @@ const options = {
   };
 
   console.log("Stop Data is in Map.js", stopData);
-  // const setJourney = () =>{
-  //   setOrigin({lat: 53.39187739, lng: -6.259719573})
-  //   setDestination({lat: 53.22102148, lng: -6.225605532})
-  //   setShowAllMarkers(false)
-  //   setRenderState(true)
-  // }
+  
+  const clustererOptions = {
+    // imagePath: `${clusterMakers}/m`
+  }
 
   return (
     <div>
       {directionsRenderBoolean && (
         <div>
+          <Link className={"nav-link"} to={"/webChat/"}>About</Link>
           Route Number: {displayedRoute} <br/>
           Google Time: {googleTime} <br/>
           Predicted Time: {predictedTime} <br/>
@@ -258,12 +258,17 @@ const options = {
         onLoad={onMapLoad}
       >
           {
-                  showAllStopsBoolean && ( locations.map(stop=>{
-                    const location = { lat: parseFloat(stop.Latitude), lng: parseFloat(stop.Longitude) }
-                      return(
-                          <Marker key={stop.AtcoCode} position = {location} onClick={() => onSelect(stop)}/>
-                      )
-                  })
+                  showAllStopsBoolean && ( 
+                    <MarkerClusterer options={clustererOptions}>
+                    {(clusterer) =>
+                    locations.map(stop=>{
+                      const location = { lat: parseFloat(stop.Latitude), lng: parseFloat(stop.Longitude) }
+                        return(
+                            <Marker key={stop.AtcoCode} position = {location} clusterer={clusterer} onClick={() => onSelect(stop)}/>
+                        )
+                    }
+                  )}
+                  </MarkerClusterer>
                   )
               }
               {
