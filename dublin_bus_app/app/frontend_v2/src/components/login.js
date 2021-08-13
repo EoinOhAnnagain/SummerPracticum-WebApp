@@ -1,9 +1,9 @@
-import React, { Component, useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import {axiosInstance} from "../axiosApi";
 import { AuthContext } from "./Auth";
 import firebaseConfig from "../config.js";
-import Welcome from "./Welcome";
+
 
 
 function Login(){
