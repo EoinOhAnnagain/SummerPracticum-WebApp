@@ -27,5 +27,5 @@ pandas
 pymysql
 numpy
 datetime
-djangorestframework-simplejwt
+djangorestframework-simplejwt==4.6.0
 

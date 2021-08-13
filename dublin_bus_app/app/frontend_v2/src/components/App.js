@@ -5,12 +5,12 @@ import { BrowserRouter as Router} from 'react-router-dom'
 import {axiosInstance} from "../axiosApi";
 
 import LoginForm from "./Login_v2";
-import Signup from "./signup";
+import SignupForm from "./Signup_v2";
+// import Signup from "./signup";
 import Hello from "./hello";
 import ContactForm from "./Contact";
 import Weather from "./Weather";
 import About from "./About"
-
 import Home from "./Home"
 
 import Welcome from "./Welcome";
@@ -128,7 +128,7 @@ console.log(stopData, "hopefully all went okay...")
                     <main>
                         <Switch>
                             <Route exact path={"/login/"} component={LoginForm}/>
-                            <Route exact path={"/signup/"} component={Signup}/>
+                            <Route exact path={"/signup/"} component={SignupForm}/>
                             <Route exact path={"/hello/"} component={Hello}/>
                             <Route exact path={"/weather/"} component={Weather}/>
                             <Route exact path={"/contact/"} component={ContactForm}/>
