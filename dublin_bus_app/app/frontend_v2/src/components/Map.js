@@ -10,6 +10,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import { useState, useEffect, Fragment } from "react";
+import BeatLoader from "react-spinners";
 import mapStyles from "./mapStyles";
 import Button from "./Button";
 import ApproachingBuses from "./ApproachingBuses";
@@ -65,10 +66,18 @@ const MainMaps = ({stopData}) => {
   // const [origin2, setOrigin2] = React.useState("dublin");
   // const [destination2, setDestination2] = React.useState("cork");
   const [response, setResponse] = React.useState(null);
+
+  
+
+
   const toggleMarkers = () => {
-      dispatch(setShowAllStopsBoolean(!showAllStopsBoolean));
-      dispatch(setDirectionsRenderBoolean(!directionsRenderBoolean));
+      dispatch(setShowAllStopsBoolean(true));
+      dispatch(setDirectionsRenderBoolean(false));
   }
+
+  useEffect(()=> {
+    toggleMarkers();
+    }, []);
 
   const postData_fare = async (stops_number, route_number) => {
     setFare([[{category: "Calculating Fare", fare:""}]]);
@@ -80,6 +89,7 @@ const MainMaps = ({stopData}) => {
         param_1: stops_number,
         param_2: route_number}),
       };
+      console.log("REQUEST OPTIONS FARE__________________________", requestOptions);
       const fareResponse = await fetch('http://localhost:8000/core/Fare', requestOptions);
       const data = await fareResponse.json();
       console.log(data, "fare django response");
@@ -114,6 +124,7 @@ const MainMaps = ({stopData}) => {
         param_3: start_stop,
         param_4: journeyDate}),
       };
+      console.log("REQUEST OPTIONS TRAVELTIME__________________________", requestOptions);
       const MLResponse = await fetch('http://localhost:8000/core/Travel', requestOptions);
       const data = await MLResponse.json();
       console.log(data, "ML django response");

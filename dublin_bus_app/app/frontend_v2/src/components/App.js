@@ -23,6 +23,11 @@ import WebChat from "./WebChat"
 import { AuthProvider} from "./Auth";
 import firebaseConfig from "../config";
 
+import { useSelector, useDispatch } from 'react-redux';
+import { setShowAllStopsBoolean } from "../redux/showAllStopsBool";
+import { setDirectionsRenderBoolean } from "../redux/directionsRenderBool";
+
+
 
 const db = firebaseConfig.firestore();
 
@@ -123,7 +128,7 @@ console.log(stopData, "hopefully all went okay...")
                             <Route exact path={"/contact/"} component={ContactForm}/>
                             <Route exact path={"/"} component = {Home}/>
                         </Switch>
-                            <Route exact path='/map/' render={(props) => (<><Navbar stopData={stopData}/><MainMaps stopData={stopData}/></>)}/>
+                            <Route exact path={'/map/'} render={(props) => (<><Navbar stopData={stopData}/><MainMaps stopData={stopData}/></>)}/>
                             <Route exact path={"/webChat/"} render={(props) => (<WebChat user={null} db={db} routeData={routeData}/>)}/>
                             <Route exact path={"/about/"} render={() => (<About/>)}/>
                     </main>
