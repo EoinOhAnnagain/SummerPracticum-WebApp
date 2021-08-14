@@ -12,6 +12,7 @@ import ContactForm from "./Contact";
 import Weather from "./Weather";
 import About from "./About"
 import Home from "./Home"
+import Footer from "./Footer"
 
 import Welcome from "./Welcome";
 import MainMaps from "./Map";
@@ -110,9 +111,7 @@ console.log(stopData, "hopefully all went okay...")
                                 {/* <li className="news"><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li> */}
                                 <li className="contact"><Link className={"nav-link"} to={"/weather/"}>Weather</Link></li>
                                 <li className="contact"><Link className={"nav-link"} to={"/map/"}>Map</Link></li>
-                                <li className="contact"><Link className={"nav-link"} to={"/contact/"}>Contact</Link></li>
                                 <li className="contact"><Link className={"nav-link"} to={"/webChat/"}>Chat</Link></li>
-                                <li className="contact"><Link className={"nav-link"} to={"/about/"}>About</Link></li>
                             </ul>
                         </nav>
                         <button className="btn" onClick={handleLogout}>Logout</button>
@@ -132,6 +131,8 @@ console.log(stopData, "hopefully all went okay...")
                             <Route exact path={"/webChat/"} render={(props) => (<WebChat user={null} db={db} routeData={routeData}/>)}/>
                             <Route exact path={"/about/"} render={() => (<About/>)}/>
                     </main>
+
+                    <Footer/>
                 </div>
                 </div>
                 </Router>
