@@ -5,12 +5,12 @@ import { BrowserRouter as Router} from 'react-router-dom'
 import {axiosInstance} from "../axiosApi";
 
 import LoginForm from "./Login_v2";
-import Signup from "./signup";
+import SignupForm from "./Signup_v2";
+// import Signup from "./signup";
 import Hello from "./hello";
 import ContactForm from "./Contact";
 import Weather from "./Weather";
 import About from "./About"
-
 import Home from "./Home"
 
 import Welcome from "./Welcome";
@@ -80,10 +80,10 @@ console.log(stopData, "hopefully all went okay...")
 
     useEffect(()=> {
     const fetchStops = async () => {
-        const res = await fetch(`http://localhost:8000/core/stops`)
+        const res = await fetch(`http://173.82.208.22:8000/core/stops`)
         const data = await res.json()
         setStopData(data)
-        console.log("stop data", data)
+        console.log("stop data from 173.82.208.22", data)
         return data
     }
     fetchStops()
@@ -107,28 +107,28 @@ console.log(stopData, "hopefully all went okay...")
                 <div className="container">
                 <div className="site">
                     <header>
-                    <div class="nav">
+                    <div className="nav">
                         <nav>
-                            <ul className={"mainNav"}>
-                                <li><Link className={"nav-link"} to={"/"}>Home</Link></li>
-                                <li><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
-                                <li><Link className={"nav-link"} to={"/signup/"}>Signup</Link></li>
-                                <li><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li>
-                                <li><Link className={"nav-link"} to={"/weather/"}>Weather</Link></li>
-                                <li><Link className={"nav-link"} to={"/map/"}>Map</Link></li>
-                                <li><Link className={"nav-link"} to={"/webChat/"}>Community Chat</Link></li>
-                                <li><Link className={"nav-link"} to={"/contact/"}>Contact</Link></li>
-                                <li><Link className={"nav-link"} to={"/about/"}>About</Link></li>
+                            <ul>
+                                <li className="home"><Link className={"nav-link"} to={"/"}>Home</Link></li>
+                                <li className="tutorials"><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
+                                <li className="about"><Link className={"nav-link"} to={"/signup/"}>Signup</Link></li>
+                                {/* <li className="news"><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li> */}
+                                <li className="contact"><Link className={"nav-link"} to={"/weather/"}>Weather</Link></li>
+                                <li className="contact"><Link className={"nav-link"} to={"/map/"}>Map</Link></li>
+                                <li className="contact"><Link className={"nav-link"} to={"/contact/"}>Contact</Link></li>
+                                <li className="contact"><Link className={"nav-link"} to={"/webChat/"}>Chat</Link></li>
+                                <li className="contact"><Link className={"nav-link"} to={"/about/"}>About</Link></li>
                             </ul>
                         </nav>
-                        <button classname="btn" onClick={handleLogout}>Logout</button>
+                        <button className="btn" onClick={handleLogout}>Logout</button>
                     </div>
                     </header>
                 
                     <main>
                         <Switch>
                             <Route exact path={"/login/"} component={LoginForm}/>
-                            <Route exact path={"/signup/"} component={Signup}/>
+                            <Route exact path={"/signup/"} component={SignupForm}/>
                             <Route exact path={"/hello/"} component={Hello}/>
                             <Route exact path={"/weather/"} component={Weather}/>
                             <Route exact path={"/contact/"} component={ContactForm}/>
