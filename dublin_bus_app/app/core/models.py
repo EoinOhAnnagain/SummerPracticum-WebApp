@@ -145,3 +145,85 @@ class Stops(models.Model):
     class Meta:
         managed = False
         db_table = 'stops'
+
+class MondayStops(models.Model):
+    trip_id = models.CharField(primary_key=True, max_length=45)
+    arrival_time = models.CharField(max_length=45, blank=True, null=True)
+    departure_time = models.CharField(max_length=45)
+    stop_id = models.CharField(max_length=45, blank=True, null=True)
+    stop_sequence = models.CharField(max_length=45, blank=True, null=True)
+    stop_headsign = models.CharField(max_length=45, blank=True, null=True)
+    pickup_type = models.CharField(max_length=45, blank=True, null=True)
+    drop_off_type = models.CharField(max_length=45, blank=True, null=True)
+    shape_dist_traveled = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'monday_stops'
+        unique_together = (('trip_id', 'departure_time'),)
+
+class TuesdayStops(models.Model):
+    trip_id = models.CharField(primary_key=True, max_length=45)
+    arrival_time = models.CharField(max_length=45, blank=True, null=True)
+    departure_time = models.CharField(max_length=45)
+    stop_id = models.CharField(max_length=45, blank=True, null=True)
+    stop_sequence = models.CharField(max_length=45, blank=True, null=True)
+    stop_headsign = models.CharField(max_length=45, blank=True, null=True)
+    pickup_type = models.CharField(max_length=45, blank=True, null=True)
+    drop_off_type = models.CharField(max_length=45, blank=True, null=True)
+    shape_dist_traveled = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tuesday_stops'
+        unique_together = (('trip_id', 'departure_time'),)
+
+
+class WethfrStops(models.Model):
+    trip_id = models.CharField(primary_key=True, max_length=45)
+    arrival_time = models.CharField(max_length=45, blank=True, null=True)
+    departure_time = models.CharField(max_length=45)
+    stop_id = models.CharField(max_length=45, blank=True, null=True)
+    stop_sequence = models.CharField(max_length=45, blank=True, null=True)
+    stop_headsign = models.CharField(max_length=45, blank=True, null=True)
+    pickup_type = models.CharField(max_length=45, blank=True, null=True)
+    drop_off_type = models.CharField(max_length=45, blank=True, null=True)
+    shape_dist_traveled = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'weThFr_stops'
+        unique_together = (('trip_id', 'departure_time'),)
+
+
+class SaturdayStops(models.Model):
+    trip_id = models.CharField(primary_key=True, max_length=45)
+    arrival_time = models.CharField(max_length=45, blank=True, null=True)
+    departure_time = models.CharField(max_length=45)
+    stop_id = models.CharField(max_length=45, blank=True, null=True)
+    stop_sequence = models.CharField(max_length=45, blank=True, null=True)
+    stop_headsign = models.CharField(max_length=45, blank=True, null=True)
+    pickup_type = models.CharField(max_length=45, blank=True, null=True)
+    drop_off_type = models.CharField(max_length=45, blank=True, null=True)
+    shape_dist_traveled = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'saturday_stops'
+        unique_together = (('trip_id', 'departure_time'),)
+
+class SundayStops(models.Model):
+    trip_id = models.CharField(primary_key=True, max_length=45)
+    arrival_time = models.CharField(max_length=45, blank=True, null=True)
+    departure_time = models.CharField(max_length=45)
+    stop_id = models.CharField(max_length=45, blank=True, null=True)
+    stop_sequence = models.CharField(max_length=45, blank=True, null=True)
+    stop_headsign = models.CharField(max_length=45, blank=True, null=True)
+    pickup_type = models.CharField(max_length=45, blank=True, null=True)
+    drop_off_type = models.CharField(max_length=45, blank=True, null=True)
+    shape_dist_traveled = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'sunday_stops'
+        unique_together = (('trip_id', 'departure_time'),)
