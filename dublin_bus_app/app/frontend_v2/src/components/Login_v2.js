@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useForm } from 'react-hook-form';
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import {axiosInstance} from "../axiosApi";
 import { AuthContext } from "./Auth";
@@ -95,10 +95,11 @@ const LoginForm = () => {
                     )}
                   </div>
                 </div>
-                <button className='submit-btn' type='submit'>
+                <button className='btn' type='submit'>
                   Submit
                 </button>
               </form>
+              <div className="signup-in-login">Not signed up yet? <Link className={"nav-link"} to={"/signup/"}>Signup here</Link></div>
             </div>
           </div>
         </div>

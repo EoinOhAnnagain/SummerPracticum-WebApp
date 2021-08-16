@@ -110,23 +110,20 @@ console.log(stopData, "hopefully all went okay...")
                     <div className="nav">
                         <nav>
                             <ul>
-                                {/* <div className="dropdown">
-                                    <button className="dropbtn">Dropdown<AiIcons.AiOutlineUser/> </button> 
-                                    <div className="dropdown-content">
-                                        <li className="tutorials"><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
-                                        <li className="about"><Link className={"nav-link"} to={"/signup/"}>Signup</Link></li>
-                                        <li className="logout"><Link className="nav-link" to="#" onClick={handleLogout}>Logout</Link></li>
-                                    </div>
-                                </div> */}
-                                <li><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
-                                <li><Link className={"nav-link"} to={"/signup/"}>Signup</Link></li>
-                                <li><Link className="nav-link" to="#" onClick={handleLogout}>Logout</Link></li>
                                 <li><Link className={"nav-link"} to={"/"}><AiIcons.AiOutlineHome/></Link></li>
                                 {/* <li className="news"><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li> */}
                                 <li><Link className={"nav-link"} to={"/weather/"}><TiIcons.TiWeatherPartlySunny/></Link></li>
                                 <li><Link className={"nav-link"} to={"/map/"}><MdIcons.MdDirectionsBus/></Link></li>
                                 <li><Link className={"nav-link"} to={"/webChat/"}><ImIcons.ImBubbles/></Link></li>
                             </ul>
+                            <div className="dropdown-container">
+                            <AiIcons.AiOutlineUser/> 
+                                <div className="dropdown-body">
+                                    <div className="dropdown-element"><Link className={"nav-link"} to={"/login/"}>Login</Link></div>
+                                    <div className="dropdown-element"><Link className={"nav-link"} to={"/signup/"}>Signup</Link></div>
+                                    <div className="dropdown-element"><Link className="nav-link" to="#" onClick={handleLogout}>Logout</Link></div>
+                                </div>
+                            </div>
                         </nav>
                     </div>
                     </header>

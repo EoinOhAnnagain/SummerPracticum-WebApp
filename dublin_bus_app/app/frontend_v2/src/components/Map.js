@@ -63,12 +63,17 @@ const MainMaps = ({stopData}) => {
   const [postResults, setPostResults ] = useState(false);
   const [renderState, setRenderState] = useState(false);
 
+  const [showDirectionsSteps, setShowDirectionsSteps] = useState(false);
+  const [allDirections, setAllDirections] = useState();
+
   // const [origin2, setOrigin2] = React.useState("dublin");
   // const [destination2, setDestination2] = React.useState("cork");
   const [response, setResponse] = React.useState(null);
 
   
-
+const toggleDirections = () => {
+  setShowDirectionsSteps(!showDirectionsSteps);
+}
 
   const toggleMarkers = () => {
       dispatch(setShowAllStopsBoolean(true));
@@ -147,6 +152,7 @@ const MainMaps = ({stopData}) => {
         let routeNumbers = [];
         let count= 0;
         let arrival_time;
+        let directionsSteps = [];
         let fare_info = response["routes"][0]["legs"][0]["steps"];
         console.log("FARE INFO", fare_info);
         for (let i in fare_info){
@@ -175,6 +181,7 @@ const MainMaps = ({stopData}) => {
             seconds += traveltime;
             const queriedFares = await postData_fare(stops_number,route_number);
             allFares.push(queriedFares);
+            directionsSteps.push(fare_info[i]["instructions"])
           }
           if (fare_info[i]["travel_mode"] == "WALKING"){
             seconds += fare_info[i]["duration"]["value"];
@@ -185,6 +192,7 @@ const MainMaps = ({stopData}) => {
         const formattedSeconds = displaySecondsHMS(seconds);
         setPredictedTime(formattedSeconds);
         setDisplayedRoute(routeNumbers);
+        setAllDirections(directionsSteps);
         console.log("ALL FARES_____________________", allFares);
         setFare(allFares);
         console.log("SHOULD BE SEEING THE LOGS IN THE DISPLAY SECONDS FUNCTION");
@@ -258,6 +266,8 @@ const options = {
           );
         })}
         </ul>
+        <Button text={"Show Directions"} onClick={toggleDirections}/>
+        {showDirectionsSteps && (<div>{allDirections.map(step => { return (step + "\n")})}</div>)}
         </div>
       )}
       {directionsRenderBoolean && <Button text={"Show All Stops"} onClick={toggleMarkers}></Button>}
