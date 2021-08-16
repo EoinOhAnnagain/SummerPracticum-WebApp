@@ -237,7 +237,7 @@ const options = {
   }
 
   return (
-    <div>
+    <div className="container">
       {directionsRenderBoolean && (
         <div>
           <Link className={"nav-link"} to={"/webChat/"}>About</Link>

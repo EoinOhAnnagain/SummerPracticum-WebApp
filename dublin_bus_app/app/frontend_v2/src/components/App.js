@@ -24,6 +24,11 @@ import WebChat from "./WebChat"
 import { AuthProvider} from "./Auth";
 import firebaseConfig from "../config";
 
+import * as AiIcons from "react-icons/ai"
+import * as ImIcons from "react-icons/im"
+import * as MdIcons from "react-icons/md"
+import * as TiIcons from "react-icons/ti"
+
 import { useSelector, useDispatch } from 'react-redux';
 import { setShowAllStopsBoolean } from "../redux/showAllStopsBool";
 import { setDirectionsRenderBoolean } from "../redux/directionsRenderBool";
@@ -99,19 +104,19 @@ console.log(stopData, "hopefully all went okay...")
         return (
             <AuthProvider>
                 <Router>
-                <div className="container">
+                
                 <div className="site">
                     <header>
                     <div className="nav">
                         <nav>
                             <ul>
-                                <li className="home"><Link className={"nav-link"} to={"/"}>Home</Link></li>
+                                <li className="home"><Link className={"nav-link"} to={"/"}><AiIcons.AiOutlineHome/></Link></li>
                                 <li className="tutorials"><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
                                 <li className="about"><Link className={"nav-link"} to={"/signup/"}>Signup</Link></li>
                                 {/* <li className="news"><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li> */}
-                                <li className="contact"><Link className={"nav-link"} to={"/weather/"}>Weather</Link></li>
-                                <li className="contact"><Link className={"nav-link"} to={"/map/"}>Map</Link></li>
-                                <li className="contact"><Link className={"nav-link"} to={"/webChat/"}>Chat</Link></li>
+                                <li className="contact"><Link className={"nav-link"} to={"/weather/"}><TiIcons.TiWeatherPartlySunny/></Link></li>
+                                <li className="contact"><Link className={"nav-link"} to={"/map/"}><MdIcons.MdDirectionsBus/></Link></li>
+                                <li className="contact"><Link className={"nav-link"} to={"/webChat/"}><ImIcons.ImBubbles/></Link></li>
                             </ul>
                         </nav>
                         <button className="btn" onClick={handleLogout}>Logout</button>
@@ -133,7 +138,6 @@ console.log(stopData, "hopefully all went okay...")
                     </main>
 
                     <Footer/>
-                </div>
                 </div>
                 </Router>
             </AuthProvider>

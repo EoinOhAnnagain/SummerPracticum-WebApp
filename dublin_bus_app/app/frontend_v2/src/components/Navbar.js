@@ -12,21 +12,18 @@ const Navbar = ({stopData}) => {
     const showSidebar = () => setSidebar(!sidebar)
     return (
         <>
-        <div>
+        <div className="toggleContainer">
             <Button text="Toggle Journey Selector" className="btn" onClick={showSidebar}/>
         </div>
-        <nav className = {sidebar ? 'nav-menu active' : 'nav-menu'}>
+        <div className = {sidebar ? 'nav-menu active' : 'nav-menu'}>
             <ul className='nav-menu-items'>
                 <li className='navbar-toggle'>
-                    <Link to='#' className =  'menu-bars'>
-                        <AiIcons.AiOutlineClose onClick={showSidebar}/>
-                    </Link>
                     <SidebarInputFields stopData={stopData}/>
                 </li>
                     
-                
+
             </ul>
-        </nav>
+            </div>
         </>
     )
 }

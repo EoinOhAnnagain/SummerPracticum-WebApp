@@ -24,6 +24,19 @@ body {
   min-height: 300px;
   border: 1px solid #f8d712;
   border-radius: 5px;
+  position: relative;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    max-width: 95%;
+    margin: 30px auto;
+    overflow: auto;
+    min-height: 300px;
+    border: 1px solid #f8d712;
+    border-radius: 5px;
+    position: relative;
+  }
 }
 
 .header {
@@ -63,41 +76,6 @@ body {
   width: 100%;
 }
 
-.add-form {
-  margin-bottom: 40px;
-}
-
-.form-control {
-  margin: 20px 0;
-}
-/* 
-.form-control label {
-  display: block;
-}
-
-.form-control input {
-  width: 100%;
-  height: 40px;
-  margin: 5px;
-  padding: 3px 7px;
-  font-size: 17px;
-}
-
-.form-control-check {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.form-control-check label {
-  flex: 1;
-}
-
-.form-control-check input {
-  flex: 2;
-  height: 20px;
-} */
-
 footer {
   margin-top: 30px;
   text-align: center;
@@ -132,6 +110,19 @@ footer {
 
 /* Test NAV */
 
+.nav {
+  background-color: #404146;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 40px;
+  width: 100%;
+  top: 0;
+  z-index: 5;
+}
+
 .nav ul {
   list-style: none;
   background-color: #444;
@@ -139,18 +130,20 @@ footer {
   padding: 0;
   margin: 0;
 }
+
 .nav li {
   font-family: "Oswald", sans-serif;
-  font-size: 1.2em;
-  line-height: 40px;
-  height: 40px;
-  padding: 5px;
+  width: 120px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.4em;
+  display: inline-block;
+  margin-right: -4px;
 }
 
 .nav a {
   text-decoration: none;
   color: #fff;
-  display: block;
   transition: 0.3s background-color;
 }
 
@@ -165,19 +158,17 @@ footer {
   cursor: default;
 }
 
-@media screen and (min-width: 600px) {
-  .nav li {
-    width: 120px;
-    border-bottom: none;
-    height: 50px;
-    line-height: 50px;
-    font-size: 1.4em;
+@media screen and (max-width: 1000px) {
+  .nav {
+    justify-content: flex-start;
   }
 
-  /* Option 1 - Display Inline */
   .nav li {
-    display: inline-block;
-    margin-right: -4px;
+    font-size: 1.2em;
+    line-height: 40px;
+    height: 40px;
+    padding: 5px;
+    display: flexbox;
   }
 
   /* Options 2 - Float
@@ -193,24 +184,23 @@ footer {
     background-color: #444;
   }
   */
+}
+.about {
+  flex: 100%;
+  align-items: center;
+}
+.about > img {
+  display: block;
+  max-width: 100%;
+  max-height: 300px;
+  padding: 20px;
+  border-radius: 20%;
+}
 
-  .about {
-    flex: 100%;
-    align-items: center;
-  }
-  .about > img {
-    display: block;
-    max-width: 100%;
-    max-height: 300px;
-    padding: 20px;
-    border-radius: 20%;
-  }
-
-  .bio {
-    background-color: lightgray;
-    border-radius: 5%;
-    padding: 40px;
-  }
+.bio {
+  background-color: lightgray;
+  border-radius: 5%;
+  padding: 40px;
 }
 
 .weatherIcon {
