@@ -60,6 +60,7 @@ const LoginForm = () => {
                 {/* Row 1 of form */}
                 <div className='row formRow'>
                   <div className='col'>
+                    <h2> Login </h2>
                     <input
                       type='email'
                       name='email'

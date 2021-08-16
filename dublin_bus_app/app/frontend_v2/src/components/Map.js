@@ -1,13 +1,16 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import {
   GoogleMap,
   useLoadScript,
   DirectionsService,
   DirectionsRenderer,
   Marker,
+  MarkerClusterer,
   InfoWindow,
 } from "@react-google-maps/api";
 import { useState, useEffect, Fragment } from "react";
+import BeatLoader from "react-spinners";
 import mapStyles from "./mapStyles";
 import Button from "./Button";
 import ApproachingBuses from "./ApproachingBuses";
@@ -42,6 +45,7 @@ const MainMaps = ({stopData}) => {
     const { destination } = useSelector((state) => state.destination);
     const { journeyDate } = useSelector((state) => state.journeyDate);
     const { totalPredictedSeconds } = useSelector((state)=> state.totalPredictedSeconds);
+    const { journeyDateString } = useSelector((state) => state.journeyDateString);
     const dispatch = useDispatch();
 
   const [googleTime, setGoogleTime] = useState([]);
@@ -62,10 +66,18 @@ const MainMaps = ({stopData}) => {
   // const [origin2, setOrigin2] = React.useState("dublin");
   // const [destination2, setDestination2] = React.useState("cork");
   const [response, setResponse] = React.useState(null);
+
+  
+
+
   const toggleMarkers = () => {
-      dispatch(setShowAllStopsBoolean(!showAllStopsBoolean));
-      dispatch(setDirectionsRenderBoolean(!directionsRenderBoolean));
+      dispatch(setShowAllStopsBoolean(true));
+      dispatch(setDirectionsRenderBoolean(false));
   }
+
+  useEffect(()=> {
+    toggleMarkers();
+    }, []);
 
   const postData_fare = async (stops_number, route_number) => {
     setFare([[{category: "Calculating Fare", fare:""}]]);
@@ -77,6 +89,7 @@ const MainMaps = ({stopData}) => {
         param_1: stops_number,
         param_2: route_number}),
       };
+      console.log("REQUEST OPTIONS FARE__________________________", requestOptions);
       const fareResponse = await fetch('http://localhost:8000/core/Fare', requestOptions);
       const data = await fareResponse.json();
       console.log(data, "fare django response");
@@ -111,6 +124,7 @@ const MainMaps = ({stopData}) => {
         param_3: start_stop,
         param_4: journeyDate}),
       };
+      console.log("REQUEST OPTIONS TRAVELTIME__________________________", requestOptions);
       const MLResponse = await fetch('http://localhost:8000/core/Travel', requestOptions);
       const data = await MLResponse.json();
       console.log(data, "ML django response");
@@ -210,31 +224,30 @@ const options = {
     origin: origin,
     travelMode: "TRANSIT",
     transitOptions: {
+        departureTime: new Date(journeyDateString),
         modes: ['BUS'],
         routingPreference: 'FEWER_TRANSFERS'
       }
   };
 
   console.log("Stop Data is in Map.js", stopData);
-  // const setJourney = () =>{
-  //   setOrigin({lat: 53.39187739, lng: -6.259719573})
-  //   setDestination({lat: 53.22102148, lng: -6.225605532})
-  //   setShowAllMarkers(false)
-  //   setRenderState(true)
-  // }
+  
+  const clustererOptions = {
+    // imagePath: `${clusterMakers}/m`
+  }
 
   return (
-    <div>
+    <div className="container">
       {directionsRenderBoolean && (
-        <div>
-          Route Number: {displayedRoute} <br/>
-          Google Time: {googleTime} <br/>
-          Predicted Time: {predictedTime} <br/>
-        Fare: 
+        <div className="predictionResults">
+          <Link className={"nav-link"} to={"/webChat/"}>Find your Route in our Chat</Link>
+          Google Says it will take: {googleTime} <br/>
+          Based on weather patterns, we think it will take: {predictedTime} <br/>
+        And you can expect to pay: <ul>
         {fare.map((subarray, index) => {
           return (
             <Fragment>
-              <p>Bus {index+1}</p>
+              <p>{displayedRoute[index]}</p>
             {subarray.map((element) => {
               return(
                 <li key={element.category}>{element.category}: {element.fare}</li>
@@ -244,6 +257,7 @@ const options = {
           </Fragment>
           );
         })}
+        </ul>
         </div>
       )}
       {directionsRenderBoolean && <Button text={"Show All Stops"} onClick={toggleMarkers}></Button>}
@@ -255,12 +269,17 @@ const options = {
         onLoad={onMapLoad}
       >
           {
-                  showAllStopsBoolean && ( locations.map(stop=>{
-                    const location = { lat: parseFloat(stop.Latitude), lng: parseFloat(stop.Longitude) }
-                      return(
-                          <Marker key={stop.AtcoCode} position = {location} onClick={() => onSelect(stop)}/>
-                      )
-                  })
+                  showAllStopsBoolean && ( 
+                    <MarkerClusterer options={clustererOptions}>
+                    {(clusterer) =>
+                    locations.map(stop=>{
+                      const location = { lat: parseFloat(stop.Latitude), lng: parseFloat(stop.Longitude) }
+                        return(
+                            <Marker key={stop.AtcoCode} position = {location} clusterer={clusterer} onClick={() => onSelect(stop)}/>
+                        )
+                    }
+                  )}
+                  </MarkerClusterer>
                   )
               }
               {
