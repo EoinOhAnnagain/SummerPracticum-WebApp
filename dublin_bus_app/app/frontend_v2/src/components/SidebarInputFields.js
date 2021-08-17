@@ -99,7 +99,7 @@ const SidebarInputFields = ({stopData}) => {
             <Select options = {options} onChange={changeEnd}/><br/>
             <h2><FaIcons.FaRegClock/> Departure</h2>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <DateTimePicker format={"y-MM-dd HH:mm"} minDate={new Date()} maxDate={addDays(new Date(), 13)} onChange={changeDate} value={chosenDate}/>
+                <DateTimePicker format={"HH:mm, dd/MM/y"} minDate={new Date()} maxDate={addDays(new Date(), 13)} onChange={changeDate} value={chosenDate}/>
             </MuiPickersUtilsProvider>
             <Button text="Find Route" onClick={setJourney} />
                     <br/>

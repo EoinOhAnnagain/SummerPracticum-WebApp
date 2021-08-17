@@ -10,7 +10,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import { useState, useEffect, Fragment } from "react";
-import BeatLoader from "react-spinners";
+import ClockLoader from "react-spinners";
 import mapStyles from "./mapStyles";
 import Button from "./Button";
 import ApproachingBuses from "./ApproachingBuses";
@@ -19,6 +19,7 @@ import { setDirectionsResponseBoolean } from '../redux/directionsResponseBool'
 import { setShowAllStopsBoolean } from "../redux/showAllStopsBool";
 import { setDirectionsRenderBoolean } from "../redux/directionsRenderBool";
 import { setTotalPredictedSeconds } from "../redux/totalPredictedSeconds";
+import { css } from "@emotion/react";
 
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
@@ -49,26 +50,32 @@ const MainMaps = ({stopData}) => {
     const dispatch = useDispatch();
 
   const [googleTime, setGoogleTime] = useState([]);
-  const [walkingTime, setWalkingTime] = useState([]);
-  const [cumulativeSeconds, setCumulativeSeconds] = useState(0);
+  // const [walkingTime, setWalkingTime] = useState([]);
+  // const [cumulativeSeconds, setCumulativeSeconds] = useState(0);
   const [predictedTime, setPredictedTime] = useState([]);
   const [fare, setFare] = useState([]);
   const [displayedRoute, setDisplayedRoute] = useState([]);
 
-  const [showAllMarkers, setShowAllMarkers] = useState(true);
+  // const [showAllMarkers, setShowAllMarkers] = useState(true);
   const [ selected, setSelected ] = useState({});
   const [center, setCenter] = useState({
     lat: 53.349804, lng: -6.260310 
   });
-  const [postResults, setPostResults ] = useState(false);
-  const [renderState, setRenderState] = useState(false);
+  // const [postResults, setPostResults ] = useState(false);
+  // const [renderState, setRenderState] = useState(false);
 
   const [showDirectionsSteps, setShowDirectionsSteps] = useState(false);
-  const [allDirections, setAllDirections] = useState();
+  const [allDirections, setAllDirections] = useState(["Loading Directions"]);
 
   // const [origin2, setOrigin2] = React.useState("dublin");
   // const [destination2, setDestination2] = React.useState("cork");
   const [response, setResponse] = React.useState(null);
+  const [loading, setLoading] = useState(true);
+  const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: #349beb;
+`;
 
   
 const toggleDirections = () => {
@@ -181,11 +188,11 @@ const toggleDirections = () => {
             seconds += traveltime;
             const queriedFares = await postData_fare(stops_number,route_number);
             allFares.push(queriedFares);
-            directionsSteps.push(fare_info[i]["instructions"])
           }
           if (fare_info[i]["travel_mode"] == "WALKING"){
             seconds += fare_info[i]["duration"]["value"];
           }
+          directionsSteps.push(fare_info[i]["instructions"]);
         }
         console.log("SECONDS AFTER LOOP ____________________________", seconds);
         console.log("THE COMBINED OUTPUT OF THE QUERIED FARES", allFares);
@@ -196,6 +203,7 @@ const toggleDirections = () => {
         console.log("ALL FARES_____________________", allFares);
         setFare(allFares);
         console.log("SHOULD BE SEEING THE LOGS IN THE DISPLAY SECONDS FUNCTION");
+        setLoading(false);
       } else {
         console.log("response: ", response);
       }
@@ -252,7 +260,8 @@ const options = {
           Google Says it will take: {googleTime} <br/>
           Based on weather patterns, we think it will take: {predictedTime} <br/>
         And you can expect to pay: <ul>
-        {fare.map((subarray, index) => {
+        {loading ? <div>Loading</div> :
+         fare.map((subarray, index) => {
           return (
             <Fragment>
               <p>{displayedRoute[index]}</p>
@@ -267,7 +276,7 @@ const options = {
         })}
         </ul>
         <Button text={"Show Directions"} onClick={toggleDirections}/>
-        {showDirectionsSteps && (<div>{allDirections.map(step => { return (step + "\n")})}</div>)}
+        {showDirectionsSteps && (<div>{allDirections.map(step => { return (<><p>{step}</p><br/></>)})}</div>)}
         </div>
       )}
       {directionsRenderBoolean && <Button text={"Show All Stops"} onClick={toggleMarkers}></Button>}
