@@ -58,6 +58,7 @@ const MainMaps = ({stopData}) => {
   const [predictedTime, setPredictedTime] = useState([]);
   const [fare, setFare] = useState([]);
   const [displayedRoute, setDisplayedRoute] = useState([]);
+  const [predictionSuccess, setPredictionSuccess] = useState(true);
 
   // const [showAllMarkers, setShowAllMarkers] = useState(true);
   const [ selected, setSelected ] = useState({});
@@ -156,6 +157,7 @@ const toggleDirections = () => {
         setResponse(response);
         setGoogleTime(response["routes"][0]["legs"][0]["duration"]["text"])
         //Set up variables to catch necessary products from functions here
+        let success = true;
         let seconds = 0;
         let timeTilBus = 0;
         let allFares = [];
@@ -187,8 +189,13 @@ const toggleDirections = () => {
               console.log("SECONDS DIFFERENCE BETWEEN TWO DATES____________________________", seconds_difference);
               seconds += seconds_difference;
             }
-            const traveltime = await postData_traveltime(stops_number,route_number,start_stop, journeyDate, response);
-            seconds += traveltime;
+            try {
+              const traveltime = await postData_traveltime(stops_number,route_number,start_stop, journeyDate, response);
+              seconds += traveltime;
+            }catch{
+                console.log("ERROR IN TRAVELTIME______________________");
+                success = false;
+              }
             const queriedFares = await postData_fare(stops_number,route_number);
             allFares.push(queriedFares);
           }
@@ -197,6 +204,7 @@ const toggleDirections = () => {
           }
           directionsSteps.push(fare_info[i]["instructions"]);
         }
+        setPredictionSuccess(success);
         console.log("SECONDS AFTER LOOP ____________________________", seconds);
         console.log("THE COMBINED OUTPUT OF THE QUERIED FARES", allFares);
         const formattedSeconds = displaySecondsHMS(seconds);
@@ -261,7 +269,9 @@ const options = {
         <div className="predictionResults">
           <Link className={"nav-link"} to={"/webChat/"}>Find your Route in our Chat</Link>
           <p>Google Says it will take: {googleTime} </p><br/>
-          <p>Based on weather patterns, we think it will take: {loading ? <div> <BeatLoader color={"#349beb"} css={override} size={30}/>Loading</div> : predictedTime} </p><br/>
+          <p>Based on weather patterns, we think it will take: {loading ? 
+            <div> <BeatLoader color={"#349beb"} css={override} size={30}/>Loading</div> : predictionSuccess ? 
+            predictedTime : "Woops, our predictor failed for this stop, sorry! This sometimes happens when new stops are added"} </p><br/>
           <p>And you can expect to pay:</p> <ul>
         {loading ? <div> <BeatLoader color={"#349beb"} css={override} size={30}/>Loading</div> :
          fare.map((subarray, index) => {
