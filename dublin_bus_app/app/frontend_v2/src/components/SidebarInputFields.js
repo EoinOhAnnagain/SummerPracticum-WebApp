@@ -20,7 +20,7 @@ import { setShowAllStopsBoolean } from '../redux/showAllStopsBool';
 import { setJourneyDate } from '../redux/journeyDate';
 import { setTotalPredictedSeconds } from "../redux/totalPredictedSeconds";
 import { setJourneyDateString } from '../redux/journeyDateString';
-
+import { setLoading } from '../redux/loading';
 
 
 const SidebarInputFields = ({stopData}) => {
@@ -86,6 +86,7 @@ const SidebarInputFields = ({stopData}) => {
         dispatch(setDirectionsResponseBoolean(true));
         dispatch(setJourneyDate(formattedDate));
         dispatch(setTotalPredictedSeconds(0));
+        dispatch(setLoading(true));
         console.log(formattedDate, "is THE date WE should ALL see");
         }
     };

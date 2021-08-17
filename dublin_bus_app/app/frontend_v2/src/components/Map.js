@@ -10,7 +10,9 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import { useState, useEffect, Fragment } from "react";
-import ClockLoader from "react-spinners";
+import { css } from "@emotion/react";
+import ClockLoader from "react-spinners/ClockLoader";
+import BeatLoader from "react-spinners/BeatLoader"
 import mapStyles from "./mapStyles";
 import Button from "./Button";
 import ApproachingBuses from "./ApproachingBuses";
@@ -19,7 +21,7 @@ import { setDirectionsResponseBoolean } from '../redux/directionsResponseBool'
 import { setShowAllStopsBoolean } from "../redux/showAllStopsBool";
 import { setDirectionsRenderBoolean } from "../redux/directionsRenderBool";
 import { setTotalPredictedSeconds } from "../redux/totalPredictedSeconds";
-import { css } from "@emotion/react";
+import { setLoading } from "../redux/loading";
 
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
@@ -47,6 +49,7 @@ const MainMaps = ({stopData}) => {
     const { journeyDate } = useSelector((state) => state.journeyDate);
     const { totalPredictedSeconds } = useSelector((state)=> state.totalPredictedSeconds);
     const { journeyDateString } = useSelector((state) => state.journeyDateString);
+    const {loading} = useSelector(state => state.loading)
     const dispatch = useDispatch();
 
   const [googleTime, setGoogleTime] = useState([]);
@@ -70,7 +73,7 @@ const MainMaps = ({stopData}) => {
   // const [origin2, setOrigin2] = React.useState("dublin");
   // const [destination2, setDestination2] = React.useState("cork");
   const [response, setResponse] = React.useState(null);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const override = css`
   display: block;
   margin: 0 auto;
@@ -203,7 +206,7 @@ const toggleDirections = () => {
         console.log("ALL FARES_____________________", allFares);
         setFare(allFares);
         console.log("SHOULD BE SEEING THE LOGS IN THE DISPLAY SECONDS FUNCTION");
-        setLoading(false);
+        dispatch(setLoading(false));
       } else {
         console.log("response: ", response);
       }
@@ -257,10 +260,10 @@ const options = {
       {directionsRenderBoolean && (
         <div className="predictionResults">
           <Link className={"nav-link"} to={"/webChat/"}>Find your Route in our Chat</Link>
-          Google Says it will take: {googleTime} <br/>
-          Based on weather patterns, we think it will take: {predictedTime} <br/>
-        And you can expect to pay: <ul>
-        {loading ? <div>Loading</div> :
+          <p>Google Says it will take: {googleTime} </p><br/>
+          <p>Based on weather patterns, we think it will take: {loading ? <div> <BeatLoader color={"#349beb"} css={override} size={30}/>Loading</div> : predictedTime} </p><br/>
+          <p>And you can expect to pay:</p> <ul>
+        {loading ? <div> <BeatLoader color={"#349beb"} css={override} size={30}/>Loading</div> :
          fare.map((subarray, index) => {
           return (
             <Fragment>
@@ -275,9 +278,11 @@ const options = {
           );
         })}
         </ul>
-        <Button text={"Show Directions"} onClick={toggleDirections}/>
-        {showDirectionsSteps && (<div>{allDirections.map(step => { return (<><p>{step}</p><br/></>)})}</div>)}
-        </div>
+          <Button text={"Show Directions"} onClick={toggleDirections}/>
+          {showDirectionsSteps && ( loading ? 
+            <div><BeatLoader color={"#349beb"} css={override} size={30}/>Loading</div> 
+            : <div>{allDirections.map(step => { return (<><p>{step}</p><br/></>)})}</div>)}
+          </div>
       )}
       {directionsRenderBoolean && <Button text={"Show All Stops"} onClick={toggleMarkers}></Button>}
       <GoogleMap

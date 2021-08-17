@@ -22,6 +22,7 @@ body {
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
+  background-color: white;
   border: 1px solid #f8d712;
   border-radius: 5px;
   position: relative;
@@ -37,6 +38,18 @@ body {
     border-radius: 5px;
     position: relative;
   }
+}
+
+.intro {
+  color: white;
+  background-color: black;
+  justify-content: center;
+  display: block;
+}
+
+.intro div img {
+  width: 100%;
+  padding: 80px;
 }
 
 .header {
