@@ -17,12 +17,7 @@ const About = () => {
             <div className="about">
             <img src={Even} alt="Even" onClick={() => setShowEven(!showEven)}/>
             <h1>Junzheng Liu</h1>
-            {showEven && (<div className="bio">Junzheng Liu is a back-end engineer specializing in data analysis. In this project, he is mainly responsible for machine learning to predict travel time, database construction, implementation of travel price calculation functions and the establishment of docker images.
-
-He used to work in China Airlines for market data processing and analysis.
-He used to develop a complete automatic lesson scheduling system at the Yantai branch of New Oriental Education Technology Group.
-He often says that he has processed more data than the salt he has eaten himself.
-<br/>
+            {showEven && (<div className="bio">
 Even is a back-end engineer specializing in data analysis. In this project, he is mainly responsible for machine learning to predict travel time, database construction, implementation of travel price calculation functions and the establishment of docker images.
 He used to work in China Airlines for market data processing and analysis.
 He used to develop a complete automatic lesson scheduling system at the Yantai branch of New Oriental Education Technology Group.

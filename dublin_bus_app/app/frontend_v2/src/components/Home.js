@@ -1,12 +1,19 @@
 import React from 'react'
+import busImage from '../assets/busImage.jpg';
+import busTitle from '../assets/DontBusAlone.png';
+import * as AiIcons from "react-icons/ai";
 
 const Home = () => {
+    
     return (
-        <div className="container">
-            <h1>Welcome to DBA</h1>
-            <h2>Don't Bus Alone</h2>
-            <h3>Check out our map and journey planner, or sign in to use our route-specific chatrooms</h3>
-            <h2>And Download our App on the Apple Store</h2>
+        <div style={{backgroundImage: `url(${busImage})`}}>
+            <div className="container">
+                <div className="intro">
+                    <div><img src={busTitle}/></div>
+                    <div><h2>Plan your journey, connect with community</h2></div>
+                    <div><h4>Follow the instructions on our Github to download our iOS app <AiIcons.AiFillApple/></h4></div>
+                </div>
+            </div>
         </div>
     )
 }

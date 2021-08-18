@@ -142,8 +142,13 @@ const WebChat = ({user = null, db = null, routeData}) => {
         scrollDivEndRef.current?.scrollIntoView({behavior:"smooth"})
     }
 
+    //
+// fuck bastard bitch wank
+    //
+
     return (
         <div>
+            <h2>Select your Route and Direction</h2>
             <Select options={busOptions} onChange={changeBus}/>
             <Select options={directionOptions} onChange={changeDirection}/>
             <Button text="Chat" onClick={setChat}/> 

@@ -7,6 +7,7 @@ import showAllStopsBooleanReducer from "./showAllStopsBool";
 import journeyDateReducer from "./journeyDate"
 import totalPredictedSecondsReducer from "./totalPredictedSeconds";
 import journeyDateStringReducer from "./journeyDateString";
+import loadingReducer from "./loading"
 
 export default configureStore({
     reducer: {
@@ -17,6 +18,7 @@ export default configureStore({
         showAllStopsBoolean : showAllStopsBooleanReducer,
         journeyDate : journeyDateReducer,
         totalPredictedSeconds: totalPredictedSecondsReducer,
-        journeyDateString: journeyDateStringReducer
+        journeyDateString: journeyDateStringReducer,
+        loading: loadingReducer
     }
 });

@@ -20,7 +20,7 @@ import { setShowAllStopsBoolean } from '../redux/showAllStopsBool';
 import { setJourneyDate } from '../redux/journeyDate';
 import { setTotalPredictedSeconds } from "../redux/totalPredictedSeconds";
 import { setJourneyDateString } from '../redux/journeyDateString';
-
+import { setLoading } from '../redux/loading';
 
 
 const SidebarInputFields = ({stopData}) => {
@@ -86,6 +86,7 @@ const SidebarInputFields = ({stopData}) => {
         dispatch(setDirectionsResponseBoolean(true));
         dispatch(setJourneyDate(formattedDate));
         dispatch(setTotalPredictedSeconds(0));
+        dispatch(setLoading(true));
         console.log(formattedDate, "is THE date WE should ALL see");
         }
     };
@@ -99,7 +100,7 @@ const SidebarInputFields = ({stopData}) => {
             <Select options = {options} onChange={changeEnd}/><br/>
             <h2><FaIcons.FaRegClock/> Departure</h2>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <DateTimePicker format={"y-MM-dd HH:mm"} minDate={new Date()} maxDate={addDays(new Date(), 13)} onChange={changeDate} value={chosenDate}/>
+                <DateTimePicker format={"HH:mm, dd/MM/y"} minDate={new Date()} maxDate={addDays(new Date(), 13)} onChange={changeDate} value={chosenDate}/>
             </MuiPickersUtilsProvider>
             <Button text="Find Route" onClick={setJourney} />
                     <br/>

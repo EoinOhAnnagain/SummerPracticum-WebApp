@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CardExampleCard from "./Weather_card";
+import * as MdIcons from "react-icons/md"
+import {Link } from "react-router-dom";
 
 
 
@@ -49,12 +51,18 @@ const Weather = ()=>{
       }, []);
 
     return (
-        <div className="Weather">
-        {(typeof data.main != 'undefined') ? (
-            <CardExampleCard weatherData={data}/>
-        ): (
-            <p>Loading...</p>
-        )}
+        <div className="container">
+          <div className="Weather">
+          {(typeof data.main != 'undefined') ? (
+              <CardExampleCard weatherData={data}/>
+          ): (
+              <p>Loading...</p>
+          )}
+          <p>Why not plan your journey using our state-of-the-art prediction models, based on today's weather?
+          <Link className={"nav-link"} to={"/map/"}><MdIcons.MdDirectionsBus/></Link>
+          </p>
+          
+          </div>
         </div>
     );
 }
