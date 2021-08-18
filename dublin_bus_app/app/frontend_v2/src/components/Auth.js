@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
               //setLoading(false);
             }else{
               if(localStorage.getItem('email')){
-                alert("Welcome"+ localStorage.getItem('email'));
+                alert("Welcome "+ localStorage.getItem('email'));
             }else{
                 alert("[Auth.js] Django not login yet!")    
             }
