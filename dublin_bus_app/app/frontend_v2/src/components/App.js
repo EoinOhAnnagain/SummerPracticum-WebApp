@@ -113,6 +113,7 @@ console.log(stopData, "hopefully all went okay...")
                                 <li className="home"><Link className={"nav-link"} to={"/"}>Home</Link></li>
                                 <li className="tutorials"><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
                                 <li className="about"><Link className={"nav-link"} to={"/signup/"}>Signup</Link></li>
+                                <li className="tutorials"><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
                                 {/* <li className="news"><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li> */}
                                 <li className="contact"><Link className={"nav-link"} to={"/weather/"}>Weather</Link></li>
                                 <li className="contact"><Link className={"nav-link"} to={"/map/"}>Map</Link></li>

@@ -29,11 +29,8 @@ const SignupForm = () => {
             reset();
             return response;
         } catch (error) {
-            alert("Signup fail!");
+            alert("Signup fail!" + error.response.data);
             console.log(error.stack);
-            setErrors({
-                error: error.response.data
-            });
             console.log("Error: " + errors);
         }
   };
