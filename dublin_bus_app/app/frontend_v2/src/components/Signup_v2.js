@@ -1,12 +1,18 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {useState, useContext} from "react";
 import { useForm } from 'react-hook-form';
 import { Redirect } from "react-router-dom";
 
 import {axiosInstance} from "../axiosApi";
 import firebaseConfig from "../config.js";
+import { AuthContext } from "./Auth";
 
 const SignupForm = () => {
-  
+    const {currentUser}  = useContext(AuthContext);
+    if(currentUser && localStorage.getItem('email')){
+        alert("Hi," +localStorage.getItem('email')+ " please log out first before signup another account.");
+        return <Redirect to="/" />;
+      }
+
   const [signsuccess, setSignsuccess] = useState(false);
 
   const {
@@ -29,9 +35,8 @@ const SignupForm = () => {
             reset();
             return response;
         } catch (error) {
-            alert("Signup unsuccessful! Please make sure you are using an email address that hasn't been used before, and that your password is at least 8 characters long");
-            console.log(error.stack);
-            console.log("Error: " + errors);
+            alert("Signup unsuccessful! Please make sure you are using an email address that hasn't been used before.");
+            console.log(error);
         }
   };
 
@@ -58,13 +63,16 @@ const SignupForm = () => {
                       defaultValue={localStorage.getItem('email')? localStorage.getItem('email') : '' }
                       {...register('email', {
                         required: true,
-                        pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+                        pattern:{
+                            value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ ,
+                            message: "Please use valid email address for signup."
+                        } 
                       })}
                       className='form-control formInput'
                       placeholder= 'Email address'
                     ></input>
                     {errors.email && (
-                      <small className='text-danger'>Please enter a valid email address</small>
+                      <small className='text-danger'>{errors.email.message}</small>
                     )}
                   </div>
                 </div>
@@ -76,15 +84,21 @@ const SignupForm = () => {
                       name='password'
                       {...register('password', {
                         required: true,
-                        pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]*$/
+                        minLength: {
+                            value: 8,
+                            message: "Password must have at least 8 characters"
+                        },
+                        pattern:{
+                            value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]*$/,
+                            message: "Password contain invalid characters, like: , () <> [] ..."
+                        } 
                       })}
                       className='form-control formInput'
                       placeholder= 'Password'
                     ></input>
                     {errors.password && (
-                      <small className='text-danger'>Please enter a valid password</small>
+                      <small className='text-danger'>{errors.password.message}</small>
                     )}
-                    <p>Your password should be at least 8 characters long</p>
                   </div>
                 </div>
                 <button className='btn' type='submit'>
