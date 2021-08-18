@@ -1,15 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
-from django.test import Client
-
 
 class auth_tests(TestCase):
-
-    @classmethod
-    def setUpTestData(cls):
-        cls.User = get_user_model()
-        cls.user = cls.User.objects.create_user(email='normal@user.com', password='foo')
-
     """
     model test
     1. Test user model.
