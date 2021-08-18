@@ -22,11 +22,6 @@ const WebChat = ({user = null, db = null, routeData}) => {
     const {currentUser}  = useContext(AuthContext);
     // using localStorage.getItem('email') could get login email address.
 
-    // if(! currentUser){
-    //     alert("You must login to access Chat");
-    //     return <Redirect to="/login" />;
-    // }
-
     const userEmail = localStorage.getItem('email');
     const [bus, setBus] = useState(null);
     const [direction, setDirection] = useState(null);
@@ -181,6 +176,12 @@ const WebChat = ({user = null, db = null, routeData}) => {
             }
         }
         return false
+    }
+
+    if(! currentUser){
+        alert("You must login to access Chat");
+        return <Redirect to="/login" />;
+
     }
 
     return (

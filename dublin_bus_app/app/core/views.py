@@ -13,12 +13,6 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from datetime import datetime, timedelta
 
-"""Hank add for testing dB"""
-def show_agency_list(request):
-    user_list = Agency.objects.order_by('agency_name')
-    output = ', '.join([user.agency_name for user in user_list])
-    return HttpResponse(output)
-
 def ApproachingBuses(request, stopNumber):
     now = datetime.now() # Get todays date and format it same as database
     current_time = now.strftime("%H:%M:%S")

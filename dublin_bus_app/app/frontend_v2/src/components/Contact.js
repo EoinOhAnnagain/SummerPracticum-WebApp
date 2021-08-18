@@ -81,6 +81,7 @@ const ContactForm = () => {
                     <option value="Bug in Map">Bug in Map</option>
                     <option value="Bug in Login/SignUp">Bug in Login/SignUp</option>
                     <option value="Report Abuse of Chat">Report Abuse of Chat</option>
+                    <option value="Others">Others</option>
                  </select>
                  {errors.subject && (
                       <small className='text-danger'>{errors.subject.message}</small>
@@ -102,7 +103,7 @@ const ContactForm = () => {
                     {errors.message && <small className='text-danger'>Please enter a message</small>}
                   </div>
                 </div>
-                <button className='submit-btn' type='submit'>
+                <button className='btn' type='submit'>
                   Submit
                 </button>
               </form>

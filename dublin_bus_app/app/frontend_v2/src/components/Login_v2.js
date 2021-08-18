@@ -46,7 +46,6 @@ const LoginForm = () => {
   };
 
   if (loginsucess){
-    alert("You have logged in successfully");
     return <Redirect to="/" />;
   }
 
