@@ -30,6 +30,8 @@ const WebChat = ({user = null, db = null, routeData}) => {
     const [bus, setBus] = useState(null);
     const [direction, setDirection] = useState(null);
 
+    const admins = ["eoin.ohannagain@ucdconnect.ie", "eugene.egan1@ucdconnect.ie", "ming-han.ta@ucdconnect.ie", "junzheng.liu@ucdconnect.ie", "eoin1711@gmail.com"]
+
     const busOptions = routeData.map(route => {
         return {value: route.route_short_name, 
                 label: route.route_short_name}
@@ -142,8 +144,13 @@ const WebChat = ({user = null, db = null, routeData}) => {
         scrollDivEndRef.current?.scrollIntoView({behavior:"smooth"})
     }
 
+    //
+// fuck bastard bitch wank
+    //
+
     return (
         <div>
+            <h2>Select your Route and Direction</h2>
             <Select options={busOptions} onChange={changeBus}/>
             <Select options={directionOptions} onChange={changeDirection}/>
             <Button text="Chat" onClick={setChat}/> 
@@ -151,7 +158,7 @@ const WebChat = ({user = null, db = null, routeData}) => {
             <div className="msgs">
                 {messages.map(message => (
                     <div key={message.id}>
-                        <div key={message.id} className={`msg ${message.sender == userEmail ? 'sent' : 'received'}`}>
+                        <div key={message.id} className={`msg ${message.sender == userEmail ? 'sent' : admins.includes(userEmail) ? 'admin' : 'received'}`}>
                             <p>{message.body}</p>
                         </div>
                     </div>

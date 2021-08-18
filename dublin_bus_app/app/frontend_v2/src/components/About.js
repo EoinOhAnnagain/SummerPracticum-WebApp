@@ -13,15 +13,11 @@ const About = () => {
     const [showEoin, setShowEoin] = useState(false);
     
     return (
-        <div className="about">
+        <div className="container">
+            <div className="about">
             <img src={Even} alt="Even" onClick={() => setShowEven(!showEven)}/>
             <h1>Junzheng Liu</h1>
-            {showEven && (<div className="bio">Junzheng Liu is a back-end engineer specializing in data analysis. In this project, he is mainly responsible for machine learning to predict travel time, database construction, implementation of travel price calculation functions and the establishment of docker images.
-
-He used to work in China Airlines for market data processing and analysis.
-He used to develop a complete automatic lesson scheduling system at the Yantai branch of New Oriental Education Technology Group.
-He often says that he has processed more data than the salt he has eaten himself.
-<br/>
+            {showEven && (<div className="bio">
 Even is a back-end engineer specializing in data analysis. In this project, he is mainly responsible for machine learning to predict travel time, database construction, implementation of travel price calculation functions and the establishment of docker images.
 He used to work in China Airlines for market data processing and analysis.
 He used to develop a complete automatic lesson scheduling system at the Yantai branch of New Oriental Education Technology Group.
@@ -40,6 +36,7 @@ Eugene is a former musician, turned former paralegal, now Computer Science stude
             {showEoin && (<div className="bio">Throughout the practicum Eoin was responsible for the iOS development learning swift and Xcode from scratch to do so. As part of this he also took lead of the project UI styles as well initiating the cross platform chat function. Additionally, as the teams maintenance lead, Eoin was responsible for maintaining the teams GitHub repository, establishing the teams best practices, and resolving conflicts. 
                 <br/>
 Prior to undertaking the Computer Science conversion masters at UCD, Eoin was a Music and Religious Education teacher, having studied at Mater Dei/DCU. He is also an associate of the Royal Irish Academy of Music and has been teaching piano since 2008 and has performed organ at the National Concert Hall.</div>)}
+        </div>
         </div>
     )
 }

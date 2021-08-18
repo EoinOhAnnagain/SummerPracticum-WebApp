@@ -42,10 +42,10 @@ useEffect(async ()=> {
             <ul>
                 { displayBuses && (approachingBusData.length<=5 ? 
                 approachingBusData.map(item=>{
-                    return <li key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving {item.arrivalTime}</p></li>
+                    return <li key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving in {Math.floor(item.countdown / 60)} minutes</p></li>
                 }) 
                 : approachingBusData.slice(0, 5).map(item=>{
-                    return <li key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving {item.arrivalTime}</p></li>
+                    return <li key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving in {Math.floor(item.countdown / 60)} minutes</p></li>
                 }))}
             </ul>
         </div>

@@ -17,13 +17,29 @@ export const AuthProvider = ({ children }) => {
         //     alert("[Auth.js] Django not login yet!")    
         // }
         setCurrentUser(user);
-        setLoading(false);;
+         if (user !== null) {
+            //alert(user.emailVerified)
+            if (user.emailVerified !== false){
+              //setLoading(true);
+            }
+            else if(user.emailVerified === false) {
+              //alert("Please verify your email!")
+              firebaseConfig.auth().currentUser.sendEmailVerification()
+              .then(() => {
+                alert("Email verification sent!");
+              });
+              firebaseConfig.auth().signOut();
+              alert("Please verify your email and login again")
+              //setLoading(false);
+            }
+        }
+        //setLoading(false);;
     });
   }, []);
   
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  //if (loading) {
+    //return <p>Loading...</p>;
+  //}
   
   return (
     <AuthContext.Provider value={{ currentUser }}>

@@ -1,13 +1,18 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import {
   GoogleMap,
   useLoadScript,
   DirectionsService,
   DirectionsRenderer,
   Marker,
+  MarkerClusterer,
   InfoWindow,
 } from "@react-google-maps/api";
 import { useState, useEffect, Fragment } from "react";
+import { css } from "@emotion/react";
+import ClockLoader from "react-spinners/ClockLoader";
+import BeatLoader from "react-spinners/BeatLoader"
 import mapStyles from "./mapStyles";
 import Button from "./Button";
 import ApproachingBuses from "./ApproachingBuses";
@@ -16,6 +21,7 @@ import { setDirectionsResponseBoolean } from '../redux/directionsResponseBool'
 import { setShowAllStopsBoolean } from "../redux/showAllStopsBool";
 import { setDirectionsRenderBoolean } from "../redux/directionsRenderBool";
 import { setTotalPredictedSeconds } from "../redux/totalPredictedSeconds";
+import { setLoading } from "../redux/loading";
 
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
@@ -42,30 +48,52 @@ const MainMaps = ({stopData}) => {
     const { destination } = useSelector((state) => state.destination);
     const { journeyDate } = useSelector((state) => state.journeyDate);
     const { totalPredictedSeconds } = useSelector((state)=> state.totalPredictedSeconds);
+    const { journeyDateString } = useSelector((state) => state.journeyDateString);
+    const {loading} = useSelector(state => state.loading)
     const dispatch = useDispatch();
 
   const [googleTime, setGoogleTime] = useState([]);
-  const [walkingTime, setWalkingTime] = useState([]);
-  const [cumulativeSeconds, setCumulativeSeconds] = useState(0);
+  // const [walkingTime, setWalkingTime] = useState([]);
+  // const [cumulativeSeconds, setCumulativeSeconds] = useState(0);
   const [predictedTime, setPredictedTime] = useState([]);
   const [fare, setFare] = useState([]);
   const [displayedRoute, setDisplayedRoute] = useState([]);
+  const [predictionSuccess, setPredictionSuccess] = useState(true);
 
-  const [showAllMarkers, setShowAllMarkers] = useState(true);
+  // const [showAllMarkers, setShowAllMarkers] = useState(true);
   const [ selected, setSelected ] = useState({});
   const [center, setCenter] = useState({
     lat: 53.349804, lng: -6.260310 
   });
-  const [postResults, setPostResults ] = useState(false);
-  const [renderState, setRenderState] = useState(false);
+  // const [postResults, setPostResults ] = useState(false);
+  // const [renderState, setRenderState] = useState(false);
+
+  const [showDirectionsSteps, setShowDirectionsSteps] = useState(false);
+  const [allDirections, setAllDirections] = useState(["Loading Directions"]);
 
   // const [origin2, setOrigin2] = React.useState("dublin");
   // const [destination2, setDestination2] = React.useState("cork");
   const [response, setResponse] = React.useState(null);
+  // const [loading, setLoading] = useState(true);
+  const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: #349beb;
+`;
+
+  
+const toggleDirections = () => {
+  setShowDirectionsSteps(!showDirectionsSteps);
+}
+
   const toggleMarkers = () => {
-      dispatch(setShowAllStopsBoolean(!showAllStopsBoolean));
-      dispatch(setDirectionsRenderBoolean(!directionsRenderBoolean));
+      dispatch(setShowAllStopsBoolean(true));
+      dispatch(setDirectionsRenderBoolean(false));
   }
+
+  useEffect(()=> {
+    toggleMarkers();
+    }, []);
 
   const postData_fare = async (stops_number, route_number) => {
     setFare([[{category: "Calculating Fare", fare:""}]]);
@@ -77,6 +105,7 @@ const MainMaps = ({stopData}) => {
         param_1: stops_number,
         param_2: route_number}),
       };
+      console.log("REQUEST OPTIONS FARE__________________________", requestOptions);
       const fareResponse = await fetch('http://localhost:8000/core/Fare', requestOptions);
       const data = await fareResponse.json();
       console.log(data, "fare django response");
@@ -111,6 +140,7 @@ const MainMaps = ({stopData}) => {
         param_3: start_stop,
         param_4: journeyDate}),
       };
+      console.log("REQUEST OPTIONS TRAVELTIME__________________________", requestOptions);
       const MLResponse = await fetch('http://localhost:8000/core/Travel', requestOptions);
       const data = await MLResponse.json();
       console.log(data, "ML django response");
@@ -127,12 +157,14 @@ const MainMaps = ({stopData}) => {
         setResponse(response);
         setGoogleTime(response["routes"][0]["legs"][0]["duration"]["text"])
         //Set up variables to catch necessary products from functions here
+        let success = true;
         let seconds = 0;
         let timeTilBus = 0;
         let allFares = [];
         let routeNumbers = [];
         let count= 0;
         let arrival_time;
+        let directionsSteps = [];
         let fare_info = response["routes"][0]["legs"][0]["steps"];
         console.log("FARE INFO", fare_info);
         for (let i in fare_info){
@@ -157,23 +189,32 @@ const MainMaps = ({stopData}) => {
               console.log("SECONDS DIFFERENCE BETWEEN TWO DATES____________________________", seconds_difference);
               seconds += seconds_difference;
             }
-            const traveltime = await postData_traveltime(stops_number,route_number,start_stop, journeyDate, response);
-            seconds += traveltime;
+            try {
+              const traveltime = await postData_traveltime(stops_number,route_number,start_stop, journeyDate, response);
+              seconds += traveltime;
+            }catch{
+                console.log("ERROR IN TRAVELTIME______________________");
+                success = false;
+              }
             const queriedFares = await postData_fare(stops_number,route_number);
             allFares.push(queriedFares);
           }
           if (fare_info[i]["travel_mode"] == "WALKING"){
             seconds += fare_info[i]["duration"]["value"];
           }
+          directionsSteps.push(fare_info[i]["instructions"]);
         }
+        setPredictionSuccess(success);
         console.log("SECONDS AFTER LOOP ____________________________", seconds);
         console.log("THE COMBINED OUTPUT OF THE QUERIED FARES", allFares);
         const formattedSeconds = displaySecondsHMS(seconds);
         setPredictedTime(formattedSeconds);
         setDisplayedRoute(routeNumbers);
+        setAllDirections(directionsSteps);
         console.log("ALL FARES_____________________", allFares);
         setFare(allFares);
         console.log("SHOULD BE SEEING THE LOGS IN THE DISPLAY SECONDS FUNCTION");
+        dispatch(setLoading(false));
       } else {
         console.log("response: ", response);
       }
@@ -210,31 +251,33 @@ const options = {
     origin: origin,
     travelMode: "TRANSIT",
     transitOptions: {
+        departureTime: new Date(journeyDateString),
         modes: ['BUS'],
         routingPreference: 'FEWER_TRANSFERS'
       }
   };
 
   console.log("Stop Data is in Map.js", stopData);
-  // const setJourney = () =>{
-  //   setOrigin({lat: 53.39187739, lng: -6.259719573})
-  //   setDestination({lat: 53.22102148, lng: -6.225605532})
-  //   setShowAllMarkers(false)
-  //   setRenderState(true)
-  // }
+  
+  const clustererOptions = {
+    // imagePath: `${clusterMakers}/m`
+  }
 
   return (
-    <div>
+    <div className="container">
       {directionsRenderBoolean && (
-        <div>
-          Route Number: {displayedRoute} <br/>
-          Google Time: {googleTime} <br/>
-          Predicted Time: {predictedTime} <br/>
-        Fare: 
-        {fare.map((subarray, index) => {
+        <div className="predictionResults">
+          <Link className={"nav-link"} to={"/webChat/"}>Find your Route in our Chat</Link>
+          <p>Google Says it will take: {googleTime} </p><br/>
+          <p>Based on weather patterns, we think it will take: {loading ? 
+            <div> <BeatLoader color={"#349beb"} css={override} size={30}/>Loading</div> : predictionSuccess ? 
+            predictedTime : "Woops, our predictor failed for this stop, sorry! This sometimes happens when new stops are added"} </p><br/>
+          <p>And you can expect to pay:</p> <ul>
+        {loading ? <div> <BeatLoader color={"#349beb"} css={override} size={30}/>Loading</div> :
+         fare.map((subarray, index) => {
           return (
             <Fragment>
-              <p>Bus {index+1}</p>
+              <p>{displayedRoute[index]}</p>
             {subarray.map((element) => {
               return(
                 <li key={element.category}>{element.category}: {element.fare}</li>
@@ -244,7 +287,12 @@ const options = {
           </Fragment>
           );
         })}
-        </div>
+        </ul>
+          <Button text={"Show Directions"} onClick={toggleDirections}/>
+          {showDirectionsSteps && ( loading ? 
+            <div><BeatLoader color={"#349beb"} css={override} size={30}/>Loading</div> 
+            : <div>{allDirections.map(step => { return (<><p>{step}</p><br/></>)})}</div>)}
+          </div>
       )}
       {directionsRenderBoolean && <Button text={"Show All Stops"} onClick={toggleMarkers}></Button>}
       <GoogleMap
@@ -255,12 +303,17 @@ const options = {
         onLoad={onMapLoad}
       >
           {
-                  showAllStopsBoolean && ( locations.map(stop=>{
-                    const location = { lat: parseFloat(stop.Latitude), lng: parseFloat(stop.Longitude) }
-                      return(
-                          <Marker key={stop.AtcoCode} position = {location} onClick={() => onSelect(stop)}/>
-                      )
-                  })
+                  showAllStopsBoolean && ( 
+                    <MarkerClusterer options={clustererOptions}>
+                    {(clusterer) =>
+                    locations.map(stop=>{
+                      const location = { lat: parseFloat(stop.Latitude), lng: parseFloat(stop.Longitude) }
+                        return(
+                            <Marker key={stop.AtcoCode} position = {location} clusterer={clusterer} onClick={() => onSelect(stop)}/>
+                        )
+                    }
+                  )}
+                  </MarkerClusterer>
                   )
               }
               {

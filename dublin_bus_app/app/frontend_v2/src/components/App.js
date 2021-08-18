@@ -12,6 +12,7 @@ import ContactForm from "./Contact";
 import Weather from "./Weather";
 import About from "./About"
 import Home from "./Home"
+import Footer from "./Footer"
 
 import Welcome from "./Welcome";
 import MainMaps from "./Map";
@@ -22,6 +23,16 @@ import WebChat from "./WebChat"
 
 import { AuthProvider} from "./Auth";
 import firebaseConfig from "../config";
+
+import * as AiIcons from "react-icons/ai"
+import * as ImIcons from "react-icons/im"
+import * as MdIcons from "react-icons/md"
+import * as TiIcons from "react-icons/ti"
+
+import { useSelector, useDispatch } from 'react-redux';
+import { setShowAllStopsBoolean } from "../redux/showAllStopsBool";
+import { setDirectionsRenderBoolean } from "../redux/directionsRenderBool";
+
 
 
 const db = firebaseConfig.firestore();
@@ -78,17 +89,6 @@ useEffect(()=> {
 console.log(stopData, "hopefully all went okay...")
 
 
-    useEffect(()=> {
-    const fetchStops = async () => {
-        const res = await fetch(`http://173.82.208.22:8000/core/stops`)
-        const data = await res.json()
-        setStopData(data)
-        console.log("stop data from 173.82.208.22", data)
-        return data
-    }
-    fetchStops()
-    }, []);
-
     useEffect(() => {
         if (logout){
             if (localStorage.getItem('email')){
@@ -104,25 +104,27 @@ console.log(stopData, "hopefully all went okay...")
         return (
             <AuthProvider>
                 <Router>
-                <div className="container">
+                
                 <div className="site">
                     <header>
                     <div className="nav">
                         <nav>
                             <ul>
-                                <li className="home"><Link className={"nav-link"} to={"/"}>Home</Link></li>
-                                <li className="tutorials"><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
-                                <li className="about"><Link className={"nav-link"} to={"/signup/"}>Signup</Link></li>
-                                <li className="tutorials"><Link className={"nav-link"} to={"/login/"}>Login</Link></li>
+                                <li><Link className={"nav-link"} to={"/"}><AiIcons.AiOutlineHome/></Link></li>
                                 {/* <li className="news"><Link className={"nav-link"} to={"/hello/"}>Hello</Link></li> */}
-                                <li className="contact"><Link className={"nav-link"} to={"/weather/"}>Weather</Link></li>
-                                <li className="contact"><Link className={"nav-link"} to={"/map/"}>Map</Link></li>
-                                <li className="contact"><Link className={"nav-link"} to={"/contact/"}>Contact</Link></li>
-                                <li className="contact"><Link className={"nav-link"} to={"/webChat/"}>Chat</Link></li>
-                                <li className="contact"><Link className={"nav-link"} to={"/about/"}>About</Link></li>
+                                <li><Link className={"nav-link"} to={"/weather/"}><TiIcons.TiWeatherPartlySunny/></Link></li>
+                                <li><Link className={"nav-link"} to={"/map/"}><MdIcons.MdDirectionsBus/></Link></li>
+                                <li><Link className={"nav-link"} to={"/webChat/"}><ImIcons.ImBubbles/></Link></li>
                             </ul>
+                            <div className="dropdown-container">
+                            <AiIcons.AiOutlineUser/> 
+                                <div className="dropdown-body">
+                                    <div className="dropdown-element"><Link className={"nav-link"} to={"/login/"}>Login</Link></div>
+                                    <div className="dropdown-element"><Link className={"nav-link"} to={"/signup/"}>Signup</Link></div>
+                                    <div className="dropdown-element"><Link className="nav-link" to="#" onClick={handleLogout}>Logout</Link></div>
+                                </div>
+                            </div>
                         </nav>
-                        <button className="btn" onClick={handleLogout}>Logout</button>
                     </div>
                     </header>
                 
@@ -135,11 +137,12 @@ console.log(stopData, "hopefully all went okay...")
                             <Route exact path={"/contact/"} component={ContactForm}/>
                             <Route exact path={"/"} component = {Home}/>
                         </Switch>
-                            <Route exact path='/map/' render={(props) => (<><Navbar stopData={stopData}/><MainMaps stopData={stopData}/></>)}/>
+                            <Route exact path={'/map/'} render={(props) => (<><Navbar stopData={stopData}/><MainMaps stopData={stopData}/></>)}/>
                             <Route exact path={"/webChat/"} render={(props) => (<WebChat user={null} db={db} routeData={routeData}/>)}/>
                             <Route exact path={"/about/"} render={() => (<About/>)}/>
                     </main>
-                </div>
+
+                    <Footer/>
                 </div>
                 </Router>
             </AuthProvider>

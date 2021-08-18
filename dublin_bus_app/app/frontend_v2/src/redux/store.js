@@ -6,6 +6,8 @@ import directionsResponseBooleanReducer from "./directionsResponseBool"
 import showAllStopsBooleanReducer from "./showAllStopsBool";
 import journeyDateReducer from "./journeyDate"
 import totalPredictedSecondsReducer from "./totalPredictedSeconds";
+import journeyDateStringReducer from "./journeyDateString";
+import loadingReducer from "./loading"
 
 export default configureStore({
     reducer: {
@@ -15,6 +17,8 @@ export default configureStore({
         directionsResponseBoolean: directionsResponseBooleanReducer,
         showAllStopsBoolean : showAllStopsBooleanReducer,
         journeyDate : journeyDateReducer,
-        totalPredictedSeconds: totalPredictedSecondsReducer
+        totalPredictedSeconds: totalPredictedSecondsReducer,
+        journeyDateString: journeyDateStringReducer,
+        loading: loadingReducer
     }
 });

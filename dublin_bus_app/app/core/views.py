@@ -172,6 +172,7 @@ def FareCalculation(request):
         print(route_number, "is route number")
         f = fare_crawler(route_number,int(stops_number))
         parsed = f.parse()
+        print(parsed, "returned from Fare Calculation")
         #order = "python3 core/fare_calculation.py {} {}".format(stops_number,route_number)
         #result = subprocess.check_output(order)
         result = list(parsed)

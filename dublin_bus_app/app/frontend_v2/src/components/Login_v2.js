@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useForm } from 'react-hook-form';
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import {axiosInstance} from "../axiosApi";
 import { AuthContext } from "./Auth";
@@ -11,7 +11,7 @@ const LoginForm = () => {
   const {currentUser}  = useContext(AuthContext);
   
   if(currentUser && localStorage.getItem('email')){
-    alert("You are already login, welcome back " +localStorage.getItem('email'));
+    alert("You are already logged in, welcome back" +localStorage.getItem('email'));
     return <Redirect to="/" />;
   }
 
@@ -39,14 +39,14 @@ const LoginForm = () => {
             reset();
         }
     ).catch (error => {
-        alert("login fail please try again!");
+        alert("Woops, login has failed. This sometimes happens when our server is overloaded. Please wait a moment and try again!");
         setLoginsucess(false);
         throw error;
     }); 
   };
 
   if (loginsucess){
-    alert("Django login successfully!");
+    alert("You have logged in successfully");
     return <Redirect to="/" />;
   }
 
@@ -60,6 +60,7 @@ const LoginForm = () => {
                 {/* Row 1 of form */}
                 <div className='row formRow'>
                   <div className='col'>
+                    <h2> Login </h2>
                     <input
                       type='email'
                       name='email'
@@ -94,10 +95,11 @@ const LoginForm = () => {
                     )}
                   </div>
                 </div>
-                <button className='submit-btn' type='submit'>
+                <button className='btn' type='submit'>
                   Submit
                 </button>
               </form>
+              <div className="signup-in-login">Not signed up yet? <Link className={"nav-link"} to={"/signup/"}>Signup here</Link></div>
             </div>
           </div>
         </div>
