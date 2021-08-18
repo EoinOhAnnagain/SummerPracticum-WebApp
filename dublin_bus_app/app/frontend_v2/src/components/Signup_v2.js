@@ -29,7 +29,7 @@ const SignupForm = () => {
             reset();
             return response;
         } catch (error) {
-            alert("Signup fail!");
+            alert("Signup unsuccessful! Please make sure you are using an email address that hasn't been used before, and that your password is at least 8 characters long");
             console.log(error.stack);
             setErrors({
                 error: error.response.data
@@ -39,7 +39,7 @@ const SignupForm = () => {
   };
 
   if(signsuccess){
-    alert("Signup successfully!");
+    alert("Signup successful! Please verify your account via the email we are sending to you now, and then log in");
     // redirect to login
     return <Redirect to="/login/" />;
 }
@@ -87,6 +87,7 @@ const SignupForm = () => {
                     {errors.password && (
                       <small className='text-danger'>Please enter a valid password</small>
                     )}
+                    <p>Your password should be at least 8 characters long</p>
                   </div>
                 </div>
                 <button className='btn' type='submit'>

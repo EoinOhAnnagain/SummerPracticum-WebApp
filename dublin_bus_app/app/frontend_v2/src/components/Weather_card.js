@@ -24,7 +24,7 @@ function WeatherIcon(props){
         img_url = 'https://i.imgur.com/cQsGjSh.png';
     }
     // alert("[weather Icon]" + img_url);
-    return (<img src={img_url} width="100px" className="rounded"/>); 
+    return (<img src={img_url} width="30px" className="rounded"/>); 
 };
     
 

@@ -36,6 +36,14 @@ p {
   float: left;
 }
 
+.admin {
+  border: 2px solid #7e1789;
+  background-color: #afa9ae;
+  color: #f8d712;
+  border-top-left-radius: 1000px;
+  float: left;
+}
+
 .sendMsg {
   position: fixed;
   display: flex;

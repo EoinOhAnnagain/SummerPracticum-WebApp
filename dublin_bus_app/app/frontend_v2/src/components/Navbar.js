@@ -12,7 +12,7 @@ const Navbar = ({stopData}) => {
     return (
         <>
         <div className="toggleContainer">
-            <Button text="Toggle Journey Selector" className="btn" onClick={showSidebar}/>
+            <Button text="Plan Your Journey" className="btn" onClick={showSidebar}/>
         </div>
         <div className = {sidebar ? 'nav-menu active' : 'nav-menu'}>
             <ul className='nav-menu-items'>
