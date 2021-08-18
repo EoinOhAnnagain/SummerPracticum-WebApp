@@ -9,7 +9,7 @@ import {
   MarkerClusterer,
   InfoWindow,
 } from "@react-google-maps/api";
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect, Fragment, useCallback, useRef } from "react";
 import { css } from "@emotion/react";
 import ClockLoader from "react-spinners/ClockLoader";
 import BeatLoader from "react-spinners/BeatLoader"
@@ -22,6 +22,7 @@ import { setShowAllStopsBoolean } from "../redux/showAllStopsBool";
 import { setDirectionsRenderBoolean } from "../redux/directionsRenderBool";
 import { setTotalPredictedSeconds } from "../redux/totalPredictedSeconds";
 import { setLoading } from "../redux/loading";
+import * as BiIcons from "react-icons/bi"
 
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
@@ -213,10 +214,29 @@ const toggleDirections = () => {
     }
   };
 
-  const mapRef = React.useRef();
-  const onMapLoad = React.useCallback((map) => {
+  const mapRef = useRef();
+  const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
+
+const panTo = useCallback(({lat, lng}) => {
+  mapRef.current.panTo({lat, lng});
+  mapRef.current.setZoom(18);
+})
+
+const Locate = ({panTo}) => {
+  return (<button className="btn" onClick={() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+        panTo({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+    }, ()=> null);
+  }}>
+      <BiIcons.BiCurrentLocation/>
+    </button>);
+}
+
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "loading maps";
 
@@ -257,6 +277,7 @@ const options = {
 
   return (
     <div className="container">
+      <Locate panTo={panTo}/>
       {directionsRenderBoolean && (
         <div className="predictionResults">
           <Link className={"nav-link"} to={"/webChat/"}>Find your Route in our Chat</Link>

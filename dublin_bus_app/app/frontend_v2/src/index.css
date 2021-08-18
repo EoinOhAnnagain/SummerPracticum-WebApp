@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
 #root {
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
+  background-color: #404146;
   color: black;
 }
 
@@ -95,10 +96,31 @@ body {
 
 footer {
   margin-top: 100px;
-  color: white;
-  background-color: #404146;
+  position: relative;
+  z-index: 100;
+  background-color: black;
   text-align: center;
-  box-shadow: 0 50vh 0 50vh #404146;
+  box-shadow: 0 50vh 0 50vh black;
+}
+
+.footerInfo {
+  color: #ffcf31;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 40px;
+  width: 100%;
+  display: block;
+}
+
+.footerInfo a {
+  text-decoration: none;
+  color: #ffcf31;
+  transition: 0.3s background-color;
+}
+
+.footerInfo a:hover {
+  color: white;
 }
 
 .MapContainer {
@@ -131,7 +153,9 @@ footer {
 /* Test NAV */
 
 .nav {
-  background-color: #404146;
+  /* background-color: #404146; */
+  background-color: black;
+  color: #ffcf31;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -162,13 +186,13 @@ footer {
 
 .nav a {
   text-decoration: none;
-  color: #fff;
+  color: #ffcf31;
   transition: 0.3s background-color;
 }
 
 .nav a:hover {
-  background-color: #000000;
-  color: white;
+  background-color: #ffcf31;
+  color: black;
 }
 
 .nav a.active {
@@ -309,4 +333,16 @@ footer {
 .dropdown-body {
   display: none;
   background-color: #404146;
+}
+
+.messageBody {
+  padding: 20px;
+}
+
+.messageBody > div {
+  display: none;
+}
+
+.messageBody:hover div {
+  display: block;
 }

@@ -5,6 +5,7 @@ import Select from 'react-select';
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "./Auth";
 import './WebChat.css'
+import { getDate } from 'date-fns';
 
 
 const WebChat = ({user = null, db = null, routeData}) => {
@@ -21,16 +22,16 @@ const WebChat = ({user = null, db = null, routeData}) => {
     const {currentUser}  = useContext(AuthContext);
     // using localStorage.getItem('email') could get login email address.
 
-    if(! currentUser){
-        alert("You must login to access Chat");
-        return <Redirect to="/login" />;
-    }
+    // if(! currentUser){
+    //     alert("You must login to access Chat");
+    //     return <Redirect to="/login" />;
+    // }
 
     const userEmail = localStorage.getItem('email');
     const [bus, setBus] = useState(null);
     const [direction, setDirection] = useState(null);
 
-    const admins = ["eoin.ohannagain@ucdconnect.ie", "eugene.egan1@ucdconnect.ie", "ming-han.ta@ucdconnect.ie", "junzheng.liu@ucdconnect.ie", "eoin1711@gmail.com"]
+    
 
     const busOptions = routeData.map(route => {
         return {value: route.route_short_name, 
@@ -122,8 +123,16 @@ const WebChat = ({user = null, db = null, routeData}) => {
         setNewMessage(e.target.value);
     };
 
+    const profanities = ["fuck", "shit", "bitch", "bastard"];
+
     const handleOnSubmit = e => {
         e.preventDefault();
+        for (let i in profanities){
+            if (newMessage.toLowerCase().includes(profanities[i])){
+                alert("Your message may contain profanity. Please re-word and try again.")
+                return
+            }
+        }
         const date = Date.now();
         const timestamp = Math.floor(date/1000);
         if (db){
@@ -144,36 +153,75 @@ const WebChat = ({user = null, db = null, routeData}) => {
         scrollDivEndRef.current?.scrollIntoView({behavior:"smooth"})
     }
 
+    const today = new Date();
+    const todayDate = today.getDate();
+    const todayMonth = today.getMonth() + 1;
+
+    const getDate = (unixSeconds) => {
+        let date = new Date(unixSeconds*1000);
+        let h = date.getHours();
+        let m = date.getMinutes();
+        let d = date.getDate();
+        let M = date.getMonth() + 1;
+        if (todayDate == d && todayMonth == M){
+            return `${h}:${m}`
+        }else {
+            return `${h}:${m} ${d}/${M}`
+        }
+    }
+
+    
+    const admins = ["eoin.ohannagain@ucdconnect.ie", "eugene.egan1@ucdconnect.ie", "ming-han.ta@ucdconnect.ie", "junzheng.liu@ucdconnect.ie", "eoin1711@gmail.com"]
+
+    const checkAdmins = (userEmail) => {
+        for (let i in admins){
+            console.log(userEmail, admins[i])
+            if (admins[i] == userEmail){
+                return true
+            }
+        }
+        return false
+    }
+
     return (
         <div>
             <Select options={busOptions} onChange={changeBus}/>
             <Select options={directionOptions} onChange={changeDirection}/>
             <Button text="Chat" onClick={setChat}/> 
             {route!="messages" && <Button text="General Chat" onClick={backToGeneral}/>}
+            <div className="handyInfo">
+                <div className="msg received">Other users appear in chat like this</div>
+                <div className="msg admin">Dublin Bus administrators appear like this</div>
+            </div>
             <div className="msgs">
                 {messages.map(message => (
                     <div key={message.id}>
-                        <div key={message.id} className={`msg ${message.sender == userEmail ? 'sent' : admins.includes(userEmail) ? 'admin' : 'received'}`}>
-                            <p>{message.body}</p>
+                        <div key={message.id} className={`msg ${message.sender == userEmail ? 'sent' : checkAdmins(message.sender) ? 'admin' : 'received'}`}>
+                            <div className="messageBody">
+                                <p>{message.body}</p>
+                                <div>{getDate(message.date)}</div>
+                            </div>
                         </div>
                     </div>
                 ))}
                 <div ref={scrollDivEndRef}/>
             </div>
-            <form onSubmit={handleOnSubmit}>
-                <input
-                style={{ width: '78%', fontSize: '15px', fontWeight: '550', marginLeft: '5px', marginBottom: '-3px' }}
-                type="text"
-                value={newMessage}
-                onChange={handleOnChange}
-                placeholder="Type your message here..."
-                />
-                <button className="btn"
-                style={{ width: '18%', fontSize: '15px', fontWeight: '550', margin: '4px 5% -13px 5%', maxWidth: '200px'}}
-                type="submit" disabled={!newMessage}>
-                    Send
-                </button>
-            </form>
+            <div className="newMsgSubmission">
+                <form onSubmit={handleOnSubmit}>
+                    <input
+                    style={{ width: '73%', fontSize: '15px', fontWeight: '550', marginLeft: '5px', marginBottom: '-3px' }}
+                    type="text"
+                    value={newMessage}
+                    onChange={handleOnChange}
+                    placeholder= "Chat with other bus users..."
+                    />
+                    <button className="btn"
+                    style={{ position: "absolute", right: "0", width: '18%', fontSize: '15px', fontWeight: '550', margin: '4px 5% -13px 5%', maxWidth: '200px'}}
+                    type="submit" disabled={!newMessage}>
+                        Send
+                    </button>
+                </form>
+            </div>
         </div>
     )
 }
