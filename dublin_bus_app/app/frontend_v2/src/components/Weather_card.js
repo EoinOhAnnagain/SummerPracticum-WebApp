@@ -32,9 +32,7 @@ function WeatherIcon(props){
 function CardExampleCard(props){
     
 return (
-<div className = "container-fluid">
-    <div className = "row justify-content-center">
-        <div className = "col-12 col-md-4 col-sm-12 col-xs-12">
+
             <div className = "card p-4">
                 <div className = "d-flex">
                     <h6 class="flex-grow-1"> {props.weatherData.name}</h6>
@@ -59,9 +57,6 @@ return (
                 </div>
                 <div className= "text-center" ><WeatherIcon id={(props.weatherData.weather[0].id)}/></div>
             </div>
-        </div>
-    </div>
-</div>
 );
 }
 

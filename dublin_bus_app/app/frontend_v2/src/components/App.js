@@ -27,7 +27,7 @@ import firebaseConfig from "../config";
 import * as AiIcons from "react-icons/ai"
 import * as ImIcons from "react-icons/im"
 import * as MdIcons from "react-icons/md"
-import * as TiIcons from "react-icons/ti"
+
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setShowAllStopsBoolean } from "../redux/showAllStopsBool";
@@ -73,12 +73,13 @@ function App(){
                         <header>
                         <div className="nav">
                             <nav>
+                                <div className="sitePages">
                                 <ul>
                                     <li><Link className={"nav-link"} to={"/"}><AiIcons.AiOutlineHome/></Link></li>
-                                    <li><Link className={"nav-link"} to={"/weather/"}><TiIcons.TiWeatherPartlySunny/></Link></li>
                                     <li><Link className={"nav-link"} to={"/map/"}><MdIcons.MdDirectionsBus/></Link></li>
                                     <li><Link className={"nav-link"} to={"/webChat/"}><ImIcons.ImBubbles/></Link></li>
                                 </ul>
+                                </div>
                                 <div className="dropdown-container">
                                 <AiIcons.AiOutlineUser/> 
                                     <div className="dropdown-body">

@@ -24,22 +24,18 @@ import { setTotalPredictedSeconds } from "../redux/totalPredictedSeconds";
 import { setLoading } from "../redux/loading";
 import * as BiIcons from "react-icons/bi"
 
+
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
     height: "100vh",
     width: "100%"
 };
 
-const options = {};
-
 const MainMaps = ({stopData}) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyDMShWhoPlx171FYgvYn_nOroBgsf28oCk",
     libraries,
   });
-
-  // const [destination, setDestination] = useState(null);
-  // const [origin, setOrigin] = useState(null);
 
     const { directionsRenderBoolean } = useSelector((state) => state.directionsRenderBoolean);
     const {directionsResponseBoolean } = useSelector((state) => state.directionsResponseBoolean)
@@ -53,29 +49,29 @@ const MainMaps = ({stopData}) => {
     const {loading} = useSelector(state => state.loading)
     const dispatch = useDispatch();
 
+  // Capture Google time
   const [googleTime, setGoogleTime] = useState([]);
-  // const [walkingTime, setWalkingTime] = useState([]);
-  // const [cumulativeSeconds, setCumulativeSeconds] = useState(0);
+  // Our predicted time
   const [predictedTime, setPredictedTime] = useState([]);
+  // Our fare calculation
   const [fare, setFare] = useState([]);
+  // Booleans that manage information display
   const [displayedRoute, setDisplayedRoute] = useState([]);
   const [predictionSuccess, setPredictionSuccess] = useState(true);
 
-  // const [showAllMarkers, setShowAllMarkers] = useState(true);
+  // For activating markers
   const [ selected, setSelected ] = useState({});
   const [center, setCenter] = useState({
     lat: 53.349804, lng: -6.260310 
   });
-  // const [postResults, setPostResults ] = useState(false);
-  // const [renderState, setRenderState] = useState(false);
 
+  // Directions returned from Google
   const [showDirectionsSteps, setShowDirectionsSteps] = useState(false);
   const [allDirections, setAllDirections] = useState(["Loading Directions"]);
 
-  // const [origin2, setOrigin2] = React.useState("dublin");
-  // const [destination2, setDestination2] = React.useState("cork");
+// Used to house google response object
   const [response, setResponse] = React.useState(null);
-  // const [loading, setLoading] = useState(true);
+
   const override = css`
   display: block;
   margin: 0 auto;
@@ -148,7 +144,10 @@ const toggleDirections = () => {
       return data
   }
 
-
+// Callback function after Google returns a response.
+// Strips useful information from Google response to use in our predictive modelling and 
+// fare calculation funcitons in our Django back end. Also
+// captures information from Google response for display on site
   const directionsCallback = async (response) => {
     console.log(response);
     if (response !== null && directionsResponseBoolean) {
@@ -239,7 +238,7 @@ const Locate = ({panTo}) => {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         });
-    }, ()=> null);
+    }, ()=> alert("Geolocation is impossible when hosted on insecure server. If hosted securely, refresh the page and try again."));
   }}>
       <BiIcons.BiCurrentLocation/>
     </button>);
