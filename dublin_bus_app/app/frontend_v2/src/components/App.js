@@ -1,13 +1,13 @@
 import React, { Component, useContext} from "react";
 import { useState, useEffect } from 'react';
-import { Switch, Route, Link ,Redirect} from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import { BrowserRouter as Router} from 'react-router-dom'
-import {axiosInstance} from "../axiosApi";
+
 
 import LoginForm from "./Login_v2";
 import SignupForm from "./Signup_v2";
-// import Signup from "./signup";
 import handleLogout from "./Logout";
+import AuthButton from "./AuthBtn";
 
 import ContactForm from "./Contact";
 import Weather from "./Weather";
@@ -15,7 +15,6 @@ import About from "./About"
 import Home from "./Home"
 import Footer from "./Footer"
 
-import Welcome from "./Welcome";
 import MainMaps from "./Map";
 import Navbar from './Navbar';
 
@@ -34,10 +33,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setShowAllStopsBoolean } from "../redux/showAllStopsBool";
 import { setDirectionsRenderBoolean } from "../redux/directionsRenderBool";
 
-
-
 const db = firebaseConfig.firestore();
-
 
 function App(){
     
@@ -67,6 +63,7 @@ function App(){
         fetchRoutes()
     }, [])
 
+
     console.log(stopData, "hopefully all went okay...")
 
             return (
@@ -85,9 +82,7 @@ function App(){
                                 <div className="dropdown-container">
                                 <AiIcons.AiOutlineUser/> 
                                     <div className="dropdown-body">
-                                        <div className="dropdown-element"><Link className={"nav-link"} to={"/login/"}>Login</Link></div>
-                                        <div className="dropdown-element"><Link className={"nav-link"} to={"/signup/"}>Signup</Link></div>
-                                        <div className="dropdown-element"><Link className={"nav-link"} to={"/logout/"}>Logout</Link></div>
+                                        <AuthButton/>
                                     </div>
                                 </div>
                             </nav>
