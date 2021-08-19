@@ -58,9 +58,6 @@ const Weather = ()=>{
           ): (
               <p>Loading...</p>
           )}
-          <p>Why not plan your journey using our state-of-the-art prediction models, based on today's weather?
-          <Link className={"nav-link"} to={"/map/"}><MdIcons.MdDirectionsBus/></Link>
-          </p>
           
           </div>
         </div>
