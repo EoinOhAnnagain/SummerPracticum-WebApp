@@ -1,6 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
+TestCase.multi_db = True
+TestCase.databases = {"bus", "default"}
+
 class auth_tests(TestCase):
     """
     model test
