@@ -24,6 +24,7 @@ import { setTotalPredictedSeconds } from "../redux/totalPredictedSeconds";
 import { setLoading } from "../redux/loading";
 import * as BiIcons from "react-icons/bi"
 
+
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
     height: "100vh",

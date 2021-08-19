@@ -12,7 +12,25 @@
   background: none;
 }
 
-.nav-menu {
+.nav-menu-r {
+  background-color: #f8d712;
+  width: 25%;
+  height: 100vh;
+  display: flex;
+  justify-content: right;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  transition: 850ms;
+}
+
+.nav-menu-r.active {
+  right: 0;
+  transition: 850ms;
+  z-index: 3;
+}
+
+.nav-menu-l {
   background-color: #f8d712;
   width: 25%;
   height: 100vh;
@@ -24,7 +42,7 @@
   transition: 850ms;
 }
 
-.nav-menu.active {
+.nav-menu-l.active {
   left: 0;
   transition: 850ms;
   z-index: 3;
@@ -42,7 +60,7 @@
 }
 
 @media (max-width: 1000px) {
-  .nav-menu.active {
+  .nav-menu-l.active {
     position: relative;
     justify-content: center;
     transition: 850ms;
