@@ -49,6 +49,8 @@ const MainMaps = ({stopData}) => {
     const {loading} = useSelector(state => state.loading)
     const dispatch = useDispatch();
 
+
+  const [waitingTime, setWaitingTime] = useState(0);
   // Capture Google time
   const [googleTime, setGoogleTime] = useState([]);
   // Our predicted time
@@ -58,6 +60,7 @@ const MainMaps = ({stopData}) => {
   // Booleans that manage information display
   const [displayedRoute, setDisplayedRoute] = useState([]);
   const [predictionSuccess, setPredictionSuccess] = useState(true);
+  const [help, setHelp] = useState(false);
 
   // For activating markers
   const [ selected, setSelected ] = useState({});
@@ -207,6 +210,8 @@ const toggleDirections = () => {
         setPredictionSuccess(success);
         console.log("SECONDS AFTER LOOP ____________________________", seconds);
         console.log("THE COMBINED OUTPUT OF THE QUERIED FARES", allFares);
+        const timeTil = displaySecondsHMS(timeTilBus);
+        setWaitingTime(timeTil);
         const formattedSeconds = displaySecondsHMS(seconds);
         setPredictedTime(formattedSeconds);
         setDisplayedRoute(routeNumbers);
@@ -282,18 +287,24 @@ const options = {
     // imagePath: `${clusterMakers}/m`
   }
 
+  
+
   return (
     <div className="container">
       <Locate panTo={panTo}/>
+      <button className="btn" title="Show Map Info" onClick={()=> setHelp(!help)}>{help ? "Hide Map Info": "Show Map Info"}</button>
+      {help && (<div><p>Click the target above to zoom to your location</p>
+      <p>Scroll in to reveal bus stops</p>
+      <p>Click on a stop to get arrival information</p></div>)}
       {directionsRenderBoolean && (
         <div className="predictionResults">
-          <Link className={"nav-link"} to={"/webChat/"}>Find your Route in our Chat</Link>
-          <p>Google Says it will take: {googleTime} </p><br/>
+          <p>Your bus will arrive {loading ? <><BeatLoader color={"#349beb"} css={override} size={20}/></> : waitingTime + " after your selected departure time"} </p>
+          <p>Google says the journey will take: {googleTime} </p><br/>
           <p>Based on weather patterns, we think it will take: {loading ? 
-            <div> <BeatLoader color={"#349beb"} css={override} size={30}/>Loading</div> : predictionSuccess ? 
+            <div> <BeatLoader color={"#349beb"} css={override} size={20}/>Loading</div> : predictionSuccess ? 
             predictedTime : "Woops, our predictor failed for this stop, sorry! This sometimes happens when new stops are added"} </p><br/>
           <p>And you can expect to pay:</p> <ul>
-        {loading ? <div> <BeatLoader color={"#349beb"} css={override} size={30}/>Loading</div> :
+        {loading ? <div> <BeatLoader color={"#349beb"} css={override} size={20}/>Loading</div> :
          fare.map((subarray, index) => {
           return (
             <Fragment>
@@ -307,6 +318,7 @@ const options = {
           </Fragment>
           );
         })}
+        <Link className={"nav-link"} to={"/webChat/"}>Find your Route in our Chat</Link>
         </ul>
           <Button text={"Show Directions"} onClick={toggleDirections}/>
           {showDirectionsSteps && ( loading ? 
@@ -314,7 +326,7 @@ const options = {
             : <div>{allDirections.map(step => { return (<><p>{step}</p><br/></>)})}</div>)}
           </div>
       )}
-      {directionsRenderBoolean && <Button text={"Show All Stops"} onClick={toggleMarkers}></Button>}
+      {directionsRenderBoolean && <Button text={"Back to Stops"} onClick={toggleMarkers}></Button>}
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={15}

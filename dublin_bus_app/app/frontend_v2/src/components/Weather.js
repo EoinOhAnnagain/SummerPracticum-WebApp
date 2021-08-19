@@ -51,8 +51,9 @@ const Weather = ()=>{
       }, []);
 
     return (
-        <div className="container">
+        
           <div className="Weather">
+            <div style={{padding:"10px"}}><h2>Today's Weather</h2></div>
           {(typeof data.main != 'undefined') ? (
               <CardExampleCard weatherData={data}/>
           ): (
@@ -60,7 +61,7 @@ const Weather = ()=>{
           )}
           
           </div>
-        </div>
+        
     );
 }
 
