@@ -1,9 +1,0 @@
-<h2>Log In</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Log In</button>
-  <a href="{% url 'account_reset_password' %}">Forgot Password?</a>
-  <p> Without a account yet?</p>
-  <a href="{% url 'account_signup' %}">Sign Up</a> | <a href="{% url 'MapView' %}">View map as guest</a>
-</form>

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django.contrib.sites',
     'corsheaders', # For React
+    'rest_framework_simplejwt.token_blacklist',
 
     # 3rd party
     'allauth',  # new
@@ -49,8 +50,33 @@ INSTALLED_APPS = [
 
     # local
     'core',
-    'accounts',
+    'authentication',
+    'frontend_v2',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,
+    'AUTH_HEADER_TYPES': ('JWT',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,13 +112,15 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
 """
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
+        'NAME': 'testdb.sqlite3',
     }
 }
+
 """
 
 DATABASES = {
@@ -105,6 +133,9 @@ DATABASES = {
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        },
+        'TEST': {
+            'DEPENDENCIES': [],
         }
     },
     'default': {
@@ -147,6 +178,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -174,7 +206,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # New
-AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTH_USER_MODEL = "authentication.CustomUser"
 
 """Shows the email content in console"""
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -188,37 +220,5 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SITE_ID = 1
-
-"""Setting for allauth.urls"""
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
-ACCOUNT_SESSION_REMEMBER = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = True
-
-# ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
-# LOGIN_REDIRECT_URL = '/accounts/email/'
-LOGIN_REDIRECT_URL = 'home'
-ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
-
-ACCOUNT_LOGIN_ON_PASSWORD_RESET = True  # False by default
-ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True  # True by default
-
-# Send email from following account
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = '4thewin2021.ucd@gmail.com'
-EMAIL_HOST_PASSWORD = '4thewin202!'
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
-# # React whitelist set to 8000
-# CORS_ORIGIN_WHITELIST = [
-#      'http://localhost:3000'
-# ]
  
 CORS_ORIGIN_ALLOW_ALL = True
