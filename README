@@ -1,14 +1,20 @@
 Main Readme 
 
+
 Installation 
+1. Install NodeJS:https://nodejs.org/en/
 
-1. Install Docker desktop: https://www.docker.com/products/docker-desktop.
+2. Install Docker desktop: https://www.docker.com/products/docker-desktop.
 
-2. git clone this repository. 
+3. git clone this repository. 
 
-3. change directory to /dublin_bus_app in terminal.
+4. change directory to /dublin_bus_app/app in terminal.
 
-4. execute docker-compose up, then check http://localhost:8000/ 
+5. execute npm run build
+
+6. change directory to /dublin_bus_app in terminal.
+
+7. execute docker-compose up, then check http://localhost:8000/ 
 
 
 Local developing enviroment setting
