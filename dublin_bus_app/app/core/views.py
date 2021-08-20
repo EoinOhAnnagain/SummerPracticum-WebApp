@@ -44,11 +44,14 @@ def ApproachingBuses(request, stopNumber):
         allBuses = SundayStops.objects.filter(Q(stop_id = stopNumber) & (Q(arrival_time__startswith=current_hour)| Q(arrival_time__startswith=next_hour)))
         print("sunday")
     # allBuses = WethfrStops.objects.filter(Q(stop_id=stopNumber) & (Q(arrival_time__startswith=str(current_time.hour))| Q(arrival_time__startswith=str(current_time.hour +1))))
-    lateOrEarlyBuses = RealtimeBusData.objects.all() # Access latest realtime buses
+    lateOrEarlyBuses = list(RealtimeBusData.objects.filter(Q(route_id__startswith="60"))) # Access latest realtime buses)
+    # lateOrEarlyBuses = allBuses.select_related("trip_id")
+    print("Late or early buses", lateOrEarlyBuses)
     print(allBuses)
     dueBuses = [] # To capture final buses
     for bus in allBuses: # Loop through buses
         route_id = bus.trip_id.split(".")[2]
+        trip_id =bus.trip_id.split(".")[0]
         split_elements = route_id.split("-") # Get the route_short_name by splitting route_id
         route_number = split_elements[1]
         if int(current_hour) >= 23 and int(current_hour) <=3: # This method takes a lot of time - only call in early morning when necessary
@@ -66,16 +69,21 @@ def ApproachingBuses(request, stopNumber):
             tdelta = timedelta(days=0, seconds=tdelta.seconds)
         print(tdelta.seconds)
         timeChange = 0 # Store deviation from schedule
-        # if lateOrEarlyBuses.filter(trip_id = bus.trip_id).exists(): # Check if bus trip is in late/early buses
-        #     lateOrEarlyBus = lateOrEarlyBuses.filter(trip_id = bus.trip_id)[0]
-        #     timeChange+= lateOrEarlyBus.departure_delay # Add departure delay to time change
+        for i in lateOrEarlyBuses:
+            late_trip_id =i.trip_id.split(".")[0]
+            print(i.trip_id)
+            if trip_id==late_trip_id: # Check if bus trip is in late/early buses
+                print("in late or early buses")
+                timeChange+= i.departure_delay # Add departure delay to time change
+            else:
+                print("not late or early")
         countdown = tdelta.seconds + timeChange # Additional variable for JSON that stores countdown in seconds
         if (tdelta.seconds >0 and tdelta.seconds < 1800): # Limit response to buses arriving in next half-hour
             dueBuses.append({"id": bus.trip_id, "route_number": route_number, "arrivalTime": bus.arrival_time, "timeChange" : timeChange, "countdown": countdown})
     json_string = json.dumps(dueBuses)
     jsonBuses = json.loads(json_string)
     def sortByArrival(value): # Sort JSON object so soonest bus displays at the top
-        return value["arrivalTime"]
+        return value["countdown"]
     sortedBuses = sorted(jsonBuses, key=sortByArrival)
     print(sortedBuses)
     return JsonResponse(sortedBuses, safe=False)

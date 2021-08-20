@@ -20,9 +20,8 @@ const Navbar = ({stopData}) => {
             </div>
             </div>
         {weatherVisible && (<div className="toggleContainer">
-             <><button title="See Today's Weather" className="btn"  onClick={showSidebar}><TiIcons.TiWeatherPartlySunny/></button>
-            <p>Our journey planner uses weather data to predict your journey length</p>
-            <p>As we avail of a 14-day forecast, we can judge your journey length with high accuracy within that time</p></>
+            <p>Our journey planner uses weather data to predict your journey length <button title="See Today's Weather" className="btn"  onClick={showSidebar}><TiIcons.TiWeatherPartlySunny/></button></p>
+            <p>As we avail of a 14-day forecast, we can judge your journey length with high accuracy within that time</p>
         </div>)}
         <div className = {(weatherVisible && sidebar) ? 'nav-menu-r active' : 'nav-menu-r'}>
             <div className="nav-menu-items">
