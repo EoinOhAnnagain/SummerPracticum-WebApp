@@ -1,8 +1,7 @@
-import React, { Component, useContext} from "react";
+import React from "react";
 import { useState, useEffect } from 'react';
 import { Route, Link } from "react-router-dom";
 import { BrowserRouter as Router} from 'react-router-dom'
-
 
 import LoginForm from "./Login_v2";
 import SignupForm from "./Signup_v2";
@@ -28,19 +27,14 @@ import * as AiIcons from "react-icons/ai"
 import * as ImIcons from "react-icons/im"
 import * as MdIcons from "react-icons/md"
 
-
-import { useSelector, useDispatch } from 'react-redux';
-import { setShowAllStopsBoolean } from "../redux/showAllStopsBool";
-import { setDirectionsRenderBoolean } from "../redux/directionsRenderBool";
-
 const db = firebaseConfig.firestore();
 
 function App(){
     
-    const [logout, setLogout] = useState(false);
     const [stopData, setStopData] = useState([]);
     const [routeData, setRouteData] = useState([]);
 
+    // Access our Django back end to get a list of stops which we use to populate our map
     useEffect(()=> {
     const fetchStops = async () => {
         const res = await fetch(`http://localhost:8000/core/stops`)
@@ -52,6 +46,7 @@ function App(){
     fetchStops()
     }, [])
 
+    // Returns a list of routes from our Django backend that populates our Selectors
     useEffect(()=> {
         const fetchRoutes = async () => {
         const res = await fetch(`http://localhost:8000/core/routes`)

@@ -330,10 +330,139 @@ footer {
   color: white;
   height: 400px;
   overflow: auto;
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 1000px) {
   .popup {
     width: 95%;
   }
+}
+
+/* Navbar/ Sidebar CSS */
+.infoButton {
+  max-width: 50%;
+  margin: 30px auto;
+  overflow: auto;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.weatherButton {
+  max-width: 50%;
+  margin: 30px auto;
+  overflow: auto;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.toggleContainer {
+  max-width: 50%;
+  background-color: white;
+  margin: 30px auto;
+  overflow: auto;
+  border: 1px solid #f8d712;
+  border-radius: 5px;
+}
+
+.menu-bars {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+}
+
+.nav-menu-r {
+  background-color: #f8d712;
+  width: 25%;
+  height: 100vh;
+  display: flex;
+  justify-content: right;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  transition: 850ms;
+}
+
+.nav-menu-r.active {
+  right: 0;
+  transition: 850ms;
+  z-index: 3;
+}
+
+.nav-menu-l {
+  background-color: #f8d712;
+  width: 25%;
+  height: 100vh;
+  display: flex;
+  justify-content: right;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+}
+
+.nav-menu-l.active {
+  left: 0;
+  transition: 850ms;
+  z-index: 3;
+}
+
+.navbar-toggle {
+  background-color: #f8d712;
+  width: 100%;
+  height: 800px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 100;
+  position: inherit;
+}
+
+@media (max-width: 1000px) {
+  .toggleContainer {
+    max-width: 95%;
+  }
+
+  .nav-menu-l.active {
+    position: relative;
+    justify-content: center;
+    transition: 850ms;
+    z-index: 3;
+    left: auto;
+    width: 100%;
+    height: 450px;
+  }
+
+  .nav-menu-r.active {
+    position: relative;
+    justify-content: center;
+    transition: 850ms;
+    z-index: 3;
+    left: auto;
+    width: 100%;
+    height: 450px;
+  }
+
+  .navbar-toggle {
+    background-color: #f8d712;
+    width: 100%;
+    height: 450px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 100;
+    position: inherit;
+  }
+}
+
+.nav-menu-items {
+  width: 90%;
+}
+
+span {
+  margin-left: 16px;
 }

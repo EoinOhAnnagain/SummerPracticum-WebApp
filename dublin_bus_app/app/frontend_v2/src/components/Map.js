@@ -11,7 +11,6 @@ import {
 } from "@react-google-maps/api";
 import { useState, useEffect, Fragment, useCallback, useRef } from "react";
 import { css } from "@emotion/react";
-import ClockLoader from "react-spinners/ClockLoader";
 import BeatLoader from "react-spinners/BeatLoader"
 import mapStyles from "./mapStyles";
 import Button from "./Button";
@@ -20,7 +19,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setDirectionsResponseBoolean } from '../redux/directionsResponseBool'
 import { setShowAllStopsBoolean } from "../redux/showAllStopsBool";
 import { setDirectionsRenderBoolean } from "../redux/directionsRenderBool";
-import { setTotalPredictedSeconds } from "../redux/totalPredictedSeconds";
 import { setLoading } from "../redux/loading";
 import * as BiIcons from "react-icons/bi"
 
@@ -37,21 +35,21 @@ const MainMaps = ({stopData}) => {
     libraries,
   });
 
+  // Redux variables which are global, used mainly between here and Navbar.js which manages the 
+  // journey planner and weather sidebars
     const { directionsRenderBoolean } = useSelector((state) => state.directionsRenderBoolean);
     const {directionsResponseBoolean } = useSelector((state) => state.directionsResponseBoolean)
-    console.log("render is currently set to ", directionsRenderBoolean);
     const { showAllStopsBoolean } = useSelector((state) => state.showAllStopsBoolean);
     const { origin } = useSelector((state) => state.origin);
     const { destination } = useSelector((state) => state.destination);
     const { journeyDate } = useSelector((state) => state.journeyDate);
-    const { totalPredictedSeconds } = useSelector((state)=> state.totalPredictedSeconds);
     const { journeyDateString } = useSelector((state) => state.journeyDateString);
     const {loading} = useSelector(state => state.loading)
     const dispatch = useDispatch();
 
-
+  // How long a user will be waiting for the bus
   const [waitingTime, setWaitingTime] = useState(0);
-  // Capture Google time
+  // Capture Google transit time
   const [googleTime, setGoogleTime] = useState([]);
   // Our predicted time
   const [predictedTime, setPredictedTime] = useState([]);
@@ -64,6 +62,7 @@ const MainMaps = ({stopData}) => {
 
   // For activating markers
   const [ selected, setSelected ] = useState({});
+  // Default map center
   const [center, setCenter] = useState({
     lat: 53.349804, lng: -6.260310 
   });
@@ -81,23 +80,26 @@ const MainMaps = ({stopData}) => {
   border-color: #349beb;
 `;
 
-  
+  // For final directions returned from google
 const toggleDirections = () => {
   setShowDirectionsSteps(!showDirectionsSteps);
 }
 
+// Reverts page to stops map after a journey has been queried
   const toggleMarkers = () => {
       dispatch(setShowAllStopsBoolean(true));
       dispatch(setDirectionsRenderBoolean(false));
   }
 
+  // Resets the page every render, as we are dealing with global redux variables that otherwise
+  // would maintain some information on the page, which is not what we want
   useEffect(()=> {
     toggleMarkers();
     }, []);
 
+    // Scrapes data from Dublin Bus website via our Django backend to get the fare for the journey
   const postData_fare = async (stops_number, route_number) => {
     setFare([[{category: "Calculating Fare", fare:""}]]);
-    console.log(stops_number, route_number, "in postData_fare");
     const requestOptions = {
       method: 'POST',
       headers: {'Content-Type' : 'application/json' },
@@ -105,10 +107,8 @@ const toggleDirections = () => {
         param_1: stops_number,
         param_2: route_number}),
       };
-      console.log("REQUEST OPTIONS FARE__________________________", requestOptions);
       const fareResponse = await fetch('http://localhost:8000/core/Fare', requestOptions);
       const data = await fareResponse.json();
-      console.log(data, "fare django response");
       //setFare(data);
       return (data);
     }
@@ -123,14 +123,13 @@ const toggleDirections = () => {
       const hDisplay = hrs > 0 ? hrs + (hrs == 1 ? " hour, " : " hours ") : "";
       const mDisplay = mins > 0 ? mins + (mins == 1 ? " minute, " : " minutes ") : "";
       const sDisplay = secs >= 0 ? secs + (secs == 1 ? " second" : " seconds") : "";
-      console.log(hDisplay, mDisplay, sDisplay, "formatted hour components");
       return ([hDisplay + mDisplay + sDisplay]);
   }
 
+  // Posts to our Django backend for our Machine Learning algorithm to return a value in seconds based
+  // on given parameters
   const postData_traveltime = async (stops_number,route_number,start_stop, journeyDate, response) => {
     setPredictedTime(["Calculating Journey Time Using Weather Data"]);
-    console.log(totalPredictedSeconds, "the number of TOTAL PREDICTED SECONDS");
-    console.log(stops_number, route_number, start_stop, "in postData_traveltime");
     const requestOptions = {
       method: 'POST',
       headers: {'Content-Type' : 'application/json' },
@@ -140,22 +139,18 @@ const toggleDirections = () => {
         param_3: start_stop,
         param_4: journeyDate}),
       };
-      console.log("REQUEST OPTIONS TRAVELTIME__________________________", requestOptions);
       const MLResponse = await fetch('http://localhost:8000/core/Travel', requestOptions);
       const data = await MLResponse.json();
-      console.log(data, "ML django response");
       return data
   }
 
 // Callback function after Google returns a response.
 // Strips useful information from Google response to use in our predictive modelling and 
-// fare calculation funcitons in our Django back end. Also
+// fare calculation functions in our Django back end. Also
 // captures information from Google response for display on site
   const directionsCallback = async (response) => {
-    console.log(response);
     if (response !== null && directionsResponseBoolean) {
-      if (response.status === "OK") {
-        console.log("response from directions API is ", response);  
+      if (response.status === "OK") { 
         dispatch(setDirectionsResponseBoolean(false));
         setResponse(response);
         setGoogleTime(response["routes"][0]["legs"][0]["duration"]["text"])
@@ -169,11 +164,9 @@ const toggleDirections = () => {
         let arrival_time;
         let directionsSteps = [];
         let fare_info = response["routes"][0]["legs"][0]["steps"];
-        console.log("FARE INFO", fare_info);
         for (let i in fare_info){
           if (fare_info[i]["travel_mode"] == "TRANSIT") {
             let stops_number = fare_info[i]["transit"]["num_stops"];
-            console.log(stops_number);
             let route_number = fare_info[i]["transit"]["line"]["short_name"];
             routeNumbers.push(route_number);
             let start_stop = fare_info[i]["transit"]["departure_stop"]["name"];
@@ -182,21 +175,18 @@ const toggleDirections = () => {
               let query_time = new Date(journeyDateString);
               let time_difference = departure_time.getTime() - query_time.getTime();
               let seconds_difference = Math.floor(time_difference/1000);
-              console.log("TIME UNTIL BUS____________________________", seconds_difference);
               timeTilBus += seconds_difference;
               arrival_time = fare_info[i]["transit"]["arrival_time"]["value"];
               count +=1;
             } else {
               let time_difference = departure_time.getTime() - arrival_time.getTime();
               let seconds_difference = Math.floor(time_difference/1000);
-              console.log("SECONDS DIFFERENCE BETWEEN TWO DATES____________________________", seconds_difference);
               seconds += seconds_difference;
             }
             try {
               const traveltime = await postData_traveltime(stops_number,route_number,start_stop, journeyDate, response);
               seconds += traveltime;
             }catch{
-                console.log("ERROR IN TRAVELTIME______________________");
                 success = false;
               }
             const queriedFares = await postData_fare(stops_number,route_number);
@@ -208,17 +198,13 @@ const toggleDirections = () => {
           directionsSteps.push(fare_info[i]["instructions"]);
         }
         setPredictionSuccess(success);
-        console.log("SECONDS AFTER LOOP ____________________________", seconds);
-        console.log("THE COMBINED OUTPUT OF THE QUERIED FARES", allFares);
         const timeTil = displaySecondsHMS(timeTilBus);
         setWaitingTime(timeTil);
         const formattedSeconds = displaySecondsHMS(seconds);
         setPredictedTime(formattedSeconds);
         setDisplayedRoute(routeNumbers);
         setAllDirections(directionsSteps);
-        console.log("ALL FARES_____________________", allFares);
         setFare(allFares);
-        console.log("SHOULD BE SEEING THE LOGS IN THE DISPLAY SECONDS FUNCTION");
         dispatch(setLoading(false));
       } else {
         console.log("response: ", response);
@@ -226,16 +212,19 @@ const toggleDirections = () => {
     }
   };
 
+  // Prevents map re-renders back to default center
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
 
+  // Smooth transition to lat/lng value
 const panTo = useCallback(({lat, lng}) => {
   mapRef.current.panTo({lat, lng});
   mapRef.current.setZoom(18);
 })
 
+// Zooms to user location on a map
 const Locate = ({panTo}) => {
   return (<button className="btn" title="Show Stops Near Me" onClick={() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -250,26 +239,30 @@ const Locate = ({panTo}) => {
 }
 
   if (loadError) return "Error loading maps";
-  if (!isLoaded) return "loading maps";
+  if (!isLoaded) return <div className="infoButton"><BeatLoader color={"#349beb"} css={override} size={100}/></div>;
 
   console.log(stopData, "is in Map.js")
   const locations = stopData
 
+  // Select stop on click
   const onSelect = stop => {
     setSelected({});
     setSelected(stop);
 }
 
+// Close info window on close
 const onCloseInfoWindow = (position) => {
   setSelected({});
-//   setCenter(position);
     onMapLoad();
 } 
+
+// Load in a nice map texture
 const options = {
     styles: mapStyles,
     disableDefaultUI: true,
   }
 
+  // Default request to Google filled with our dynamic user requests
   const DirectionsServiceOption = {
     destination: destination,
     origin: origin,
@@ -281,14 +274,12 @@ const options = {
       }
   };
 
-  console.log("Stop Data is in Map.js", stopData);
   
   const clustererOptions = {
     // imagePath: `${clusterMakers}/m`
   }
 
   
-
   return (
     <div className="container">
       {showAllStopsBoolean && <Locate panTo={panTo}/>}
@@ -298,7 +289,7 @@ const options = {
       <p>Click on a stop to get arrival information</p></div>)}
       {directionsRenderBoolean && (
         <div className="predictionResults">
-          <p>Your bus will arrive: <div className="predictionStyler"> {loading ? <div><BeatLoader color={"#349beb"} css={override} size={20}/>Calculating</div> : `${waitingTime} after your selected departure time`}</div> </p>
+          <p>Your bus will arrive at the departure stop: <div className="predictionStyler"> {loading ? <div><BeatLoader color={"#349beb"} css={override} size={20}/>Calculating</div> : `${waitingTime} after your selected departure time`}</div> </p>
           <p>Google says the journey will take:<div className="predictionStyler">{googleTime} </div> </p><br/>
           <p>Based on weather patterns, we think it will take: <div className="predictionStyler"> {loading ? 
             <div> <BeatLoader color={"#349beb"} css={override} size={20}/>Calculating</div> : predictionSuccess ? 

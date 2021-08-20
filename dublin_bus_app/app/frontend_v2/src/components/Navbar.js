@@ -1,20 +1,20 @@
 import React, {useState} from 'react'
-import * as AiIcons from "react-icons/ai"
-import { Link } from 'react-router-dom'
 import SidebarInputFields from './SidebarInputFields'
 import Weather from './Weather'
 import './Navbar.css'
-import Button from "./Button"
 import * as TiIcons from "react-icons/ti"
+
+// A manager component that aligns the journey/ weather sidebars seen on our transit/ map page for desktop and mobile
 
 const Navbar = ({stopData}) => {
     const[sidebar, setSidebar] = useState(false);
     const [weatherVisible, setWeatherVisible] = useState(false);
 
+
     const showSidebar = () => setSidebar(!sidebar)
     return (
         <>
-            <div className="weatherButton">
+            <div className="infoButton">
                 <button className="btn" onClick={()=>setWeatherVisible(!weatherVisible)} title="Show Weather Info">{weatherVisible ? "Hide Weather Info" : "Show Weather Info"}</button>
             </div>
         {weatherVisible && (<div className="toggleContainer">

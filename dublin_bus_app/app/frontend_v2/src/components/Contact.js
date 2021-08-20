@@ -70,6 +70,7 @@ const ContactForm = () => {
                         required: { value: true, message: 'Please select a subject' }}
                         )}>
                     <option value="" selected disabled>Subject</option>
+                    <option value="Get Access to Github for iOS app">Get Access to Github for iOS app</option>
                     <option value="Request Feature">Request Feature</option>
                     {/* <option value="Request Book">Request Book</option> */}
                     <option value="Suggestion">Suggestion</option>

@@ -47,7 +47,6 @@ def ApproachingBuses(request, stopNumber):
     lateOrEarlyBuses = list(RealtimeBusData.objects.filter(Q(route_id__startswith="60"))) # Access latest realtime buses)
     # lateOrEarlyBuses = allBuses.select_related("trip_id")
     print("Late or early buses", lateOrEarlyBuses)
-    print(allBuses)
     dueBuses = [] # To capture final buses
     for bus in allBuses: # Loop through buses
         route_id = bus.trip_id.split(".")[2]

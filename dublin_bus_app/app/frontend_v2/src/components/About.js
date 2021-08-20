@@ -5,7 +5,7 @@ import Eugene from '../assets/eugeneProfessional.png';
 import Hank from '../assets/hankProfessional.png';
 import Eoin from '../assets/eoinProfessional.png';
 
-
+// A simple page to display to users who we are!
 const About = () => {
     const [showEven, setShowEven] = useState(false);
     const [showEugene, setShowEugene] = useState(false);

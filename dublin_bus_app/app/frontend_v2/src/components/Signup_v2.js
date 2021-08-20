@@ -90,11 +90,11 @@ const SignupForm = () => {
                         },
                         pattern:{
                             value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]*$/,
-                            message: "Password contain invalid characters, like: , () <> [] ..."
+                            message: "Password contains invalid characters, like: , () <> [] ..."
                         } 
                       })}
                       className='form-control formInput'
-                      placeholder= 'Password'
+                      placeholder= 'Password (at least 8 characters)'
                     ></input>
                     {errors.password && (
                       <small className='text-danger'>{errors.password.message}</small>
