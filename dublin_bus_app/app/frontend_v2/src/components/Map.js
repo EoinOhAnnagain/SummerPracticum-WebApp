@@ -282,9 +282,9 @@ const options = {
   
   return (
     <div className="container">
-      {showAllStopsBoolean && <Locate panTo={panTo}/>}
-      <button className="btn" title="Show Map Info" onClick={()=> setHelp(!help)}>{help ? "Hide Map Info": "Show Map Info"}</button>
-      {help && (<div><p>Click the target above to zoom to your location</p>
+      {showAllStopsBoolean && (<><Locate panTo={panTo}/>
+      <button className="btn" title="Show Map Info" onClick={()=> setHelp(!help)}>{help ? "Hide Map Info": "Show Map Info"}</button></>)}
+      {help && (<div><p>Click the target just above to zoom to your location</p>
       <p>Scroll in to reveal bus stops</p>
       <p>Click on a stop to get arrival information</p></div>)}
       {directionsRenderBoolean && (
@@ -293,7 +293,7 @@ const options = {
           <p>Google says the journey will take:<div className="predictionStyler">{googleTime} </div> </p><br/>
           <p>Based on weather patterns, we think it will take: <div className="predictionStyler"> {loading ? 
             <div> <BeatLoader color={"#349beb"} css={override} size={20}/>Calculating</div> : predictionSuccess ? 
-            predictedTime : "Woops, our predictor failed for this stop, sorry! This sometimes happens when new stops are added"}</div> </p><br/>
+            predictedTime : "Woops, our predictor failed for this journey, sorry! This sometimes happens when new routes are added"}</div> </p><br/>
           <p>And you can expect to pay:</p> 
           <div className="predictionStyler">
           <ul>

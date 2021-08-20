@@ -67,25 +67,25 @@ const PopupBuses = () => {
                 <ClockLoader color={"#349beb"} css={override} size={40}/>
             </div>
             )}
-            <ul>
+            
                 { displayBuses && (arrivalDisplay ? 
                 (approachingBusData.length==0 ? 
                     "No buses arriving within the next hour"
                 : approachingBusData.length <=3 ? 
                 approachingBusData.map(item=>{
-                    return <li key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving in {Math.floor(item.countdown / 60)} minutes </p></li>
+                    return <div key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving in {Math.floor(item.countdown / 60)} minutes </p></div>
                 }) 
                 : approachingBusData.slice(0, 3).map(item=>{
-                    return <li key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving in {Math.floor(item.countdown / 60)} minutes </p></li>
+                    return <div key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving in {Math.floor(item.countdown / 60)} minutes </p></div>
                 }))
             : (approachingBusData.length==0 ? 
                 "No buses arriving within the next hour"
                 : approachingBusData.length<=3 ? approachingBusData.map(item=>{
-                    return <li key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving at {arrivalTime(item.countdown)} </p></li>
+                    return <div key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving at {arrivalTime(item.countdown)} </p></div>
                 })  : approachingBusData.slice(0, 3).map(item=>{
-                    return <li key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving at {arrivalTime(item.countdown)}</p></li>
+                    return <div key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving at {arrivalTime(item.countdown)}</p></div>
                 })))}
-            </ul>
+            
             {displayBuses && (<>
                 {approachingBusData.length != 0 && (<><button className="btn" onClick={toggleArrival}>{arrivalDisplay ? "See Arrival Time" : "See Countdown"}</button>
                      <PopupBuses/></>)}

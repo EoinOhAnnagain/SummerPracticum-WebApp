@@ -20,7 +20,7 @@ const handleLogout = () => {
             axiosInstance.defaults.headers['Authorization'] = null;
             // signout firebase account
             firebaseConfig.auth().signOut();
-            alert(localStorage.getItem('email') + ", you are already log out");
+            alert(localStorage.getItem('email') + ", you have logged out");
             // remove user info from cookies
             localStorage.removeItem('email');
             // redirect to home page
