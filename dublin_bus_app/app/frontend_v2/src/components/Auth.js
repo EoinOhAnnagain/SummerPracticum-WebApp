@@ -16,10 +16,9 @@ export const AuthProvider = ({ children }) => {
               //alert("Please verify your email!")
               firebaseConfig.auth().currentUser.sendEmailVerification()
               .then(() => {
-                alert("Email verification sent!");
+                alert("Email verification sent! Please verify to log in");
               });
               firebaseConfig.auth().signOut();
-              alert("Please verify your email and login again")
               //setLoading(false);
             }else{
               if(localStorage.getItem('email')){

@@ -15,7 +15,7 @@ function Login(){
     const {currentUser}  = useContext(AuthContext);
 
     if(currentUser && localStorage.getItem('email')){
-        alert("You are already login, welcome back " +localStorage.getItem('email'));
+        alert("You are already logged in, welcome back " +localStorage.getItem('email'));
         return <Redirect to="/" />;
     }
     
