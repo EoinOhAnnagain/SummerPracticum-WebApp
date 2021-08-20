@@ -133,6 +133,9 @@ DATABASES = {
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        },
+        'TEST': {
+            'DEPENDENCIES': [],
         }
     },
     'default': {
@@ -217,20 +220,5 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SITE_ID = 1
-
-# Send email from following account
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = '4thewin2021.ucd@gmail.com'
-EMAIL_HOST_PASSWORD = '4thewin202!'
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
-# # React whitelist set to 8000
-# CORS_ORIGIN_WHITELIST = [
-#      'http://localhost:3000'
-# ]
  
 CORS_ORIGIN_ALLOW_ALL = True

@@ -10,7 +10,6 @@ import { MuiPickersUtilsProvider, TimePicker, DateTimePicker } from '@material-u
 import DateFnsUtils from '@date-io/date-fns';
 import { addDays, format } from 'date-fns';
 import Select from 'react-select';
-import AsyncSelect from 'react-select/async';
 import { useSelector, useDispatch } from 'react-redux';
 import { setOrigin } from '../redux/origin';
 import { setDestination } from '../redux/destination';
@@ -24,6 +23,7 @@ import { setLoading } from '../redux/loading';
 
 
 const SidebarInputFields = ({stopData}) => {
+    // Local variables which the user amends thorough selecting
     const [date, setDate] = useState(new Date());
     const [beginSelected, setBeginSelected] = useState(null);
     const [endSelected, setEndSelected] = useState(null);
@@ -36,6 +36,7 @@ const SidebarInputFields = ({stopData}) => {
                 label: stop.ShortCommonName_en + " | " + stop.PlateCode}
     })
 
+    // Redux global variables which are changed when user clicks to start journey planner process
     const { directionsRenderBoolean } = useSelector((state) => state.directionsRenderBoolean)
     console.log("render is currently set to ", directionsRenderBoolean)
     const { showAllStopsBoolean } = useSelector((state) => state.showAllStopsBoolean)
@@ -44,20 +45,20 @@ const SidebarInputFields = ({stopData}) => {
     const { journeyDate } = useSelector((state) => state.journeyDate)
     const dispatch = useDispatch();
     dispatch(setJourneyDate(format(date, 'yyyy-MM-dd')));
-    console.log(origin, "is journey variable from redux")
-    
-     console.log(stopData, "in journey")
 
+    // Journey start stop
     const changeBegin = (selected) => {
         setBeginSelected(selected.value);
         console.log(beginSelected, "is new origin");
     };
 
+    //Journey end stop
     const changeEnd = (selected) => {
         setEndSelected(selected.value);
         console.log(endSelected, "is new origin");
     };
 
+    // Departure time select
     const changeDate = (selected) => {
         setChosenDate(selected);
         console.log("DATE AS STRING_________________________", selected.toString())
@@ -71,6 +72,7 @@ const SidebarInputFields = ({stopData}) => {
         console.log("CHOSEN TIME________________________", value);
     }
 
+    // Global redux variable setting
     const setJourney = () => {
         if (beginSelected == null && endSelected == null){
             alert("Please select an Origin and Destination stop")

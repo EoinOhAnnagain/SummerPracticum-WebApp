@@ -24,7 +24,7 @@ function WeatherIcon(props){
         img_url = 'https://i.imgur.com/cQsGjSh.png';
     }
     // alert("[weather Icon]" + img_url);
-    return (<img src={img_url} width="100px" className="rounded"/>); 
+    return (<img src={img_url} width="30px" className="rounded"/>); 
 };
     
 
@@ -32,16 +32,14 @@ function WeatherIcon(props){
 function CardExampleCard(props){
     
 return (
-<div className = "container-fluid">
-    <div className = "row justify-content-center">
-        <div className = "col-12 col-md-4 col-sm-12 col-xs-12">
+
             <div className = "card p-4">
                 <div className = "d-flex">
-                    <h6 class="flex-grow-1"> {props.weatherData.name}</h6>
+                    <h6 className="flex-grow-1"> {props.weatherData.name}</h6>
                 </div>
                 <h6>{moment().format('LL')}</h6>
                 <div className ="d-flex flex-column temp mt-5 mb-3">
-                    <h1 class="mb-0 font-weight-bold" id="heading"> {Math.round(props.weatherData.main.temp)}°C </h1> <span class="small grey">{props.weatherData.weather[0].description}</span>
+                    <h1 className="mb-0 font-weight-bold" id="heading"> {Math.round(props.weatherData.main.temp)}°C </h1> <span className="small grey">{props.weatherData.weather[0].description}</span>
                 </div>
                 <div className = "d-flex">
                     <div className = "temp-details flex-grow-1">
@@ -59,9 +57,6 @@ return (
                 </div>
                 <div className= "text-center" ><WeatherIcon id={(props.weatherData.weather[0].id)}/></div>
             </div>
-        </div>
-    </div>
-</div>
 );
 }
 

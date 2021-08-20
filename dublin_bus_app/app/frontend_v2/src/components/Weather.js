@@ -51,19 +51,17 @@ const Weather = ()=>{
       }, []);
 
     return (
-        <div className="container">
+        
           <div className="Weather">
+            <div style={{padding:"10px"}}><h2>Today's Weather</h2></div>
           {(typeof data.main != 'undefined') ? (
               <CardExampleCard weatherData={data}/>
           ): (
               <p>Loading...</p>
           )}
-          <p>Why not plan your journey using our state-of-the-art prediction models, based on today's weather?
-          <Link className={"nav-link"} to={"/map/"}><MdIcons.MdDirectionsBus/></Link>
-          </p>
           
           </div>
-        </div>
+        
     );
 }
 

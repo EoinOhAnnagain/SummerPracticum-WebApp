@@ -11,7 +11,7 @@ const LoginForm = () => {
   const {currentUser}  = useContext(AuthContext);
   
   if(currentUser && localStorage.getItem('email')){
-    alert("You are already login, welcome back " +localStorage.getItem('email'));
+    alert("You are already logged in, welcome back" +localStorage.getItem('email'));
     return <Redirect to="/" />;
   }
 
@@ -39,14 +39,13 @@ const LoginForm = () => {
             reset();
         }
     ).catch (error => {
-        alert("login fail please try again!");
+        alert("Woops, login has failed. This sometimes happens when our server is overloaded. Please wait a moment and try again!");
         setLoginsucess(false);
         throw error;
     }); 
   };
 
   if (loginsucess){
-    alert("Django login successfully!");
     return <Redirect to="/" />;
   }
 
