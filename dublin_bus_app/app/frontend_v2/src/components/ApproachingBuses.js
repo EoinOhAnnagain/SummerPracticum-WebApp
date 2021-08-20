@@ -3,11 +3,17 @@ import { useState, useEffect } from 'react'
 import { css } from "@emotion/react";
 import ClockLoader from "react-spinners/ClockLoader";
 import { addSeconds, format } from 'date-fns';
+import Popup from "reactjs-popup";
+import 'reactjs-popup/dist/index.css';
 
 const ApproachingBuses = ({stopNumber}) => {
     
     const [approachingBusData, setApproachingBusData] = useState([]);
     const [displayBuses, setDisplayBuses] = useState(false);
+
+    useEffect(() => {
+        setDisplayBuses(false);
+    }, [])
 
     const override = css`
   display: block;
@@ -26,6 +32,7 @@ useEffect(async ()=> {
     console.log(approachingBusData, "approaching bus data")
     
     const [arrivalDisplay, setArrivalDisplay] = useState(true);
+    const [subArrivalDisplay, setSubArrivalDisplay] = useState(true);
 
     const now = new Date();
 
@@ -33,41 +40,54 @@ useEffect(async ()=> {
         let arrival = addSeconds(now, countdown)
         let h = arrival.getHours()
         let m = arrival.getMinutes()
-        return `${h}:${m}`
+        return `${h}:${m<10 ? "0"+m : m}`
     }
 
     const toggleArrival = () => {
         setArrivalDisplay(!arrivalDisplay);
     }
+
+const PopupBuses = () => {
+    return(
+    <Popup trigger={<button className="btn">See Next Hour</button>} modal>
+        <div className="popup">{approachingBusData.map(item=>{
+                    return <div key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving at {arrivalTime(item.countdown)} </p></div>
+                }) }</div>
+    </Popup>)
+}
+
     console.log(approachingBusData, "approaching bus data")
     return (
-        <div>
+        <div className="approachingBuses">
             {!displayBuses && (
             <div>
                 <p>Fetching Approaching Bus Data</p>
-                <ClockLoader color={"#349beb"} css={override} size={100}/>
+                <ClockLoader color={"#349beb"} css={override} size={40}/>
             </div>
             )}
             <ul>
-                { displayBuses && arrivalDisplay ? 
-                (approachingBusData.length<=5 ? 
+                { displayBuses && (arrivalDisplay ? 
+                (approachingBusData.length==0 ? 
+                    "No buses arriving within the next hour"
+                : approachingBusData.length <=5 ? 
                 approachingBusData.map(item=>{
                     return <li key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving in {Math.floor(item.countdown / 60)} minutes </p></li>
                 }) 
-                : approachingBusData.length==0 ? 
-                "No buses arriving within the next 2 hours" 
                 : approachingBusData.slice(0, 5).map(item=>{
                     return <li key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving in {Math.floor(item.countdown / 60)} minutes </p></li>
                 }))
-            : (approachingBusData.length<=5 ? 
-                approachingBusData.map(item=>{
+            : (approachingBusData.length==0 ? 
+                "No buses arriving within the next hour"
+                : approachingBusData.length<=5 ? approachingBusData.map(item=>{
                     return <li key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving at {arrivalTime(item.countdown)} </p></li>
-                }) 
-                : approachingBusData.length==0 ? "No buses arriving within the next 2 hours" : approachingBusData.slice(0, 5).map(item=>{
+                })  : approachingBusData.slice(0, 5).map(item=>{
                     return <li key={item.trip_id} style={{color: 'black'}}><p>{item.route_number} | Arriving at {arrivalTime(item.countdown)}</p></li>
-                }))}
+                })))}
             </ul>
-            {displayBuses && (<button className="btn" onClick={toggleArrival}>{arrivalDisplay ? "See Arrival Time" : "See Countdown"}</button>)}
+            {displayBuses && (<>
+                {approachingBusData.length != 0 && (<><button className="btn" onClick={toggleArrival}>{arrivalDisplay ? "See Arrival Time" : "See Countdown"}</button>
+                     <PopupBuses/></>)}
+                </>)}
         </div>
     )
 }

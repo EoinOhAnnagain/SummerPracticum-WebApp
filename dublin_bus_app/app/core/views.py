@@ -78,7 +78,7 @@ def ApproachingBuses(request, stopNumber):
             else:
                 print("not late or early")
         countdown = tdelta.seconds + timeChange # Additional variable for JSON that stores countdown in seconds
-        if (tdelta.seconds >0 and tdelta.seconds < 1800): # Limit response to buses arriving in next half-hour
+        if (tdelta.seconds >0 and tdelta.seconds < 3600): # Limit response to buses arriving in next half-hour
             dueBuses.append({"id": bus.trip_id, "route_number": route_number, "arrivalTime": bus.arrival_time, "timeChange" : timeChange, "countdown": countdown})
     json_string = json.dumps(dueBuses)
     jsonBuses = json.loads(json_string)

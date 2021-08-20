@@ -122,7 +122,7 @@ const toggleDirections = () => {
       const secs = Math.floor(totSecs % 3600 % 60);
       const hDisplay = hrs > 0 ? hrs + (hrs == 1 ? " hour, " : " hours ") : "";
       const mDisplay = mins > 0 ? mins + (mins == 1 ? " minute, " : " minutes ") : "";
-      const sDisplay = secs > 0 ? secs + (secs == 1 ? " second" : " seconds") : "";
+      const sDisplay = secs >= 0 ? secs + (secs == 1 ? " second" : " seconds") : "";
       console.log(hDisplay, mDisplay, sDisplay, "formatted hour components");
       return ([hDisplay + mDisplay + sDisplay]);
   }
@@ -179,7 +179,7 @@ const toggleDirections = () => {
             let start_stop = fare_info[i]["transit"]["departure_stop"]["name"];
             let departure_time = fare_info[i]["transit"]["departure_time"]["value"];
             if (count == 0){
-              let query_time = new Date();
+              let query_time = new Date(journeyDateString);
               let time_difference = departure_time.getTime() - query_time.getTime();
               let seconds_difference = Math.floor(time_difference/1000);
               console.log("TIME UNTIL BUS____________________________", seconds_difference);
@@ -237,13 +237,13 @@ const panTo = useCallback(({lat, lng}) => {
 })
 
 const Locate = ({panTo}) => {
-  return (<button className="btn" onClick={() => {
+  return (<button className="btn" title="Show Stops Near Me" onClick={() => {
     navigator.geolocation.getCurrentPosition((position) => {
         panTo({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         });
-    }, ()=> alert("Geolocation is impossible when hosted on insecure server. If hosted securely, refresh the page and try again."));
+    }, ()=> alert("Geolocation is not possible when hosted on insecure server. If hosted securely, refresh the page and try again."));
   }}>
       <BiIcons.BiCurrentLocation/>
     </button>);
@@ -291,20 +291,22 @@ const options = {
 
   return (
     <div className="container">
-      <Locate panTo={panTo}/>
+      {showAllStopsBoolean && <Locate panTo={panTo}/>}
       <button className="btn" title="Show Map Info" onClick={()=> setHelp(!help)}>{help ? "Hide Map Info": "Show Map Info"}</button>
       {help && (<div><p>Click the target above to zoom to your location</p>
       <p>Scroll in to reveal bus stops</p>
       <p>Click on a stop to get arrival information</p></div>)}
       {directionsRenderBoolean && (
         <div className="predictionResults">
-          <p>Your bus will arrive {loading ? <><BeatLoader color={"#349beb"} css={override} size={20}/></> : waitingTime + " after your selected departure time"} </p>
-          <p>Google says the journey will take: {googleTime} </p><br/>
-          <p>Based on weather patterns, we think it will take: {loading ? 
-            <div> <BeatLoader color={"#349beb"} css={override} size={20}/>Loading</div> : predictionSuccess ? 
-            predictedTime : "Woops, our predictor failed for this stop, sorry! This sometimes happens when new stops are added"} </p><br/>
-          <p>And you can expect to pay:</p> <ul>
-        {loading ? <div> <BeatLoader color={"#349beb"} css={override} size={20}/>Loading</div> :
+          <p>Your bus will arrive: <div className="predictionStyler"> {loading ? <div><BeatLoader color={"#349beb"} css={override} size={20}/>Calculating</div> : `${waitingTime} after your selected departure time`}</div> </p>
+          <p>Google says the journey will take:<div className="predictionStyler">{googleTime} </div> </p><br/>
+          <p>Based on weather patterns, we think it will take: <div className="predictionStyler"> {loading ? 
+            <div> <BeatLoader color={"#349beb"} css={override} size={20}/>Calculating</div> : predictionSuccess ? 
+            predictedTime : "Woops, our predictor failed for this stop, sorry! This sometimes happens when new stops are added"}</div> </p><br/>
+          <p>And you can expect to pay:</p> 
+          <div className="predictionStyler">
+          <ul>
+        {loading ? <div> <BeatLoader color={"#349beb"} css={override} size={20}/>Calculating</div> :
          fare.map((subarray, index) => {
           return (
             <Fragment>
@@ -318,9 +320,10 @@ const options = {
           </Fragment>
           );
         })}
-        <Link className={"nav-link"} to={"/webChat/"}>Find your Route in our Chat</Link>
+        <div className="predictionStyler"><Link className={"nav-link"} to={"/webChat/"}>Find your Route in our Chat</Link></div>
         </ul>
-          <Button text={"Show Directions"} onClick={toggleDirections}/>
+        </div>
+          <Button text={"Show Bus Directions"} onClick={toggleDirections}/>
           {showDirectionsSteps && ( loading ? 
             <div><BeatLoader color={"#349beb"} css={override} size={30}/>Loading</div> 
             : <div>{allDirections.map(step => { return (<><p>{step}</p><br/></>)})}</div>)}
@@ -329,7 +332,7 @@ const options = {
       {directionsRenderBoolean && <Button text={"Back to Stops"} onClick={toggleMarkers}></Button>}
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={15}
+        zoom={16}
         center={center}
         options={options}
         onLoad={onMapLoad}

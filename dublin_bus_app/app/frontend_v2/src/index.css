@@ -41,6 +41,10 @@ body {
   }
 }
 
+.homeStyle {
+  text-align: center;
+}
+
 .intro {
   color: white;
   background-color: black;
@@ -224,7 +228,7 @@ footer {
 @media screen and (max-width: 1000px) {
   .nav {
     justify-content: flex-start;
-    height: 120px;
+    height: 160px;
   }
 
   .sitePages {
@@ -232,7 +236,7 @@ footer {
     position: absolute;
     left: 0;
     top: 0;
-    width: 50%;
+    width: 70px;
   }
 
   .nav li {
@@ -243,7 +247,8 @@ footer {
     display: flexbox;
   }
   .dropdown-container {
-    right: 30px;
+    right: 0;
+    top: 65px;
   }
 }
 .about {
@@ -258,10 +263,32 @@ footer {
   border-radius: 20%;
 }
 
+.approachingBuses li {
+  font-size: 5;
+}
+
+.approachingBuses ul {
+  list-style: none;
+}
+
 .predictionResults {
-  background-color: rgb(255, 238, 161);
+  background-color: #404146;
+  color: white;
   border-radius: 5px;
   padding: 30px;
+  font-size: 13;
+}
+
+.predictionStyler {
+  color: steelblue;
+}
+
+.predictionStyler a {
+  color: #ffcf31;
+}
+
+.predictionStyler a:hover {
+  color: white;
 }
 
 .predictionResults ul {
@@ -295,4 +322,18 @@ footer {
 
 .messageBody:hover div {
   display: block;
+}
+
+/* Popup in Approaching Buses */
+.popup {
+  background-color: steelblue;
+  color: white;
+  height: 400px;
+  overflow: auto;
+}
+
+@media screen and (max-width: 1000px) {
+  .popup {
+    width: 95%;
+  }
 }
