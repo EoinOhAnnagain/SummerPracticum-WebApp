@@ -10,20 +10,27 @@ export const AuthProvider = ({ children }) => {
   
   useEffect(() => {
     firebaseConfig.auth().onAuthStateChanged((user) => {
-        //alert("[Auth.js] Firebase state changes")
-        // if(localStorage.getItem('email')){
-        //     alert("[Auth.js] Django system already login!")
-        // }else{
-        //     alert("[Auth.js] Django not login yet!")    
-        // }
         setCurrentUser(user);
-        setLoading(false);;
+         if (user !== null) {
+            if(user.emailVerified === false) {
+              //alert("Please verify your email!")
+              firebaseConfig.auth().currentUser.sendEmailVerification()
+              .then(() => {
+                alert("Email verification sent!");
+              });
+              firebaseConfig.auth().signOut();
+              alert("Please verify your email and login again")
+              //setLoading(false);
+            }else{
+              if(localStorage.getItem('email')){
+                alert("Welcome "+ localStorage.getItem('email'));
+            }else{
+                alert("[Auth.js] Django not login yet!")    
+            }
+            }
+        }
     });
   }, []);
-  
-  if (loading) {
-    return <p>Loading...</p>;
-  }
   
   return (
     <AuthContext.Provider value={{ currentUser }}>

@@ -13,12 +13,6 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from datetime import datetime, timedelta
 
-"""Hank add for testing dB"""
-def show_agency_list(request):
-    user_list = Agency.objects.order_by('agency_name')
-    output = ', '.join([user.agency_name for user in user_list])
-    return HttpResponse(output)
-
 def ApproachingBuses(request, stopNumber):
     now = datetime.now() # Get todays date and format it same as database
     current_time = now.strftime("%H:%M:%S")
@@ -50,11 +44,13 @@ def ApproachingBuses(request, stopNumber):
         allBuses = SundayStops.objects.filter(Q(stop_id = stopNumber) & (Q(arrival_time__startswith=current_hour)| Q(arrival_time__startswith=next_hour)))
         print("sunday")
     # allBuses = WethfrStops.objects.filter(Q(stop_id=stopNumber) & (Q(arrival_time__startswith=str(current_time.hour))| Q(arrival_time__startswith=str(current_time.hour +1))))
-    lateOrEarlyBuses = RealtimeBusData.objects.all() # Access latest realtime buses
-    print(allBuses)
+    lateOrEarlyBuses = list(RealtimeBusData.objects.filter(Q(route_id__startswith="60"))) # Access latest realtime buses)
+    # lateOrEarlyBuses = allBuses.select_related("trip_id")
+    print("Late or early buses", lateOrEarlyBuses)
     dueBuses = [] # To capture final buses
     for bus in allBuses: # Loop through buses
         route_id = bus.trip_id.split(".")[2]
+        trip_id =bus.trip_id.split(".")[0]
         split_elements = route_id.split("-") # Get the route_short_name by splitting route_id
         route_number = split_elements[1]
         if int(current_hour) >= 23 and int(current_hour) <=3: # This method takes a lot of time - only call in early morning when necessary
@@ -72,74 +68,79 @@ def ApproachingBuses(request, stopNumber):
             tdelta = timedelta(days=0, seconds=tdelta.seconds)
         print(tdelta.seconds)
         timeChange = 0 # Store deviation from schedule
-        # if lateOrEarlyBuses.filter(trip_id = bus.trip_id).exists(): # Check if bus trip is in late/early buses
-        #     lateOrEarlyBus = lateOrEarlyBuses.filter(trip_id = bus.trip_id)[0]
-        #     timeChange+= lateOrEarlyBus.departure_delay # Add departure delay to time change
+        for i in lateOrEarlyBuses:
+            late_trip_id =i.trip_id.split(".")[0]
+            print(i.trip_id)
+            if trip_id==late_trip_id: # Check if bus trip is in late/early buses
+                print("in late or early buses")
+                timeChange+= i.departure_delay # Add departure delay to time change
+            else:
+                print("not late or early")
         countdown = tdelta.seconds + timeChange # Additional variable for JSON that stores countdown in seconds
-        if (tdelta.seconds >0 and tdelta.seconds < 1800): # Limit response to buses arriving in next half-hour
+        if (tdelta.seconds >0 and tdelta.seconds < 3600): # Limit response to buses arriving in next half-hour
             dueBuses.append({"id": bus.trip_id, "route_number": route_number, "arrivalTime": bus.arrival_time, "timeChange" : timeChange, "countdown": countdown})
     json_string = json.dumps(dueBuses)
     jsonBuses = json.loads(json_string)
     def sortByArrival(value): # Sort JSON object so soonest bus displays at the top
-        return value["arrivalTime"]
+        return value["countdown"]
     sortedBuses = sorted(jsonBuses, key=sortByArrival)
     print(sortedBuses)
     return JsonResponse(sortedBuses, safe=False)
 
 
-@csrf_exempt
-def LiveData(request, stopNumber):
-    print(stopNumber)
-    # Convert the list of stops from JSON
-    body_unicode = request.body.decode('utf-8')
-    body = json.loads(body_unicode)
-    # Format the stops into a list
-    routeList = body.strip(" ").split(",")
-    routeList = [x.strip(' ') for x in routeList]
-    print(routeList)
-    # Get the corresponding formal name for each route for live data API
-    routeFullnameList = []
-    for i in range (len(routeList)):
-        routeFullname = Routes.objects.get(route_short_name = routeList[i])
-        routeFullnameList.append(routeFullname)
-    print(routeFullnameList)
-    print([x.route_id for x in routeFullnameList])
-    # Set up lists to capture queryset objects & django model objects
-    movingBuses = []
-    outbound = []
-    inbound = []
-    # Get the live bus data corresponding to route names
-    for route in routeFullnameList:
-        movingBuses.append(RealtimeBusData.objects.filter(route_id = route.route_id))
-    print(movingBuses)
-    # Divide the live bus data into inbound and outbound
-    for route in movingBuses:
-        for bus in route:
-            if bus.trip_id[-1] == "I":
-                inbound.append(bus)
-            else:
-                outbound.append(bus)
-    print("inbound", inbound)
-    print("outbound", outbound)
-    # Access live data
-    inboundStopNumbers = []
-    for bus in inbound:
-        busRoute = Routes.objects.get(route_id = bus.route_id)
-        queryStop = RouteByStops.objects.filter(RouteName = busRoute.route_id, Direction = "I", PlateCode = stopNumber)
-        if bus.stop_sequence > queryStop.StopSequence:
-            pass
-        else:
-            for i in range (bus.stop_sequence, queryStop.StopSequence):
-                inboundStopNumbers.append(RouteByStops.objects.filter(RouteName = busRoute.route_id, Direction="I", PlateCode = i))
-
-    print(inboundStopNumbers)
-    return JsonResponse(body, safe=False)
-
-def SelectRoute(request):
-    origin = request.GET['origin']
-    destination = request.GET['destination']
-    print("HERE", origin, destination)
-    return HttpResponse("Your journey is important to us, please wait while we finish the app and we'll figure it out")
+# @csrf_exempt
+# def LiveData(request, stopNumber):
+#     print(stopNumber)
+#     # Convert the list of stops from JSON
+#     body_unicode = request.body.decode('utf-8')
+#     body = json.loads(body_unicode)
+#     # Format the stops into a list
+#     routeList = body.strip(" ").split(",")
+#     routeList = [x.strip(' ') for x in routeList]
+#     print(routeList)
+#     # Get the corresponding formal name for each route for live data API
+#     routeFullnameList = []
+#     for i in range (len(routeList)):
+#         routeFullname = Routes.objects.get(route_short_name = routeList[i])
+#         routeFullnameList.append(routeFullname)
+#     print(routeFullnameList)
+#     print([x.route_id for x in routeFullnameList])
+#     # Set up lists to capture queryset objects & django model objects
+#     movingBuses = []
+#     outbound = []
+#     inbound = []
+#     # Get the live bus data corresponding to route names
+#     for route in routeFullnameList:
+#         movingBuses.append(RealtimeBusData.objects.filter(route_id = route.route_id))
+#     print(movingBuses)
+#     # Divide the live bus data into inbound and outbound
+#     for route in movingBuses:
+#         for bus in route:
+#             if bus.trip_id[-1] == "I":
+#                 inbound.append(bus)
+#             else:
+#                 outbound.append(bus)
+#     print("inbound", inbound)
+#     print("outbound", outbound)
+#     # Access live data
+#     inboundStopNumbers = []
+#     for bus in inbound:
+#         busRoute = Routes.objects.get(route_id = bus.route_id)
+#         queryStop = RouteByStops.objects.filter(RouteName = busRoute.route_id, Direction = "I", PlateCode = stopNumber)
+#         if bus.stop_sequence > queryStop.StopSequence:
+#             pass
+#         else:
+#             for i in range (bus.stop_sequence, queryStop.StopSequence):
+#                 inboundStopNumbers.append(RouteByStops.objects.filter(RouteName = busRoute.route_id, Direction="I", PlateCode = i))
+#
+#     print(inboundStopNumbers)
+#     return JsonResponse(body, safe=False)
+#
+# def SelectRoute(request):
+#     origin = request.GET['origin']
+#     destination = request.GET['destination']
+#     print("HERE", origin, destination)
+#     return HttpResponse("Your journey is important to us, please wait while we finish the app and we'll figure it out")
 
 def Stops(request):
    json_data = open(finders.find('JSON/stops_and_their_buses.json'))
@@ -154,10 +155,6 @@ def Routes(request):
    data2 = json.load(json_data)  # deserialises it
    json_data.close()
    return JsonResponse(data2, safe=False) # , safe=False
-
-def HelloWorldView(request):
-    response = HttpResponse("Hello World!")
-    return response
 
 def MainPageView(request):
     return render(request, "index.html")
@@ -178,6 +175,7 @@ def FareCalculation(request):
         print(route_number, "is route number")
         f = fare_crawler(route_number,int(stops_number))
         parsed = f.parse()
+        print(parsed, "returned from Fare Calculation")
         #order = "python3 core/fare_calculation.py {} {}".format(stops_number,route_number)
         #result = subprocess.check_output(order)
         result = list(parsed)

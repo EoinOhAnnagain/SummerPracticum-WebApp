@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CardExampleCard from "./Weather_card";
+import * as MdIcons from "react-icons/md"
+import {Link } from "react-router-dom";
 
 
 
@@ -49,13 +51,17 @@ const Weather = ()=>{
       }, []);
 
     return (
-        <div className="Weather">
-        {(typeof data.main != 'undefined') ? (
-            <CardExampleCard weatherData={data}/>
-        ): (
-            <p>Loading...</p>
-        )}
-        </div>
+        
+          <div className="Weather">
+            <div style={{padding:"10px"}}><h2>Today's Weather</h2></div>
+          {(typeof data.main != 'undefined') ? (
+              <CardExampleCard weatherData={data}/>
+          ): (
+              <p>Loading...</p>
+          )}
+          
+          </div>
+        
     );
 }
 

@@ -70,17 +70,19 @@ const ContactForm = () => {
                         required: { value: true, message: 'Please select a subject' }}
                         )}>
                     <option value="" selected disabled>Subject</option>
+                    <option value="Get Access to Github for iOS app">Get Access to Github for iOS app</option>
                     <option value="Request Feature">Request Feature</option>
-                    <option value="Request Book">Request Book</option>
+                    {/* <option value="Request Book">Request Book</option> */}
                     <option value="Suggestion">Suggestion</option>
                     <option value="Bug in Weather">Bug in Weather</option>
-                    <option value="Bug in Books">Bug in Books</option>
-                    <option value="Bug in CodeBreaker">Bug in CodeBreaker</option>
+                    {/* <option value="Bug in Books">Bug in Books</option>
+                    <option value="Bug in CodeBreaker">Bug in CodeBreaker</option> */}
                     <option value="Bug in Chat">Bug in Chat</option>
                     <option value="Bug in Prediction">Bug in Prediction</option>
                     <option value="Bug in Map">Bug in Map</option>
                     <option value="Bug in Login/SignUp">Bug in Login/SignUp</option>
                     <option value="Report Abuse of Chat">Report Abuse of Chat</option>
+                    <option value="Others">Others</option>
                  </select>
                  {errors.subject && (
                       <small className='text-danger'>{errors.subject.message}</small>
@@ -102,7 +104,7 @@ const ContactForm = () => {
                     {errors.message && <small className='text-danger'>Please enter a message</small>}
                   </div>
                 </div>
-                <button className='submit-btn' type='submit'>
+                <button className='btn' type='submit'>
                   Submit
                 </button>
               </form>
